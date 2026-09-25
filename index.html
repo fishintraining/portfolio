@@ -7,24 +7,19 @@
   <title>Malin Hall — Digital Production · UX/HCI · Technical Systems</title>
 
   <style>
-
     :root {
       --yellow: #f6b731;
       --green: #3f5909;
       --brown: #6b4937;
 
-      --cream: #f5efe3;
-      --dark: #241d18;
-      --light-green: #dfe4cf;
+      --cream: #f7f2e8;
+      --dark: #211c18;
+      --light: #e7e5d8;
 
-      --page-padding: clamp(20px, 5vw, 80px);
-      --section-space: clamp(90px, 12vw, 170px);
+      --padding: clamp(20px, 5vw, 80px);
+      --section-space: clamp(90px, 11vw, 160px);
+      --max-width: 1500px;
     }
-
-
-    /* =========================
-       BASE
-    ========================= */
 
     * {
       box-sizing: border-box;
@@ -32,17 +27,20 @@
 
     html {
       scroll-behavior: smooth;
-      scroll-padding-top: 90px;
+      scroll-padding-top: 80px;
     }
 
     body {
       margin: 0;
       background: var(--cream);
       color: var(--dark);
-
       font-family: Arial, Helvetica, sans-serif;
-
       overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
     }
 
     a {
@@ -51,43 +49,41 @@
     }
 
 
-    /* =========================
-       STICKY HEADER
-    ========================= */
+    /* =================================
+       HEADER
+    ================================= */
 
     header {
       position: sticky;
       top: 0;
       z-index: 100;
 
-      margin: 0;
+      width: 100%;
 
-      padding: 16px var(--page-padding);
+      padding: 17px var(--padding);
 
       display: flex;
-      align-items: center;
       justify-content: space-between;
+      align-items: center;
 
-      background: rgba(245, 239, 227, 0.94);
+      background: rgba(247, 242, 232, 0.94);
 
       border-bottom: 1px solid var(--dark);
 
-      backdrop-filter: blur(8px);
+      backdrop-filter: blur(10px);
     }
 
     .logo {
-      font-size: clamp(17px, 2vw, 23px);
+      font-size: clamp(17px, 1.8vw, 23px);
       font-weight: 700;
       letter-spacing: -0.04em;
     }
 
     nav {
       display: flex;
-      align-items: center;
+      gap: clamp(18px, 3vw, 45px);
 
-      gap: clamp(18px, 3vw, 42px);
-
-      font-size: 12px;
+      font-size: 11px;
       text-transform: uppercase;
       letter-spacing: 0.1em;
     }
@@ -101,45 +97,62 @@
     }
 
 
-    /* =========================
+    /* =================================
+       GENERAL
+    ================================= */
+
+    .container {
+      width: min(
+        calc(100% - (var(--padding) * 2)),
+        var(--max-width)
+      );
+
+      margin: 0 auto;
+    }
+
+    .section-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
+
+    .section-title {
+      margin: 12px 0 0;
+
+      font-size: clamp(48px, 7vw, 100px);
+      line-height: 0.9;
+      letter-spacing: -0.07em;
+    }
+
+
+    /* =================================
        HERO
-    ========================= */
+    ================================= */
 
     .hero {
-      min-height: calc(100vh - 65px);
+      min-height: calc(100vh - 70px);
 
-      padding:
-        clamp(60px, 9vw, 130px)
-        var(--page-padding)
-        clamp(70px, 9vw, 120px);
+      padding: clamp(70px, 10vw, 150px) 0;
 
       display: grid;
-
-      grid-template-columns:
-        minmax(0, 1.1fr)
-        minmax(300px, 0.9fr);
+      grid-template-columns: 1.15fr 0.85fr;
 
       gap: clamp(40px, 7vw, 100px);
 
       align-items: center;
     }
 
-
-    /* HERO TEXT */
-
-    .hero-text {
+    .hero-copy {
       max-width: 900px;
     }
 
     .hero-title {
       margin: 0;
 
-      font-size: clamp(40px, 5.8vw, 88px);
-
-      line-height: 0.94;
+      font-size: clamp(40px, 5.8vw, 86px);
+      line-height: 0.95;
 
       letter-spacing: -0.065em;
-
       font-weight: 700;
     }
 
@@ -151,321 +164,248 @@
       color: var(--yellow);
     }
 
-    .hero-intro {
-      max-width: 620px;
+    .hero-description {
+      max-width: 600px;
 
       margin-top: clamp(35px, 5vw, 60px);
 
       font-size: clamp(17px, 1.7vw, 23px);
-
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
 
-    /* =========================
-       PORTRAIT / CIRCLES
-    ========================= */
+    /* =================================
+       HERO IMAGE
+    ================================= */
 
-    .portrait-area {
-      min-height: min(600px, 55vw);
-
-      position: relative;
+    .hero-image {
+      min-height: min(550px, 55vw);
 
       display: flex;
-
       justify-content: center;
       align-items: center;
+
+      position: relative;
     }
 
-    /*
-      Main green shape
-    */
-
-    .portrait-shape {
+    .image-green {
       position: absolute;
 
-      width: min(31vw, 430px);
+      width: min(32vw, 430px);
       aspect-ratio: 1;
 
       border-radius: 50%;
 
       background: var(--green);
 
-      transform: rotate(-8deg);
+      transform: rotate(-7deg);
     }
 
-    /*
-      Yellow offset shape
-    */
-
-    .portrait-shape::before {
-      content: "";
-
+    .image-yellow {
       position: absolute;
 
-      width: 72%;
+      width: min(22vw, 300px);
       aspect-ratio: 1;
 
       border-radius: 50%;
 
       background: var(--yellow);
 
-      top: -8%;
-      left: 15%;
+      transform: translate(
+        clamp(50px, 5vw, 80px),
+        clamp(-90px, -6vw, -50px)
+      );
     }
 
-    /*
-      Brown ring
-    */
-
-    .portrait-ring {
+    .image-ring {
       position: absolute;
 
-      width: min(37vw, 510px);
+      width: min(38vw, 510px);
       aspect-ratio: 1;
 
       border-radius: 50%;
 
-      border: clamp(9px, 1.2vw, 17px) solid var(--brown);
+      border: clamp(7px, 1vw, 13px) solid var(--brown);
 
-      transform: rotate(14deg);
+      transform: rotate(15deg);
     }
 
-    /*
-      Portrait
-    */
-
-    .portrait {
+    .hero-image img {
       position: relative;
       z-index: 5;
 
-      width: clamp(190px, 24vw, 320px);
+      width: clamp(190px, 24vw, 315px);
       aspect-ratio: 1;
 
       object-fit: cover;
 
       border-radius: 50%;
 
-      border: clamp(7px, 0.9vw, 12px) solid var(--cream);
+      border: clamp(7px, 1vw, 12px) solid var(--cream);
 
-      box-shadow:
-        12px 15px 0 var(--brown);
+      box-shadow: 12px 15px 0 var(--brown);
     }
 
-
-    /* =========================
-       SCROLL
-    ========================= */
-
-    .scroll-indicator {
-      position: absolute;
-
-      left: var(--page-padding);
-      bottom: 25px;
+    .scroll {
+      margin-top: 50px;
 
       display: flex;
-      flex-direction: column;
-
-      gap: 7px;
+      align-items: center;
+      gap: 10px;
 
       font-size: 10px;
-
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
 
-    .scroll-arrow {
-      font-size: 25px;
-      line-height: 1;
+    .scroll span:last-child {
+      font-size: 22px;
     }
 
 
-    /* =========================
-       GENERAL SECTION HEADER
-    ========================= */
+    /* =================================
+       SELECTED WORK
+    ================================= */
 
-    .section-heading {
-      margin: 0 var(--page-padding);
+    .work {
+      padding-bottom: var(--section-space);
+    }
 
-      padding-top: 20px;
+    .work-header {
+      padding-top: 18px;
 
       border-top: 1px solid var(--dark);
 
       display: flex;
-
-      align-items: baseline;
       justify-content: space-between;
+      align-items: baseline;
 
       gap: 20px;
     }
 
-    .section-heading h2 {
+    .work-header h2 {
       margin: 0;
 
-      font-size: clamp(45px, 7vw, 100px);
-
+      font-size: clamp(48px, 7vw, 100px);
       line-height: 0.9;
-
       letter-spacing: -0.07em;
     }
 
-    .section-heading span {
+    .work-header p {
+      margin: 0;
+
       font-size: 11px;
-
       text-transform: uppercase;
-
       letter-spacing: 0.1em;
-
-      white-space: nowrap;
     }
 
 
-    /* =========================
-       WORK
-    ========================= */
-
-    .work {
-      padding:
-        55px
-        var(--page-padding)
-        var(--section-space);
-    }
+    /* PROJECT */
 
     .projects {
-      display: grid;
-
-      grid-template-columns:
-        repeat(2, minmax(0, 1fr));
-
-      gap: clamp(25px, 4vw, 65px);
-    }
-
-    .project {
-      min-height: clamp(390px, 42vw, 580px);
-
-      padding: clamp(25px, 4vw, 55px);
-
-      position: relative;
+      margin-top: clamp(40px, 6vw, 80px);
 
       display: flex;
       flex-direction: column;
-      justify-content: space-between;
+
+      gap: clamp(50px, 8vw, 120px);
+    }
+
+    .project {
+      display: grid;
+
+      grid-template-columns: 1.35fr 0.65fr;
+
+      gap: clamp(25px, 5vw, 80px);
+
+      align-items: end;
+    }
+
+    .project:nth-child(even) {
+      grid-template-columns: 0.65fr 1.35fr;
+    }
+
+    .project:nth-child(even) .project-image {
+      order: 2;
+    }
+
+    .project:nth-child(even) .project-info {
+      order: 1;
+    }
+
+
+    /* PROJECT IMAGE PLACEHOLDER */
+
+    .project-image {
+      min-height: clamp(350px, 48vw, 680px);
+
+      display: flex;
+      align-items: center;
+      justify-content: center;
+
+      position: relative;
 
       overflow: hidden;
     }
 
-
-    /* Project colours */
-
-    .project:nth-child(1) {
+    .project:nth-child(1) .project-image {
       background: var(--green);
-      color: var(--cream);
     }
 
-    .project:nth-child(2) {
+    .project:nth-child(2) .project-image {
       background: var(--yellow);
-      color: var(--brown);
-
-      margin-top: clamp(35px, 6vw, 100px);
     }
 
-    .project:nth-child(3) {
+    .project:nth-child(3) .project-image {
       background: var(--brown);
-      color: var(--cream);
-
-      margin-top: clamp(-60px, -4vw, -25px);
     }
 
+    .project-image::after {
+      content: "PROJECT IMAGE";
+
+      position: absolute;
+
+      font-size: clamp(15px, 2vw, 25px);
+
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+
+      opacity: 0.5;
+    }
+
+
+    /* PROJECT INFO */
+
+    .project-info {
+      padding-bottom: 10px;
+    }
 
     .project-number {
       font-size: 11px;
 
       text-transform: uppercase;
-
       letter-spacing: 0.12em;
     }
 
     .project h3 {
-      margin: 0;
+      margin: 18px 0 25px;
 
-      font-size: clamp(40px, 5vw, 72px);
-
-      line-height: 0.88;
-
-      letter-spacing: -0.065em;
-    }
-
-    .project-description {
-      max-width: 430px;
-
-      margin-bottom: 0;
-
-      font-size: clamp(15px, 1.4vw, 18px);
-
-      line-height: 1.4;
-    }
-
-    .project-arrow {
-      position: absolute;
-
-      right: clamp(20px, 3vw, 40px);
-      bottom: clamp(15px, 3vw, 30px);
-
-      font-size: clamp(32px, 4vw, 55px);
-    }
-
-
-    /* =========================
-       MASTER'S THESIS
-    ========================= */
-
-    .thesis {
-      margin:
-        0
-        var(--page-padding)
-        var(--section-space);
-
-      padding:
-        clamp(25px, 4vw, 55px);
-
-      background: var(--light-green);
-
-      border: 1px solid var(--dark);
-
-      display: grid;
-
-      grid-template-columns: 0.7fr 1.3fr;
-
-      gap: clamp(35px, 7vw, 100px);
-
-      align-items: end;
-    }
-
-    .thesis-label {
-      font-size: 11px;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.1em;
-    }
-
-    .thesis h3 {
-      margin: 20px 0 0;
-
-      font-size: clamp(40px, 6vw, 85px);
+      font-size: clamp(40px, 5vw, 75px);
 
       line-height: 0.88;
 
       letter-spacing: -0.065em;
     }
 
-    .thesis-text {
-      font-size: clamp(17px, 1.7vw, 22px);
+    .project p {
+      max-width: 480px;
 
-      line-height: 1.4;
+      font-size: clamp(16px, 1.5vw, 20px);
+
+      line-height: 1.45;
     }
 
-    .thesis-link {
+    .project-link {
       display: inline-block;
 
       margin-top: 20px;
@@ -474,78 +414,117 @@
 
       border-bottom: 1px solid var(--dark);
 
-      font-size: 13px;
+      font-size: 12px;
 
       text-transform: uppercase;
-
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
     }
 
 
-    /* =========================
+    /* =================================
+       MASTER'S THESIS
+    ================================= */
+
+    .thesis {
+      margin-bottom: var(--section-space);
+
+      padding: clamp(30px, 5vw, 70px);
+
+      background: var(--light);
+
+      border: 1px solid var(--dark);
+
+      display: grid;
+
+      grid-template-columns: 0.7fr 1.3fr;
+
+      gap: clamp(40px, 8vw, 120px);
+
+      align-items: end;
+    }
+
+    .thesis h2 {
+      margin: 15px 0 0;
+
+      font-size: clamp(45px, 6vw, 85px);
+
+      line-height: 0.87;
+      letter-spacing: -0.07em;
+    }
+
+    .thesis p {
+      margin: 0;
+
+      font-size: clamp(17px, 1.7vw, 22px);
+
+      line-height: 1.45;
+    }
+
+    .text-link {
+      display: inline-block;
+
+      margin-top: 25px;
+
+      border-bottom: 1px solid var(--dark);
+
+      padding-bottom: 5px;
+
+      font-size: 12px;
+
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
+
+
+    /* =================================
        ABOUT
-    ========================= */
+    ================================= */
 
     .about {
-      margin:
-        0
-        var(--page-padding)
-        var(--section-space);
+      margin-bottom: var(--section-space);
 
-      padding: clamp(30px, 6vw, 80px);
+      padding: clamp(35px, 6vw, 90px);
 
       background: var(--brown);
-
       color: var(--cream);
 
       display: grid;
 
-      grid-template-columns: 0.8fr 1.2fr;
+      grid-template-columns: 0.75fr 1.25fr;
 
       gap: clamp(40px, 8vw, 120px);
-
-      position: relative;
-
-      overflow: hidden;
     }
 
     .about h2 {
       margin: 0;
 
-      font-size: clamp(55px, 9vw, 125px);
+      font-size: clamp(55px, 8vw, 120px);
 
       line-height: 0.82;
-
       letter-spacing: -0.075em;
-
-      position: relative;
-      z-index: 2;
     }
 
-    .about-text {
-      position: relative;
-      z-index: 2;
-
+    .about-copy {
       max-width: 650px;
 
-      font-size: clamp(17px, 1.8vw, 23px);
+      font-size: clamp(17px, 1.7vw, 22px);
 
-      line-height: 1.4;
+      line-height: 1.45;
     }
 
-    .about-text p {
+    .about-copy p:first-child {
       margin-top: 0;
-      margin-bottom: 28px;
     }
 
     .about-actions {
-      margin-top: 35px;
+      margin-top: 40px;
 
       display: flex;
-
       flex-wrap: wrap;
 
-      gap: 12px;
+      align-items: center;
+
+      gap: 20px;
     }
 
     .cv-button {
@@ -557,159 +536,114 @@
 
       color: var(--brown);
 
-      font-size: 12px;
-
-      text-transform: uppercase;
-
-      letter-spacing: 0.08em;
+      font-size: 11px;
 
       font-weight: 700;
 
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-    }
-
-    .cv-button:hover {
-      transform: translateY(-3px);
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
     }
 
     .references {
       font-size: 12px;
-
       opacity: 0.8;
-
-      padding: 13px 0;
-    }
-
-    .about-circle {
-      position: absolute;
-
-      width: clamp(180px, 27vw, 400px);
-
-      aspect-ratio: 1;
-
-      border-radius: 50%;
-
-      background: var(--green);
-
-      right: -8%;
-      bottom: -35%;
     }
 
 
-    /* =========================
-       FILM / PRODUCTION
-    ========================= */
+    /* =================================
+       FILM
+    ================================= */
 
     .film {
-      margin:
-        0
-        var(--page-padding)
-        var(--section-space);
-
-      padding-bottom: 0;
+      padding-bottom: var(--section-space);
 
       display: grid;
 
-      grid-template-columns: 0.8fr 1.2fr;
+      grid-template-columns: 0.75fr 1.25fr;
 
       gap: clamp(40px, 8vw, 120px);
-
-      align-items: start;
     }
 
     .film h2 {
       margin: 0;
 
-      font-size: clamp(45px, 7vw, 95px);
-
-      line-height: 0.88;
-
-      letter-spacing: -0.07em;
-    }
-
-    .film-text {
-      font-size: clamp(17px, 1.7vw, 22px);
-
-      line-height: 1.45;
-    }
-
-    .film-highlight {
-      margin-top: 35px;
-
-      padding-top: 18px;
-
-      border-top: 1px solid var(--dark);
-
-      font-size: clamp(22px, 3vw, 38px);
-
-      line-height: 1;
-
-      letter-spacing: -0.04em;
-
-      color: var(--green);
-    }
-
-
-    /* =========================
-       PRODUCT / TECHNICAL
-    ========================= */
-
-    .product {
-      margin:
-        0
-        var(--page-padding)
-        var(--section-space);
-
-      padding:
-        clamp(30px, 5vw, 65px);
-
-      background: var(--yellow);
-
-      display: grid;
-
-      grid-template-columns: 1fr 1fr;
-
-      gap: clamp(40px, 7vw, 100px);
-    }
-
-    .product h2 {
-      margin: 0;
-
-      font-size: clamp(45px, 7vw, 95px);
+      font-size: clamp(45px, 6.5vw, 90px);
 
       line-height: 0.86;
-
       letter-spacing: -0.07em;
     }
 
-    .product-text {
+    .film-copy {
       font-size: clamp(17px, 1.7vw, 22px);
 
       line-height: 1.45;
     }
 
-
-    /* =========================
-       CONTACT
-    ========================= */
-
-    .contact {
-      margin:
-        0
-        var(--page-padding)
-        60px;
+    .film-stat {
+      margin-top: 40px;
 
       padding-top: 20px;
 
       border-top: 1px solid var(--dark);
 
+      color: var(--green);
+
+      font-size: clamp(25px, 3vw, 42px);
+
+      line-height: 1;
+      letter-spacing: -0.04em;
+    }
+
+
+    /* =================================
+       PRODUCT / TECH
+    ================================= */
+
+    .product {
+      margin-bottom: var(--section-space);
+
+      padding: clamp(35px, 5vw, 70px);
+
+      background: var(--yellow);
+
+      display: grid;
+
+      grid-template-columns: 0.85fr 1.15fr;
+
+      gap: clamp(40px, 8vw, 120px);
+    }
+
+    .product h2 {
+      margin: 0;
+
+      font-size: clamp(42px, 6vw, 85px);
+
+      line-height: 0.86;
+      letter-spacing: -0.07em;
+    }
+
+    .product-copy {
+      font-size: clamp(17px, 1.7vw, 22px);
+
+      line-height: 1.45;
+    }
+
+
+    /* =================================
+       CONTACT
+    ================================= */
+
+    .contact {
+      padding-top: 18px;
+
+      border-top: 1px solid var(--dark);
+
+      margin-bottom: 55px;
+
       display: flex;
 
-      align-items: baseline;
-
       justify-content: space-between;
+      align-items: baseline;
 
       gap: 30px;
     }
@@ -717,41 +651,36 @@
     .contact h2 {
       margin: 0;
 
-      font-size: clamp(35px, 5vw, 65px);
+      font-size: clamp(38px, 5vw, 65px);
 
       line-height: 0.9;
 
-      letter-spacing: -0.065em;
+      letter-spacing: -0.07em;
     }
 
-    .contact-details {
+    .contact-info {
       text-align: right;
 
       font-size: clamp(15px, 1.5vw, 19px);
 
-      line-height: 1.5;
+      line-height: 1.6;
     }
 
-    .contact-details a {
+    .contact-info a {
       border-bottom: 1px solid var(--dark);
     }
 
 
-    /* =========================
+    /* =================================
        FOOTER
-    ========================= */
+    ================================= */
 
     footer {
-      margin: 0 var(--page-padding);
-
-      padding:
-        18px 0
-        25px;
+      padding: 18px 0 25px;
 
       border-top: 1px solid var(--dark);
 
       display: flex;
-
       justify-content: space-between;
 
       gap: 20px;
@@ -759,65 +688,58 @@
       font-size: 10px;
 
       text-transform: uppercase;
-
       letter-spacing: 0.08em;
     }
 
 
-    /* =========================
+    /* =================================
        TABLET
-    ========================= */
+    ================================= */
 
     @media (max-width: 900px) {
 
       .hero {
         grid-template-columns: 1fr;
-
-        min-height: auto;
       }
 
-      .portrait-area {
-        min-height: 480px;
+      .hero-image {
+        min-height: 470px;
       }
 
-      .portrait-shape {
-        width: min(55vw, 430px);
+      .image-green {
+        width: min(60vw, 430px);
       }
 
-      .portrait-ring {
-        width: min(65vw, 510px);
+      .image-ring {
+        width: min(70vw, 510px);
       }
 
-      .projects {
+      .project,
+      .project:nth-child(even) {
         grid-template-columns: 1fr;
       }
 
-      .project:nth-child(2),
-      .project:nth-child(3) {
-        margin-top: 0;
+      .project:nth-child(even) .project-image,
+      .project:nth-child(even) .project-info {
+        order: initial;
       }
 
-      .thesis {
-        grid-template-columns: 1fr;
+      .project-image {
+        min-height: 450px;
       }
 
-      .about {
-        grid-template-columns: 1fr;
-      }
-
-      .film {
-        grid-template-columns: 1fr;
-      }
-
+      .thesis,
+      .about,
+      .film,
       .product {
         grid-template-columns: 1fr;
       }
     }
 
 
-    /* =========================
+    /* =================================
        MOBILE
-    ========================= */
+    ================================= */
 
     @media (max-width: 600px) {
 
@@ -828,73 +750,70 @@
 
       nav {
         gap: 12px;
-
         font-size: 9px;
       }
 
       .hero {
-        padding-top: 50px;
-        padding-bottom: 100px;
+        min-height: auto;
+
+        padding-top: 55px;
+        padding-bottom: 70px;
       }
 
       .hero-title {
-        font-size: clamp(38px, 10.5vw, 65px);
+        font-size: clamp(35px, 10vw, 58px);
       }
 
-      .hero-intro {
+      .hero-description {
         margin-top: 30px;
-
-        font-size: 17px;
       }
 
-      .portrait-area {
-        min-height: 360px;
+      .hero-image {
+        min-height: 370px;
       }
 
-      .portrait-shape {
+      .image-green {
         width: 75vw;
         max-width: 350px;
       }
 
-      .portrait-ring {
+      .image-yellow {
+        width: 42vw;
+        max-width: 200px;
+      }
+
+      .image-ring {
         width: 84vw;
         max-width: 400px;
-
-        border-width: 10px;
       }
 
-      .portrait {
+      .hero-image img {
         width: 57vw;
         max-width: 250px;
-
-        box-shadow:
-          9px 11px 0 var(--brown);
       }
 
-      .section-heading {
+      .scroll {
+        margin-top: 35px;
+      }
+
+      .work-header {
         display: block;
-
-        padding-top: 14px;
       }
 
-      .section-heading h2 {
+      .work-header h2 {
         font-size: clamp(50px, 16vw, 80px);
       }
 
-      .section-heading span {
-        display: block;
-
+      .work-header p {
         margin-top: 10px;
       }
 
-      .work {
-        padding-top: 40px;
+      .projects {
+        margin-top: 40px;
       }
 
-      .project {
-        min-height: 390px;
-
-        padding: 25px;
+      .project-image {
+        min-height: 330px;
       }
 
       .project h3 {
@@ -902,32 +821,24 @@
       }
 
       .thesis {
-        margin-left: var(--page-padding);
-        margin-right: var(--page-padding);
-
         padding: 28px 24px;
       }
 
       .about {
-        padding: 30px 25px 55px;
+        padding: 30px 25px 45px;
       }
 
       .about h2 {
         font-size: 70px;
       }
 
-      .about-text {
+      .about-copy {
         font-size: 18px;
       }
 
       .about-actions {
-        align-items: flex-start;
-
         flex-direction: column;
-      }
-
-      .film {
-        gap: 35px;
+        align-items: flex-start;
       }
 
       .film h2 {
@@ -940,13 +851,10 @@
 
       .contact {
         flex-direction: column;
-
         align-items: flex-start;
-
-        margin-bottom: 45px;
       }
 
-      .contact-details {
+      .contact-info {
         text-align: left;
       }
 
@@ -962,9 +870,9 @@
 <body>
 
 
-  <!-- =========================
-       STICKY HEADER
-  ========================== -->
+  <!-- =================================
+       HEADER
+  ================================= -->
 
   <header>
 
@@ -982,21 +890,20 @@
 
 
 
-  <!-- =========================
-       HERO
-  ========================== -->
-
   <main>
 
-    <section class="hero">
 
-      <div class="hero-text">
+    <!-- =================================
+         HERO
+    ================================= -->
+
+    <section class="hero container">
+
+      <div class="hero-copy">
 
         <h1 class="hero-title">
 
-          <span>
-            Digital Production
-          </span>
+          Digital Production
 
           <span class="green">
             · UX/HCI
@@ -1009,7 +916,7 @@
         </h1>
 
 
-        <p class="hero-intro">
+        <p class="hero-description">
 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           A background in engineering, HCI and more than ten years
@@ -1017,31 +924,29 @@
 
         </p>
 
+
+        <div class="scroll">
+
+          <span>Scroll to explore</span>
+          <span>↓</span>
+
+        </div>
+
       </div>
 
 
-      <div class="portrait-area">
+      <div class="hero-image">
 
-        <div class="portrait-shape"></div>
+        <div class="image-green"></div>
 
-        <div class="portrait-ring"></div>
+        <div class="image-yellow"></div>
+
+        <div class="image-ring"></div>
 
         <img
           src="portrait_malin.png"
           alt="Portrait of Malin Hall"
-          class="portrait"
         >
-
-      </div>
-
-
-      <div class="scroll-indicator">
-
-        <span>Scroll to explore</span>
-
-        <span class="scroll-arrow">
-          ↓
-        </span>
 
       </div>
 
@@ -1049,34 +954,38 @@
 
 
 
-    <!-- =========================
+    <!-- =================================
          WORK
-    ========================== -->
+    ================================= -->
 
-    <section id="work">
+    <section id="work" class="work container">
 
-      <div class="section-heading">
+      <div class="work-header">
 
-        <h2>WORK</h2>
+        <h2>
+          Selected Work
+        </h2>
 
-        <span>
-          Selected projects
-        </span>
+        <p>
+          UX / HCI / Interaction Design
+        </p>
 
       </div>
 
 
-      <div class="work">
-
-        <div class="projects">
+      <div class="projects">
 
 
-          <!-- PROJECT 1 -->
+        <!-- PROJECT 01 -->
 
-          <article class="project">
+        <article class="project">
+
+          <div class="project-image"></div>
+
+          <div class="project-info">
 
             <div class="project-number">
-              01
+              01 / Project
             </div>
 
             <h3>
@@ -1084,27 +993,33 @@
               One
             </h3>
 
-            <p class="project-description">
+            <p>
 
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
 
             </p>
 
-            <div class="project-arrow">
-              ↗
-            </div>
+            <a href="#" class="project-link">
+              View project →
+            </a>
 
-          </article>
+          </div>
+
+        </article>
 
 
 
-          <!-- PROJECT 2 -->
+        <!-- PROJECT 02 -->
 
-          <article class="project">
+        <article class="project">
+
+          <div class="project-image"></div>
+
+          <div class="project-info">
 
             <div class="project-number">
-              02
+              02 / Project
             </div>
 
             <h3>
@@ -1112,27 +1027,33 @@
               Two
             </h3>
 
-            <p class="project-description">
+            <p>
 
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Ut enim ad minim veniam, quis nostrud exercitation ullamco.
 
             </p>
 
-            <div class="project-arrow">
-              ↗
-            </div>
+            <a href="#" class="project-link">
+              View project →
+            </a>
 
-          </article>
+          </div>
+
+        </article>
 
 
 
-          <!-- PROJECT 3 -->
+        <!-- PROJECT 03 -->
 
-          <article class="project">
+        <article class="project">
+
+          <div class="project-image"></div>
+
+          <div class="project-info">
 
             <div class="project-number">
-              03
+              03 / Project
             </div>
 
             <h3>
@@ -1140,21 +1061,21 @@
               Three
             </h3>
 
-            <p class="project-description">
+            <p>
 
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Duis aute irure dolor in reprehenderit in voluptate velit.
 
             </p>
 
-            <div class="project-arrow">
-              ↗
-            </div>
+            <a href="#" class="project-link">
+              View project →
+            </a>
 
-          </article>
+          </div>
 
+        </article>
 
-        </div>
 
       </div>
 
@@ -1162,27 +1083,27 @@
 
 
 
-    <!-- =========================
+    <!-- =================================
          MASTER'S THESIS
-    ========================== -->
+    ================================= -->
 
-    <section class="thesis">
+    <section class="thesis container">
 
       <div>
 
-        <div class="thesis-label">
+        <div class="section-label">
           Master's Thesis
         </div>
 
-        <h3>
+        <h2>
           Research<br>
           & Design
-        </h3>
+        </h2>
 
       </div>
 
 
-      <div class="thesis-text">
+      <div>
 
         <p>
 
@@ -1192,12 +1113,8 @@
 
         </p>
 
-
-        <a
-          href="#"
-          class="thesis-link"
-        >
-          View thesis ↗
+        <a href="#" class="text-link">
+          Read the thesis →
         </a>
 
       </div>
@@ -1206,19 +1123,27 @@
 
 
 
-    <!-- =========================
+    <!-- =================================
          ABOUT
-    ========================== -->
+    ================================= -->
 
-    <section id="about" class="about">
+    <section id="about" class="about container">
 
-      <h2>
-        ABOUT<br>
-        ME
-      </h2>
+      <div>
+
+        <div class="section-label">
+          About me
+        </div>
+
+        <h2>
+          A little<br>
+          about me
+        </h2>
+
+      </div>
 
 
-      <div class="about-text">
+      <div class="about-copy">
 
         <p>
 
@@ -1227,14 +1152,12 @@
 
         </p>
 
-
         <p>
 
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Praesent commodo cursus magna, vel scelerisque nisl consectetur.
 
         </p>
-
 
         <p>
 
@@ -1254,7 +1177,6 @@
             Download CV ↓
           </a>
 
-
           <span class="references">
             References available on request
           </span>
@@ -1263,30 +1185,31 @@
 
       </div>
 
-
-      <div class="about-circle"></div>
-
     </section>
 
 
 
-    <!-- =========================
-         FILM / PRODUCTION
-    ========================== -->
+    <!-- =================================
+         FILM
+    ================================= -->
 
-    <section class="film">
+    <section class="film container">
 
       <div>
 
+        <div class="section-label">
+          Background
+        </div>
+
         <h2>
-          FILM &<br>
-          PRODUCTION
+          Film &<br>
+          Production
         </h2>
 
       </div>
 
 
-      <div class="film-text">
+      <div class="film-copy">
 
         <p>
 
@@ -1296,7 +1219,6 @@
           work on set.
 
         </p>
-
 
         <p>
 
@@ -1308,10 +1230,10 @@
         </p>
 
 
-        <div class="film-highlight">
+        <div class="film-stat">
 
-          Hundreds of productions.<br>
-          A lot of moving parts.
+          10+ years<br>
+          across film & television
 
         </div>
 
@@ -1321,24 +1243,28 @@
 
 
 
-    <!-- =========================
+    <!-- =================================
          PRODUCT / TECHNICAL
-    ========================== -->
+    ================================= -->
 
-    <section class="product">
+    <section class="product container">
 
       <div>
 
+        <div class="section-label">
+          How I work
+        </div>
+
         <h2>
-          PRODUCT<br>
-          & TECHNICAL<br>
-          COORDINATION
+          Product &<br>
+          Technical<br>
+          Coordination
         </h2>
 
       </div>
 
 
-      <div class="product-text">
+      <div class="product-copy">
 
         <p>
 
@@ -1349,7 +1275,6 @@
           the solution actually works in the real environment.
 
         </p>
-
 
         <p>
 
@@ -1367,18 +1292,18 @@
 
 
 
-    <!-- =========================
+    <!-- =================================
          CONTACT
-    ========================== -->
+    ================================= -->
 
-    <section id="contact" class="contact">
+    <section id="contact" class="contact container">
 
       <h2>
-        CONTACT
+        Contact
       </h2>
 
 
-      <div class="contact-details">
+      <div class="contact-info">
 
         <a href="mailto:malin.hall.eliasson@gmail.com">
           malin.hall.eliasson@gmail.com
@@ -1396,11 +1321,11 @@
 
 
 
-    <!-- =========================
+    <!-- =================================
          FOOTER
-    ========================== -->
+    ================================= -->
 
-    <footer>
+    <footer class="container">
 
       <span>
         Malin Hall
