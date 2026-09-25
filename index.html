@@ -1,5 +1,5 @@
-```html
 <!DOCTYPE html>
+
 <html lang="en">
 <head>
 
@@ -29,6 +29,11 @@
       --max-width: 1500px;
     }
 
+
+    /* =========================================
+       RESET
+    ========================================= */
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -44,6 +49,11 @@
       background: var(--white);
       color: var(--black);
     }
+
+
+    /* =========================================
+       HEADER
+    ========================================= */
 
     header {
       position: sticky;
@@ -84,12 +94,22 @@
       opacity: 0.6;
     }
 
+
+    /* =========================================
+       GENERAL
+    ========================================= */
+
     .container {
       width: 100%;
       max-width: var(--max-width);
       margin: 0 auto;
       padding: 0 var(--padding);
     }
+
+
+    /* =========================================
+       HERO
+    ========================================= */
 
     .hero {
       min-height: calc(100vh - 70px);
@@ -141,6 +161,11 @@
       color: var(--black);
     }
 
+
+    /* =========================================
+       HERO BUBBLES
+    ========================================= */
+
     .hero-image {
       min-height: calc(100vh - 70px);
 
@@ -166,8 +191,6 @@
 
       border-radius: 50%;
 
-      overflow: hidden;
-
       z-index: 2;
     }
 
@@ -183,24 +206,84 @@
       background: var(--brown);
     }
 
-    .bubble img {
-      position: absolute;
 
-      width: 100%;
-      height: 100%;
+    /* =========================================
+       BLACK & WHITE PORTRAIT
+       ONE IMAGE SPREAD ACROSS ALL BUBBLES
+    ========================================= */
+
+    .bubble-portrait {
+      position: absolute;
 
       inset: 0;
 
-      object-fit: cover;
+      z-index: 1;
+
+      background-image: url("portrait_malin.png");
+
+      background-size: cover;
+      background-position: center;
 
       filter: grayscale(100%);
+
+      -webkit-mask-image:
+        radial-gradient(circle 12% at 30% 26%, #000 99%, transparent 100%),
+        radial-gradient(circle 9% at 61% 19%, #000 99%, transparent 100%),
+        radial-gradient(circle 17% at 94% 42%, #000 99%, transparent 100%),
+        radial-gradient(circle 10.5% at 23% 84%, #000 99%, transparent 100%),
+        radial-gradient(circle 14% at 76% 103%, #000 99%, transparent 100%),
+        radial-gradient(circle 7.5% at 69% 67%, #000 99%, transparent 100%),
+        radial-gradient(circle 6% at 8% 48%, #000 99%, transparent 100%),
+        radial-gradient(circle 5% at 45% 29%, #000 99%, transparent 100%),
+        radial-gradient(circle 4.5% at 91% 57%, #000 99%, transparent 100%),
+        radial-gradient(circle 6.5% at 34% 66%, #000 99%, transparent 100%),
+        radial-gradient(circle 4% at 62% 80%, #000 99%, transparent 100%),
+        radial-gradient(circle 3.5% at 16% 72%, #000 99%, transparent 100%),
+        radial-gradient(circle 10% at 27% 44%, #000 99%, transparent 100%),
+        radial-gradient(circle 8% at 54% 56%, #000 99%, transparent 100%),
+        radial-gradient(circle 5.5% at 78% 25%, #000 99%, transparent 100%),
+        radial-gradient(circle 7% at 43% 91%, #000 99%, transparent 100%),
+        radial-gradient(circle 5% at 82% 61%, #000 99%, transparent 100%),
+        radial-gradient(circle 3% at 19% 61%, #000 99%, transparent 100%),
+        radial-gradient(circle 11% at 51% 13%, #000 99%, transparent 100%);
+
+      mask-image:
+        radial-gradient(circle 12% at 30% 26%, #000 99%, transparent 100%),
+        radial-gradient(circle 9% at 61% 19%, #000 99%, transparent 100%),
+        radial-gradient(circle 17% at 94% 42%, #000 99%, transparent 100%),
+        radial-gradient(circle 10.5% at 23% 84%, #000 99%, transparent 100%),
+        radial-gradient(circle 14% at 76% 103%, #000 99%, transparent 100%),
+        radial-gradient(circle 7.5% at 69% 67%, #000 99%, transparent 100%),
+        radial-gradient(circle 6% at 8% 48%, #000 99%, transparent 100%),
+        radial-gradient(circle 5% at 45% 29%, #000 99%, transparent 100%),
+        radial-gradient(circle 4.5% at 91% 57%, #000 99%, transparent 100%),
+        radial-gradient(circle 6.5% at 34% 66%, #000 99%, transparent 100%),
+        radial-gradient(circle 4% at 62% 80%, #000 99%, transparent 100%),
+        radial-gradient(circle 3.5% at 16% 72%, #000 99%, transparent 100%),
+        radial-gradient(circle 10% at 27% 44%, #000 99%, transparent 100%),
+        radial-gradient(circle 8% at 54% 56%, #000 99%, transparent 100%),
+        radial-gradient(circle 5.5% at 78% 25%, #000 99%, transparent 100%),
+        radial-gradient(circle 7% at 43% 91%, #000 99%, transparent 100%),
+        radial-gradient(circle 5% at 82% 61%, #000 99%, transparent 100%),
+        radial-gradient(circle 3% at 19% 61%, #000 99%, transparent 100%),
+        radial-gradient(circle 11% at 51% 13%, #000 99%, transparent 100%);
+
+      -webkit-mask-composite: source-over;
+      mask-composite: add;
     }
+
+
+    /* =========================================
+       BUBBLES
+       SIZE + OPACITY FOLLOW A BELL CURVE
+    ========================================= */
 
     .bubble-1 {
       width: 24%;
       top: 14%;
       left: 18%;
       opacity: 0.72;
+      mix-blend-mode: multiply;
     }
 
     .bubble-2 {
@@ -208,6 +291,7 @@
       top: 10%;
       right: 23%;
       opacity: 0.52;
+      mix-blend-mode: multiply;
     }
 
     .bubble-3 {
@@ -215,6 +299,7 @@
       top: 25%;
       right: -6%;
       opacity: 0.86;
+      mix-blend-mode: multiply;
     }
 
     .bubble-4 {
@@ -222,6 +307,7 @@
       bottom: 16%;
       left: 11%;
       opacity: 0.62;
+      mix-blend-mode: multiply;
     }
 
     .bubble-5 {
@@ -229,6 +315,7 @@
       bottom: -7%;
       right: 12%;
       opacity: 0.76;
+      mix-blend-mode: multiply;
     }
 
     .bubble-6 {
@@ -236,6 +323,7 @@
       bottom: 25%;
       right: 19%;
       opacity: 0.42;
+      mix-blend-mode: multiply;
     }
 
     .bubble-7 {
@@ -243,6 +331,7 @@
       top: 42%;
       left: 4%;
       opacity: 0.82;
+      mix-blend-mode: multiply;
     }
 
     .bubble-8 {
@@ -250,6 +339,7 @@
       top: 24%;
       left: 35%;
       opacity: 0.34;
+      mix-blend-mode: multiply;
     }
 
     .bubble-9 {
@@ -257,6 +347,7 @@
       top: 53%;
       right: 5%;
       opacity: 0.58;
+      mix-blend-mode: multiply;
     }
 
     .bubble-10 {
@@ -264,6 +355,7 @@
       bottom: 34%;
       left: 23%;
       opacity: 0.48;
+      mix-blend-mode: multiply;
     }
 
     .bubble-11 {
@@ -271,6 +363,7 @@
       bottom: 20%;
       right: 31%;
       opacity: 0.68;
+      mix-blend-mode: multiply;
     }
 
     .bubble-12 {
@@ -278,6 +371,7 @@
       top: 66%;
       left: 9%;
       opacity: 0.27;
+      mix-blend-mode: multiply;
     }
 
     .bubble-16 {
@@ -285,6 +379,7 @@
       top: 34%;
       left: 17%;
       opacity: 0.64;
+      mix-blend-mode: multiply;
     }
 
     .bubble-17 {
@@ -292,6 +387,7 @@
       top: 48%;
       left: 31%;
       opacity: 0.74;
+      mix-blend-mode: multiply;
     }
 
     .bubble-18 {
@@ -299,6 +395,7 @@
       top: 17%;
       right: 9%;
       opacity: 0.38;
+      mix-blend-mode: multiply;
     }
 
     .bubble-19 {
@@ -306,6 +403,7 @@
       bottom: 10%;
       left: 29%;
       opacity: 0.56;
+      mix-blend-mode: multiply;
     }
 
     .bubble-20 {
@@ -313,6 +411,7 @@
       bottom: 39%;
       right: 11%;
       opacity: 0.88;
+      mix-blend-mode: multiply;
     }
 
     .bubble-21 {
@@ -320,6 +419,7 @@
       top: 58%;
       left: 13%;
       opacity: 0.22;
+      mix-blend-mode: multiply;
     }
 
     .bubble-22 {
@@ -327,6 +427,7 @@
       top: 37%;
       right: 28%;
       opacity: 0.30;
+      mix-blend-mode: multiply;
     }
 
     .bubble-23 {
@@ -334,6 +435,7 @@
       top: 9%;
       left: 29%;
       opacity: 0.92;
+      mix-blend-mode: multiply;
     }
 
 
@@ -342,28 +444,7 @@
     ========================================= */
 
     .portrait-bubble {
-      position: relative;
-      z-index: 5;
-
-      width: min(55%, 420px);
-      aspect-ratio: 1;
-
-      border-radius: 50%;
-
-      overflow: hidden;
-
-      background: var(--brown);
-
-      border: clamp(7px, 1vw, 12px) solid white;
-
-      box-shadow: 14px 14px 0 var(--green);
-    }
-
-    .portrait-bubble img {
-      width: 100%;
-      height: 100%;
-
-      object-fit: cover;
+      display: none;
     }
 
 
@@ -386,10 +467,6 @@
 
         border-left: none;
         border-top: 1px solid var(--black);
-      }
-
-      .portrait-bubble {
-        width: min(55%, 380px);
       }
 
     }
@@ -425,12 +502,6 @@
         min-height: 65vh;
       }
 
-      .portrait-bubble {
-        width: 58vw;
-
-        box-shadow: 9px 10px 0 var(--green);
-      }
-
     }
 
   </style>
@@ -439,146 +510,98 @@
 
 <body>
 
+  <!-- =========================================
+       HEADER
+  ========================================= -->
+
   <header>
 
-    <a href="#" class="logo">
-      Malin Hall
-    </a>
+```
+<a href="#" class="logo">
+  Malin Hall
+</a>
 
-    <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About me</a>
-      <a href="#contact">Contact</a>
-    </nav>
+<nav>
+  <a href="#work">Work</a>
+  <a href="#about">About me</a>
+  <a href="#contact">Contact</a>
+</nav>
+```
 
   </header>
 
+  <!-- =========================================
+       HERO
+  ========================================= -->
+
   <main>
 
-    <section class="hero">
+```
+<section class="hero">
 
-      <div class="hero-left">
+  <!-- LEFT -->
 
-        <div class="hero-eyebrow">
-          Digital production · UX/HCI · Technical systems
-        </div>
+  <div class="hero-left">
 
-        <h1 class="hero-title">
-          Malin Hall
-        </h1>
+    <div class="hero-eyebrow">
+      Digital production · UX/HCI · Technical systems
+    </div>
 
-        <p class="hero-description">
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Integer posuere erat a ante.
-        </p>
+    <h1 class="hero-title">
+      Malin Hall
+    </h1>
 
-        <a href="#work" class="hero-scroll">
-          Scroll to explore ↓
-        </a>
+    <p class="hero-description">
+      Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+      Integer posuere erat a ante.
+    </p>
 
-      </div>
+    <a href="#work" class="hero-scroll">
+      Scroll to explore ↓
+    </a>
 
-
-      <div class="hero-image">
-
-        <div class="bubble bubble-yellow bubble-1">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-brown bubble-2">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-green bubble-3">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-yellow bubble-4">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-brown bubble-5">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-green bubble-6">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-brown bubble-7">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-green bubble-8">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-yellow bubble-9">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-brown bubble-10">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-yellow bubble-11">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-green bubble-12">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-green bubble-16">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-yellow bubble-17">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-brown bubble-18">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-green bubble-19">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-yellow bubble-20">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-brown bubble-21">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-green bubble-22">
-          <img src="portrait_malin.png" alt="">
-        </div>
-
-        <div class="bubble bubble-brown bubble-23">
-          <img src="portrait_malin.png" alt="">
-        </div>
+  </div>
 
 
-        <!-- PORTRAIT -->
+  <!-- RIGHT / BUBBLES -->
 
-        <div class="portrait-bubble">
+  <div class="hero-image">
 
-          <img
-            src="portrait_malin.png"
-            alt="Portrait of Malin Hall"
-          >
+    <!-- ONE CONTINUOUS BLACK & WHITE PORTRAIT -->
 
-        </div>
+    <div class="bubble-portrait"></div>
 
-      </div>
 
-    </section>
+    <!-- COLOURED BUBBLES -->
+
+    <div class="bubble bubble-yellow bubble-1"></div>
+    <div class="bubble bubble-brown bubble-2"></div>
+    <div class="bubble bubble-green bubble-3"></div>
+    <div class="bubble bubble-yellow bubble-4"></div>
+    <div class="bubble bubble-brown bubble-5"></div>
+    <div class="bubble bubble-green bubble-6"></div>
+    <div class="bubble bubble-brown bubble-7"></div>
+    <div class="bubble bubble-green bubble-8"></div>
+    <div class="bubble bubble-yellow bubble-9"></div>
+    <div class="bubble bubble-brown bubble-10"></div>
+    <div class="bubble bubble-yellow bubble-11"></div>
+    <div class="bubble bubble-green bubble-12"></div>
+
+    <div class="bubble bubble-green bubble-16"></div>
+    <div class="bubble bubble-yellow bubble-17"></div>
+    <div class="bubble bubble-brown bubble-18"></div>
+    <div class="bubble bubble-green bubble-19"></div>
+    <div class="bubble bubble-yellow bubble-20"></div>
+    <div class="bubble bubble-brown bubble-21"></div>
+    <div class="bubble bubble-green bubble-22"></div>
+    <div class="bubble bubble-brown bubble-23"></div>
+
+  </div>
+
+</section>
+```
 
   </main>
 
 </body>
 </html>
-```
