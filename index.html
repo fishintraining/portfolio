@@ -10,7 +10,7 @@
         :root {
             --dark: #292b28;
             --dark-soft: #3b3e38;
-            --white: #f5f4ef;
+            --white: #ffffff;
             --green: #134623;
             --green-light: #8fa47a;
             --yellow: #E9CE05;
@@ -59,7 +59,7 @@
 
             padding: 22px 5vw;
 
-            background: rgba(245, 244, 239, 0.82);
+            background: rgba(255, 255, 255, 0.82);
             backdrop-filter: blur(12px);
 
             border-bottom: 1px solid var(--line);
@@ -134,7 +134,7 @@
             right: -12vw;
             top: 15vh;
 
-            background: rgba(19, 70, 35, 0.08);
+            background: rgba(19, 70, 35, 0.70);
             border-radius: 50%;
         }
 
@@ -467,6 +467,7 @@
             margin-top: 60px;
 
             display: flex;
+            align-items: center;
             gap: 30px;
             flex-wrap: wrap;
         }
@@ -482,6 +483,23 @@
         .contact-link:hover {
             color: var(--yellow);
             border-color: var(--yellow);
+        }
+
+        .linkedin-button {
+            display: inline-block;
+
+            padding: 12px 20px;
+
+            border: 1px solid var(--white);
+
+            font-size: 12px;
+
+            transition: 0.25s ease;
+        }
+
+        .linkedin-button:hover {
+            background: var(--white);
+            color: var(--green);
         }
 
         /* =========================
@@ -550,10 +568,6 @@
                 display: none;
             }
 
-            .projects {
-                grid-template-columns: 1fr;
-            }
-
             .project {
                 width: 90%;
             }
@@ -586,6 +600,11 @@
 
             .project {
                 width: 95%;
+            }
+
+            .contact-info {
+                flex-direction: column;
+                align-items: flex-start;
             }
         }
     </style>
@@ -785,26 +804,6 @@
 
             </article>
 
-
-            <article class="project">
-
-                <div class="project-number">
-                    04 / IPSUM
-                </div>
-
-                <h3>
-                    More coming.
-                </h3>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing
-                    elit. Donec vitae sem at ipsum tincidunt volutpat.
-                </p>
-
-                <div class="project-line"></div>
-
-            </article>
-
         </div>
 
     </section>
@@ -831,19 +830,18 @@
 
                 <a href="mailto:YOUR-EMAIL@example.com"
                    class="contact-link">
-                    Email ↗
+                    YOUR-EMAIL@example.com
+                </a>
+
+                <a href="tel:YOUR-PHONE"
+                   class="contact-link">
+                    YOUR PHONE
                 </a>
 
                 <a href="https://www.linkedin.com/"
                    target="_blank"
-                   class="contact-link">
+                   class="linkedin-button">
                     LinkedIn ↗
-                </a>
-
-                <a href="MHall.CV.Eng.pdf"
-                   target="_blank"
-                   class="contact-link">
-                    CV ↗
                 </a>
 
             </div>
