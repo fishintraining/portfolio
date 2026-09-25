@@ -3,46 +3,992 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Malin Hall — UX / Interaction Design</title>
+
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        :root {
+            --cream: #f2f0e8;
+            --green: #40583f;
+            --light-green: #9eae92;
+            --pale-green: #d5ddce;
+            --black: #171916;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--cream);
+            color: var(--black);
+            font-family: Arial, Helvetica, sans-serif;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            padding: 24px 4vw;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            mix-blend-mode: multiply;
+        }
+
+        .logo {
+            font-size: 16px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        nav {
+            display: flex;
+            gap: 28px;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.08em;
+        }
+
+        nav a:hover {
+            color: var(--green);
+        }
+
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            padding: 120px 5vw 80px;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        /* large faded background typography */
+
+        .background-word {
+            position: absolute;
+            left: -2vw;
+            bottom: 5vh;
+
+            font-size: clamp(120px, 20vw, 300px);
+            font-weight: 700;
+            letter-spacing: -0.08em;
+
+            color: var(--light-green);
+            opacity: 0.28;
+
+            white-space: nowrap;
+            pointer-events: none;
+        }
+
+        /* floating background boxes */
+
+        .floating-box {
+            position: absolute;
+            border: 1px solid var(--green);
+            opacity: 0.22;
+            pointer-events: none;
+        }
+
+        .box-one {
+            width: 260px;
+            height: 180px;
+            top: 17%;
+            left: 8%;
+            transform: rotate(-8deg);
+        }
+
+        .box-two {
+            width: 190px;
+            height: 300px;
+            right: 8%;
+            bottom: 13%;
+            transform: rotate(12deg);
+        }
+
+        .box-three {
+            width: 110px;
+            height: 110px;
+            right: 22%;
+            top: 20%;
+            border-radius: 50%;
+        }
+
+        /* central hero */
+
+        .hero-content {
+            position: relative;
+            width: min(1200px, 100%);
+            min-height: 650px;
+        }
+
+        .hero-title {
+            position: absolute;
+            top: 5%;
+            left: 0;
+
+            z-index: 5;
+        }
+
+        .hero-title h1 {
+            font-size: clamp(70px, 11vw, 170px);
+            line-height: 0.82;
+            letter-spacing: -0.075em;
+            font-weight: 700;
+        }
+
+        .hero-title h1 span {
+            display: block;
+        }
+
+        /* green circular shape */
+
+        .green-circle {
+            position: absolute;
+
+            width: min(570px, 55vw);
+            aspect-ratio: 1;
+
+            right: 8%;
+            top: 5%;
+
+            background: var(--green);
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            z-index: 2;
+        }
+
+        .circle-text {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            color: var(--cream);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            font-size: clamp(18px, 2vw, 28px);
+            font-weight: 700;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+
+            text-align: center;
+        }
+
+        .circle-inner {
+            width: 72%;
+            height: 72%;
+
+            border: 1px solid rgba(242, 240, 232, 0.6);
+            border-radius: 50%;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            color: var(--cream);
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+        }
+
+        /* portrait */
+
+        .portrait {
+            position: absolute;
+
+            width: 260px;
+            height: 330px;
+
+            right: 24%;
+            top: 18%;
+
+            z-index: 4;
+
+            overflow: hidden;
+
+            box-shadow: 20px 20px 0 rgba(158, 174, 146, 0.55);
+        }
+
+        .portrait img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+
+        /* intro box */
+
+        .intro-box {
+            position: absolute;
+
+            left: 4%;
+            bottom: 5%;
+
+            width: 310px;
+
+            padding: 25px;
+
+            background: rgba(213, 221, 206, 0.78);
+
+            z-index: 7;
+        }
+
+        .intro-box .label {
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            margin-bottom: 15px;
+            color: var(--green);
+        }
+
+        .intro-box p {
+            font-size: 17px;
+            line-height: 1.35;
+        }
+
+        .scroll {
+            position: absolute;
+            right: 4vw;
+            bottom: 30px;
+
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+
+            writing-mode: vertical-rl;
+        }
+
+
+        /* =========================
+           WORK
+        ========================= */
+
+        .work {
+            position: relative;
+            padding: 150px 5vw;
+            min-height: 110vh;
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            color: var(--green);
+            margin-bottom: 70px;
+        }
+
+        .work-heading {
+            font-size: clamp(60px, 10vw, 150px);
+            line-height: 0.8;
+            letter-spacing: -0.07em;
+            margin-bottom: 120px;
+        }
+
+        .project {
+            position: relative;
+            min-height: 300px;
+
+            margin-bottom: 100px;
+
+            display: flex;
+            align-items: center;
+        }
+
+        .project-card {
+            width: min(700px, 70vw);
+            padding: 55px;
+
+            background: var(--green);
+            color: var(--cream);
+
+            position: relative;
+            z-index: 2;
+        }
+
+        .project:nth-child(odd) .project-card {
+            margin-left: 12%;
+        }
+
+        .project:nth-child(even) .project-card {
+            margin-left: auto;
+            margin-right: 10%;
+            background: var(--light-green);
+            color: var(--black);
+        }
+
+        .project-number {
+            font-size: 12px;
+            letter-spacing: 0.15em;
+            margin-bottom: 30px;
+        }
+
+        .project h3 {
+            font-size: clamp(42px, 6vw, 80px);
+            line-height: 0.9;
+            letter-spacing: -0.05em;
+            margin-bottom: 25px;
+        }
+
+        .project p {
+            max-width: 450px;
+            font-size: 16px;
+        }
+
+        .project-detail {
+            position: absolute;
+
+            width: 180px;
+            height: 180px;
+
+            background: var(--pale-green);
+
+            right: 8%;
+            top: 20%;
+
+            transform: rotate(8deg);
+
+            z-index: 1;
+        }
+
+        .project:nth-child(even) .project-detail {
+            left: 8%;
+            right: auto;
+            transform: rotate(-12deg);
+        }
+
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            position: relative;
+            padding: 160px 5vw;
+
+            background: var(--green);
+            color: var(--cream);
+
+            overflow: hidden;
+        }
+
+        .about-background {
+            position: absolute;
+
+            width: 600px;
+            height: 600px;
+
+            border: 1px solid rgba(242, 240, 232, 0.3);
+            border-radius: 50%;
+
+            right: -150px;
+            top: 100px;
+        }
+
+        .about-background::after {
+            content: "";
+
+            position: absolute;
+
+            width: 400px;
+            height: 400px;
+
+            border: 1px solid rgba(242, 240, 232, 0.2);
+            border-radius: 50%;
+
+            top: 100px;
+            left: 100px;
+        }
+
+        .about-content {
+            position: relative;
+            z-index: 2;
+
+            max-width: 1100px;
+        }
+
+        .about h2 {
+            font-size: clamp(70px, 12vw, 170px);
+            line-height: 0.8;
+            letter-spacing: -0.07em;
+            margin-bottom: 90px;
+        }
+
+        .about-text {
+            max-width: 800px;
+            font-size: clamp(24px, 3vw, 42px);
+            line-height: 1.2;
+            letter-spacing: -0.025em;
+        }
+
+        .about-small {
+            margin-top: 60px;
+
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .about-box {
+            padding: 25px;
+
+            background: rgba(213, 221, 206, 0.12);
+            border: 1px solid rgba(242, 240, 232, 0.3);
+
+            min-height: 130px;
+        }
+
+        .about-box span {
+            display: block;
+
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.12em;
+
+            margin-bottom: 25px;
+
+            opacity: 0.65;
+        }
+
+
+        /* =========================
+           CONTACT
+        ========================= */
+
+        .contact {
+            min-height: 80vh;
+
+            padding: 160px 5vw;
+
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            overflow: hidden;
+        }
+
+        .contact-circle {
+            width: min(650px, 75vw);
+            aspect-ratio: 1;
+
+            border-radius: 50%;
+
+            background: var(--light-green);
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            text-align: center;
+        }
+
+        .contact h2 {
+            font-size: clamp(70px, 12vw, 170px);
+            line-height: 0.8;
+            letter-spacing: -0.08em;
+        }
+
+        .contact-email {
+            position: absolute;
+
+            bottom: 12%;
+            right: 8%;
+
+            padding: 20px 28px;
+
+            background: var(--cream);
+
+            border: 1px solid var(--green);
+
+            font-size: 15px;
+        }
+
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            padding: 25px 5vw;
+
+            display: flex;
+            justify-content: space-between;
+
+            border-top: 1px solid var(--black);
+
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 750px) {
+
+            header {
+                padding: 20px;
+            }
+
+            nav {
+                gap: 12px;
+                font-size: 10px;
+            }
+
+            .hero {
+                padding: 100px 20px 50px;
+            }
+
+            .hero-content {
+                min-height: 750px;
+            }
+
+            .hero-title {
+                top: 3%;
+            }
+
+            .hero-title h1 {
+                font-size: 68px;
+            }
+
+            .green-circle {
+                width: 380px;
+                max-width: 90vw;
+                right: -5%;
+                top: 23%;
+            }
+
+            .portrait {
+                width: 190px;
+                height: 240px;
+                right: 18%;
+                top: 33%;
+            }
+
+            .intro-box {
+                left: 0;
+                bottom: 5%;
+                width: 270px;
+            }
+
+            .background-word {
+                font-size: 110px;
+            }
+
+            .work {
+                padding: 100px 20px;
+            }
+
+            .work-heading {
+                margin-bottom: 80px;
+            }
+
+            .project {
+                min-height: 260px;
+            }
+
+            .project-card,
+            .project:nth-child(odd) .project-card,
+            .project:nth-child(even) .project-card {
+                width: 90%;
+                margin: 0 auto;
+                padding: 35px;
+            }
+
+            .project-detail {
+                width: 120px;
+                height: 120px;
+                right: 0;
+            }
+
+            .about {
+                padding: 100px 20px;
+            }
+
+            .about-small {
+                grid-template-columns: 1fr;
+            }
+
+            .contact {
+                padding: 100px 20px;
+            }
+
+            .contact-circle {
+                width: 90vw;
+            }
+
+            .contact-email {
+                right: 5%;
+                bottom: 8%;
+            }
+
+            footer {
+                padding: 20px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-    <header>
-        <h1>Malin Hall</h1>
-        <p>UX / Interaction Design</p>
-    </header>
 
-    <main>
+<header>
 
-        <section>
-            <img src="portrait_malin.png" alt="Malin Hall">
-            
-            <div>
-                <h2>Hi, I'm Malin.</h2>
-                <p>
-                    UX / Interaction Designer with a background in film, technology
-                    and human-computer interaction.
-                </p>
+    <div class="logo">
+        MALIN HALL
+    </div>
+
+    <nav>
+        <a href="#work">Work</a>
+        <a href="#about">About</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+</header>
+
+
+
+<main>
+
+
+    <!-- =========================
+         HERO
+    ========================= -->
+
+    <section class="hero">
+
+        <div class="background-word">
+            DESIGN
+        </div>
+
+        <div class="floating-box box-one"></div>
+        <div class="floating-box box-two"></div>
+        <div class="floating-box box-three"></div>
+
+
+        <div class="hero-content">
+
+
+            <div class="hero-title">
+
+                <h1>
+                    <span>UX</span>
+                    <span>INTERACTION</span>
+                    <span>DESIGN</span>
+                </h1>
+
             </div>
-        </section>
 
-        <section>
-            <h2>Selected work</h2>
-            <p>Projects coming soon.</p>
-        </section>
 
-        <section>
-            <h2>About</h2>
-            <p>More about me and my background.</p>
-        </section>
+            <div class="green-circle">
 
-        <section>
-            <h2>Contact</h2>
-            <p>Get in touch.</p>
-        </section>
+                <div class="circle-text">
+                    MALIN · HALL · UX · HCI · IT ·
+                </div>
 
-    </main>
+                <div class="circle-inner">
+                    Lorem ipsum
+                </div>
+
+            </div>
+
+
+            <div class="portrait">
+
+                <img
+                    src="portrait_malin.png"
+                    alt="Portrait of Malin Hall"
+                >
+
+            </div>
+
+
+            <div class="intro-box">
+
+                <div class="label">
+                    Hello / 01
+                </div>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed do eiusmod tempor incididunt ut labore et dolore magna
+                    aliqua. Ut enim ad minim veniam.
+                </p>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="scroll">
+            ↓ Scroll to explore
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         WORK
+    ========================= -->
+
+    <section class="work" id="work">
+
+        <div class="section-label">
+            Selected work / 02
+        </div>
+
+        <h2 class="work-heading">
+            SELECTED<br>
+            WORK
+        </h2>
+
+
+        <div class="project">
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    01 / 03
+                </div>
+
+                <h3>
+                    Högskoleprovet
+                </h3>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Integer nec odio. Praesent libero. Sed cursus ante
+                    dapibus diam.
+                </p>
+
+            </div>
+
+            <div class="project-detail"></div>
+
+        </div>
+
+
+
+        <div class="project">
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    02 / 03
+                </div>
+
+                <h3>
+                    Accessible Pharmacy
+                </h3>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Sed nisi. Nulla quis sem at nibh elementum imperdiet.
+                </p>
+
+            </div>
+
+            <div class="project-detail"></div>
+
+        </div>
+
+
+
+        <div class="project">
+
+            <div class="project-card">
+
+                <div class="project-number">
+                    03 / 03
+                </div>
+
+                <h3>
+                    Lorem Ipsum
+                </h3>
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    Mauris ipsum. Nulla metus metus, ullamcorper vel,
+                    tincidunt sed, euismod in, nibh.
+                </p>
+
+            </div>
+
+            <div class="project-detail"></div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================= -->
+
+    <section class="about" id="about">
+
+        <div class="about-background"></div>
+
+        <div class="about-content">
+
+            <div class="section-label">
+                About / 03
+            </div>
+
+            <h2>
+                ABOUT<br>
+                ME
+            </h2>
+
+
+            <div class="about-text">
+
+                <p>
+                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+                    I am interested in how people interact with technology,
+                    how systems work in practice, and what happens between
+                    the two.
+                </p>
+
+            </div>
+
+
+            <div class="about-small">
+
+                <div class="about-box">
+
+                    <span>
+                        Background
+                    </span>
+
+                    UX / HCI<br>
+                    IT<br>
+                    Film & TV
+
+                </div>
+
+
+                <div class="about-box">
+
+                    <span>
+                        Interested in
+                    </span>
+
+                    Interaction<br>
+                    Digital products<br>
+                    Technology
+
+                </div>
+
+
+                <div class="about-box">
+
+                    <span>
+                        Currently
+                    </span>
+
+                    Lorem ipsum<br>
+                    Stockholm<br>
+                    Sweden
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section class="contact" id="contact">
+
+        <div class="contact-circle">
+
+            <h2>
+                LET'S<br>
+                TALK.
+            </h2>
+
+        </div>
+
+
+        <div class="contact-email">
+
+            YOUR-EMAIL@example.com
+
+        </div>
+
+    </section>
+
+
+
+    <footer>
+
+        <span>
+            MALIN HALL
+        </span>
+
+        <span>
+            UX / INTERACTION DESIGN
+        </span>
+
+        <span>
+            © 2026
+        </span>
+
+    </footer>
+
+
+</main>
+
 
 </body>
 </html>
