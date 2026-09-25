@@ -134,7 +134,7 @@
             right: -12vw;
             top: 15vh;
 
-            background: rgba(19, 70, 35, 0.13);
+            background: rgba(19, 70, 35, 0.08);
             border-radius: 50%;
         }
 
@@ -289,7 +289,7 @@
             top: 135px;
 
             font-size: 10px;
-            color: var(--green);
+            color: var(--dark);
             writing-mode: vertical-rl;
             letter-spacing: 0.15em;
         }
@@ -307,7 +307,7 @@
             font-size: 11px;
             text-transform: uppercase;
             letter-spacing: 0.14em;
-            color: var(--green);
+            color: var(--dark);
         }
 
         .about-text {
@@ -336,11 +336,16 @@
             border-color: var(--line-light);
         }
 
+        #work .section-number,
+        #work .section-label {
+            color: var(--yellow);
+        }
+
         .projects {
             margin-top: 90px;
 
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
+            display: flex;
+            flex-direction: column;
             gap: 1px;
 
             background: rgba(245, 244, 239, 0.14);
@@ -349,6 +354,7 @@
         .project {
             position: relative;
             min-height: 400px;
+            width: 75%;
 
             padding: 35px;
 
@@ -357,6 +363,10 @@
             overflow: hidden;
 
             transition: 0.35s ease;
+        }
+
+        .project:nth-child(even) {
+            align-self: flex-end;
         }
 
         .project:hover {
@@ -544,6 +554,14 @@
                 grid-template-columns: 1fr;
             }
 
+            .project {
+                width: 90%;
+            }
+
+            .project:nth-child(even) {
+                align-self: flex-end;
+            }
+
             footer {
                 flex-direction: column;
                 gap: 10px;
@@ -564,6 +582,10 @@
 
             .portrait-wrapper {
                 width: 85%;
+            }
+
+            .project {
+                width: 95%;
             }
         }
     </style>
@@ -596,12 +618,12 @@
 
             <div class="eyebrow">
                 <span></span>
-                Lorem ipsum dolor sit amet
+                Digital Production · UX/HCI · Technical Systems
             </div>
 
             <h1>
                 <span class="hero-name">Malin</span>
-                <span class="hero-name">Hall.</span>
+                <span class="hero-name">Hall</span>
             </h1>
 
             <p class="hero-title">
@@ -611,12 +633,8 @@
 
             <div class="hero-actions">
 
-                <a href="#contact" class="button button-green">
-                    Contact
-                </a>
-
                 <a href="MHall.CV.Eng.pdf"
-                   class="button"
+                   class="button button-green"
                    target="_blank">
                     CV ↗
                 </a>
@@ -687,7 +705,7 @@
     <section id="work">
 
         <div class="section-number">
-            02 — WORK
+            Selected work
         </div>
 
         <div class="section-header">
