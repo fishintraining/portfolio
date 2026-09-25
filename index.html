@@ -255,130 +255,235 @@
     }
 
 
-    /* BUBBLES */
+    /* =========================================
+       MAIN BUBBLES
+    ========================================= */
 
     .bubble-1 {
-      width: 28%;
-      aspect-ratio: 1;
+      width: 25%;
 
-      top: 6%;
-      left: 8%;
+      top: 13%;
+      left: 18%;
 
       opacity: 0.72;
     }
 
     .bubble-2 {
-      width: 18%;
-      aspect-ratio: 1;
+      width: 16%;
 
-      top: 4%;
-      right: 9%;
+      top: 11%;
+      right: 22%;
 
       opacity: 0.45;
     }
 
     .bubble-3 {
-      width: 38%;
-      aspect-ratio: 1;
+      width: 34%;
 
-      top: 17%;
-      right: -9%;
+      top: 25%;
+      right: -6%;
 
       opacity: 0.78;
     }
 
     .bubble-4 {
-      width: 22%;
-      aspect-ratio: 1;
+      width: 20%;
 
-      bottom: 12%;
-      left: 3%;
+      bottom: 16%;
+      left: 12%;
 
       opacity: 0.52;
     }
 
     .bubble-5 {
-      width: 31%;
-      aspect-ratio: 1;
+      width: 28%;
 
-      bottom: -8%;
-      right: 2%;
+      bottom: -7%;
+      right: 12%;
 
       opacity: 0.65;
     }
 
     .bubble-6 {
-      width: 15%;
-      aspect-ratio: 1;
+      width: 14%;
 
-      bottom: 29%;
-      right: 7%;
+      bottom: 25%;
+      right: 19%;
 
       opacity: 0.38;
     }
 
     .bubble-7 {
-      width: 13%;
-      aspect-ratio: 1;
+      width: 12%;
 
-      top: 37%;
-      left: 0%;
+      top: 42%;
+      left: 4%;
 
       opacity: 0.65;
     }
 
     .bubble-8 {
-      width: 10%;
-      aspect-ratio: 1;
+      width: 9%;
 
-      top: 19%;
-      left: 28%;
+      top: 25%;
+      left: 34%;
 
       opacity: 0.42;
     }
 
     .bubble-9 {
       width: 8%;
-      aspect-ratio: 1;
 
-      top: 46%;
-      right: 3%;
+      top: 53%;
+      right: 5%;
 
       opacity: 0.55;
     }
 
     .bubble-10 {
-      width: 11%;
-      aspect-ratio: 1;
+      width: 10%;
 
-      bottom: 39%;
-      left: 16%;
+      bottom: 34%;
+      left: 23%;
 
       opacity: 0.32;
     }
 
     .bubble-11 {
       width: 7%;
-      aspect-ratio: 1;
 
-      bottom: 17%;
-      right: 27%;
+      bottom: 20%;
+      right: 31%;
 
       opacity: 0.48;
     }
 
     .bubble-12 {
-      width: 9%;
-      aspect-ratio: 1;
+      width: 8%;
 
       top: 66%;
-      left: 5%;
+      left: 9%;
 
       opacity: 0.44;
     }
 
 
-    /* PORTRAIT BUBBLE */
+    /* =========================================
+       SPECIAL BUBBLES
+    ========================================= */
+
+    .bubble-special {
+      background: transparent;
+
+      border: 3px solid var(--yellow);
+    }
+
+    .bubble-special::after {
+      content: "";
+
+      position: absolute;
+
+      width: 68%;
+      height: 68%;
+
+      top: 16%;
+      left: 16%;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      opacity: 0.55;
+    }
+
+    .bubble-special-brown {
+      background: transparent;
+
+      border: 3px solid var(--brown);
+    }
+
+    .bubble-special-brown::after {
+      content: "";
+
+      position: absolute;
+
+      width: 62%;
+      height: 62%;
+
+      top: 19%;
+      left: 19%;
+
+      border-radius: 50%;
+
+      background: var(--yellow);
+
+      opacity: 0.58;
+    }
+
+    .bubble-special-green {
+      background: transparent;
+
+      border: 3px solid var(--green);
+    }
+
+    .bubble-special-green::after {
+      content: "";
+
+      position: absolute;
+
+      width: 64%;
+      height: 64%;
+
+      top: 18%;
+      left: 18%;
+
+      border-radius: 50%;
+
+      background: var(--brown);
+
+      opacity: 0.55;
+    }
+
+
+    /* SPECIAL BUBBLE POSITIONS */
+
+    .bubble-13 {
+      width: 17%;
+
+      top: 18%;
+      left: 43%;
+
+      opacity: 0.75;
+
+      z-index: 2;
+    }
+
+    .bubble-14 {
+      width: 13%;
+
+      bottom: 27%;
+      left: 34%;
+
+      opacity: 0.7;
+
+      z-index: 2;
+    }
+
+    .bubble-15 {
+      width: 11%;
+
+      top: 59%;
+      right: 20%;
+
+      opacity: 0.72;
+
+      z-index: 2;
+    }
+
+
+    /* =========================================
+       PORTRAIT BUBBLE
+    ========================================= */
 
     .portrait-bubble {
       position: relative;
@@ -634,6 +739,17 @@
 
         <div class="bubble bubble-green bubble-12"></div>
 
+
+        <!-- SPECIAL BUBBLES -->
+
+        <div class="bubble bubble-special bubble-13"></div>
+
+        <div class="bubble bubble-special-brown bubble-14"></div>
+
+        <div class="bubble bubble-special-green bubble-15"></div>
+
+
+        <!-- PORTRAIT -->
 
         <div class="portrait-bubble">
 
