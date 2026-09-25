@@ -103,11 +103,11 @@
     }
 
     .logo {
-      font-size: clamp(16px, 1.6vw, 21px);
+      font-size: 10px;
 
       font-weight: 600;
 
-      letter-spacing: -0.04em;
+      letter-spacing: 0.12em;
     }
 
     nav {
@@ -201,6 +201,8 @@
     }
 
     .hero-title {
+      display: none;
+
       margin: 0;
 
       max-width: 680px;
@@ -225,7 +227,7 @@
     .hero-description {
       max-width: 540px;
 
-      margin-top: clamp(30px, 4vw, 50px);
+      margin-top: 25px;
 
       font-size: clamp(15px, 1.45vw, 20px);
 
@@ -252,16 +254,33 @@
 
       overflow: hidden;
 
-      background: var(--green-soft);
+      background: var(--green);
 
       border-left: 1px solid var(--black);
+
+      border-radius: 0 0 0 35%;
     }
 
-    /*
-      subtle accent fields
-    */
-
     .hero-image::before {
+      content: "";
+
+      position: absolute;
+
+      width: 75%;
+
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      background: var(--yellow);
+
+      top: -25%;
+      right: -20%;
+
+      opacity: 0.9;
+    }
+
+    .hero-image::after {
       content: "";
 
       position: absolute;
@@ -272,27 +291,12 @@
 
       border-radius: 50%;
 
-      background: var(--yellow-medium);
+      background: var(--brown);
 
-      top: -18%;
-      right: -12%;
-    }
+      bottom: -25%;
+      left: -18%;
 
-    .hero-image::after {
-      content: "";
-
-      position: absolute;
-
-      width: 35%;
-
-      aspect-ratio: 1;
-
-      border-radius: 50%;
-
-      background: var(--brown-medium);
-
-      bottom: -12%;
-      left: -8%;
+      opacity: 0.8;
     }
 
     .hero-image img {
@@ -300,7 +304,7 @@
 
       z-index: 3;
 
-      width: min(75%, 500px);
+      width: min(68%, 500px);
 
       max-height: 75vh;
 
@@ -377,6 +381,8 @@
     }
 
     .work-header p {
+      display: none;
+
       margin: 0;
 
       font-size: 10px;
@@ -478,6 +484,8 @@
     }
 
     .project-number {
+      display: none;
+
       font-size: 10px;
 
       text-transform: uppercase;
@@ -512,7 +520,7 @@
     }
 
     .project-link {
-      display: inline-block;
+      display: none;
 
       margin-top: 25px;
 
@@ -594,25 +602,33 @@
 
 
     /* =========================================
-       ABOUT
+       ABOUT + BACKGROUND
     ========================================= */
 
-    .about {
+    .about-background {
       margin-bottom: var(--section-space);
 
-      padding: clamp(35px, 6vw, 80px);
+      display: grid;
 
-      background: var(--brown-soft);
+      grid-template-columns: 1fr 1fr;
+
+      gap: 1px;
+
+      background: var(--black);
 
       border-top: 1px solid var(--black);
 
       border-bottom: 1px solid var(--black);
+    }
 
-      display: grid;
+    .about {
+      margin: 0;
 
-      grid-template-columns: 0.75fr 1.25fr;
+      padding: clamp(35px, 6vw, 80px);
 
-      gap: clamp(40px, 8vw, 120px);
+      background: var(--green);
+
+      display: block;
     }
 
     .about h2 {
@@ -629,6 +645,8 @@
 
     .about-copy {
       max-width: 650px;
+
+      margin-top: clamp(40px, 6vw, 80px);
 
       font-size: clamp(15px, 1.45vw, 20px);
 
@@ -677,17 +695,19 @@
 
 
     /* =========================================
-       FILM
+       FILM / BACKGROUND
     ========================================= */
 
     .film {
-      padding-bottom: var(--section-space);
+      margin: 0;
 
-      display: grid;
+      padding: clamp(35px, 6vw, 80px);
 
-      grid-template-columns: 0.75fr 1.25fr;
+      background: var(--green);
 
-      gap: clamp(40px, 8vw, 120px);
+      background: rgba(63, 89, 9, 0.45);
+
+      display: block;
     }
 
     .film h2 {
@@ -703,6 +723,10 @@
     }
 
     .film-copy {
+      max-width: 650px;
+
+      margin-top: clamp(40px, 6vw, 80px);
+
       font-size: clamp(15px, 1.45vw, 20px);
 
       line-height: 1.55;
@@ -736,7 +760,7 @@
 
       padding: clamp(35px, 5vw, 70px);
 
-      background: var(--yellow-soft);
+      background: var(--yellow);
 
       border-top: 1px solid var(--black);
 
@@ -856,6 +880,8 @@
         border-left: 0;
 
         border-top: 1px solid var(--black);
+
+        border-radius: 0 0 25% 25%;
       }
 
       .hero-image img {
@@ -876,10 +902,11 @@
         min-height: 450px;
       }
 
-      .thesis,
-      .about,
-      .film,
-      .product {
+      .thesis {
+        grid-template-columns: 1fr;
+      }
+
+      .about-background {
         grid-template-columns: 1fr;
       }
     }
@@ -923,6 +950,8 @@
 
       .hero-image {
         min-height: 100vw;
+
+        border-radius: 0 0 20% 20%;
       }
 
       .hero-image img {
@@ -965,6 +994,10 @@
         padding: 30px 25px;
       }
 
+      .about-background {
+        display: block;
+      }
+
       .about {
         padding: 30px 25px 45px;
       }
@@ -981,6 +1014,10 @@
         flex-direction: column;
 
         align-items: flex-start;
+      }
+
+      .film {
+        padding: 30px 25px 45px;
       }
 
       .film h2 {
@@ -1326,124 +1363,130 @@
 
 
     <!-- =========================================
-         ABOUT
+         ABOUT + BACKGROUND
     ========================================= -->
 
-    <section id="about" class="about container">
+    <section id="about" class="about-background container">
 
 
-      <div>
+      <!-- ABOUT ME -->
 
-        <div class="section-label">
-          About me
+      <div class="about">
+
+
+        <div>
+
+          <div class="section-label">
+            About me
+          </div>
+
+          <h2>
+            A little<br>
+            about me
+          </h2>
+
         </div>
 
-        <h2>
-          A little<br>
-          about me
-        </h2>
+
+        <div class="about-copy">
+
+          <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer posuere erat a ante.
+
+          </p>
+
+          <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Praesent commodo cursus magna, vel scelerisque nisl
+            consectetur.
+
+          </p>
+
+          <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Cras mattis consectetur purus sit amet fermentum.
+
+          </p>
+
+
+          <div class="about-actions">
+
+
+            <a
+              href="MHall.CV.Eng.pdf"
+              download
+              class="cv-button"
+            >
+              Download CV ↓
+            </a>
+
+
+            <span class="references">
+              References available on request
+            </span>
+
+
+          </div>
+
+        </div>
+
 
       </div>
 
 
-      <div class="about-copy">
 
-        <p>
+      <!-- BACKGROUND -->
 
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Integer posuere erat a ante.
-
-        </p>
-
-        <p>
-
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Praesent commodo cursus magna, vel scelerisque nisl
-          consectetur.
-
-        </p>
-
-        <p>
-
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Cras mattis consectetur purus sit amet fermentum.
-
-        </p>
+      <div class="film">
 
 
-        <div class="about-actions">
+        <div>
 
+          <div class="section-label">
+            Background
+          </div>
 
-          <a
-            href="MHall.CV.Eng.pdf"
-            download
-            class="cv-button"
-          >
-            Download CV ↓
-          </a>
-
-
-          <span class="references">
-            References available on request
-          </span>
-
+          <h2>
+            Film &<br>
+            Production
+          </h2>
 
         </div>
 
-      </div>
+
+        <div class="film-copy">
+
+          <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            For more than ten years I have worked across film and
+            television production, from post-production to technical
+            work on set.
+
+          </p>
 
 
-    </section>
+          <p>
+
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Working across hundreds of productions has meant constantly
+            dealing with people, technology, changing requirements,
+            deadlines and things that simply have to work.
+
+          </p>
 
 
+          <div class="film-stat">
 
-    <!-- =========================================
-         FILM
-    ========================================= -->
+            10+ years<br>
+            across film & television
 
-    <section class="film container">
+          </div>
 
-
-      <div>
-
-        <div class="section-label">
-          Background
-        </div>
-
-        <h2>
-          Film &<br>
-          Production
-        </h2>
-
-      </div>
-
-
-      <div class="film-copy">
-
-        <p>
-
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          For more than ten years I have worked across film and
-          television production, from post-production to technical
-          work on set.
-
-        </p>
-
-
-        <p>
-
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          Working across hundreds of productions has meant constantly
-          dealing with people, technology, changing requirements,
-          deadlines and things that simply have to work.
-
-        </p>
-
-
-        <div class="film-stat">
-
-          10+ years<br>
-          across film & television
 
         </div>
 
