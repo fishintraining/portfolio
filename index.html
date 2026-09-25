@@ -1,666 +1,1039 @@
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Malin Hall — Digital Production & UX</title>
+
+    <style>
+        :root {
+            --dark: #292b28;
+            --dark-soft: #3b3e38;
+            --white: #f5f4ef;
+            --green: #65745b;
+            --green-light: #87957b;
+            --yellow: #e4c84a;
+
+            --line: rgba(41, 43, 40, 0.18);
+            --line-light: rgba(245, 244, 239, 0.18);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--white);
+            color: var(--dark);
+            font-family: Arial, Helvetica, sans-serif;
+            line-height: 1.5;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        /* =========================
+           NAVIGATION
+        ========================= */
+
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 22px 5vw;
+
+            background: rgba(245, 244, 239, 0.82);
+            backdrop-filter: blur(12px);
+
+            border-bottom: 1px solid var(--line);
+        }
+
+        .logo {
+            font-size: 15px;
+            font-weight: 700;
+            letter-spacing: 0.04em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+            font-size: 13px;
+        }
+
+        .nav-links a {
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: "";
+            position: absolute;
+            left: 0;
+            bottom: -5px;
+            width: 0;
+            height: 1px;
+            background: var(--green);
+            transition: width 0.25s ease;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        /* =========================
+           HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            position: relative;
+            overflow: hidden;
+
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            align-items: center;
+
+            padding: 130px 8vw 80px;
+            background: var(--white);
+        }
+
+        /* Large decorative vertical line */
+
+        .hero::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: 8vw;
+            width: 1px;
+            height: 100%;
+            background: var(--line);
+        }
+
+        /* Large green transparent block */
+
+        .hero::after {
+            content: "";
+            position: absolute;
+            width: 40vw;
+            height: 40vw;
+            max-width: 600px;
+            max-height: 600px;
+
+            right: -12vw;
+            top: 15vh;
+
+            background: rgba(101, 116, 91, 0.13);
+            border-radius: 50%;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            padding-left: 5vw;
+        }
+
+        .eyebrow {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+
+            margin-bottom: 25px;
+
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.16em;
+            color: var(--green);
+        }
+
+        .eyebrow span {
+            width: 45px;
+            height: 1px;
+            background: var(--green);
+        }
+
+        h1 {
+            font-size: clamp(64px, 9vw, 145px);
+            line-height: 0.84;
+            letter-spacing: -0.07em;
+            font-weight: 700;
+            max-width: 900px;
+        }
+
+        .hero-name {
+            display: block;
+        }
+
+        .hero-title {
+            margin-top: 35px;
+            max-width: 520px;
+
+            font-size: 18px;
+            line-height: 1.5;
+        }
+
+        .hero-title strong {
+            color: var(--green);
+        }
+
+        .hero-actions {
+            margin-top: 38px;
+
+            display: flex;
+            align-items: center;
+            gap: 15px;
+        }
+
+        .button {
+            display: inline-block;
+
+            padding: 13px 22px;
+
+            border: 1px solid var(--dark);
+            font-size: 13px;
+
+            transition: 0.25s ease;
+        }
+
+        .button:hover {
+            background: var(--dark);
+            color: var(--white);
+        }
+
+        .button-green {
+            background: var(--green);
+            border-color: var(--green);
+            color: white;
+        }
+
+        .button-green:hover {
+            background: var(--dark);
+            border-color: var(--dark);
+        }
+
+        /* =========================
+           PORTRAIT
+        ========================= */
+
+        .portrait-wrapper {
+            position: relative;
+            z-index: 3;
+
+            width: min(420px, 80%);
+            margin-left: auto;
+            margin-right: 5vw;
+        }
+
+        .portrait-wrapper::before {
+            content: "";
+
+            position: absolute;
+            width: 100%;
+            height: 100%;
+
+            left: -18px;
+            top: 18px;
+
+            border: 1px solid var(--green);
+            opacity: 0.55;
+        }
+
+        .portrait-wrapper::after {
+            content: "";
+
+            position: absolute;
+            width: 70px;
+            height: 70px;
+
+            right: -35px;
+            bottom: -35px;
+
+            background: var(--yellow);
+            opacity: 0.9;
+        }
+
+        .portrait {
+            position: relative;
+            z-index: 2;
+
+            width: 100%;
+            display: block;
+
+            filter: grayscale(15%);
+        }
+
+        /* =========================
+           MARQUEE / LINE
+        ========================= */
+
+        .line-strip {
+            position: relative;
+
+            display: flex;
+            align-items: center;
+            gap: 25px;
+
+            padding: 18px 5vw;
+
+            background: var(--dark);
+            color: var(--white);
+
+            overflow: hidden;
+        }
+
+        .line-strip::before {
+            content: "";
+            position: absolute;
+            left: 0;
+            top: 50%;
+            width: 100%;
+            height: 1px;
+
+            background: rgba(245, 244, 239, 0.14);
+        }
+
+        .line-strip span {
+            position: relative;
+            z-index: 2;
+
+            background: var(--dark);
+
+            padding-right: 20px;
+
+            font-size: 11px;
+            letter-spacing: 0.18em;
+            text-transform: uppercase;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        section {
+            position: relative;
+            padding: 130px 8vw;
+        }
+
+        .section-number {
+            position: absolute;
+            left: 3vw;
+            top: 135px;
+
+            font-size: 11px;
+            color: var(--green);
+            writing-mode: vertical-rl;
+            letter-spacing: 0.15em;
+        }
+
+        .section-header {
+            display: grid;
+            grid-template-columns: 0.4fr 1fr;
+            gap: 50px;
+
+            border-top: 1px solid var(--line);
+            padding-top: 20px;
+        }
+
+        .section-label {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.14em;
+            color: var(--green);
+        }
 
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        .about-text {
+            max-width: 850px;
 
-  <title>Malin Hall — Portfolio</title>
+            font-size: clamp(25px, 3vw, 42px);
+            line-height: 1.15;
+            letter-spacing: -0.025em;
+        }
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        .about-text em {
+            color: var(--green);
+            font-style: normal;
+        }
 
-  <link
-    href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700&display=swap"
-    rel="stylesheet"
-  >
+        /* =========================
+           WORK
+        ========================= */
 
-  <style>
+        #work {
+            background: var(--dark);
+            color: var(--white);
+        }
 
-    :root {
-      --yellow: #f6b731;
-      --green: #3f5909;
-      --brown: #6b4937;
-      --white: #ffffff;
-      --black: #111111;
-      --page-bg: #eef0f2;
+        #work .section-header {
+            border-color: var(--line-light);
+        }
 
-      --padding: clamp(20px, 5vw, 80px);
-      --max-width: 1500px;
-    }
+        .projects {
+            margin-top: 90px;
 
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1px;
 
-    /* =========================================
-       RESET
-    ========================================= */
+            background: rgba(245, 244, 239, 0.18);
+        }
 
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+        .project {
+            position: relative;
+            min-height: 400px;
 
-    html {
-      scroll-behavior: smooth;
-    }
+            padding: 35px;
 
-    body {
-      font-family: "Manrope", sans-serif;
-      background: var(--page-bg);
-      color: var(--black);
-    }
+            background: var(--dark);
 
+            overflow: hidden;
 
-    /* =========================================
-       HEADER
-    ========================================= */
+            transition: 0.35s ease;
+        }
 
-    header {
-      position: sticky;
-      top: 0;
-      z-index: 100;
+        .project:hover {
+            background: var(--dark-soft);
+        }
 
-      height: 70px;
+        .project-number {
+            font-size: 11px;
+            color: var(--yellow);
+            letter-spacing: 0.12em;
+        }
 
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
+        .project h3 {
+            margin-top: 90px;
 
-      padding: 0 var(--padding);
+            font-size: clamp(32px, 4vw, 60px);
+            line-height: 0.95;
+            letter-spacing: -0.05em;
+        }
 
-      background: var(--white);
-      border-bottom: 1px solid var(--black);
-    }
+        .project p {
+            max-width: 420px;
+            margin-top: 25px;
 
-    .logo {
-      font-size: 16px;
-      font-weight: 700;
-      text-decoration: none;
-      color: var(--black);
-    }
+            color: rgba(245, 244, 239, 0.68);
+            font-size: 14px;
+        }
 
-    nav {
-      display: flex;
-      gap: clamp(20px, 3vw, 50px);
-    }
+        .project-line {
+            position: absolute;
 
-    nav a {
-      font-size: 14px;
-      text-decoration: none;
-      color: var(--black);
-    }
+            width: 180px;
+            height: 180px;
 
-    nav a:hover {
-      opacity: 0.6;
-    }
+            right: -50px;
+            bottom: -50px;
 
+            border: 1px solid rgba(135, 149, 123, 0.5);
+            border-radius: 50%;
+        }
 
-    /* =========================================
-       HERO
-    ========================================= */
+        .project-line::before {
+            content: "";
 
-    .hero {
-      width: min(100% - 34px, 1500px);
-      height: calc(100vh - 87px);
+            position: absolute;
 
-      min-height: 550px;
+            width: 110px;
+            height: 110px;
 
-      margin: 17px auto 0;
+            right: 35px;
+            bottom: 35px;
 
-      position: relative;
+            border: 1px solid rgba(228, 200, 74, 0.4);
+            border-radius: 50%;
+        }
 
-      display: grid;
-      grid-template-columns: 45% 55%;
+        /* =========================
+           SKILLS
+        ========================= */
 
-      overflow: hidden;
+        .skills-grid {
+            margin-top: 80px;
 
-      background: var(--white);
-    }
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
 
+            border-top: 1px solid var(--line);
+            border-left: 1px solid var(--line);
+        }
 
-    /* =========================================
-       LEFT SIDE
-    ========================================= */
+        .skill {
+            min-height: 150px;
 
-    .hero-left {
-      position: relative;
+            padding: 25px;
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+            border-right: 1px solid var(--line);
+            border-bottom: 1px solid var(--line);
 
-      overflow: visible;
+            transition: 0.25s ease;
+        }
 
-      background: var(--white);
+        .skill:hover {
+            background: rgba(101, 116, 91, 0.1);
+        }
 
-      z-index: 2;
-    }
+        .skill-number {
+            font-size: 11px;
+            color: var(--green);
+        }
 
+        .skill h3 {
+            margin-top: 45px;
+            font-size: 18px;
+        }
 
-    /* =========================================
-       RIGHT SIDE / PORTRAIT
-    ========================================= */
+        /* =========================
+           CONTACT
+        ========================= */
 
-    .hero-right {
-      position: relative;
+        .contact {
+            background: var(--green);
+            color: var(--white);
+            overflow: hidden;
+        }
 
-      overflow: hidden;
+        .contact::before {
+            content: "";
 
-      background: var(--white);
+            position: absolute;
 
-      z-index: 1;
-    }
+            width: 60vw;
+            height: 60vw;
 
-    .hero-right img {
-      width: 100%;
-      height: 100%;
+            right: -30vw;
+            top: -20vw;
 
-      display: block;
+            border: 1px solid rgba(245, 244, 239, 0.18);
+            border-radius: 50%;
+        }
 
-      object-fit: cover;
+        .contact-inner {
+            position: relative;
+            z-index: 2;
+        }
 
-      filter: grayscale(100%);
-    }
+        .contact h2 {
+            max-width: 900px;
 
+            font-size: clamp(55px, 8vw, 120px);
+            line-height: 0.88;
+            letter-spacing: -0.06em;
+        }
 
-    /* =========================================
-       MAIN TEXT CIRCLE
-    ========================================= */
+        .contact-info {
+            margin-top: 60px;
 
-    .main-circle {
-      position: absolute;
+            display: flex;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
 
-      width: min(310px, 70%);
+        .contact-link {
+            padding-bottom: 5px;
 
-      aspect-ratio: 1;
+            border-bottom: 1px solid rgba(245, 244, 239, 0.5);
 
-      left: 17%;
-      top: 11%;
+            font-size: 14px;
+        }
 
-      display: flex;
-      align-items: center;
-      justify-content: center;
+        .contact-link:hover {
+            color: var(--yellow);
+            border-color: var(--yellow);
+        }
 
-      padding: 30px;
+        /* =========================
+           FOOTER
+        ========================= */
 
-      border-radius: 50%;
+        footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
 
-      background: var(--green);
+            padding: 25px 5vw;
 
-      z-index: 20;
-    }
+            background: var(--dark);
+            color: rgba(245, 244, 239, 0.55);
 
-    .main-circle p {
-      max-width: 290px;
+            font-size: 11px;
+        }
 
-      font-size: clamp(10px, 1vw, 14px);
-      line-height: 1.25;
+        /* =========================
+           MOBILE
+        ========================= */
 
-      font-weight: 700;
+        @media (max-width: 800px) {
 
-      text-align: center;
+            nav {
+                padding: 18px 5vw;
+            }
 
-      color: white;
-    }
+            .nav-links {
+                gap: 15px;
+            }
 
+            .hero {
+                grid-template-columns: 1fr;
+                padding: 120px 8vw 80px;
+            }
 
-    /* =========================================
-       BUBBLE BASE
-    ========================================= */
+            .hero-content {
+                padding-left: 0;
+            }
 
-    .bubble {
-      position: absolute;
+            .hero::before {
+                left: 5vw;
+            }
 
-      aspect-ratio: 1;
+            h1 {
+                font-size: 20vw;
+            }
 
-      border-radius: 50%;
+            .portrait-wrapper {
+                margin: 80px auto 0;
+                width: 75%;
+            }
 
-      pointer-events: none;
-    }
+            .section-header {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
 
-    .yellow {
-      background: var(--yellow);
-    }
+            section {
+                padding: 90px 8vw;
+            }
 
-    .green {
-      background: var(--green);
-    }
+            .section-number {
+                display: none;
+            }
 
+            .projects {
+                grid-template-columns: 1fr;
+            }
 
-    /* =========================================
-       LEFT BUBBLES
-    ========================================= */
+            .skills-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
 
-    .left-yellow-large {
-      width: 355px;
+            footer {
+                flex-direction: column;
+                gap: 10px;
+                text-align: center;
+            }
+        }
 
-      max-width: 80%;
+        @media (max-width: 500px) {
 
-      top: 4%;
-      left: 8%;
+            .nav-links a:nth-child(2) {
+                display: none;
+            }
 
-      opacity: 0.52;
+            .hero-actions {
+                flex-direction: column;
+                align-items: flex-start;
+            }
 
-      z-index: 10;
-    }
+            .skills-grid {
+                grid-template-columns: 1fr;
+            }
 
-    .left-green-top {
-      width: 105px;
-
-      top: 3%;
-      left: 70%;
-
-      opacity: 0.62;
-
-      z-index: 11;
-    }
-
-    .left-yellow-small {
-      width: 40px;
-
-      top: 14%;
-      left: 88%;
-
-      opacity: 0.72;
-
-      z-index: 12;
-    }
-
-    .left-yellow-tiny {
-      width: 25px;
-
-      top: 20%;
-      left: 80%;
-
-      opacity: 0.70;
-
-      z-index: 12;
-    }
-
-    .left-green-bottom {
-      width: 105px;
-
-      top: 60%;
-      left: 88%;
-
-      opacity: 0.62;
-
-      z-index: 12;
-    }
-
-    .left-yellow-bottom {
-      width: 105px;
-
-      top: 67%;
-      left: 81%;
-
-      opacity: 0.58;
-
-      z-index: 11;
-    }
-
-    .left-yellow-dot {
-      width: 27px;
-
-      top: 79%;
-      left: 111%;
-
-      opacity: 0.70;
-
-      z-index: 13;
-    }
-
-
-    /* =========================================
-       RIGHT BUBBLES
-    ========================================= */
-
-    .right-yellow-top {
-      width: 140px;
-
-      top: -7%;
-      left: 60%;
-
-      opacity: 0.52;
-
-      z-index: 10;
-    }
-
-    .right-green-top {
-      width: 105px;
-
-      top: 4%;
-      right: 3%;
-
-      opacity: 0.92;
-
-      z-index: 12;
-    }
-
-    .right-green-middle {
-      width: 105px;
-
-      top: 18%;
-      left: 60%;
-
-      opacity: 0.58;
-
-      z-index: 11;
-    }
-
-    .right-yellow-middle {
-      width: 85px;
-
-      top: 35%;
-      right: 5%;
-
-      opacity: 0.28;
-
-      z-index: 10;
-    }
-
-    .right-yellow-dot {
-      width: 27px;
-
-      top: 24%;
-      right: 2%;
-
-      opacity: 0.55;
-
-      z-index: 12;
-    }
-
-    .right-green-dot {
-      width: 19px;
-
-      top: 39%;
-      right: 10%;
-
-      opacity: 0.92;
-
-      z-index: 13;
-    }
-
-    .right-green-bottom {
-      width: 190px;
-
-      bottom: -10%;
-      right: -2%;
-
-      opacity: 0.86;
-
-      z-index: 11;
-    }
-
-    .right-yellow-bottom {
-      width: 90px;
-
-      bottom: 23%;
-      right: 0%;
-
-      opacity: 0.62;
-
-      z-index: 12;
-    }
-
-    .right-yellow-small {
-      width: 27px;
-
-      bottom: 31%;
-      right: 19%;
-
-      opacity: 0.72;
-
-      z-index: 13;
-    }
-
-    .right-green-small {
-      width: 18px;
-
-      bottom: 32%;
-      right: 18%;
-
-      opacity: 0.88;
-
-      z-index: 14;
-    }
-
-
-    /* =========================================
-       TABLET
-    ========================================= */
-
-    @media (max-width: 900px) {
-
-      .hero {
-        width: calc(100% - 24px);
-
-        height: auto;
-        min-height: 850px;
-
-        grid-template-columns: 1fr;
-      }
-
-      .hero-left {
-        min-height: 430px;
-      }
-
-      .hero-right {
-        min-height: 500px;
-      }
-
-      .main-circle {
-        left: 20%;
-        top: 10%;
-      }
-
-    }
-
-
-    /* =========================================
-       MOBILE
-    ========================================= */
-
-    @media (max-width: 600px) {
-
-      header {
-        height: 60px;
-      }
-
-      nav {
-        gap: 15px;
-      }
-
-      nav a {
-        font-size: 12px;
-      }
-
-      .hero {
-        width: calc(100% - 16px);
-
-        margin-top: 8px;
-      }
-
-      .hero-left {
-        min-height: 360px;
-      }
-
-      .hero-right {
-        min-height: 430px;
-      }
-
-      .main-circle {
-        width: 250px;
-
-        left: 14%;
-        top: 9%;
-      }
-
-      .left-yellow-large {
-        width: 285px;
-      }
-
-      .left-green-top {
-        width: 75px;
-      }
-
-      .left-yellow-small {
-        width: 32px;
-      }
-
-      .left-green-bottom {
-        width: 75px;
-      }
-
-      .left-yellow-bottom {
-        width: 75px;
-      }
-
-      .right-yellow-top {
-        width: 110px;
-      }
-
-      .right-green-top {
-        width: 85px;
-      }
-
-      .right-green-middle {
-        width: 85px;
-      }
-
-      .right-green-bottom {
-        width: 145px;
-      }
-
-    }
-
-  </style>
-
+            .portrait-wrapper {
+                width: 85%;
+            }
+        }
+    </style>
 </head>
-
 
 <body>
 
-
-  <!-- =========================================
-       HEADER
-  ========================================= -->
-
-  <header>
-
-    <a href="#" class="logo">
-      Malin Hall
-    </a>
+    <!-- =========================
+         NAVIGATION
+    ========================= -->
 
     <nav>
-      <a href="#work">Work</a>
-      <a href="#about">About me</a>
-      <a href="#contact">Contact</a>
+        <a href="#" class="logo">MH / PORTFOLIO</a>
+
+        <div class="nav-links">
+            <a href="#about">About</a>
+            <a href="#work">Work</a>
+            <a href="#contact">Contact</a>
+        </div>
     </nav>
 
-  </header>
 
+    <!-- =========================
+         HERO
+    ========================= -->
 
-  <!-- =========================================
-       HERO
-  ========================================= -->
+    <header class="hero">
 
-  <main>
+        <div class="hero-content">
 
-    <section class="hero">
+            <div class="eyebrow">
+                <span></span>
+                Digital production · UX · Technology
+            </div>
 
+            <h1>
+                <span class="hero-name">Malin</span>
+                <span class="hero-name">Hall.</span>
+            </h1>
 
-      <!-- =====================================
-           LEFT
-      ====================================== -->
+            <p class="hero-title">
+                Digital production professional with a background in
+                <strong>film, technology and human-computer interaction.</strong>
+            </p>
 
-      <div class="hero-left">
+            <div class="hero-actions">
 
+                <a href="#work" class="button button-green">
+                    View selected work
+                </a>
 
-        <!-- Large yellow background bubble -->
+                <a href="MHall.CV.Eng.pdf"
+                   class="button"
+                   target="_blank">
+                    CV ↗
+                </a>
 
-        <div class="bubble yellow left-yellow-large"></div>
-
-
-        <!-- Small bubbles -->
-
-        <div class="bubble green left-green-top"></div>
-
-        <div class="bubble yellow left-yellow-small"></div>
-
-        <div class="bubble yellow left-yellow-tiny"></div>
-
-
-        <!-- Bottom cluster -->
-
-        <div class="bubble green left-green-bottom"></div>
-
-        <div class="bubble yellow left-yellow-bottom"></div>
-
-        <div class="bubble yellow left-yellow-dot"></div>
-
-
-        <!-- Main text circle -->
-
-        <div class="main-circle">
-
-          <p>
-            Digital production · UX/HCI · Technical systems
-          </p>
+            </div>
 
         </div>
 
 
-      </div>
+        <div class="portrait-wrapper">
+
+            <img
+                src="portrait_malin.png"
+                alt="Portrait of Malin Hall"
+                class="portrait"
+            >
+
+        </div>
+
+    </header>
 
 
-      <!-- =====================================
-           RIGHT / PORTRAIT
-      ====================================== -->
+    <!-- =========================
+         STRIP
+    ========================= -->
 
-      <div class="hero-right">
+    <div class="line-strip">
 
-        <img
-          src="portrait_malin.png"
-          alt="Portrait of Malin Hall"
-        >
+        <span>Film</span>
+        <span>Technology</span>
+        <span>UX</span>
+        <span>Interaction</span>
+        <span>Production</span>
+        <span>Systems</span>
 
-
-        <!-- Top bubbles -->
-
-        <div class="bubble yellow right-yellow-top"></div>
-
-        <div class="bubble green right-green-top"></div>
+    </div>
 
 
-        <!-- Middle bubbles -->
+    <!-- =========================
+         ABOUT
+    ========================= -->
 
-        <div class="bubble green right-green-middle"></div>
+    <section id="about">
 
-        <div class="bubble yellow right-yellow-middle"></div>
+        <div class="section-number">
+            01 — ABOUT
+        </div>
 
-        <div class="bubble yellow right-yellow-dot"></div>
+        <div class="section-header">
 
-        <div class="bubble green right-green-dot"></div>
+            <div class="section-label">
+                About
+            </div>
 
+            <div class="about-text">
 
-        <!-- Bottom bubbles -->
+                I work where
+                <em>people, technology and production</em>
+                meet.
 
-        <div class="bubble green right-green-bottom"></div>
+                <br><br>
 
-        <div class="bubble yellow right-yellow-bottom"></div>
+                My background spans more than ten years in
+                film and television production, combined with
+                an engineering background in
+                <em>information technology and HCI.</em>
 
-        <div class="bubble yellow right-yellow-small"></div>
+                <br><br>
 
-        <div class="bubble green right-green-small"></div>
+                I am interested in understanding how systems
+                actually work — and how they can work better
+                for the people using them.
 
-      </div>
+            </div>
 
+        </div>
 
     </section>
 
-  </main>
+
+    <!-- =========================
+         WORK
+    ========================= -->
+
+    <section id="work">
+
+        <div class="section-number">
+            02 — WORK
+        </div>
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Selected work
+            </div>
+
+            <div>
+                Projects exploring interaction,
+                technology and real-world problems.
+            </div>
+
+        </div>
+
+
+        <div class="projects">
+
+            <article class="project">
+
+                <div class="project-number">
+                    01 / UX · AI
+                </div>
+
+                <h3>
+                    Högskoleprovet
+                </h3>
+
+                <p>
+                    Exploring how AI-generated feedback can
+                    support students by analysing reading patterns
+                    and answers.
+                </p>
+
+                <div class="project-line"></div>
+
+            </article>
+
+
+            <article class="project">
+
+                <div class="project-number">
+                    02 / UX · ACCESSIBILITY
+                </div>
+
+                <h3>
+                    Accessible pharmacy
+                </h3>
+
+                <p>
+                    A user-centred design project focused on
+                    accessibility and interaction for visually
+                    impaired users.
+                </p>
+
+                <div class="project-line"></div>
+
+            </article>
+
+
+            <article class="project">
+
+                <div class="project-number">
+                    03 / PRODUCTION · TECH
+                </div>
+
+                <h3>
+                    Live media systems
+                </h3>
+
+                <p>
+                    More than ten years working with complex
+                    technical environments, digital media,
+                    transmission, recording, QC and delivery.
+                </p>
+
+                <div class="project-line"></div>
+
+            </article>
+
+
+            <article class="project">
+
+                <div class="project-number">
+                    04 / INTERACTION
+                </div>
+
+                <h3>
+                    More coming.
+                </h3>
+
+                <p>
+                    This portfolio is currently being developed.
+                    New projects and case studies will be added here.
+                </p>
+
+                <div class="project-line"></div>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         SKILLS
+    ========================= -->
+
+    <section>
+
+        <div class="section-number">
+            03 — SKILLS
+        </div>
+
+        <div class="section-header">
+
+            <div class="section-label">
+                Skills
+            </div>
+
+            <div>
+                A mix of technical production,
+                interaction design and problem solving.
+            </div>
+
+        </div>
+
+
+        <div class="skills-grid">
+
+            <div class="skill">
+                <span class="skill-number">01</span>
+                <h3>UX / Interaction</h3>
+            </div>
+
+            <div class="skill">
+                <span class="skill-number">02</span>
+                <h3>Figma</h3>
+            </div>
+
+            <div class="skill">
+                <span class="skill-number">03</span>
+                <h3>HCI</h3>
+            </div>
+
+            <div class="skill">
+                <span class="skill-number">04</span>
+                <h3>AI & Human Interaction</h3>
+            </div>
+
+            <div class="skill">
+                <span class="skill-number">05</span>
+                <h3>Digital Media</h3>
+            </div>
+
+            <div class="skill">
+                <span class="skill-number">06</span>
+                <h3>Technical Production</h3>
+            </div>
+
+            <div class="skill">
+                <span class="skill-number">07</span>
+                <h3>Systems & Infrastructure</h3>
+            </div>
+
+            <div class="skill">
+                <span class="skill-number">08</span>
+                <h3>Problem Solving</h3>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         CONTACT
+    ========================= -->
+
+    <section id="contact" class="contact">
+
+        <div class="contact-inner">
+
+            <div class="eyebrow">
+                <span></span>
+                Get in touch
+            </div>
+
+            <h2>
+                Let's make
+                something
+                useful.
+            </h2>
+
+            <div class="contact-info">
+
+                <!-- Replace these with your actual links -->
+
+                <a href="mailto:YOUR-EMAIL@example.com"
+                   class="contact-link">
+                    Email ↗
+                </a>
+
+                <a href="https://www.linkedin.com/"
+                   target="_blank"
+                   class="contact-link">
+                    LinkedIn ↗
+                </a>
+
+                <a href="MHall.CV.Eng.pdf"
+                   target="_blank"
+                   class="contact-link">
+                    CV ↗
+                </a>
+
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- =========================
+         FOOTER
+    ========================= -->
+
+    <footer>
+
+        <span>© 2026 Malin Hall</span>
+
+        <span>
+            Film · Technology · UX
+        </span>
+
+    </footer>
 
 
 </body>
 </html>
+```
