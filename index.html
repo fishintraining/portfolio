@@ -360,11 +360,11 @@
     .split-photo {
       position: absolute;
 
-      width: 40%;
-      height: 40%;
+      width: 70%;
+      height: 70%;
 
       left: 50%;
-      top: 30%;
+      top: 15%;
 
       pointer-events: none;
 
@@ -382,6 +382,10 @@
       object-fit: cover;
 
       filter: grayscale(100%);
+
+      clip-path: circle(8.5% at 51% 29%),
+                  circle(6.5% at 59% 48%),
+                  circle(7.5% at 44% 67%);
 
       -webkit-mask-image:
         radial-gradient(
@@ -576,7 +580,7 @@
 
   <!-- =========================================
        HEADER
-  ========================================= -->
+    ========================================= -->
 
   <header>
 
