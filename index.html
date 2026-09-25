@@ -1,994 +1,837 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Malin Hall — UX / Interaction Design</title>
-
-    <style>
-        * {
-            box-sizing: border-box;
-            margin: 0;
-            padding: 0;
-        }
-
-        :root {
-            --cream: #f2f0e8;
-            --green: #40583f;
-            --light-green: #9eae92;
-            --pale-green: #d5ddce;
-            --black: #171916;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
-
-        body {
-            background: var(--cream);
-            color: var(--black);
-            font-family: Arial, Helvetica, sans-serif;
-            overflow-x: hidden;
-        }
-
-        a {
-            color: inherit;
-            text-decoration: none;
-        }
-
-        /* =========================
-           HEADER
-        ========================= */
-
-        header {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            z-index: 100;
-            padding: 24px 4vw;
-
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-
-            mix-blend-mode: multiply;
-        }
-
-        .logo {
-            font-size: 16px;
-            font-weight: 700;
-            letter-spacing: 0.04em;
-        }
-
-        nav {
-            display: flex;
-            gap: 28px;
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.08em;
-        }
-
-        nav a:hover {
-            color: var(--green);
-        }
-
-
-        /* =========================
-           HERO
-        ========================= */
-
-        .hero {
-            min-height: 100vh;
-            position: relative;
-            padding: 120px 5vw 80px;
-
-            display: flex;
-            align-items: center;
-            justify-content: center;
-
-            overflow: hidden;
-        }
-
-        /* large faded background typography */
-
-        .background-word {
-            position: absolute;
-            left: -2vw;
-            bottom: 5vh;
-
-            font-size: clamp(120px, 20vw, 300px);
-            font-weight: 700;
-            letter-spacing: -0.08em;
-
-            color: var(--light-green);
-            opacity: 0.28;
-
-            white-space: nowrap;
-            pointer-events: none;
-        }
-
-        /* floating background boxes */
-
-        .floating-box {
-            position: absolute;
-            border: 1px solid var(--green);
-            opacity: 0.22;
-            pointer-events: none;
-        }
-
-        .box-one {
-            width: 260px;
-            height: 180px;
-            top: 17%;
-            left: 8%;
-            transform: rotate(-8deg);
-        }
-
-        .box-two {
-            width: 190px;
-            height: 300px;
-            right: 8%;
-            bottom: 13%;
-            transform: rotate(12deg);
-        }
-
-        .box-three {
-            width: 110px;
-            height: 110px;
-            right: 22%;
-            top: 20%;
-            border-radius: 50%;
-        }
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Malin Hall — UX / Interaction Design</title>
+
+  <style>
+    :root {
+      --cream: #F3EBDD;
+      --moss: #59634A;
+      --mustard: #C8A32A;
+      --brown: #4A3025;
+      --dark: #211B17;
+      --light-moss: #D9DDCE;
+
+      --page-padding: clamp(20px, 5vw, 80px);
+      --section-gap: clamp(90px, 14vw, 200px);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--cream);
+      color: var(--dark);
+      font-family: Arial, Helvetica, sans-serif;
+      overflow-x: hidden;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    /* --------------------
+       HEADER
+    -------------------- */
+
+    header {
+      width: 100%;
+      padding: 28px var(--page-padding);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      position: relative;
+      z-index: 20;
+    }
+
+    .logo {
+      font-size: clamp(18px, 2vw, 25px);
+      font-weight: 700;
+      letter-spacing: -0.04em;
+    }
+
+    nav {
+      display: flex;
+      gap: clamp(18px, 3vw, 45px);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    nav a {
+      transition: opacity 0.2s ease;
+    }
+
+    nav a:hover {
+      opacity: 0.5;
+    }
+
+
+    /* --------------------
+       HERO
+    -------------------- */
+
+    .hero {
+      min-height: min(850px, 88vh);
+      padding: clamp(40px, 6vw, 90px) var(--page-padding) 80px;
+
+      display: grid;
+      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
+      gap: clamp(30px, 6vw, 100px);
+
+      position: relative;
+      align-items: center;
+    }
+
+    .hero-left {
+      position: relative;
+      z-index: 3;
+    }
+
+    .hero-title {
+      margin: 0;
+      font-size: clamp(62px, 10vw, 155px);
+      line-height: 0.82;
+      letter-spacing: -0.075em;
+      font-weight: 800;
+    }
+
+    .hero-title span {
+      display: block;
+    }
+
+    .hero-title .green {
+      color: var(--moss);
+    }
+
+    .hero-title .yellow {
+      color: var(--mustard);
+    }
+
+    .hero-intro {
+      max-width: 520px;
+      margin-top: clamp(35px, 5vw, 65px);
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.35;
+    }
+
+
+    /* --------------------
+       HERO IMAGE AREA
+    -------------------- */
+
+    .hero-right {
+      min-height: 520px;
+      position: relative;
 
-        /* central hero */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .circle {
+      width: min(36vw, 480px);
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--moss);
+      position: absolute;
+      top: 4%;
+      right: 3%;
+    }
 
-        .hero-content {
-            position: relative;
-            width: min(1200px, 100%);
-            min-height: 650px;
-        }
+    .circle-inner {
+      width: 68%;
+      aspect-ratio: 1;
+      border-radius: 50%;
+      background: var(--mustard);
+
+      position: absolute;
+      top: 16%;
+      left: 16%;
+    }
 
-        .hero-title {
-            position: absolute;
-            top: 5%;
-            left: 0;
+    .portrait {
+      width: clamp(190px, 24vw, 315px);
+      aspect-ratio: 1;
+      object-fit: cover;
 
-            z-index: 5;
-        }
+      border-radius: 50%;
 
-        .hero-title h1 {
-            font-size: clamp(70px, 11vw, 170px);
-            line-height: 0.82;
-            letter-spacing: -0.075em;
-            font-weight: 700;
-        }
+      position: relative;
+      z-index: 4;
 
-        .hero-title h1 span {
-            display: block;
-        }
+      border: clamp(8px, 1vw, 14px) solid var(--cream);
 
-        /* green circular shape */
+      box-shadow: 15px 18px 0 var(--brown);
+    }
 
-        .green-circle {
-            position: absolute;
+    .hero-label {
+      position: absolute;
+      z-index: 6;
 
-            width: min(570px, 55vw);
-            aspect-ratio: 1;
+      bottom: 8%;
+      left: 0;
 
-            right: 8%;
-            top: 5%;
+      background: var(--brown);
+      color: var(--cream);
 
-            background: var(--green);
-            border-radius: 50%;
+      padding: 14px 18px;
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+      font-size: clamp(15px, 1.5vw, 20px);
+      line-height: 1.05;
+      font-weight: 700;
+      letter-spacing: -0.03em;
+    }
 
-            z-index: 2;
-        }
+    .hero-label span {
+      display: block;
+    }
 
-        .circle-text {
-            position: absolute;
-            width: 100%;
-            height: 100%;
 
-            color: var(--cream);
+    /* --------------------
+       SCROLL INDICATOR
+    -------------------- */
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    .scroll-indicator {
+      position: absolute;
+      bottom: 25px;
+      left: var(--page-padding);
+
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 8px;
+
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+    }
 
-            font-size: clamp(18px, 2vw, 28px);
-            font-weight: 700;
-            letter-spacing: 0.12em;
-            text-transform: uppercase;
+    .scroll-arrow {
+      font-size: 28px;
+      line-height: 1;
+    }
 
-            text-align: center;
-        }
+
+    /* --------------------
+       SECTION DIVIDER
+    -------------------- */
+
+    .section-divider {
+      margin: 0 var(--page-padding);
 
-        .circle-inner {
-            width: 72%;
-            height: 72%;
+      border-top: 1px solid var(--dark);
+
+      padding-top: 20px;
 
-            border: 1px solid rgba(242, 240, 232, 0.6);
-            border-radius: 50%;
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+    }
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    .section-divider h2 {
+      margin: 0;
 
-            color: var(--cream);
-            font-size: 13px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
-        }
+      font-size: clamp(42px, 7vw, 100px);
+      line-height: 0.9;
+      letter-spacing: -0.065em;
+    }
 
-        /* portrait */
+    .section-divider p {
+      margin: 0;
 
-        .portrait {
-            position: absolute;
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+    }
 
-            width: 260px;
-            height: 330px;
 
-            right: 24%;
-            top: 18%;
+    /* --------------------
+       WORK
+    -------------------- */
 
-            z-index: 4;
+    .work {
+      padding: 70px var(--page-padding) var(--section-gap);
+    }
 
-            overflow: hidden;
+    .projects {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: clamp(25px, 4vw, 65px);
+      margin-top: 50px;
+    }
 
-            box-shadow: 20px 20px 0 rgba(158, 174, 146, 0.55);
-        }
+    .project {
+      min-height: clamp(380px, 45vw, 600px);
 
-        .portrait img {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            display: block;
-        }
-
-        /* intro box */
+      padding: clamp(25px, 4vw, 55px);
 
-        .intro-box {
-            position: absolute;
-
-            left: 4%;
-            bottom: 5%;
-
-            width: 310px;
-
-            padding: 25px;
-
-            background: rgba(213, 221, 206, 0.78);
-
-            z-index: 7;
-        }
-
-        .intro-box .label {
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            margin-bottom: 15px;
-            color: var(--green);
-        }
-
-        .intro-box p {
-            font-size: 17px;
-            line-height: 1.35;
-        }
+      position: relative;
 
-        .scroll {
-            position: absolute;
-            right: 4vw;
-            bottom: 30px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
 
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
+      overflow: hidden;
+    }
 
-            writing-mode: vertical-rl;
-        }
+    .project:nth-child(1) {
+      background: var(--moss);
+      color: var(--cream);
+    }
 
+    .project:nth-child(2) {
+      background: var(--mustard);
+      color: var(--brown);
+      margin-top: clamp(40px, 8vw, 120px);
+    }
 
-        /* =========================
-           WORK
-        ========================= */
+    .project:nth-child(3) {
+      background: var(--brown);
+      color: var(--cream);
+      margin-top: clamp(-50px, -4vw, -20px);
+    }
 
-        .work {
-            position: relative;
-            padding: 150px 5vw;
-            min-height: 110vh;
-        }
+    .project:nth-child(4) {
+      background: var(--light-moss);
+      color: var(--dark);
+    }
 
-        .section-label {
-            font-size: 12px;
-            text-transform: uppercase;
-            letter-spacing: 0.15em;
-            color: var(--green);
-            margin-bottom: 70px;
-        }
+    .project-number {
+      font-size: 13px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
 
-        .work-heading {
-            font-size: clamp(60px, 10vw, 150px);
-            line-height: 0.8;
-            letter-spacing: -0.07em;
-            margin-bottom: 120px;
-        }
+    .project h3 {
+      margin: 0;
 
-        .project {
-            position: relative;
-            min-height: 300px;
+      font-size: clamp(38px, 5vw, 75px);
+      line-height: 0.9;
+      letter-spacing: -0.06em;
+    }
 
-            margin-bottom: 100px;
+    .project-description {
+      max-width: 430px;
 
-            display: flex;
-            align-items: center;
-        }
+      font-size: clamp(15px, 1.4vw, 19px);
+      line-height: 1.4;
+    }
 
-        .project-card {
-            width: min(700px, 70vw);
-            padding: 55px;
+    .project-arrow {
+      position: absolute;
+      right: clamp(20px, 3vw, 40px);
+      bottom: clamp(15px, 3vw, 35px);
 
-            background: var(--green);
-            color: var(--cream);
+      font-size: clamp(35px, 5vw, 65px);
+      line-height: 1;
+    }
 
-            position: relative;
-            z-index: 2;
-        }
 
-        .project:nth-child(odd) .project-card {
-            margin-left: 12%;
-        }
+    /* --------------------
+       ABOUT
+    -------------------- */
 
-        .project:nth-child(even) .project-card {
-            margin-left: auto;
-            margin-right: 10%;
-            background: var(--light-green);
-            color: var(--black);
-        }
+    .about {
+      margin: 0 var(--page-padding) var(--section-gap);
 
-        .project-number {
-            font-size: 12px;
-            letter-spacing: 0.15em;
-            margin-bottom: 30px;
-        }
+      background: var(--brown);
+      color: var(--cream);
 
-        .project h3 {
-            font-size: clamp(42px, 6vw, 80px);
-            line-height: 0.9;
-            letter-spacing: -0.05em;
-            margin-bottom: 25px;
-        }
+      padding: clamp(30px, 6vw, 90px);
 
-        .project p {
-            max-width: 450px;
-            font-size: 16px;
-        }
+      display: grid;
+      grid-template-columns: 0.8fr 1.2fr;
+      gap: clamp(40px, 8vw, 120px);
 
-        .project-detail {
-            position: absolute;
+      position: relative;
+      overflow: hidden;
+    }
 
-            width: 180px;
-            height: 180px;
+    .about h2 {
+      margin: 0;
 
-            background: var(--pale-green);
+      font-size: clamp(55px, 9vw, 125px);
+      line-height: 0.82;
+      letter-spacing: -0.075em;
 
-            right: 8%;
-            top: 20%;
+      position: relative;
+      z-index: 2;
+    }
 
-            transform: rotate(8deg);
+    .about-text {
+      position: relative;
+      z-index: 2;
 
-            z-index: 1;
-        }
+      font-size: clamp(18px, 2vw, 25px);
+      line-height: 1.4;
+      max-width: 650px;
+    }
 
-        .project:nth-child(even) .project-detail {
-            left: 8%;
-            right: auto;
-            transform: rotate(-12deg);
-        }
+    .about-text p {
+      margin-top: 0;
+      margin-bottom: 30px;
+    }
 
+    .about-circle {
+      width: clamp(180px, 25vw, 400px);
+      aspect-ratio: 1;
 
-        /* =========================
-           ABOUT
-        ========================= */
+      border-radius: 50%;
 
-        .about {
-            position: relative;
-            padding: 160px 5vw;
+      background: var(--moss);
 
-            background: var(--green);
-            color: var(--cream);
+      position: absolute;
+      right: -8%;
+      bottom: -35%;
+    }
 
-            overflow: hidden;
-        }
 
-        .about-background {
-            position: absolute;
+    /* --------------------
+       CONTACT
+    -------------------- */
 
-            width: 600px;
-            height: 600px;
+    .contact {
+      padding: 0 var(--page-padding) 100px;
 
-            border: 1px solid rgba(242, 240, 232, 0.3);
-            border-radius: 50%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
 
-            right: -150px;
-            top: 100px;
-        }
+      align-items: end;
+    }
 
-        .about-background::after {
-            content: "";
+    .contact h2 {
+      margin: 0;
 
-            position: absolute;
+      font-size: clamp(60px, 11vw, 160px);
+      line-height: 0.8;
+      letter-spacing: -0.08em;
+    }
 
-            width: 400px;
-            height: 400px;
+    .contact-link {
+      font-size: clamp(22px, 3vw, 40px);
+      border-bottom: 2px solid var(--dark);
+      display: inline-block;
+      padding-bottom: 6px;
+    }
 
-            border: 1px solid rgba(242, 240, 232, 0.2);
-            border-radius: 50%;
 
-            top: 100px;
-            left: 100px;
-        }
+    /* --------------------
+       FOOTER
+    -------------------- */
 
-        .about-content {
-            position: relative;
-            z-index: 2;
+    footer {
+      border-top: 1px solid var(--dark);
 
-            max-width: 1100px;
-        }
+      margin: 0 var(--page-padding);
+      padding: 20px 0 30px;
 
-        .about h2 {
-            font-size: clamp(70px, 12vw, 170px);
-            line-height: 0.8;
-            letter-spacing: -0.07em;
-            margin-bottom: 90px;
-        }
+      display: flex;
+      justify-content: space-between;
 
-        .about-text {
-            max-width: 800px;
-            font-size: clamp(24px, 3vw, 42px);
-            line-height: 1.2;
-            letter-spacing: -0.025em;
-        }
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
 
-        .about-small {
-            margin-top: 60px;
 
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px;
-        }
+    /* --------------------
+       TABLET
+    -------------------- */
 
-        .about-box {
-            padding: 25px;
+    @media (max-width: 900px) {
 
-            background: rgba(213, 221, 206, 0.12);
-            border: 1px solid rgba(242, 240, 232, 0.3);
+      .hero {
+        grid-template-columns: 1fr;
+        min-height: auto;
+        padding-top: 50px;
+      }
 
-            min-height: 130px;
-        }
+      .hero-right {
+        min-height: 500px;
+      }
 
-        .about-box span {
-            display: block;
+      .circle {
+        width: min(65vw, 450px);
+        right: 10%;
+      }
 
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.12em;
+      .portrait {
+        width: clamp(210px, 38vw, 300px);
+      }
 
-            margin-bottom: 25px;
+      .hero-label {
+        left: 8%;
+      }
 
-            opacity: 0.65;
-        }
+      .about {
+        grid-template-columns: 1fr;
+      }
 
+      .projects {
+        grid-template-columns: 1fr;
+      }
 
-        /* =========================
-           CONTACT
-        ========================= */
+      .project:nth-child(2),
+      .project:nth-child(3) {
+        margin-top: 0;
+      }
 
-        .contact {
-            min-height: 80vh;
+      .contact {
+        grid-template-columns: 1fr;
+      }
+    }
 
-            padding: 160px 5vw;
 
-            position: relative;
+    /* --------------------
+       MOBILE
+    -------------------- */
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+    @media (max-width: 600px) {
 
-            overflow: hidden;
-        }
+      header {
+        padding-top: 20px;
+        padding-bottom: 20px;
+      }
 
-        .contact-circle {
-            width: min(650px, 75vw);
-            aspect-ratio: 1;
+      nav {
+        gap: 13px;
+        font-size: 10px;
+      }
 
-            border-radius: 50%;
+      .hero {
+        padding-top: 35px;
+        padding-bottom: 100px;
+      }
 
-            background: var(--light-green);
+      .hero-title {
+        font-size: clamp(56px, 17vw, 100px);
+      }
 
-            display: flex;
-            align-items: center;
-            justify-content: center;
+      .hero-intro {
+        font-size: 18px;
+        margin-top: 30px;
+      }
 
-            text-align: center;
-        }
+      .hero-right {
+        min-height: 390px;
+      }
 
-        .contact h2 {
-            font-size: clamp(70px, 12vw, 170px);
-            line-height: 0.8;
-            letter-spacing: -0.08em;
-        }
+      .circle {
+        width: 80vw;
+        max-width: 370px;
+        right: 2%;
+      }
 
-        .contact-email {
-            position: absolute;
+      .portrait {
+        width: 58vw;
+        max-width: 260px;
+        border-width: 8px;
+        box-shadow: 10px 12px 0 var(--brown);
+      }
 
-            bottom: 12%;
-            right: 8%;
+      .hero-label {
+        left: 2%;
+        bottom: 0;
+        font-size: 14px;
+      }
 
-            padding: 20px 28px;
+      .scroll-indicator {
+        bottom: 20px;
+      }
 
-            background: var(--cream);
+      .section-divider {
+        padding-top: 14px;
+        display: block;
+      }
 
-            border: 1px solid var(--green);
+      .section-divider h2 {
+        font-size: clamp(48px, 16vw, 80px);
+      }
 
-            font-size: 15px;
-        }
+      .section-divider p {
+        margin-top: 12px;
+      }
 
+      .work {
+        padding-top: 45px;
+      }
 
-        /* =========================
-           FOOTER
-        ========================= */
+      .projects {
+        margin-top: 35px;
+        gap: 25px;
+      }
 
-        footer {
-            padding: 25px 5vw;
+      .project {
+        min-height: 380px;
+        padding: 25px;
+      }
 
-            display: flex;
-            justify-content: space-between;
+      .project h3 {
+        font-size: 48px;
+      }
 
-            border-top: 1px solid var(--black);
+      .about {
+        margin-left: var(--page-padding);
+        margin-right: var(--page-padding);
 
-            font-size: 11px;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-        }
+        padding: 30px 25px 60px;
 
+        gap: 45px;
+      }
 
-        /* =========================
-           MOBILE
-        ========================= */
+      .about h2 {
+        font-size: 70px;
+      }
 
-        @media (max-width: 750px) {
+      .about-text {
+        font-size: 18px;
+      }
 
-            header {
-                padding: 20px;
-            }
+      .contact {
+        padding-bottom: 70px;
+      }
 
-            nav {
-                gap: 12px;
-                font-size: 10px;
-            }
+      .contact h2 {
+        font-size: 22vw;
+      }
 
-            .hero {
-                padding: 100px 20px 50px;
-            }
-
-            .hero-content {
-                min-height: 750px;
-            }
-
-            .hero-title {
-                top: 3%;
-            }
-
-            .hero-title h1 {
-                font-size: 68px;
-            }
-
-            .green-circle {
-                width: 380px;
-                max-width: 90vw;
-                right: -5%;
-                top: 23%;
-            }
-
-            .portrait {
-                width: 190px;
-                height: 240px;
-                right: 18%;
-                top: 33%;
-            }
-
-            .intro-box {
-                left: 0;
-                bottom: 5%;
-                width: 270px;
-            }
-
-            .background-word {
-                font-size: 110px;
-            }
-
-            .work {
-                padding: 100px 20px;
-            }
-
-            .work-heading {
-                margin-bottom: 80px;
-            }
-
-            .project {
-                min-height: 260px;
-            }
-
-            .project-card,
-            .project:nth-child(odd) .project-card,
-            .project:nth-child(even) .project-card {
-                width: 90%;
-                margin: 0 auto;
-                padding: 35px;
-            }
-
-            .project-detail {
-                width: 120px;
-                height: 120px;
-                right: 0;
-            }
-
-            .about {
-                padding: 100px 20px;
-            }
-
-            .about-small {
-                grid-template-columns: 1fr;
-            }
-
-            .contact {
-                padding: 100px 20px;
-            }
-
-            .contact-circle {
-                width: 90vw;
-            }
-
-            .contact-email {
-                right: 5%;
-                bottom: 8%;
-            }
-
-            footer {
-                padding: 20px;
-            }
-        }
-
-    </style>
+      footer {
+        font-size: 9px;
+      }
+    }
+  </style>
 </head>
 
 
 <body>
 
+  <!-- HEADER -->
 
-<header>
-
-    <div class="logo">
-        MALIN HALL
-    </div>
+  <header>
+    <a href="#" class="logo">MALIN HALL</a>
 
     <nav>
-        <a href="#work">Work</a>
-        <a href="#about">About</a>
-        <a href="#contact">Contact</a>
+      <a href="#work">Work</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
     </nav>
-
-</header>
-
+  </header>
 
 
-<main>
+  <!-- HERO -->
 
-
-    <!-- =========================
-         HERO
-    ========================= -->
+  <main>
 
     <section class="hero">
 
-        <div class="background-word">
-            DESIGN
+      <div class="hero-left">
+
+        <h1 class="hero-title">
+          <span>UX</span>
+          <span class="green">INTERACTION</span>
+          <span class="yellow">DESIGN</span>
+        </h1>
+
+        <p class="hero-intro">
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          I work across technology, people and creative production.
+        </p>
+
+      </div>
+
+
+      <div class="hero-right">
+
+        <div class="circle">
+          <div class="circle-inner"></div>
         </div>
 
-        <div class="floating-box box-one"></div>
-        <div class="floating-box box-two"></div>
-        <div class="floating-box box-three"></div>
+        <img
+          src="portrait_malin.png"
+          alt="Portrait of Malin Hall"
+          class="portrait"
+        >
 
-
-        <div class="hero-content">
-
-
-            <div class="hero-title">
-
-                <h1>
-                    <span>UX</span>
-                    <span>INTERACTION</span>
-                    <span>DESIGN</span>
-                </h1>
-
-            </div>
-
-
-            <div class="green-circle">
-
-                <div class="circle-text">
-                    MALIN · HALL · UX · HCI · IT ·
-                </div>
-
-                <div class="circle-inner">
-                    Lorem ipsum
-                </div>
-
-            </div>
-
-
-            <div class="portrait">
-
-                <img
-                    src="portrait_malin.png"
-                    alt="Portrait of Malin Hall"
-                >
-
-            </div>
-
-
-            <div class="intro-box">
-
-                <div class="label">
-                    Hello / 01
-                </div>
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Sed do eiusmod tempor incididunt ut labore et dolore magna
-                    aliqua. Ut enim ad minim veniam.
-                </p>
-
-            </div>
-
-
+        <div class="hero-label">
+          <span>MALIN</span>
+          <span>HC / IT</span>
         </div>
 
+      </div>
 
-        <div class="scroll">
-            ↓ Scroll to explore
-        </div>
+
+      <div class="scroll-indicator">
+        <span>Scroll to explore</span>
+        <span class="scroll-arrow">↓</span>
+      </div>
 
     </section>
 
 
+    <!-- WORK -->
 
-    <!-- =========================
-         WORK
-    ========================= -->
+    <section id="work">
 
-    <section class="work" id="work">
+      <div class="section-divider">
+        <h2>WORK</h2>
+        <p>Selected projects</p>
+      </div>
 
-        <div class="section-label">
-            Selected work / 02
-        </div>
+      <div class="work">
 
-        <h2 class="work-heading">
-            SELECTED<br>
-            WORK
-        </h2>
+        <div class="projects">
 
+          <article class="project">
 
-        <div class="project">
+            <div class="project-number">01</div>
 
-            <div class="project-card">
+            <h3>
+              Project<br>
+              One
+            </h3>
 
-                <div class="project-number">
-                    01 / 03
-                </div>
+            <p class="project-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+            </p>
 
-                <h3>
-                    Högskoleprovet
-                </h3>
+            <div class="project-arrow">↗</div>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Integer nec odio. Praesent libero. Sed cursus ante
-                    dapibus diam.
-                </p>
-
-            </div>
-
-            <div class="project-detail"></div>
-
-        </div>
+          </article>
 
 
+          <article class="project">
 
-        <div class="project">
+            <div class="project-number">02</div>
 
-            <div class="project-card">
+            <h3>
+              Project<br>
+              Two
+            </h3>
 
-                <div class="project-number">
-                    02 / 03
-                </div>
+            <p class="project-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+            </p>
 
-                <h3>
-                    Accessible Pharmacy
-                </h3>
+            <div class="project-arrow">↗</div>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Sed nisi. Nulla quis sem at nibh elementum imperdiet.
-                </p>
-
-            </div>
-
-            <div class="project-detail"></div>
-
-        </div>
+          </article>
 
 
+          <article class="project">
 
-        <div class="project">
+            <div class="project-number">03</div>
 
-            <div class="project-card">
+            <h3>
+              Project<br>
+              Three
+            </h3>
 
-                <div class="project-number">
-                    03 / 03
-                </div>
+            <p class="project-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Duis aute irure dolor in reprehenderit in voluptate velit.
+            </p>
 
-                <h3>
-                    Lorem Ipsum
-                </h3>
+            <div class="project-arrow">↗</div>
 
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    Mauris ipsum. Nulla metus metus, ullamcorper vel,
-                    tincidunt sed, euismod in, nibh.
-                </p>
+          </article>
 
-            </div>
 
-            <div class="project-detail"></div>
+          <article class="project">
+
+            <div class="project-number">04</div>
+
+            <h3>
+              Project<br>
+              Four
+            </h3>
+
+            <p class="project-description">
+              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+              Excepteur sint occaecat cupidatat non proident.
+            </p>
+
+            <div class="project-arrow">↗</div>
+
+          </article>
 
         </div>
+
+      </div>
 
     </section>
 
 
+    <!-- ABOUT -->
 
-    <!-- =========================
-         ABOUT
-    ========================= -->
+    <section id="about" class="about">
 
-    <section class="about" id="about">
+      <h2>
+        ABOUT<br>
+        ME
+      </h2>
 
-        <div class="about-background"></div>
+      <div class="about-text">
 
-        <div class="about-content">
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Integer posuere erat a ante.
+        </p>
 
-            <div class="section-label">
-                About / 03
-            </div>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+        </p>
 
-            <h2>
-                ABOUT<br>
-                ME
-            </h2>
+        <p>
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Cras mattis consectetur purus sit amet fermentum.
+        </p>
 
+      </div>
 
-            <div class="about-text">
-
-                <p>
-                    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-                    I am interested in how people interact with technology,
-                    how systems work in practice, and what happens between
-                    the two.
-                </p>
-
-            </div>
-
-
-            <div class="about-small">
-
-                <div class="about-box">
-
-                    <span>
-                        Background
-                    </span>
-
-                    UX / HCI<br>
-                    IT<br>
-                    Film & TV
-
-                </div>
-
-
-                <div class="about-box">
-
-                    <span>
-                        Interested in
-                    </span>
-
-                    Interaction<br>
-                    Digital products<br>
-                    Technology
-
-                </div>
-
-
-                <div class="about-box">
-
-                    <span>
-                        Currently
-                    </span>
-
-                    Lorem ipsum<br>
-                    Stockholm<br>
-                    Sweden
-
-                </div>
-
-            </div>
-
-        </div>
+      <div class="about-circle"></div>
 
     </section>
 
 
+    <!-- CONTACT -->
 
-    <!-- =========================
-         CONTACT
-    ========================= -->
+    <section id="contact" class="contact">
 
-    <section class="contact" id="contact">
+      <h2>LET'S<br>TALK</h2>
 
-        <div class="contact-circle">
-
-            <h2>
-                LET'S<br>
-                TALK.
-            </h2>
-
-        </div>
-
-
-        <div class="contact-email">
-
-            YOUR-EMAIL@example.com
-
-        </div>
+      <div>
+        <a href="mailto:YOUR-EMAIL@example.com" class="contact-link">
+          YOUR-EMAIL@example.com
+        </a>
+      </div>
 
     </section>
 
+  </main>
 
 
-    <footer>
+  <!-- FOOTER -->
 
-        <span>
-            MALIN HALL
-        </span>
-
-        <span>
-            UX / INTERACTION DESIGN
-        </span>
-
-        <span>
-            © 2026
-        </span>
-
-    </footer>
-
-
-</main>
-
+  <footer>
+    <span>Malin Hall</span>
+    <span>UX / Interaction Design</span>
+    <span>2026</span>
+  </footer>
 
 </body>
 </html>
