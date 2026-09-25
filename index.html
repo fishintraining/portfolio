@@ -4,20 +4,27 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-  <title>Malin Hall — UX / Interaction Design</title>
+  <title>Malin Hall — Digital Production · UX/HCI · Technical Systems</title>
 
   <style>
+
     :root {
-      --cream: #F3EBDD;
-      --moss: #59634A;
-      --mustard: #C8A32A;
-      --brown: #4A3025;
-      --dark: #211B17;
-      --light-moss: #D9DDCE;
+      --yellow: #f6b731;
+      --green: #3f5909;
+      --brown: #6b4937;
+
+      --cream: #f5efe3;
+      --dark: #241d18;
+      --light-green: #dfe4cf;
 
       --page-padding: clamp(20px, 5vw, 80px);
-      --section-gap: clamp(90px, 14vw, 200px);
+      --section-space: clamp(90px, 12vw, 170px);
     }
+
+
+    /* =========================
+       BASE
+    ========================= */
 
     * {
       box-sizing: border-box;
@@ -25,13 +32,16 @@
 
     html {
       scroll-behavior: smooth;
+      scroll-padding-top: 90px;
     }
 
     body {
       margin: 0;
       background: var(--cream);
       color: var(--dark);
+
       font-family: Arial, Helvetica, sans-serif;
+
       overflow-x: hidden;
     }
 
@@ -40,32 +50,46 @@
       text-decoration: none;
     }
 
-    /* --------------------
-       HEADER
-    -------------------- */
+
+    /* =========================
+       STICKY HEADER
+    ========================= */
 
     header {
-      width: 100%;
-      padding: 28px var(--page-padding);
+      position: sticky;
+      top: 0;
+      z-index: 100;
+
+      margin: 0;
+
+      padding: 16px var(--page-padding);
+
       display: flex;
-      justify-content: space-between;
       align-items: center;
-      position: relative;
-      z-index: 20;
+      justify-content: space-between;
+
+      background: rgba(245, 239, 227, 0.94);
+
+      border-bottom: 1px solid var(--dark);
+
+      backdrop-filter: blur(8px);
     }
 
     .logo {
-      font-size: clamp(18px, 2vw, 25px);
+      font-size: clamp(17px, 2vw, 23px);
       font-weight: 700;
       letter-spacing: -0.04em;
     }
 
     nav {
       display: flex;
-      gap: clamp(18px, 3vw, 45px);
-      font-size: 14px;
+      align-items: center;
+
+      gap: clamp(18px, 3vw, 42px);
+
+      font-size: 12px;
       text-transform: uppercase;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.1em;
     }
 
     nav a {
@@ -73,206 +97,251 @@
     }
 
     nav a:hover {
-      opacity: 0.5;
+      opacity: 0.45;
     }
 
 
-    /* --------------------
+    /* =========================
        HERO
-    -------------------- */
+    ========================= */
 
     .hero {
-      min-height: min(850px, 88vh);
-      padding: clamp(40px, 6vw, 90px) var(--page-padding) 80px;
+      min-height: calc(100vh - 65px);
+
+      padding:
+        clamp(60px, 9vw, 130px)
+        var(--page-padding)
+        clamp(70px, 9vw, 120px);
 
       display: grid;
-      grid-template-columns: minmax(0, 1.15fr) minmax(300px, 0.85fr);
-      gap: clamp(30px, 6vw, 100px);
 
-      position: relative;
+      grid-template-columns:
+        minmax(0, 1.1fr)
+        minmax(300px, 0.9fr);
+
+      gap: clamp(40px, 7vw, 100px);
+
       align-items: center;
     }
 
-    .hero-left {
-      position: relative;
-      z-index: 3;
+
+    /* HERO TEXT */
+
+    .hero-text {
+      max-width: 900px;
     }
 
     .hero-title {
       margin: 0;
-      font-size: clamp(62px, 10vw, 155px);
-      line-height: 0.82;
-      letter-spacing: -0.075em;
-      font-weight: 800;
-    }
 
-    .hero-title span {
-      display: block;
+      font-size: clamp(40px, 5.8vw, 88px);
+
+      line-height: 0.94;
+
+      letter-spacing: -0.065em;
+
+      font-weight: 700;
     }
 
     .hero-title .green {
-      color: var(--moss);
+      color: var(--green);
     }
 
     .hero-title .yellow {
-      color: var(--mustard);
+      color: var(--yellow);
     }
 
     .hero-intro {
-      max-width: 520px;
-      margin-top: clamp(35px, 5vw, 65px);
-      font-size: clamp(18px, 2vw, 25px);
-      line-height: 1.35;
+      max-width: 620px;
+
+      margin-top: clamp(35px, 5vw, 60px);
+
+      font-size: clamp(17px, 1.7vw, 23px);
+
+      line-height: 1.4;
     }
 
 
-    /* --------------------
-       HERO IMAGE AREA
-    -------------------- */
+    /* =========================
+       PORTRAIT / CIRCLES
+    ========================= */
 
-    .hero-right {
-      min-height: 520px;
+    .portrait-area {
+      min-height: min(600px, 55vw);
+
       position: relative;
 
       display: flex;
+
       justify-content: center;
       align-items: center;
     }
 
-    .circle {
-      width: min(36vw, 480px);
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--moss);
+    /*
+      Main green shape
+    */
+
+    .portrait-shape {
       position: absolute;
-      top: 4%;
-      right: 3%;
+
+      width: min(31vw, 430px);
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      background: var(--green);
+
+      transform: rotate(-8deg);
     }
 
-    .circle-inner {
-      width: 68%;
-      aspect-ratio: 1;
-      border-radius: 50%;
-      background: var(--mustard);
+    /*
+      Yellow offset shape
+    */
+
+    .portrait-shape::before {
+      content: "";
 
       position: absolute;
-      top: 16%;
-      left: 16%;
+
+      width: 72%;
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      background: var(--yellow);
+
+      top: -8%;
+      left: 15%;
     }
+
+    /*
+      Brown ring
+    */
+
+    .portrait-ring {
+      position: absolute;
+
+      width: min(37vw, 510px);
+      aspect-ratio: 1;
+
+      border-radius: 50%;
+
+      border: clamp(9px, 1.2vw, 17px) solid var(--brown);
+
+      transform: rotate(14deg);
+    }
+
+    /*
+      Portrait
+    */
 
     .portrait {
-      width: clamp(190px, 24vw, 315px);
+      position: relative;
+      z-index: 5;
+
+      width: clamp(190px, 24vw, 320px);
       aspect-ratio: 1;
+
       object-fit: cover;
 
       border-radius: 50%;
 
-      position: relative;
-      z-index: 4;
+      border: clamp(7px, 0.9vw, 12px) solid var(--cream);
 
-      border: clamp(8px, 1vw, 14px) solid var(--cream);
-
-      box-shadow: 15px 18px 0 var(--brown);
-    }
-
-    .hero-label {
-      position: absolute;
-      z-index: 6;
-
-      bottom: 8%;
-      left: 0;
-
-      background: var(--brown);
-      color: var(--cream);
-
-      padding: 14px 18px;
-
-      font-size: clamp(15px, 1.5vw, 20px);
-      line-height: 1.05;
-      font-weight: 700;
-      letter-spacing: -0.03em;
-    }
-
-    .hero-label span {
-      display: block;
+      box-shadow:
+        12px 15px 0 var(--brown);
     }
 
 
-    /* --------------------
-       SCROLL INDICATOR
-    -------------------- */
+    /* =========================
+       SCROLL
+    ========================= */
 
     .scroll-indicator {
       position: absolute;
-      bottom: 25px;
+
       left: var(--page-padding);
+      bottom: 25px;
 
       display: flex;
       flex-direction: column;
-      align-items: flex-start;
-      gap: 8px;
 
-      font-size: 11px;
+      gap: 7px;
+
+      font-size: 10px;
+
       text-transform: uppercase;
       letter-spacing: 0.12em;
     }
 
     .scroll-arrow {
-      font-size: 28px;
+      font-size: 25px;
       line-height: 1;
     }
 
 
-    /* --------------------
-       SECTION DIVIDER
-    -------------------- */
+    /* =========================
+       GENERAL SECTION HEADER
+    ========================= */
 
-    .section-divider {
+    .section-heading {
       margin: 0 var(--page-padding);
-
-      border-top: 1px solid var(--dark);
 
       padding-top: 20px;
 
+      border-top: 1px solid var(--dark);
+
       display: flex;
-      justify-content: space-between;
+
       align-items: baseline;
+      justify-content: space-between;
+
+      gap: 20px;
     }
 
-    .section-divider h2 {
+    .section-heading h2 {
       margin: 0;
 
-      font-size: clamp(42px, 7vw, 100px);
+      font-size: clamp(45px, 7vw, 100px);
+
       line-height: 0.9;
-      letter-spacing: -0.065em;
+
+      letter-spacing: -0.07em;
     }
 
-    .section-divider p {
-      margin: 0;
+    .section-heading span {
+      font-size: 11px;
 
-      font-size: 13px;
       text-transform: uppercase;
+
       letter-spacing: 0.1em;
+
+      white-space: nowrap;
     }
 
 
-    /* --------------------
+    /* =========================
        WORK
-    -------------------- */
+    ========================= */
 
     .work {
-      padding: 70px var(--page-padding) var(--section-gap);
+      padding:
+        55px
+        var(--page-padding)
+        var(--section-space);
     }
 
     .projects {
       display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
+
+      grid-template-columns:
+        repeat(2, minmax(0, 1fr));
+
       gap: clamp(25px, 4vw, 65px);
-      margin-top: 50px;
     }
 
     .project {
-      min-height: clamp(380px, 45vw, 600px);
+      min-height: clamp(390px, 42vw, 580px);
 
       padding: clamp(25px, 4vw, 55px);
 
@@ -285,76 +354,158 @@
       overflow: hidden;
     }
 
+
+    /* Project colours */
+
     .project:nth-child(1) {
-      background: var(--moss);
+      background: var(--green);
       color: var(--cream);
     }
 
     .project:nth-child(2) {
-      background: var(--mustard);
+      background: var(--yellow);
       color: var(--brown);
-      margin-top: clamp(40px, 8vw, 120px);
+
+      margin-top: clamp(35px, 6vw, 100px);
     }
 
     .project:nth-child(3) {
       background: var(--brown);
       color: var(--cream);
-      margin-top: clamp(-50px, -4vw, -20px);
+
+      margin-top: clamp(-60px, -4vw, -25px);
     }
 
-    .project:nth-child(4) {
-      background: var(--light-moss);
-      color: var(--dark);
-    }
 
     .project-number {
-      font-size: 13px;
-      letter-spacing: 0.1em;
+      font-size: 11px;
+
       text-transform: uppercase;
+
+      letter-spacing: 0.12em;
     }
 
     .project h3 {
       margin: 0;
 
-      font-size: clamp(38px, 5vw, 75px);
-      line-height: 0.9;
-      letter-spacing: -0.06em;
+      font-size: clamp(40px, 5vw, 72px);
+
+      line-height: 0.88;
+
+      letter-spacing: -0.065em;
     }
 
     .project-description {
       max-width: 430px;
 
-      font-size: clamp(15px, 1.4vw, 19px);
+      margin-bottom: 0;
+
+      font-size: clamp(15px, 1.4vw, 18px);
+
       line-height: 1.4;
     }
 
     .project-arrow {
       position: absolute;
-      right: clamp(20px, 3vw, 40px);
-      bottom: clamp(15px, 3vw, 35px);
 
-      font-size: clamp(35px, 5vw, 65px);
-      line-height: 1;
+      right: clamp(20px, 3vw, 40px);
+      bottom: clamp(15px, 3vw, 30px);
+
+      font-size: clamp(32px, 4vw, 55px);
     }
 
 
-    /* --------------------
-       ABOUT
-    -------------------- */
+    /* =========================
+       MASTER'S THESIS
+    ========================= */
 
-    .about {
-      margin: 0 var(--page-padding) var(--section-gap);
+    .thesis {
+      margin:
+        0
+        var(--page-padding)
+        var(--section-space);
 
-      background: var(--brown);
-      color: var(--cream);
+      padding:
+        clamp(25px, 4vw, 55px);
 
-      padding: clamp(30px, 6vw, 90px);
+      background: var(--light-green);
+
+      border: 1px solid var(--dark);
 
       display: grid;
+
+      grid-template-columns: 0.7fr 1.3fr;
+
+      gap: clamp(35px, 7vw, 100px);
+
+      align-items: end;
+    }
+
+    .thesis-label {
+      font-size: 11px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.1em;
+    }
+
+    .thesis h3 {
+      margin: 20px 0 0;
+
+      font-size: clamp(40px, 6vw, 85px);
+
+      line-height: 0.88;
+
+      letter-spacing: -0.065em;
+    }
+
+    .thesis-text {
+      font-size: clamp(17px, 1.7vw, 22px);
+
+      line-height: 1.4;
+    }
+
+    .thesis-link {
+      display: inline-block;
+
+      margin-top: 20px;
+
+      padding-bottom: 5px;
+
+      border-bottom: 1px solid var(--dark);
+
+      font-size: 13px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+    }
+
+
+    /* =========================
+       ABOUT
+    ========================= */
+
+    .about {
+      margin:
+        0
+        var(--page-padding)
+        var(--section-space);
+
+      padding: clamp(30px, 6vw, 80px);
+
+      background: var(--brown);
+
+      color: var(--cream);
+
+      display: grid;
+
       grid-template-columns: 0.8fr 1.2fr;
+
       gap: clamp(40px, 8vw, 120px);
 
       position: relative;
+
       overflow: hidden;
     }
 
@@ -362,7 +513,9 @@
       margin: 0;
 
       font-size: clamp(55px, 9vw, 125px);
+
       line-height: 0.82;
+
       letter-spacing: -0.075em;
 
       position: relative;
@@ -373,110 +526,266 @@
       position: relative;
       z-index: 2;
 
-      font-size: clamp(18px, 2vw, 25px);
-      line-height: 1.4;
       max-width: 650px;
+
+      font-size: clamp(17px, 1.8vw, 23px);
+
+      line-height: 1.4;
     }
 
     .about-text p {
       margin-top: 0;
-      margin-bottom: 30px;
+      margin-bottom: 28px;
+    }
+
+    .about-actions {
+      margin-top: 35px;
+
+      display: flex;
+
+      flex-wrap: wrap;
+
+      gap: 12px;
+    }
+
+    .cv-button {
+      display: inline-block;
+
+      padding: 13px 18px;
+
+      background: var(--yellow);
+
+      color: var(--brown);
+
+      font-size: 12px;
+
+      text-transform: uppercase;
+
+      letter-spacing: 0.08em;
+
+      font-weight: 700;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease;
+    }
+
+    .cv-button:hover {
+      transform: translateY(-3px);
+    }
+
+    .references {
+      font-size: 12px;
+
+      opacity: 0.8;
+
+      padding: 13px 0;
     }
 
     .about-circle {
-      width: clamp(180px, 25vw, 400px);
+      position: absolute;
+
+      width: clamp(180px, 27vw, 400px);
+
       aspect-ratio: 1;
 
       border-radius: 50%;
 
-      background: var(--moss);
+      background: var(--green);
 
-      position: absolute;
       right: -8%;
       bottom: -35%;
     }
 
 
-    /* --------------------
-       CONTACT
-    -------------------- */
+    /* =========================
+       FILM / PRODUCTION
+    ========================= */
 
-    .contact {
-      padding: 0 var(--page-padding) 100px;
+    .film {
+      margin:
+        0
+        var(--page-padding)
+        var(--section-space);
+
+      padding-bottom: 0;
 
       display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 40px;
 
-      align-items: end;
+      grid-template-columns: 0.8fr 1.2fr;
+
+      gap: clamp(40px, 8vw, 120px);
+
+      align-items: start;
+    }
+
+    .film h2 {
+      margin: 0;
+
+      font-size: clamp(45px, 7vw, 95px);
+
+      line-height: 0.88;
+
+      letter-spacing: -0.07em;
+    }
+
+    .film-text {
+      font-size: clamp(17px, 1.7vw, 22px);
+
+      line-height: 1.45;
+    }
+
+    .film-highlight {
+      margin-top: 35px;
+
+      padding-top: 18px;
+
+      border-top: 1px solid var(--dark);
+
+      font-size: clamp(22px, 3vw, 38px);
+
+      line-height: 1;
+
+      letter-spacing: -0.04em;
+
+      color: var(--green);
+    }
+
+
+    /* =========================
+       PRODUCT / TECHNICAL
+    ========================= */
+
+    .product {
+      margin:
+        0
+        var(--page-padding)
+        var(--section-space);
+
+      padding:
+        clamp(30px, 5vw, 65px);
+
+      background: var(--yellow);
+
+      display: grid;
+
+      grid-template-columns: 1fr 1fr;
+
+      gap: clamp(40px, 7vw, 100px);
+    }
+
+    .product h2 {
+      margin: 0;
+
+      font-size: clamp(45px, 7vw, 95px);
+
+      line-height: 0.86;
+
+      letter-spacing: -0.07em;
+    }
+
+    .product-text {
+      font-size: clamp(17px, 1.7vw, 22px);
+
+      line-height: 1.45;
+    }
+
+
+    /* =========================
+       CONTACT
+    ========================= */
+
+    .contact {
+      margin:
+        0
+        var(--page-padding)
+        60px;
+
+      padding-top: 20px;
+
+      border-top: 1px solid var(--dark);
+
+      display: flex;
+
+      align-items: baseline;
+
+      justify-content: space-between;
+
+      gap: 30px;
     }
 
     .contact h2 {
       margin: 0;
 
-      font-size: clamp(60px, 11vw, 160px);
-      line-height: 0.8;
-      letter-spacing: -0.08em;
+      font-size: clamp(35px, 5vw, 65px);
+
+      line-height: 0.9;
+
+      letter-spacing: -0.065em;
     }
 
-    .contact-link {
-      font-size: clamp(22px, 3vw, 40px);
-      border-bottom: 2px solid var(--dark);
-      display: inline-block;
-      padding-bottom: 6px;
+    .contact-details {
+      text-align: right;
+
+      font-size: clamp(15px, 1.5vw, 19px);
+
+      line-height: 1.5;
+    }
+
+    .contact-details a {
+      border-bottom: 1px solid var(--dark);
     }
 
 
-    /* --------------------
+    /* =========================
        FOOTER
-    -------------------- */
+    ========================= */
 
     footer {
+      margin: 0 var(--page-padding);
+
+      padding:
+        18px 0
+        25px;
+
       border-top: 1px solid var(--dark);
 
-      margin: 0 var(--page-padding);
-      padding: 20px 0 30px;
-
       display: flex;
+
       justify-content: space-between;
 
-      font-size: 12px;
+      gap: 20px;
+
+      font-size: 10px;
+
       text-transform: uppercase;
+
       letter-spacing: 0.08em;
     }
 
 
-    /* --------------------
+    /* =========================
        TABLET
-    -------------------- */
+    ========================= */
 
     @media (max-width: 900px) {
 
       .hero {
         grid-template-columns: 1fr;
+
         min-height: auto;
-        padding-top: 50px;
       }
 
-      .hero-right {
-        min-height: 500px;
+      .portrait-area {
+        min-height: 480px;
       }
 
-      .circle {
-        width: min(65vw, 450px);
-        right: 10%;
+      .portrait-shape {
+        width: min(55vw, 430px);
       }
 
-      .portrait {
-        width: clamp(210px, 38vw, 300px);
-      }
-
-      .hero-label {
-        left: 8%;
-      }
-
-      .about {
-        grid-template-columns: 1fr;
+      .portrait-ring {
+        width: min(65vw, 510px);
       }
 
       .projects {
@@ -488,107 +797,119 @@
         margin-top: 0;
       }
 
-      .contact {
+      .thesis {
+        grid-template-columns: 1fr;
+      }
+
+      .about {
+        grid-template-columns: 1fr;
+      }
+
+      .film {
+        grid-template-columns: 1fr;
+      }
+
+      .product {
         grid-template-columns: 1fr;
       }
     }
 
 
-    /* --------------------
+    /* =========================
        MOBILE
-    -------------------- */
+    ========================= */
 
     @media (max-width: 600px) {
 
       header {
-        padding-top: 20px;
-        padding-bottom: 20px;
+        padding-top: 13px;
+        padding-bottom: 13px;
       }
 
       nav {
-        gap: 13px;
-        font-size: 10px;
+        gap: 12px;
+
+        font-size: 9px;
       }
 
       .hero {
-        padding-top: 35px;
+        padding-top: 50px;
         padding-bottom: 100px;
       }
 
       .hero-title {
-        font-size: clamp(56px, 17vw, 100px);
+        font-size: clamp(38px, 10.5vw, 65px);
       }
 
       .hero-intro {
-        font-size: 18px;
         margin-top: 30px;
+
+        font-size: 17px;
       }
 
-      .hero-right {
-        min-height: 390px;
+      .portrait-area {
+        min-height: 360px;
       }
 
-      .circle {
-        width: 80vw;
-        max-width: 370px;
-        right: 2%;
+      .portrait-shape {
+        width: 75vw;
+        max-width: 350px;
+      }
+
+      .portrait-ring {
+        width: 84vw;
+        max-width: 400px;
+
+        border-width: 10px;
       }
 
       .portrait {
-        width: 58vw;
-        max-width: 260px;
-        border-width: 8px;
-        box-shadow: 10px 12px 0 var(--brown);
+        width: 57vw;
+        max-width: 250px;
+
+        box-shadow:
+          9px 11px 0 var(--brown);
       }
 
-      .hero-label {
-        left: 2%;
-        bottom: 0;
-        font-size: 14px;
-      }
-
-      .scroll-indicator {
-        bottom: 20px;
-      }
-
-      .section-divider {
-        padding-top: 14px;
+      .section-heading {
         display: block;
+
+        padding-top: 14px;
       }
 
-      .section-divider h2 {
-        font-size: clamp(48px, 16vw, 80px);
+      .section-heading h2 {
+        font-size: clamp(50px, 16vw, 80px);
       }
 
-      .section-divider p {
-        margin-top: 12px;
+      .section-heading span {
+        display: block;
+
+        margin-top: 10px;
       }
 
       .work {
-        padding-top: 45px;
-      }
-
-      .projects {
-        margin-top: 35px;
-        gap: 25px;
+        padding-top: 40px;
       }
 
       .project {
-        min-height: 380px;
+        min-height: 390px;
+
         padding: 25px;
       }
 
       .project h3 {
-        font-size: 48px;
+        font-size: 50px;
       }
 
-      .about {
+      .thesis {
         margin-left: var(--page-padding);
         margin-right: var(--page-padding);
 
-        padding: 30px 25px 60px;
+        padding: 28px 24px;
+      }
 
-        gap: 45px;
+      .about {
+        padding: 30px 25px 55px;
       }
 
       .about h2 {
@@ -599,64 +920,111 @@
         font-size: 18px;
       }
 
-      .contact {
-        padding-bottom: 70px;
+      .about-actions {
+        align-items: flex-start;
+
+        flex-direction: column;
       }
 
-      .contact h2 {
-        font-size: 22vw;
+      .film {
+        gap: 35px;
+      }
+
+      .film h2 {
+        font-size: 65px;
+      }
+
+      .product {
+        padding: 30px 25px;
+      }
+
+      .contact {
+        flex-direction: column;
+
+        align-items: flex-start;
+
+        margin-bottom: 45px;
+      }
+
+      .contact-details {
+        text-align: left;
       }
 
       footer {
-        font-size: 9px;
+        font-size: 8px;
       }
     }
+
   </style>
 </head>
 
 
 <body>
 
-  <!-- HEADER -->
+
+  <!-- =========================
+       STICKY HEADER
+  ========================== -->
 
   <header>
-    <a href="#" class="logo">MALIN HALL</a>
+
+    <a href="#" class="logo">
+      MALIN HALL
+    </a>
 
     <nav>
       <a href="#work">Work</a>
-      <a href="#about">About</a>
+      <a href="#about">About me</a>
       <a href="#contact">Contact</a>
     </nav>
+
   </header>
 
 
-  <!-- HERO -->
+
+  <!-- =========================
+       HERO
+  ========================== -->
 
   <main>
 
     <section class="hero">
 
-      <div class="hero-left">
+      <div class="hero-text">
 
         <h1 class="hero-title">
-          <span>UX</span>
-          <span class="green">INTERACTION</span>
-          <span class="yellow">DESIGN</span>
+
+          <span>
+            Digital Production
+          </span>
+
+          <span class="green">
+            · UX/HCI
+          </span>
+
+          <span class="yellow">
+            · Technical Systems
+          </span>
+
         </h1>
 
+
         <p class="hero-intro">
+
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-          I work across technology, people and creative production.
+          A background in engineering, HCI and more than ten years
+          of hands-on work in film and digital production.
+
         </p>
 
       </div>
 
 
-      <div class="hero-right">
+      <div class="portrait-area">
 
-        <div class="circle">
-          <div class="circle-inner"></div>
-        </div>
+        <div class="portrait-shape"></div>
+
+        <div class="portrait-ring"></div>
 
         <img
           src="portrait_malin.png"
@@ -664,38 +1032,52 @@
           class="portrait"
         >
 
-        <div class="hero-label">
-          <span>MALIN</span>
-          <span>HC / IT</span>
-        </div>
-
       </div>
 
 
       <div class="scroll-indicator">
+
         <span>Scroll to explore</span>
-        <span class="scroll-arrow">↓</span>
+
+        <span class="scroll-arrow">
+          ↓
+        </span>
+
       </div>
 
     </section>
 
 
-    <!-- WORK -->
+
+    <!-- =========================
+         WORK
+    ========================== -->
 
     <section id="work">
 
-      <div class="section-divider">
+      <div class="section-heading">
+
         <h2>WORK</h2>
-        <p>Selected projects</p>
+
+        <span>
+          Selected projects
+        </span>
+
       </div>
+
 
       <div class="work">
 
         <div class="projects">
 
+
+          <!-- PROJECT 1 -->
+
           <article class="project">
 
-            <div class="project-number">01</div>
+            <div class="project-number">
+              01
+            </div>
 
             <h3>
               Project<br>
@@ -703,18 +1085,27 @@
             </h3>
 
             <p class="project-description">
+
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+
             </p>
 
-            <div class="project-arrow">↗</div>
+            <div class="project-arrow">
+              ↗
+            </div>
 
           </article>
 
 
+
+          <!-- PROJECT 2 -->
+
           <article class="project">
 
-            <div class="project-number">02</div>
+            <div class="project-number">
+              02
+            </div>
 
             <h3>
               Project<br>
@@ -722,18 +1113,27 @@
             </h3>
 
             <p class="project-description">
+
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Ut enim ad minim veniam, quis nostrud exercitation ullamco.
+
             </p>
 
-            <div class="project-arrow">↗</div>
+            <div class="project-arrow">
+              ↗
+            </div>
 
           </article>
 
 
+
+          <!-- PROJECT 3 -->
+
           <article class="project">
 
-            <div class="project-number">03</div>
+            <div class="project-number">
+              03
+            </div>
 
             <h3>
               Project<br>
@@ -741,32 +1141,18 @@
             </h3>
 
             <p class="project-description">
+
               Lorem ipsum dolor sit amet, consectetur adipiscing elit.
               Duis aute irure dolor in reprehenderit in voluptate velit.
+
             </p>
 
-            <div class="project-arrow">↗</div>
+            <div class="project-arrow">
+              ↗
+            </div>
 
           </article>
 
-
-          <article class="project">
-
-            <div class="project-number">04</div>
-
-            <h3>
-              Project<br>
-              Four
-            </h3>
-
-            <p class="project-description">
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Excepteur sint occaecat cupidatat non proident.
-            </p>
-
-            <div class="project-arrow">↗</div>
-
-          </article>
 
         </div>
 
@@ -775,7 +1161,54 @@
     </section>
 
 
-    <!-- ABOUT -->
+
+    <!-- =========================
+         MASTER'S THESIS
+    ========================== -->
+
+    <section class="thesis">
+
+      <div>
+
+        <div class="thesis-label">
+          Master's Thesis
+        </div>
+
+        <h3>
+          Research<br>
+          & Design
+        </h3>
+
+      </div>
+
+
+      <div class="thesis-text">
+
+        <p>
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Integer posuere erat a ante. Praesent commodo cursus magna,
+          vel scelerisque nisl consectetur et.
+
+        </p>
+
+
+        <a
+          href="#"
+          class="thesis-link"
+        >
+          View thesis ↗
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         ABOUT
+    ========================== -->
 
     <section id="about" class="about">
 
@@ -784,54 +1217,207 @@
         ME
       </h2>
 
+
       <div class="about-text">
 
         <p>
+
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Integer posuere erat a ante.
+
         </p>
 
+
         <p>
+
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Praesent commodo cursus magna, vel scelerisque nisl consectetur.
+
         </p>
+
 
         <p>
+
           Lorem ipsum dolor sit amet, consectetur adipiscing elit.
           Cras mattis consectetur purus sit amet fermentum.
+
         </p>
 
+
+        <div class="about-actions">
+
+          <a
+            href="MHall.CV.Eng.pdf"
+            download
+            class="cv-button"
+          >
+            Download CV ↓
+          </a>
+
+
+          <span class="references">
+            References available on request
+          </span>
+
+        </div>
+
       </div>
+
 
       <div class="about-circle"></div>
 
     </section>
 
 
-    <!-- CONTACT -->
 
-    <section id="contact" class="contact">
+    <!-- =========================
+         FILM / PRODUCTION
+    ========================== -->
 
-      <h2>LET'S<br>TALK</h2>
+    <section class="film">
 
       <div>
-        <a href="mailto:YOUR-EMAIL@example.com" class="contact-link">
-          YOUR-EMAIL@example.com
-        </a>
+
+        <h2>
+          FILM &<br>
+          PRODUCTION
+        </h2>
+
+      </div>
+
+
+      <div class="film-text">
+
+        <p>
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          For more than ten years I have worked across film and
+          television production, from post-production to technical
+          work on set.
+
+        </p>
+
+
+        <p>
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          Working across hundreds of productions has meant constantly
+          dealing with people, technology, changing requirements,
+          deadlines and things that simply have to work.
+
+        </p>
+
+
+        <div class="film-highlight">
+
+          Hundreds of productions.<br>
+          A lot of moving parts.
+
+        </div>
+
       </div>
 
     </section>
 
+
+
+    <!-- =========================
+         PRODUCT / TECHNICAL
+    ========================== -->
+
+    <section class="product">
+
+      <div>
+
+        <h2>
+          PRODUCT<br>
+          & TECHNICAL<br>
+          COORDINATION
+        </h2>
+
+      </div>
+
+
+      <div class="product-text">
+
+        <p>
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          In practice, much of my work has involved figuring out
+          what needs to happen, understanding technical constraints,
+          talking to the people who know the systems and making sure
+          the solution actually works in the real environment.
+
+        </p>
+
+
+        <p>
+
+          Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+          This has often meant translating between technical and
+          non-technical people, investigating unclear problems,
+          prioritising under time pressure and keeping several
+          moving parts aligned.
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         CONTACT
+    ========================== -->
+
+    <section id="contact" class="contact">
+
+      <h2>
+        CONTACT
+      </h2>
+
+
+      <div class="contact-details">
+
+        <a href="mailto:malin.hall.eliasson@gmail.com">
+          malin.hall.eliasson@gmail.com
+        </a>
+
+        <br>
+
+        <a href="tel:+46709425612">
+          +46 70 942 56 12
+        </a>
+
+      </div>
+
+    </section>
+
+
+
+    <!-- =========================
+         FOOTER
+    ========================== -->
+
+    <footer>
+
+      <span>
+        Malin Hall
+      </span>
+
+      <span>
+        Digital Production · UX/HCI · Technical Systems
+      </span>
+
+      <span>
+        2026
+      </span>
+
+    </footer>
+
+
   </main>
-
-
-  <!-- FOOTER -->
-
-  <footer>
-    <span>Malin Hall</span>
-    <span>UX / Interaction Design</span>
-    <span>2026</span>
-  </footer>
 
 </body>
 </html>
