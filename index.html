@@ -449,8 +449,8 @@
             right: -12vw;
             top: 15vh;
 
-            background: rgba(19, 70, 35, 0.18);
-            border-radius: 50%;
+            background: var(--green);
+            border-radius: 0;
         }
 
         .contact::after {
@@ -464,12 +464,42 @@
             right: 12vw;
             bottom: 15%;
 
-            background: var(--yellow);
+            background: transparent;
+            border: 10px solid var(--yellow);
+            border-radius: 50%;
         }
 
         .contact-inner {
             position: relative;
             z-index: 2;
+        }
+
+        .contact-inner::before {
+            content: "";
+
+            position: absolute;
+
+            width: 42px;
+            height: 42px;
+
+            right: 32vw;
+            bottom: -10px;
+
+            background: var(--yellow);
+        }
+
+        .contact-inner::after {
+            content: "";
+
+            position: absolute;
+
+            width: 32px;
+            height: 32px;
+
+            right: 22vw;
+            top: 30px;
+
+            background: var(--dark);
         }
 
         .contact h2 {
