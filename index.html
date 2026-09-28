@@ -6,34 +6,23 @@
 
   <title>Malin Hall — Portfolio</title>
 
-  <!-- Manrope -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
-
-    /* =========================================================
-       RESET / VARIABLES
-    ========================================================= */
-
     :root {
       --dark: #292b28;
-      --dark-soft: #3a3c39;
       --blue: #436085;
       --yellow: #f4af21;
       --light: #e1e1e1;
-      --white: #ffffff;
-      --grey-circle: #c4c5cd;
-
-      --page-width: 1600px;
-      --side: clamp(28px, 8.3vw, 160px);
+      --grey: #c4c5cd;
     }
 
     * {
+      box-sizing: border-box;
       margin: 0;
       padding: 0;
-      box-sizing: border-box;
     }
 
     html {
@@ -42,9 +31,9 @@
 
     body {
       margin: 0;
-      font-family: "Manrope", sans-serif;
       background: var(--dark);
       color: white;
+      font-family: "Manrope", sans-serif;
       overflow-x: hidden;
     }
 
@@ -53,45 +42,48 @@
       text-decoration: none;
     }
 
-    button,
-    a {
-      font-family: inherit;
-    }
 
-    .site {
-      position: relative;
+    /* ==========================================================
+       PAGE
+    ========================================================== */
+
+    .page {
+      width: 100%;
       overflow: hidden;
-      min-height: 100vh;
+      background: var(--dark);
     }
 
 
-    /* =========================================================
+    /* ==========================================================
        HEADER
-    ========================================================= */
+    ========================================================== */
 
     header {
       position: absolute;
       z-index: 100;
       top: 0;
-      left: 0;
-      width: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+
+      width: min(100%, 1920px);
       height: 110px;
 
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      padding: 0 6vw;
+      padding: 0 100px;
     }
 
     .logo {
-      font-size: 12px;
+      color: #3a3c39;
+      font-size: 16px;
       font-weight: 300;
-      letter-spacing: 0.12em;
       text-transform: uppercase;
-      color: rgba(255,255,255,0.8);
-      padding-bottom: 8px;
-      border-bottom: 1px solid rgba(255,255,255,0.35);
+      letter-spacing: 1.54px;
+
+      padding-bottom: 7px;
+      border-bottom: 1px solid var(--light);
     }
 
     nav {
@@ -100,682 +92,790 @@
     }
 
     nav a {
-      font-size: 10px;
+      color: #3a3c39;
+      font-size: 11px;
       font-weight: 300;
       text-transform: uppercase;
-      letter-spacing: 0.14em;
-      color: rgba(255,255,255,0.72);
-      transition: color 0.2s ease;
-    }
-
-    nav a:hover {
-      color: var(--yellow);
+      letter-spacing: 1.54px;
+      text-decoration: underline;
     }
 
 
-    /* =========================================================
-       HERO
-    ========================================================= */
+    /* ==========================================================
+       COMMON FRAME
+    ========================================================== */
 
-    .hero {
-      min-height: 1080px;
-      height: 100vh;
+    .frame {
       position: relative;
-      z-index: 0;
-
-      display: flex;
-      align-items: center;
-
-      padding: 80px var(--side) 0;
+      width: 100%;
     }
 
-    /*
-       First appearance of background.png.
+    .frame-inner {
+      position: relative;
+      width: min(100%, 1920px);
+      height: 100%;
+      margin: 0 auto;
+    }
 
-       Hero shows the upper part of the image.
-    */
-
-    .hero::before {
-      content: "";
+    .section-number {
       position: absolute;
-      inset: 0;
-      z-index: -2;
+      z-index: 20;
+
+      left: 105px;
+
+      transform: rotate(-90deg);
+      transform-origin: top left;
+
+      color: var(--light);
+
+      font-size: 10px;
+      font-weight: 300;
+      line-height: 15px;
+      letter-spacing: 1.5px;
+
+      white-space: nowrap;
+    }
+
+    .section-line {
+      position: absolute;
+      z-index: 10;
+
+      left: 150px;
+      width: calc(100% - 322px);
+      height: 1px;
+
+      background: var(--light);
+    }
+
+    .section-label {
+      position: absolute;
+      z-index: 20;
+
+      left: 160px;
+
+      color: var(--light);
+
+      font-size: 11px;
+      font-weight: 300;
+      text-transform: uppercase;
+      line-height: 16.5px;
+      letter-spacing: 1.54px;
+    }
+
+    .section-text {
+      position: absolute;
+      z-index: 20;
+
+      left: 652px;
+      width: 858px;
+
+      color: var(--light);
+
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 24px;
+    }
+
+
+    /* ==========================================================
+       HERO
+       
+       Figma:
+       1920 × 1526 background frame
+    ========================================================== */
+
+    .hero-frame {
+      height: 1080px;
 
       background-image: url("background.png");
       background-repeat: no-repeat;
-      background-size: 100vw auto;
       background-position: center top;
+      background-size: cover;
+
+      overflow: visible;
     }
 
-    /*
-       Subtle dark overlay over hero.
-    */
-
-    .hero::after {
-      content: "";
+    .hero-circle {
       position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
 
-      background: linear-gradient(
-        to bottom,
-        rgba(41, 43, 40, 0.02) 0%,
-        rgba(41, 43, 40, 0.05) 65%,
-        rgba(41, 43, 40, 0.20) 100%
-      );
-    }
+      width: 779px;
+      height: 779px;
 
-    .hero-content {
-      position: relative;
-      z-index: 10;
-      width: 53%;
-      margin-top: -20px;
-    }
-
-    .eyebrow {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-
-      margin-bottom: 30px;
-
-      font-size: 10px;
-      text-transform: uppercase;
-      letter-spacing: 0.15em;
-      font-weight: 300;
-      color: var(--yellow);
-    }
-
-    .eyebrow::before {
-      content: "";
-      width: 45px;
-      height: 1px;
-      background: rgba(255,255,255,0.6);
-    }
-
-    .hero h1 {
-      font-size: clamp(80px, 7.6vw, 145px);
-      line-height: 0.84;
-      letter-spacing: -0.06em;
-      font-weight: 500;
-      color: white;
-      margin-bottom: 38px;
-    }
-
-    .hero h1 span {
-      display: block;
-    }
-
-    .hero-description {
-      max-width: 530px;
-
-      color: rgba(255,255,255,0.76);
-      font-size: 15px;
-      line-height: 1.5;
-      font-weight: 300;
-
-      margin-bottom: 28px;
-    }
-
-    .hero-description strong {
-      color: white;
-      font-weight: 500;
-    }
-
-    .cv-button,
-    .linkedin-button {
-      display: inline-flex;
-      justify-content: center;
-      align-items: center;
-
-      background: var(--yellow);
-      color: #111;
-
-      border: 1px solid rgba(19,70,35,0.8);
-
-      transition:
-        transform 0.2s ease,
-        background 0.2s ease;
-    }
-
-    .cv-button {
-      width: 70px;
-      height: 44px;
-      font-size: 12px;
-      font-weight: 300;
-    }
-
-    .cv-button:hover,
-    .linkedin-button:hover {
-      background: #ffc23c;
-      transform: translateY(-2px);
-    }
-
-
-    /* =========================================================
-       HERO PORTRAIT
-    ========================================================= */
-
-    .portrait-area {
-      position: absolute;
-      z-index: 3;
-
-      width: min(48vw, 800px);
-      height: min(48vw, 800px);
-
-      right: -1%;
-      top: 50%;
-      transform: translateY(-50%);
-    }
-
-    .portrait-circle {
-      position: absolute;
-      width: 86%;
-      height: 86%;
-
-      right: -2%;
-      top: 8%;
+      left: 1272px;
+      top: 259px;
 
       border-radius: 50%;
       background: var(--blue);
     }
 
-    .portrait {
+    .hero-content {
       position: absolute;
-      z-index: 4;
-
-      width: 420px;
-      height: 420px;
-
-      max-width: 52%;
-      max-height: 52%;
-
-      object-fit: cover;
-
-      left: 14%;
-      top: 24%;
-    }
-
-    .shape-blue {
-      position: absolute;
-      z-index: 5;
-
-      width: 75px;
-      height: 150px;
-
-      background: var(--blue);
-
-      left: 8%;
-      top: 17%;
-    }
-
-    .shape-yellow {
-      position: absolute;
-      z-index: 6;
-
-      width: 171px;
-      height: 171px;
-
-      background: rgba(244,175,33,0.9);
-
-      left: 54%;
-      top: 57%;
-    }
-
-
-    /* =========================================================
-       GENERAL SECTION
-    ========================================================= */
-
-    .section {
-      position: relative;
-      padding-left: var(--side);
-      padding-right: var(--side);
-    }
-
-    .section-inner {
-      max-width: var(--page-width);
-      margin: 0 auto;
-    }
-
-    .section-heading {
-      display: grid;
-      grid-template-columns: 31% 69%;
-      padding-top: 20px;
-      border-top: 1px solid rgba(225,225,225,0.7);
-    }
-
-    .section-title {
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 300;
-      color: var(--light);
-    }
-
-    .section-copy {
-      max-width: 860px;
-      font-size: 15px;
-      line-height: 1.55;
-      font-weight: 300;
-      color: rgba(255,255,255,0.85);
-    }
-
-    .section-copy p + p {
-      margin-top: 16px;
-    }
-
-    .vertical-number {
-      position: absolute;
-      left: 5.3vw;
-      top: 105px;
-
-      writing-mode: vertical-rl;
-      transform: rotate(180deg);
-
-      font-size: 9px;
-      letter-spacing: 0.14em;
-      font-weight: 300;
-      color: var(--light);
-    }
-
-
-    /* =========================================================
-       ABOUT
-       Continues the hero background image and fades to #292B28.
-    ========================================================= */
-
-    #about {
-      min-height: 445px;
-      padding-top: 0;
-      padding-bottom: 90px;
-
-      position: relative;
-      z-index: 0;
-    }
-
-    #about .vertical-number {
-      color: var(--blue);
-    }
-
-    /*
-       Continue the SAME background image used in Hero.
-
-       Hero is 1080px high, so the image is moved upward
-       by approximately the same amount.
-    */
-
-    #about::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -2;
-
-      background-image: url("background.png");
-      background-repeat: no-repeat;
-      background-size: 100vw auto;
-      background-position: center -1080px;
-    }
-
-    /*
-       Fade the image into exactly the same colour
-       as Selected Work.
-    */
-
-    #about::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
-      pointer-events: none;
-
-      background: linear-gradient(
-        to bottom,
-        rgba(41, 43, 40, 0.20) 0%,
-        rgba(41, 43, 40, 0.65) 45%,
-        #292b28 100%
-      );
-    }
-
-
-    /* =========================================================
-       WORK
-    ========================================================= */
-
-    #work {
-      background: var(--dark);
-      padding-top: 45px;
-      padding-bottom: 100px;
-    }
-
-    .work-intro {
-      display: grid;
-      grid-template-columns: 31% 69%;
-
-      padding: 20px 0 55px;
-      border-top: 1px solid rgba(225,225,225,0.75);
-    }
-
-    .work-intro p {
-      font-size: 15px;
-      line-height: 1.5;
-      font-weight: 300;
-    }
-
-    .work-grid {
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-    }
-
-    .work-card {
-      position: relative;
-
-      min-height: 330px;
-      padding: 35px;
-
-      background: var(--blue);
-
-      border-right: 1px solid rgba(225,225,225,0.85);
-      border-bottom: 1px solid rgba(225,225,225,0.85);
-
-      overflow: hidden;
-
-      transition:
-        background 0.25s ease,
-        transform 0.25s ease;
-    }
-
-    .work-card:nth-child(odd) {
-      border-left: 1px solid rgba(225,225,225,0.85);
-    }
-
-    .work-card:nth-child(-n+2) {
-      border-top: 1px solid rgba(225,225,225,0.85);
-    }
-
-    .work-card:hover {
-      background: #4c6b93;
-    }
-
-    .card-number {
-      display: block;
-      color: #e9ce05;
-
-      font-size: 9px;
-      letter-spacing: 0.13em;
-      font-weight: 300;
-
-      margin-bottom: 90px;
-    }
-
-    .work-card h3 {
-      font-size: clamp(32px, 3vw, 54px);
-      line-height: 1;
-      font-weight: 400;
-      letter-spacing: -0.04em;
-
-      margin-bottom: 17px;
-    }
-
-    .work-card p {
-      width: 60%;
-      max-width: 430px;
-
-      font-size: 12px;
-      line-height: 1.5;
-      font-weight: 300;
-
-      color: rgba(245,244,239,0.68);
-    }
-
-
-    /* =========================================================
-       BACKGROUND SECTION
-
-       background.png appears for the SECOND time here.
-       It is deliberately zoomed in compared with Hero.
-
-       The top begins as #292B28 so it blends directly
-       out of Selected Work.
-    ========================================================= */
-
-    #background-section {
-      min-height: 620px;
-      padding-top: 0;
-
-      position: relative;
-      z-index: 0;
-
-      background-image:
-        linear-gradient(
-          to bottom,
-          #292b28 0%,
-          rgba(41, 43, 40, 0.92) 20%,
-          rgba(41, 43, 40, 0.48) 60%,
-          rgba(41, 43, 40, 0.08) 100%
-        ),
-        url("background.png");
-
-      background-size:
-        auto,
-        145% auto;
-
-      background-position:
-        center,
-        center 55%;
-
-      background-repeat: no-repeat;
-    }
-
-
-    /* =========================================================
-       CONTACT
-
-       Continues the second, zoomed version of background.png.
-    ========================================================= */
-
-    #contact {
-      min-height: 700px;
-      padding-top: 120px;
-      overflow: hidden;
-
-      position: relative;
-      z-index: 0;
-
-      background-image:
-        linear-gradient(
-          to bottom,
-          rgba(41, 43, 40, 0.05) 0%,
-          rgba(41, 43, 40, 0.15) 55%,
-          rgba(41, 43, 40, 0.40) 100%
-        ),
-        url("background.png");
-
-      background-size:
-        auto,
-        145% auto;
-
-      background-position:
-        center,
-        center bottom;
-
-      background-repeat: no-repeat;
-    }
-
-    .contact-line {
-      border-top: 1px solid rgba(225,225,225,0.8);
-      padding-top: 20px;
-
-      font-size: 11px;
-      text-transform: uppercase;
-      letter-spacing: 0.14em;
-      font-weight: 300;
-    }
-
-    .contact-content {
-      position: relative;
-      min-height: 470px;
-      margin-top: 90px;
-    }
-
-    .contact-title {
-      position: relative;
       z-index: 10;
 
-      font-size: clamp(75px, 7vw, 120px);
-      line-height: 0.9;
-      font-weight: 500;
-      letter-spacing: -0.055em;
+      left: 250px;
+      top: 342px;
 
-      padding-top: 50px;
+      width: 863px;
     }
 
-    .contact-title::before {
+    .hero-eyebrow {
+      position: relative;
+
+      margin-bottom: 25px;
+      padding-left: 57px;
+
+      color: var(--yellow);
+
+      font-size: 11px;
+      font-weight: 300;
+      text-transform: uppercase;
+      line-height: 16.5px;
+      letter-spacing: 1.76px;
+    }
+
+    .hero-eyebrow::before {
       content: "";
-      display: block;
+
+      position: absolute;
+      left: 0;
+      top: 8px;
 
       width: 45px;
       height: 1px;
 
       background: var(--light);
-
-      margin-bottom: 18px;
     }
 
-    .contact-yellow {
+    .hero-name {
+      color: white;
+
+      font-size: 145px;
+      font-weight: 500;
+      line-height: 121.8px;
+    }
+
+    .hero-name span {
+      display: block;
+    }
+
+    .hero-name span:last-child {
+      color: var(--light);
+    }
+
+    .hero-description {
+      width: 528px;
+
+      margin-top: 65px;
+
+      color: var(--light);
+
+      font-size: 15px;
+      font-weight: 300;
+      line-height: 22.5px;
+    }
+
+    .hero-description strong {
+      font-weight: 500;
+    }
+
+    .cv-button {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      width: 70px;
+      height: 44px;
+
+      margin-top: 25px;
+
+      background: var(--yellow);
+      border: 1px solid #134623;
+
+      color: black;
+
+      font-size: 12px;
+      font-weight: 300;
+    }
+
+    .portrait {
       position: absolute;
-      z-index: 4;
+      z-index: 6;
 
-      width: 50px;
-      height: 100px;
+      width: 420px;
+      height: 420px;
 
-      left: 27%;
-      top: 135px;
+      left: 1236px;
+      top: 355px;
 
-      background: rgba(244,175,33,0.9);
+      object-fit: cover;
     }
+
+    .hero-blue-block {
+      position: absolute;
+      z-index: 7;
+
+      width: 75px;
+      height: 150px;
+
+      left: 1138px;
+      top: 259px;
+
+      background: var(--blue);
+    }
+
+    .hero-yellow-block {
+      position: absolute;
+      z-index: 8;
+
+      width: 171px;
+      height: 171px;
+
+      left: 1546px;
+      top: 684px;
+
+      background: rgba(244,175,33,.8);
+    }
+
+
+    /* ==========================================================
+       ABOUT
+
+       IMPORTANT:
+       Separate 448 px Figma frame.
+       It sits over the lower portion of the hero background.
+
+       Figma gradient:
+       transparent -> #292B28
+    ========================================================== */
+
+    .about-frame {
+      position: relative;
+      z-index: 20;
+
+      height: 448px;
+
+      /*
+       * Negative margin means this frame begins while the
+       * 1526px hero image is still visually behind it.
+       */
+
+      background:
+        linear-gradient(
+          180deg,
+          rgba(41,43,40,0) 0%,
+          #292b28 100%
+        );
+    }
+
+    .about-frame .section-line {
+      top: 37px;
+    }
+
+    .about-frame .section-label {
+      top: 58px;
+    }
+
+    .about-frame .section-text {
+      top: 58px;
+      color: white;
+    }
+
+    .about-frame .section-number {
+      top: 98px;
+      color: var(--blue);
+    }
+
+
+    /* ==========================================================
+       WORK
+
+       Exact Figma frame:
+       1920 × 1401
+    ========================================================== */
+
+    .work-frame {
+      position: relative;
+      z-index: 30;
+
+      height: 1401px;
+
+      background: var(--dark);
+    }
+
+    .work-frame .section-line {
+      top: 30px;
+    }
+
+    .work-frame .section-label {
+      top: 51px;
+    }
+
+    .work-intro {
+      position: absolute;
+
+      left: 652px;
+      top: 51px;
+
+      color: white;
+
+      font-size: 16px;
+      font-weight: 300;
+      line-height: 24px;
+    }
+
+    .work-frame .section-number {
+      top: 185px;
+    }
+
+
+    /* WORK GRID */
+
+    .work-grid {
+      position: absolute;
+
+      left: 160px;
+      top: 136px;
+
+      width: 1600px;
+      height: 1200px;
+
+      display: grid;
+      grid-template-columns: 800px 800px;
+      grid-template-rows: 400px 400px 400px;
+    }
+
+    .work-card {
+      position: relative;
+
+      width: 800px;
+      height: 400px;
+
+      padding: 35px;
+
+      background: var(--blue);
+
+      border: 1px solid var(--light);
+
+      overflow: hidden;
+    }
+
+    .card-number {
+      display: block;
+
+      color: #e9ce05;
+
+      font-size: 10px;
+      font-weight: 300;
+      line-height: 15px;
+      letter-spacing: 1.2px;
+    }
+
+    .work-card h3 {
+      position: absolute;
+
+      left: 35px;
+      top: 140px;
+
+      color: white;
+
+      font-size: 60px;
+      font-weight: 500;
+      line-height: 57px;
+    }
+
+    .work-card p {
+      position: absolute;
+
+      left: 35px;
+      top: 222px;
+
+      width: 428px;
+
+      color: rgba(245,244,239,.68);
+
+      font-size: 13px;
+      font-weight: 300;
+      line-height: 19.5px;
+    }
+
+
+    /* ==========================================================
+       LOWER COMPOSITION
+
+       This is the key part.
+
+       Background frame = 1074px.
+       Contact starts 242px after Background begins.
+
+       Therefore Contact OVERLAPS Background by 832px.
+    ========================================================== */
+
+    .lower-composition {
+      position: relative;
+
+      height: 1074px;
+
+      background-image: url("background.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: cover;
+
+      overflow: hidden;
+    }
+
+
+    /* ==========================================================
+       BACKGROUND FRAME
+
+       Figma:
+       1920 × 1074
+
+       Gradient:
+       #292B28 at top -> transparent at bottom
+    ========================================================== */
+
+    .background-frame {
+      position: absolute;
+
+      z-index: 1;
+
+      top: 0;
+      left: 0;
+
+      width: 100%;
+      height: 1074px;
+
+      background:
+        linear-gradient(
+          180deg,
+          #292b28 0%,
+          rgba(41,43,40,0) 100%
+        );
+    }
+
+    .background-frame .section-line {
+      top: 37px;
+    }
+
+    .background-frame .section-label {
+      top: 58px;
+    }
+
+    .background-frame .section-text {
+      top: 58px;
+    }
+
+    .background-frame .section-number {
+      top: 156px;
+    }
+
+
+    /* ==========================================================
+       CONTACT FRAME
+
+       Figma absolute Y:
+       Background = 2929
+       Contact    = 3171
+
+       Difference = 242px.
+
+       Therefore this frame begins at top:242px inside the
+       Background frame.
+    ========================================================== */
+
+    .contact-frame {
+      position: absolute;
+
+      z-index: 10;
+
+      top: 242px;
+      left: 0;
+
+      width: 100%;
+      height: 832px;
+
+      background: transparent;
+
+      overflow: hidden;
+    }
+
+    .contact-line {
+      position: absolute;
+
+      left: 150px;
+      top: 266px;
+
+      width: calc(100% - 322px);
+      height: 1px;
+
+      background: var(--light);
+    }
+
+    .contact-label {
+      position: absolute;
+
+      left: 160px;
+      top: 282px;
+
+      color: var(--light);
+
+      font-size: 11px;
+      font-weight: 300;
+      text-transform: uppercase;
+      line-height: 16.5px;
+      letter-spacing: 1.54px;
+    }
+
+    .contact-number {
+      position: absolute;
+
+      left: 105px;
+      top: 344px;
+
+      transform: rotate(-90deg);
+      transform-origin: top left;
+
+      color: var(--light);
+
+      font-size: 10px;
+      font-weight: 300;
+      letter-spacing: 1.5px;
+
+      white-space: nowrap;
+    }
+
+
+    /* Contact circles */
 
     .contact-grey-circle {
       position: absolute;
       z-index: 1;
 
-      width: 700px;
-      height: 700px;
+      width: 1100px;
+      height: 1100px;
+
+      left: 949px;
+      top: 33px;
 
       border-radius: 50%;
-      background: var(--grey-circle);
 
-      right: -110px;
-      top: -170px;
+      background: var(--grey);
     }
 
     .contact-blue-circle {
       position: absolute;
       z-index: 2;
 
-      width: 630px;
-      height: 630px;
+      width: 1000px;
+      height: 1000px;
+
+      left: 1032px;
+      top: 136px;
 
       border-radius: 50%;
-      background: var(--blue);
 
-      right: -80px;
-      top: -115px;
+      background: var(--blue);
     }
 
-    .contact-info {
+
+    /* Contact title */
+
+    .contact-heading {
       position: absolute;
-      z-index: 10;
+      z-index: 5;
 
-      right: 8%;
-      top: 115px;
+      left: 186px;
+      top: 385px;
+    }
 
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
+    .contact-heading-line {
+      width: 45px;
+      height: 1px;
 
-      color: white;
+      margin-bottom: 32px;
+
+      background: var(--light);
+    }
+
+    .contact-heading h2 {
+      color: var(--light);
+
+      font-size: 120px;
+      font-weight: 500;
+      line-height: 105.6px;
+    }
+
+    .contact-yellow-block {
+      position: absolute;
+      z-index: 6;
+
+      left: 606px;
+      top: 483px;
+
+      width: 50px;
+      height: 100px;
+
+      background: rgba(244,175,33,.8);
+    }
+
+
+    /* Contact details */
+
+    .contact-details {
+      position: absolute;
+      z-index: 20;
+
+      left: 1225px;
+      top: 416px;
     }
 
     .contact-email {
-      font-size: 19px;
+      display: block;
+
+      margin-bottom: 22px;
+
+      color: white;
+
+      font-size: 32px;
       font-weight: 400;
-      margin-bottom: 10px;
+      line-height: 32px;
+
+      white-space: nowrap;
     }
 
     .contact-phone {
-      font-size: 15px;
+      display: block;
+
+      margin-bottom: 16px;
+
+      color: white;
+
+      font-size: 20px;
       font-weight: 400;
-      margin-bottom: 18px;
+      line-height: 20px;
     }
 
     .linkedin-button {
-      min-width: 120px;
-      height: 38px;
+      display: flex;
+      align-items: center;
 
-      padding: 0 14px;
+      width: 161px;
+      height: 44px;
 
-      font-size: 14px;
+      padding-left: 21px;
+
+      background: var(--yellow);
+      border: 1px solid #134623;
+
+      color: #3a3c39;
+
+      font-size: 24px;
       font-weight: 400;
     }
 
 
-    /* =========================================================
+    /* ==========================================================
        FOOTER
-    ========================================================= */
+    ========================================================== */
 
     footer {
-      position: relative;
-      z-index: 20;
+      position: absolute;
 
+      z-index: 50;
+
+      left: 0;
+      bottom: 0;
+
+      width: 100%;
       height: 65px;
-
-      background: var(--dark);
 
       display: flex;
       align-items: center;
       justify-content: space-between;
 
-      padding: 0 6vw;
+      padding: 0 96px;
 
-      color: rgba(245,244,239,0.55);
-      font-size: 9px;
+      background: var(--dark);
+
+      color: rgba(245,244,239,.55);
+
+      font-size: 10px;
       font-weight: 300;
     }
 
 
-    /* =========================================================
+    /* ==========================================================
        RESPONSIVE
-    ========================================================= */
+    ========================================================== */
 
-    @media (max-width: 1100px) {
+    @media (max-width: 1200px) {
 
-      .hero {
-        min-height: 850px;
-      }
-
-      .portrait-area {
-        width: 55vw;
-        height: 55vw;
-        right: -12%;
+      header {
+        padding-left: 5vw;
+        padding-right: 5vw;
       }
 
       .hero-content {
-        width: 58%;
+        left: 8vw;
       }
 
-      .section-heading,
+      .hero-circle {
+        left: 65vw;
+      }
+
+      .portrait {
+        left: 65vw;
+      }
+
+      .hero-blue-block {
+        left: 61vw;
+      }
+
+      .hero-yellow-block {
+        left: 81vw;
+      }
+
+      .section-line {
+        left: 8vw;
+        width: 84vw;
+      }
+
+      .section-label {
+        left: 8.5vw;
+      }
+
+      .section-text,
       .work-intro {
-        grid-template-columns: 25% 75%;
+        left: 34vw;
+        width: 55vw;
       }
 
-      .vertical-number {
-        display: none;
+      .section-number {
+        left: 5.5vw;
       }
 
-      .contact-info {
-        right: 2%;
+      .work-grid {
+        left: 8.3vw;
+
+        width: 83.4vw;
+
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .work-card {
+        width: 100%;
+      }
+
+      .contact-grey-circle {
+        left: 55vw;
+      }
+
+      .contact-blue-circle {
+        left: 60vw;
+      }
+
+      .contact-details {
+        left: 64vw;
       }
     }
 
@@ -787,174 +887,260 @@
         padding: 0 24px;
       }
 
+      .logo {
+        font-size: 10px;
+        color: var(--light);
+      }
+
       nav {
-        gap: 17px;
+        gap: 16px;
       }
 
       nav a {
         font-size: 8px;
+        color: var(--light);
       }
 
-      .logo {
-        font-size: 10px;
-      }
 
-      .hero {
-        min-height: 900px;
-        height: auto;
+      /* Hero */
 
-        padding:
-          150px
-          25px
-          80px;
-
-        align-items: flex-start;
-      }
-
-      .hero h1 {
-        font-size: 76px;
+      .hero-frame {
+        height: 900px;
+        background-position: center top;
       }
 
       .hero-content {
-        width: 100%;
+        left: 25px;
+        top: 170px;
+        width: calc(100% - 50px);
+      }
+
+      .hero-name {
+        font-size: 76px;
+        line-height: 68px;
       }
 
       .hero-description {
-        max-width: 85%;
+        width: 80%;
+        margin-top: 40px;
       }
 
-      .portrait-area {
+      .hero-circle {
         width: 500px;
         height: 500px;
 
-        top: auto;
-        bottom: -90px;
-        right: -220px;
-
-        transform: none;
-
-        opacity: 0.75;
+        left: 55%;
+        top: 480px;
       }
 
       .portrait {
         width: 250px;
         height: 250px;
+
+        left: 58%;
+        top: 570px;
       }
 
-      .shape-blue {
+      .hero-blue-block {
         width: 50px;
         height: 100px;
+
+        left: 54%;
+        top: 530px;
       }
 
-      .shape-yellow {
+      .hero-yellow-block {
         width: 100px;
         height: 100px;
+
+        left: 76%;
+        top: 720px;
       }
 
-      .section {
-        padding-left: 25px;
-        padding-right: 25px;
+
+      /* About */
+
+      .about-frame {
+        height: 570px;
       }
 
-      .section-heading,
+      .section-number {
+        display: none;
+      }
+
+      .section-line {
+        left: 25px;
+        width: calc(100% - 50px);
+      }
+
+      .section-label {
+        left: 25px;
+      }
+
+      .section-text {
+        left: 25px;
+        top: 105px !important;
+
+        width: calc(100% - 50px);
+
+        font-size: 14px;
+        line-height: 21px;
+      }
+
+
+      /* Work */
+
+      .work-frame {
+        height: auto;
+        padding-bottom: 70px;
+      }
+
+      .work-frame .section-line {
+        position: relative;
+        top: 30px;
+      }
+
+      .work-frame .section-label {
+        top: 51px;
+      }
+
       .work-intro {
-        display: block;
-      }
+        position: relative;
 
-      .section-title {
-        margin-bottom: 30px;
-      }
+        left: 25px;
+        top: 95px;
 
-      #about {
-        padding-top: 40px;
-        padding-bottom: 80px;
+        width: calc(100% - 50px);
+
+        margin-bottom: 140px;
+
+        font-size: 14px;
       }
 
       .work-grid {
+        position: relative;
+
+        left: 25px;
+        top: 0;
+
+        width: calc(100% - 50px);
+        height: auto;
+
+        display: grid;
         grid-template-columns: 1fr;
+        grid-template-rows: none;
       }
 
       .work-card {
-        min-height: 300px;
-        border-left: 1px solid rgba(225,225,225,0.85);
-        border-top: 0;
+        width: 100%;
+        height: 300px;
       }
 
-      .work-card:first-child {
-        border-top: 1px solid rgba(225,225,225,0.85);
-      }
+      .work-card h3 {
+        top: 115px;
 
-      .card-number {
-        margin-bottom: 65px;
+        font-size: 42px;
+        line-height: 42px;
       }
 
       .work-card p {
-        width: 90%;
+        top: 180px;
+        width: 80%;
       }
 
-      #background-section {
-        min-height: 650px;
 
-        background-size:
-          auto,
-          auto 100%;
+      /* Lower */
 
-        background-position:
-          center,
-          center center;
+      .lower-composition {
+        height: 1150px;
+
+        background-size: auto 100%;
+        background-position: center;
       }
 
-      #contact {
-        min-height: 720px;
-
-        background-size:
-          auto,
-          auto 100%;
-
-        background-position:
-          center,
-          center bottom;
+      .background-frame {
+        height: 1150px;
       }
 
-      .contact-content {
-        margin-top: 50px;
+      .background-frame .section-text {
+        top: 105px !important;
       }
 
-      .contact-title {
-        font-size: 70px;
+      .contact-frame {
+        top: 500px;
+        height: 650px;
+      }
+
+      .contact-line {
+        left: 25px;
+        top: 100px;
+
+        width: calc(100% - 50px);
+      }
+
+      .contact-label {
+        left: 25px;
+        top: 120px;
       }
 
       .contact-grey-circle {
-        width: 540px;
-        height: 540px;
+        width: 600px;
+        height: 600px;
 
-        right: -290px;
-        top: 100px;
+        left: 45%;
+        top: 180px;
       }
 
       .contact-blue-circle {
-        width: 480px;
-        height: 480px;
+        width: 540px;
+        height: 540px;
 
-        right: -270px;
-        top: 130px;
+        left: 52%;
+        top: 210px;
       }
 
-      .contact-info {
+      .contact-heading {
         left: 25px;
-        right: auto;
-        top: 330px;
+        top: 190px;
+      }
+
+      .contact-heading h2 {
+        font-size: 70px;
+        line-height: 65px;
+      }
+
+      .contact-yellow-block {
+        left: 220px;
+        top: 275px;
+
+        width: 35px;
+        height: 70px;
+      }
+
+      .contact-details {
+        left: 25px;
+        top: 390px;
       }
 
       .contact-email {
+        font-size: 17px;
+        line-height: 22px;
+      }
+
+      .contact-phone {
         font-size: 15px;
       }
 
-      .contact-yellow {
-        width: 35px;
-        height: 70px;
-        top: 120px;
-        left: 225px;
+      .linkedin-button {
+        width: 125px;
+        height: 40px;
+
+        font-size: 16px;
+      }
+
+      footer {
+        padding: 0 25px;
+        font-size: 8px;
       }
     }
 
@@ -964,12 +1150,12 @@
 
 <body>
 
-<div class="site">
+<div class="page">
 
 
-  <!-- =======================================================
+  <!-- ======================================================
        HEADER
-  ======================================================== -->
+  ======================================================= -->
 
   <header>
 
@@ -978,29 +1164,43 @@
     </a>
 
     <nav>
-      <a href="#about">ABOUT</a>
-      <a href="#work">WORK</a>
-      <a href="#contact">CONTACT</a>
+      <a href="#about">About</a>
+      <a href="#work">Work</a>
+      <a href="#contact">Contact</a>
     </nav>
 
   </header>
 
 
-  <!-- =======================================================
+
+  <!-- ======================================================
        HERO
-  ======================================================== -->
+  ======================================================= -->
 
-  <main>
+  <section class="frame hero-frame">
 
-    <section class="hero">
+    <div class="frame-inner">
+
+      <div class="hero-circle"></div>
+
+      <div class="hero-blue-block"></div>
+
+      <img
+        src="portrait_malin.png"
+        alt="Portrait of Malin Hall"
+        class="portrait"
+      >
+
+      <div class="hero-yellow-block"></div>
+
 
       <div class="hero-content">
 
-        <div class="eyebrow">
+        <div class="hero-eyebrow">
           Digital Production · UX/HCI · Technical Systems
         </div>
 
-        <h1>
+        <h1 class="hero-name">
           <span>Malin</span>
           <span>Hall</span>
         </h1>
@@ -1011,212 +1211,253 @@
         </p>
 
         <a
-          class="cv-button"
           href="MHall.CV.Eng.pdf"
           target="_blank"
           rel="noopener noreferrer"
+          class="cv-button"
         >
           CV ↗
         </a>
 
       </div>
 
+    </div>
 
-      <!-- Portrait composition -->
+  </section>
 
-      <div class="portrait-area">
 
-        <div class="portrait-circle"></div>
 
-        <div class="shape-blue"></div>
+  <!-- ======================================================
+       ABOUT
 
-        <img
-          class="portrait"
-          src="portrait_malin.png"
-          alt="Portrait of Malin Hall"
-        >
+       This is the separate Figma fade-frame.
+  ======================================================= -->
 
-        <div class="shape-yellow"></div>
+  <section class="frame about-frame" id="about">
+
+    <div class="frame-inner">
+
+      <div class="section-line"></div>
+
+      <div class="section-label">
+        About
+      </div>
+
+      <div class="section-text">
+
+        I’m a civil engineer with a background in film and a growing
+        obsession with how people interact with technology.
+
+        <br><br>
+
+        I have a Master’s in Human-Computer Interaction from KTH,
+        where I’ve explored that intersection through UX and UI design,
+        research, analysis, prototyping and user testing. I like taking
+        an idea from something vague and hard to explain into something
+        you can actually interact with — and then seeing what happens
+        when someone else tries to use it.
+
+        <br><br>
+
+        I’m curious about the relationship between people and technology,
+        and about the difference between how something is supposed to work
+        and how it actually works in the real world.
 
       </div>
 
-    </section>
-
-
-    <!-- =====================================================
-         ABOUT
-    ====================================================== -->
-
-    <section class="section" id="about">
-
-      <span class="vertical-number">
+      <div class="section-number">
         01 — ABOUT
-      </span>
-
-      <div class="section-inner">
-
-        <div class="section-heading">
-
-          <div class="section-title">
-            About
-          </div>
-
-          <div class="section-copy">
-
-            <p>
-              I’m a civil engineer with a background in film and a growing
-              obsession with how people interact with technology.
-            </p>
-
-            <p>
-              I have a Master’s in Human-Computer Interaction from KTH,
-              where I’ve explored that intersection through UX and UI design,
-              research, analysis, prototyping and user testing. I like taking
-              an idea from something vague and hard to explain into something
-              you can actually interact with — and then seeing what happens
-              when someone else tries to use it.
-            </p>
-
-            <p>
-              I’m curious about the relationship between people and technology,
-              and about the difference between how something is supposed to work
-              and how it actually works in the real world.
-            </p>
-
-          </div>
-
-        </div>
-
       </div>
 
-    </section>
+    </div>
+
+  </section>
 
 
-    <!-- =====================================================
-         SELECTED WORK
-    ====================================================== -->
 
-    <section class="section" id="work">
+  <!-- ======================================================
+       SELECTED WORK
+  ======================================================= -->
 
-      <span class="vertical-number">
+  <section class="frame work-frame" id="work">
+
+    <div class="frame-inner">
+
+      <div class="section-line"></div>
+
+      <div class="section-label">
+        Selected Work
+      </div>
+
+      <div class="work-intro">
+        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+        Integer vitae justo at libero tincidunt.
+      </div>
+
+      <div class="section-number">
         02 — SELECTED WORK
-      </span>
+      </div>
 
-      <div class="section-inner">
 
-        <div class="work-intro">
+      <div class="work-grid">
 
-          <div class="section-title">
-            Selected Work
-          </div>
+
+        <article class="work-card">
+
+          <span class="card-number">
+            01 / LOREM
+          </span>
+
+          <h3>Lorem ipsum</h3>
 
           <p>
             Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-            Integer vitae justo at libero tincidunt.
+            Vestibulum ante ipsum primis in faucibus orci luctus et
+            ultrices posuere cubilia curae.
           </p>
 
+        </article>
+
+
+        <article class="work-card">
+
+          <span class="card-number">
+            01 / LOREM
+          </span>
+
+          <h3>Lorem ipsum</h3>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Vestibulum ante ipsum primis in faucibus orci luctus et
+            ultrices posuere cubilia curae.
+          </p>
+
+        </article>
+
+
+        <article class="work-card">
+
+          <span class="card-number">
+            02 / IPSUM
+          </span>
+
+          <h3>Published Work</h3>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer vitae justo at libero tincidunt consequat.
+          </p>
+
+        </article>
+
+
+        <article class="work-card">
+
+          <span class="card-number">
+            02 / IPSUM
+          </span>
+
+          <h3>Film Work</h3>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Integer vitae justo at libero tincidunt consequat.
+          </p>
+
+        </article>
+
+
+        <article class="work-card">
+
+          <span class="card-number">
+            03 / LOREM
+          </span>
+
+          <h3>Master Thesis</h3>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Suspendisse potenti. Curabitur euismod erat.
+          </p>
+
+        </article>
+
+
+        <article class="work-card">
+
+          <span class="card-number">
+            03 / LOREM
+          </span>
+
+          <h3>Commercial</h3>
+
+          <p>
+            Lorem ipsum dolor sit amet, consectetur adipiscing elit.
+            Suspendisse potenti. Curabitur euismod erat.
+          </p>
+
+        </article>
+
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+
+  <!-- ======================================================
+       LOWER COMPOSITION
+
+       ONE physical area, but TWO overlapping Figma frames:
+       Background + Contact.
+  ======================================================= -->
+
+  <div class="lower-composition">
+
+
+    <!-- ====================================================
+         BACKGROUND FRAME
+    ===================================================== -->
+
+    <section class="frame background-frame">
+
+      <div class="frame-inner">
+
+        <div class="section-line"></div>
+
+        <div class="section-label">
+          Background
         </div>
 
+        <div class="section-text">
 
-        <div class="work-grid">
+          I’ve spent more than ten years working in film and television,
+          starting in post-production before moving into technical roles
+          on set. I’ve worked across editing, colour, audio, media workflows,
+          DIT and Video Assist, on everything from TV and commercials to
+          film productions.
 
-          <article class="work-card">
+          <br><br>
 
-            <span class="card-number">
-              01 / LOREM
-            </span>
+          Film taught me to be comfortable when things are complex,
+          fast-moving and rarely go exactly as planned. I’ve learned to
+          stay calm under pressure, solve problems as they happen,
+          communicate with very different kinds of people, and quickly
+          understand what needs to happen next.
 
-            <h3>Lorem ipsum</h3>
+          <br><br>
 
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum ante ipsum primis in faucibus orci luctus et
-              ultrices posuere cubilia curae.
-            </p>
+          It also made me curious about the relationship between people
+          and technology — and about the difference between how something
+          is supposed to work and how it actually works in the real world.
 
-          </article>
+        </div>
 
-
-          <article class="work-card">
-
-            <span class="card-number">
-              01 / LOREM
-            </span>
-
-            <h3>Lorem ipsum</h3>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Vestibulum ante ipsum primis in faucibus orci luctus et
-              ultrices posuere cubilia curae.
-            </p>
-
-          </article>
-
-
-          <article class="work-card">
-
-            <span class="card-number">
-              02 / IPSUM
-            </span>
-
-            <h3>Published Work</h3>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Integer vitae justo at libero tincidunt consequat.
-            </p>
-
-          </article>
-
-
-          <article class="work-card">
-
-            <span class="card-number">
-              02 / IPSUM
-            </span>
-
-            <h3>Film Work</h3>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Integer vitae justo at libero tincidunt consequat.
-            </p>
-
-          </article>
-
-
-          <article class="work-card">
-
-            <span class="card-number">
-              03 / LOREM
-            </span>
-
-            <h3>Master Thesis</h3>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse potenti. Curabitur euismod erat.
-            </p>
-
-          </article>
-
-
-          <article class="work-card">
-
-            <span class="card-number">
-              03 / LOREM
-            </span>
-
-            <h3>Commercial</h3>
-
-            <p>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-              Suspendisse potenti. Curabitur euismod erat.
-            </p>
-
-          </article>
-
+        <div class="section-number">
+          03 — BACKGROUND
         </div>
 
       </div>
@@ -1224,139 +1465,102 @@
     </section>
 
 
-    <!-- =====================================================
-         BACKGROUND
-    ====================================================== -->
 
-    <section class="section" id="background-section">
+    <!-- ====================================================
+         CONTACT FRAME
 
-      <span class="vertical-number">
-        03 — BACKGROUND
-      </span>
+         Begins 242px inside Background, just like Figma.
+    ===================================================== -->
 
-      <div class="section-inner">
+    <section class="contact-frame" id="contact">
 
-        <div class="section-heading">
-
-          <div class="section-title">
-            Background
-          </div>
-
-          <div class="section-copy">
-
-            <p>
-              I’ve spent more than ten years working in film and television,
-              starting in post-production before moving into technical roles
-              on set. I’ve worked across editing, colour, audio, media workflows,
-              DIT and Video Assist, on everything from TV and commercials to
-              film productions.
-            </p>
-
-            <p>
-              Film taught me to be comfortable when things are complex,
-              fast-moving and rarely go exactly as planned. I’ve learned to
-              stay calm under pressure, solve problems as they happen,
-              communicate with very different kinds of people, and quickly
-              understand what needs to happen next.
-            </p>
-
-            <p>
-              It also made me curious about the relationship between people
-              and technology — and about the difference between how something
-              is supposed to work and how it actually works in the real world.
-            </p>
-
-          </div>
-
-        </div>
-
-      </div>
-
-    </section>
+      <div class="frame-inner">
 
 
-    <!-- =====================================================
-         CONTACT
-    ====================================================== -->
+        <div class="contact-line"></div>
 
-    <section class="section" id="contact">
-
-      <span class="vertical-number">
-        04 — CONTACT
-      </span>
-
-      <div class="section-inner">
-
-        <div class="contact-line">
+        <div class="contact-label">
           Contact
         </div>
 
-
-        <div class="contact-content">
-
-          <div class="contact-yellow"></div>
-
-          <div class="contact-grey-circle"></div>
-
-          <div class="contact-blue-circle"></div>
+        <div class="contact-number">
+          04 — CONTACT
+        </div>
 
 
-          <h2 class="contact-title">
+        <!-- circles -->
+
+        <div class="contact-grey-circle"></div>
+
+        <div class="contact-blue-circle"></div>
+
+
+        <!-- heading -->
+
+        <div class="contact-heading">
+
+          <div class="contact-heading-line"></div>
+
+          <h2>
             Contact
           </h2>
 
+        </div>
 
-          <div class="contact-info">
 
-            <a
-              class="contact-email"
-              href="mailto:malin.hall.eliasson@gmail.com"
-            >
-              malin.hall.eliasson@gmail.com
-            </a>
+        <div class="contact-yellow-block"></div>
 
-            <a
-              class="contact-phone"
-              href="tel:+46709425612"
-            >
-              +46 709 42 56 12
-            </a>
 
-            <a
-              class="linkedin-button"
-              href="https://www.linkedin.com/in/malin-hall-9a073a339/"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              LinkedIn ↗
-            </a>
+        <!-- contact details -->
 
-          </div>
+        <div class="contact-details">
+
+          <a
+            href="mailto:malin.hall.eliasson@gmail.com"
+            class="contact-email"
+          >
+            malin.hall.eliasson@gmail.com
+          </a>
+
+          <a
+            href="tel:+46709425612"
+            class="contact-phone"
+          >
+            +46 709 42 56 12
+          </a>
+
+          <a
+            href="https://www.linkedin.com/in/malin-hall-9a073a339/"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="linkedin-button"
+          >
+            LinkedIn ↗
+          </a>
 
         </div>
+
+
+        <footer>
+
+          <span>
+            © 2026 Malin Hall
+          </span>
+
+          <span>
+            Lorem ipsum dolor sit amet
+          </span>
+
+        </footer>
+
 
       </div>
 
     </section>
 
-  </main>
 
+  </div>
 
-  <!-- =======================================================
-       FOOTER
-  ======================================================== -->
-
-  <footer>
-
-    <span>
-      © 2026 Malin Hall
-    </span>
-
-    <span>
-      Lorem ipsum dolor sit amet
-    </span>
-
-  </footer>
 
 </div>
 
