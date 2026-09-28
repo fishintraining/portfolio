@@ -12,6 +12,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
   <style>
+
     /* =========================================================
        RESET / VARIABLES
     ========================================================= */
@@ -57,36 +58,12 @@
       font-family: inherit;
     }
 
-    /* =========================================================
-       BACKGROUND
-    ========================================================= */
-
     .site {
       position: relative;
       overflow: hidden;
       min-height: 100vh;
     }
 
-    .background {
-      position: absolute;
-      inset: 0;
-      z-index: -10;
-
-      background-image:
-        linear-gradient(
-          to bottom,
-          rgba(4, 13, 25, 0.03) 0%,
-          rgba(4, 13, 25, 0.08) 24%,
-          rgba(41, 43, 40, 0.96) 43%,
-          rgba(41, 43, 40, 1) 72%,
-          rgba(5, 17, 31, 0.18) 100%
-        ),
-        url("background.png");
-
-      background-size: cover;
-      background-position: top center;
-      background-repeat: no-repeat;
-    }
 
     /* =========================================================
        HEADER
@@ -135,6 +112,7 @@
       color: var(--yellow);
     }
 
+
     /* =========================================================
        HERO
     ========================================================= */
@@ -143,11 +121,49 @@
       min-height: 1080px;
       height: 100vh;
       position: relative;
+      z-index: 0;
 
       display: flex;
       align-items: center;
 
       padding: 80px var(--side) 0;
+    }
+
+    /*
+       First appearance of background.png.
+
+       Hero shows the upper part of the image.
+    */
+
+    .hero::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      background-image: url("background.png");
+      background-repeat: no-repeat;
+      background-size: 100vw auto;
+      background-position: center top;
+    }
+
+    /*
+       Subtle dark overlay over hero.
+    */
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(41, 43, 40, 0.02) 0%,
+        rgba(41, 43, 40, 0.05) 65%,
+        rgba(41, 43, 40, 0.20) 100%
+      );
     }
 
     .hero-content {
@@ -236,6 +252,7 @@
       transform: translateY(-2px);
     }
 
+
     /* =========================================================
        HERO PORTRAIT
     ========================================================= */
@@ -306,6 +323,7 @@
       top: 57%;
     }
 
+
     /* =========================================================
        GENERAL SECTION
     ========================================================= */
@@ -362,19 +380,64 @@
       color: var(--light);
     }
 
+
     /* =========================================================
        ABOUT
+       Continues the hero background image and fades to #292B28.
     ========================================================= */
 
     #about {
       min-height: 445px;
       padding-top: 0;
       padding-bottom: 90px;
+
+      position: relative;
+      z-index: 0;
     }
 
     #about .vertical-number {
       color: var(--blue);
     }
+
+    /*
+       Continue the SAME background image used in Hero.
+
+       Hero is 1080px high, so the image is moved upward
+       by approximately the same amount.
+    */
+
+    #about::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -2;
+
+      background-image: url("background.png");
+      background-repeat: no-repeat;
+      background-size: 100vw auto;
+      background-position: center -1080px;
+    }
+
+    /*
+       Fade the image into exactly the same colour
+       as Selected Work.
+    */
+
+    #about::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      z-index: -1;
+      pointer-events: none;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(41, 43, 40, 0.20) 0%,
+        rgba(41, 43, 40, 0.65) 45%,
+        #292b28 100%
+      );
+    }
+
 
     /* =========================================================
        WORK
@@ -466,38 +529,78 @@
       color: rgba(245,244,239,0.68);
     }
 
+
     /* =========================================================
-       BACKGROUND
+       BACKGROUND SECTION
+
+       background.png appears for the SECOND time here.
+       It is deliberately zoomed in compared with Hero.
+
+       The top begins as #292B28 so it blends directly
+       out of Selected Work.
     ========================================================= */
 
     #background-section {
       min-height: 620px;
       padding-top: 0;
-    }
 
-    #background-section::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      z-index: -1;
+      position: relative;
+      z-index: 0;
 
-      background:
+      background-image:
         linear-gradient(
           to bottom,
-          var(--dark) 0%,
-          rgba(41,43,40,0.88) 35%,
-          rgba(41,43,40,0.15) 100%
-        );
+          #292b28 0%,
+          rgba(41, 43, 40, 0.92) 20%,
+          rgba(41, 43, 40, 0.48) 60%,
+          rgba(41, 43, 40, 0.08) 100%
+        ),
+        url("background.png");
+
+      background-size:
+        auto,
+        145% auto;
+
+      background-position:
+        center,
+        center 55%;
+
+      background-repeat: no-repeat;
     }
+
 
     /* =========================================================
        CONTACT
+
+       Continues the second, zoomed version of background.png.
     ========================================================= */
 
     #contact {
       min-height: 700px;
       padding-top: 120px;
       overflow: hidden;
+
+      position: relative;
+      z-index: 0;
+
+      background-image:
+        linear-gradient(
+          to bottom,
+          rgba(41, 43, 40, 0.05) 0%,
+          rgba(41, 43, 40, 0.15) 55%,
+          rgba(41, 43, 40, 0.40) 100%
+        ),
+        url("background.png");
+
+      background-size:
+        auto,
+        145% auto;
+
+      background-position:
+        center,
+        center bottom;
+
+      background-repeat: no-repeat;
     }
 
     .contact-line {
@@ -617,6 +720,7 @@
       font-weight: 400;
     }
 
+
     /* =========================================================
        FOOTER
     ========================================================= */
@@ -639,6 +743,7 @@
       font-size: 9px;
       font-weight: 300;
     }
+
 
     /* =========================================================
        RESPONSIVE
@@ -674,6 +779,7 @@
       }
     }
 
+
     @media (max-width: 760px) {
 
       header {
@@ -705,12 +811,12 @@
         align-items: flex-start;
       }
 
-      .hero-content {
-        width: 100%;
-      }
-
       .hero h1 {
         font-size: 76px;
+      }
+
+      .hero-content {
+        width: 100%;
       }
 
       .hero-description {
@@ -788,10 +894,26 @@
 
       #background-section {
         min-height: 650px;
+
+        background-size:
+          auto,
+          auto 100%;
+
+        background-position:
+          center,
+          center center;
       }
 
       #contact {
         min-height: 720px;
+
+        background-size:
+          auto,
+          auto 100%;
+
+        background-position:
+          center,
+          center bottom;
       }
 
       .contact-content {
@@ -839,12 +961,10 @@
   </style>
 </head>
 
+
 <body>
 
 <div class="site">
-
-  <!-- FULL PAGE BACKGROUND -->
-  <div class="background"></div>
 
 
   <!-- =======================================================
@@ -1000,8 +1120,6 @@
 
         <div class="work-grid">
 
-          <!-- 01 -->
-
           <article class="work-card">
 
             <span class="card-number">
@@ -1019,8 +1137,6 @@
           </article>
 
 
-          <!-- 01 -->
-
           <article class="work-card">
 
             <span class="card-number">
@@ -1037,8 +1153,6 @@
 
           </article>
 
-
-          <!-- 02 -->
 
           <article class="work-card">
 
@@ -1056,8 +1170,6 @@
           </article>
 
 
-          <!-- 02 -->
-
           <article class="work-card">
 
             <span class="card-number">
@@ -1074,8 +1186,6 @@
           </article>
 
 
-          <!-- 03 -->
-
           <article class="work-card">
 
             <span class="card-number">
@@ -1091,8 +1201,6 @@
 
           </article>
 
-
-          <!-- 03 -->
 
           <article class="work-card">
 
