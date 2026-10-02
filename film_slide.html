@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>Film Work</title>
+
+  <style>
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html,
+    body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+
+
+    /* ==========================================
+       PAGE
+    ========================================== */
+
+    .page {
+      width: 100vw;
+      height: 100vh;
+
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+
+      overflow: hidden;
+      background: #000;
+    }
+
+
+    /* ==========================================
+       TITLE
+    ========================================== */
+
+    .title {
+      margin-left: 6vw;
+      margin-bottom: 35px;
+
+      font-size: clamp(16px, 1.2vw, 24px);
+      font-weight: 500;
+
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+
+      color: #fff;
+    }
+
+
+    /* ==========================================
+       VIDEO WINDOW + SIDE FADES
+    ========================================== */
+
+    .reel-window {
+      position: relative;
+
+      width: 100%;
+      overflow: hidden;
+
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+      );
+
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+      );
+    }
+
+
+    /* ==========================================
+       MOVING REEL
+    ========================================== */
+
+    .reel {
+      display: flex;
+      width: max-content;
+
+      animation: scroll 120s linear infinite;
+
+      will-change: transform;
+    }
+
+
+    .reel:hover {
+      animation-play-state: paused;
+    }
+
+
+    /* ==========================================
+       VIDEO GROUP
+    ========================================== */
+
+    .reel-group {
+      display: flex;
+      gap: 0;
+      padding: 0;
+    }
+
+
+    /* ==========================================
+       VIDEO
+    ========================================== */
+
+    .video-card {
+      position: relative;
+
+      width: 560px;
+      aspect-ratio: 16 / 9;
+
+      flex-shrink: 0;
+
+      overflow: hidden;
+
+      background: #000;
+
+      border: 0;
+      border-radius: 0;
+    }
+
+
+    .video-card iframe {
+      position: absolute;
+
+      inset: 0;
+
+      width: 100%;
+      height: 100%;
+
+      border: 0;
+
+      pointer-events: none;
+    }
+
+
+    /* ==========================================
+       INFINITE MOVEMENT
+    ========================================== */
+
+    @keyframes scroll {
+
+      from {
+        transform: translateX(0);
+      }
+
+      to {
+        transform: translateX(-50%);
+      }
+
+    }
+
+
+    /* ==========================================
+       MOBILE
+    ========================================== */
+
+    @media (max-width: 900px) {
+
+      .video-card {
+        width: 70vw;
+      }
+
+      .reel {
+        animation-duration: 100s;
+      }
+
+      .reel-window {
+
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 7%,
+          black 93%,
+          transparent 100%
+        );
+
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 7%,
+          black 93%,
+          transparent 100%
+        );
+
+      }
+
+    }
+
+  </style>
+</head>
+
+
+<body>
+
+  <main class="page">
+
+
+    <div class="title">
+      Film & Television Work
+    </div>
+
+
+    <div class="reel-window">
+
+      <div class="reel">
+
+
+        <!-- ==================================================
+             FIRST GROUP
+        =================================================== -->
+
+        <div class="reel-group">
+
+
+          <!-- FARTBLINDA -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/357607008?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- JJ+E / VINTERVIKEN -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/PG1Zn5wGfbY?autoplay=1&mute=1&loop=1&playlist=PG1Zn5wGfbY&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- I DINA HÄNDER / DELIVER ME -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/938168034?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- PARADIS CITY -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/XSxuIdIhC4o?autoplay=1&mute=1&loop=1&playlist=XSxuIdIhC4o&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- BARRACUDA QUEENS -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/1154337901?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- BERTS DAGBOK -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/WH2pX1QPrb4?autoplay=1&mute=1&loop=1&playlist=WH2pX1QPrb4&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- DYSTOPIA -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/1108653755?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- KONFERENSEN / THE CONFERENCE -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/876966643?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- STORM PÅ LUGNA GATAN -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/IcdloQukeL0?autoplay=1&mute=1&loop=1&playlist=IcdloQukeL0&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- HASSEL -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/391496478?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- EXTRA FILM / SERIES CLIP -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/hh5UunZJSz4?autoplay=1&mute=1&loop=1&playlist=hh5UunZJSz4&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+        </div>
+
+
+
+        <!-- ==================================================
+             SECOND IDENTICAL GROUP
+             Creates the seamless infinite loop
+        =================================================== -->
+
+        <div class="reel-group" aria-hidden="true">
+
+
+          <!-- FARTBLINDA -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/357607008?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- JJ+E / VINTERVIKEN -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/PG1Zn5wGfbY?autoplay=1&mute=1&loop=1&playlist=PG1Zn5wGfbY&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- I DINA HÄNDER / DELIVER ME -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/938168034?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- PARADIS CITY -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/XSxuIdIhC4o?autoplay=1&mute=1&loop=1&playlist=XSxuIdIhC4o&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- BARRACUDA QUEENS -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/1154337901?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- BERTS DAGBOK -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/WH2pX1QPrb4?autoplay=1&mute=1&loop=1&playlist=WH2pX1QPrb4&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- DYSTOPIA -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/1108653755?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- KONFERENSEN / THE CONFERENCE -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/876966643?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- STORM PÅ LUGNA GATAN -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/IcdloQukeL0?autoplay=1&mute=1&loop=1&playlist=IcdloQukeL0&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+          <!-- HASSEL -->
+          <div class="video-card">
+            <iframe
+              src="https://player.vimeo.com/video/391496478?autoplay=1&muted=1&loop=1&background=1"
+              allow="autoplay; fullscreen">
+            </iframe>
+          </div>
+
+
+          <!-- EXTRA FILM / SERIES CLIP -->
+          <div class="video-card">
+            <iframe
+              src="https://www.youtube.com/embed/hh5UunZJSz4?autoplay=1&mute=1&loop=1&playlist=hh5UunZJSz4&controls=0&modestbranding=1&rel=0"
+              allow="autoplay; encrypted-media">
+            </iframe>
+          </div>
+
+
+        </div>
+
+
+      </div>
+
+    </div>
+
+
+  </main>
+
+</body>
+</html>
