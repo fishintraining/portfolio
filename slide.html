@@ -3,11 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Commercial Work</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -19,61 +17,37 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-
-      background: #000000;
-
+      background: #000;
       font-family: Arial, sans-serif;
     }
-
-
-    /* ==========================================
-       PAGE
-    ========================================== */
 
     .page {
       width: 100vw;
       height: 100vh;
-
       display: flex;
       flex-direction: column;
       justify-content: center;
-
       overflow: hidden;
-
-      background: #000000;
+      background: #000;
     }
-
-
-    /* ==========================================
-       TITLE
-    ========================================== */
 
     .title {
       margin-left: 6vw;
       margin-bottom: 35px;
-
       font-size: clamp(16px, 1.2vw, 24px);
       font-weight: 500;
-
       letter-spacing: 0.08em;
       text-transform: uppercase;
-
-      color: #ffffff;
+      color: #fff;
     }
 
-
-    /* ==========================================
-       VIDEO WINDOW
-
-       Fade:
-       black -> video -> black
-    ========================================== */
+    /* =========================
+       VIDEO WINDOW + FADE
+    ========================= */
 
     .reel-window {
       position: relative;
-
       width: 100%;
-
       overflow: hidden;
 
       -webkit-mask-image: linear-gradient(
@@ -93,89 +67,55 @@
       );
     }
 
-
-    /* ==========================================
+    /* =========================
        MOVING REEL
-    ========================================== */
+    ========================= */
 
     .reel {
       display: flex;
-
       width: max-content;
-
       animation: scroll 60s linear infinite;
-
       will-change: transform;
     }
-
-
-    /* Pause movement on hover */
 
     .reel:hover {
       animation-play-state: paused;
     }
 
-
-    /* ==========================================
-       VIDEO GROUP
-    ========================================== */
-
     .reel-group {
       display: flex;
-
       gap: 0;
       padding: 0;
     }
 
-
-    /* ==========================================
-       VIDEO
-    ========================================== */
+    /* =========================
+       VIDEOS
+    ========================= */
 
     .video-card {
       position: relative;
-
       width: 560px;
-
       aspect-ratio: 16 / 9;
-
       flex-shrink: 0;
-
-      background: #000000;
-
       overflow: hidden;
-
-      border: none;
-      border-radius: 0;
+      background: #000;
+      border: 0;
     }
-
 
     .video-card iframe {
       position: absolute;
-
       inset: 0;
-
       width: 100%;
       height: 100%;
-
       border: 0;
-
-      /*
-        Makes the videos behave like
-        moving visual material instead
-        of interactive video players.
-      */
-
       pointer-events: none;
     }
 
-
-    /* ==========================================
-       INFINITE MOVEMENT
-    ========================================== */
+    /* =========================
+       INFINITE SCROLL
+    ========================= */
 
     @keyframes scroll {
-
       from {
         transform: translateX(0);
       }
@@ -183,13 +123,11 @@
       to {
         transform: translateX(-50%);
       }
-
     }
 
-
-    /* ==========================================
+    /* =========================
        MOBILE
-    ========================================== */
+    ========================= */
 
     @media (max-width: 900px) {
 
@@ -202,7 +140,6 @@
       }
 
       .reel-window {
-
         -webkit-mask-image: linear-gradient(
           to right,
           transparent 0%,
@@ -218,209 +155,114 @@
           black 93%,
           transparent 100%
         );
-
       }
-
     }
-
   </style>
 </head>
 
-
 <body>
 
-
   <main class="page">
-
-
-    <!-- ========================================
-         TITLE
-    ========================================= -->
 
     <div class="title">
       Commercial Work
     </div>
 
-
-
-    <!-- ========================================
-         VIDEO REEL
-    ========================================= -->
-
     <div class="reel-window">
-
 
       <div class="reel">
 
-
-
-        <!-- ==================================
-             FIRST VIDEO GROUP
-        =================================== -->
+        <!-- =====================================
+             FIRST GROUP
+        ====================================== -->
 
         <div class="reel-group">
 
-
-          <!-- YouTube 1 -->
-
+          <!-- YouTube -->
           <div class="video-card">
-
             <iframe
               src="https://www.youtube.com/embed/Ltfmp5kHeuo?autoplay=1&mute=1&loop=1&playlist=Ltfmp5kHeuo&controls=0&modestbranding=1&rel=0"
               allow="autoplay; encrypted-media"
               allowfullscreen>
             </iframe>
-
           </div>
 
-
-
-          <!-- Vimeo 1 -->
-
+          <!-- Vimeo: Vattenfall & Cake -->
           <div class="video-card">
-
             <iframe
               src="https://player.vimeo.com/video/761787230?autoplay=1&muted=1&loop=1&background=1"
               allow="autoplay; fullscreen"
               allowfullscreen>
             </iframe>
-
           </div>
 
-
-
-          <!-- Vimeo 2 -->
-
+          <!-- Vimeo: Estrid -->
           <div class="video-card">
-
             <iframe
               src="https://player.vimeo.com/video/808499082?autoplay=1&muted=1&loop=1&background=1"
               allow="autoplay; fullscreen"
               allowfullscreen>
             </iframe>
-
           </div>
 
-
-
-          <!-- YouTube 2 -->
-
+          <!-- YouTube -->
           <div class="video-card">
-
-            <iframe
-              src="https://www.youtube.com/embed/FioBWppmfa4?autoplay=1&mute=1&loop=1&playlist=FioBWppmfa4&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media"
-              allowfullscreen>
-            </iframe>
-
-          </div>
-
-
-
-          <!-- YouTube 3 -->
-
-          <div class="video-card">
-
             <iframe
               src="https://www.youtube.com/embed/EmmtT55uu_o?autoplay=1&mute=1&loop=1&playlist=EmmtT55uu_o&controls=0&modestbranding=1&rel=0"
               allow="autoplay; encrypted-media"
               allowfullscreen>
             </iframe>
-
           </div>
-
 
         </div>
 
 
+        <!-- =====================================
+             SECOND GROUP
+             Identical copy for seamless loop
+        ====================================== -->
 
-        <!-- ==================================
-             SECOND IDENTICAL GROUP
+        <div class="reel-group" aria-hidden="true">
 
-             This creates the seamless loop.
-        =================================== -->
-
-        <div
-          class="reel-group"
-          aria-hidden="true"
-        >
-
-
-          <!-- YouTube 1 -->
-
+          <!-- YouTube -->
           <div class="video-card">
-
             <iframe
               src="https://www.youtube.com/embed/Ltfmp5kHeuo?autoplay=1&mute=1&loop=1&playlist=Ltfmp5kHeuo&controls=0&modestbranding=1&rel=0"
               allow="autoplay; encrypted-media">
             </iframe>
-
           </div>
 
-
-
-          <!-- Vimeo 1 -->
-
+          <!-- Vimeo: Vattenfall & Cake -->
           <div class="video-card">
-
             <iframe
               src="https://player.vimeo.com/video/761787230?autoplay=1&muted=1&loop=1&background=1"
               allow="autoplay; fullscreen">
             </iframe>
-
           </div>
 
-
-
-          <!-- Vimeo 2 -->
-
+          <!-- Vimeo: Estrid -->
           <div class="video-card">
-
             <iframe
               src="https://player.vimeo.com/video/808499082?autoplay=1&muted=1&loop=1&background=1"
               allow="autoplay; fullscreen">
             </iframe>
-
           </div>
 
-
-
-          <!-- YouTube 2 -->
-
+          <!-- YouTube -->
           <div class="video-card">
-
-            <iframe
-              src="https://www.youtube.com/embed/FioBWppmfa4?autoplay=1&mute=1&loop=1&playlist=FioBWppmfa4&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-
-          </div>
-
-
-
-          <!-- YouTube 3 -->
-
-          <div class="video-card">
-
             <iframe
               src="https://www.youtube.com/embed/EmmtT55uu_o?autoplay=1&mute=1&loop=1&playlist=EmmtT55uu_o&controls=0&modestbranding=1&rel=0"
               allow="autoplay; encrypted-media">
             </iframe>
-
           </div>
 
-
         </div>
-
 
       </div>
 
-
     </div>
 
-
   </main>
-
 
 </body>
 </html>
