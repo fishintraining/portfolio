@@ -5,6 +5,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Malin Hall — Portfolio</title>
+
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
@@ -16,7 +17,6 @@
   --yellow: #F4AF21;
   --light: #E1E1E1;
   --grey: #C4C5CD;
-  --side: 8.333333vw;
 }
 
 * {
@@ -30,10 +30,10 @@ html {
 }
 
 body {
-  margin: 0;
   background: var(--dark);
   color: white;
   font-family: "Manrope", sans-serif;
+  font-weight: 300;
   overflow-x: hidden;
 }
 
@@ -46,7 +46,7 @@ img {
   display: block;
 }
 
-/* HEADER */
+/* ================= HEADER ================= */
 
 header {
   position: absolute;
@@ -62,13 +62,12 @@ header {
 }
 
 .logo {
-  color: #3A3C39;
+  color: #E1E1E1;
   font-size: .83vw;
-  font-weight: 300;
   letter-spacing: .08em;
   text-transform: uppercase;
   padding-bottom: .4vw;
-  border-bottom: 1px solid #E1E1E1;
+  border-bottom: 1px solid var(--light);
 }
 
 nav {
@@ -77,15 +76,45 @@ nav {
 }
 
 nav a {
-  color: #3A3C39;
+  color: var(--light);
   font-size: .57vw;
-  font-weight: 300;
   letter-spacing: .14em;
   text-transform: uppercase;
-  text-decoration: underline;
 }
 
-/* HERO */
+nav a:hover {
+  opacity: .65;
+}
+
+/* ================= LINK STYLE ================= */
+
+.text-link {
+  display: inline-flex;
+  align-items: center;
+  gap: .4em;
+  width: fit-content;
+  color: white;
+  font-size: clamp(11px, .85vw, 16px);
+  font-weight: 300;
+  line-height: 1.5;
+  transition: opacity .2s ease;
+}
+
+.text-link:hover {
+  opacity: .6;
+}
+
+.text-link .arrow {
+  display: inline-block;
+  font-size: 1.1em;
+  transition: transform .2s ease;
+}
+
+.text-link:hover .arrow {
+  transform: translate(3px, -3px);
+}
+
+/* ================= HERO ================= */
 
 .hero {
   position: relative;
@@ -113,7 +142,6 @@ nav a {
   padding-left: 3vw;
   color: var(--yellow);
   font-size: .57vw;
-  font-weight: 300;
   line-height: 1.5;
   letter-spacing: .16em;
   text-transform: uppercase;
@@ -150,7 +178,6 @@ nav a {
   color: var(--light);
   font-size: .78vw;
   line-height: 1.5;
-  font-weight: 300;
 }
 
 .hero-copy strong {
@@ -158,19 +185,8 @@ nav a {
 }
 
 .cv {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 3.66vw;
-  height: 2.27vw;
-  min-width: 60px;
-  min-height: 38px;
   margin-top: 1.3vw;
-  background: var(--yellow);
-  border: 1px solid #134623;
-  color: #000;
-  font-size: .63vw;
-  font-weight: 300;
+  font-size: .8vw;
 }
 
 .hero-circle {
@@ -215,7 +231,7 @@ nav a {
   background: rgba(244,175,33,.8);
 }
 
-/* ABOUT */
+/* ================= ABOUT ================= */
 
 .about {
   position: absolute;
@@ -234,37 +250,54 @@ nav a {
   );
 }
 
-.about-line {
+.about-line,
+.work-line,
+.background-line,
+.contact-line {
   position: absolute;
   left: 7.8%;
-  top: 8.4%;
   width: 83.25%;
   height: 1px;
   background: var(--light);
 }
 
-.about-label {
+.about-line {
+  top: 8.4%;
+}
+
+.about-label,
+.work-label,
+.background-label,
+.contact-label {
   position: absolute;
   left: 8.33%;
-  top: 13%;
   color: var(--light);
   font-size: .57vw;
-  font-weight: 300;
   letter-spacing: .14em;
   text-transform: uppercase;
 }
 
-.about-number {
+.about-label {
+  top: 13%;
+}
+
+.about-number,
+.work-number,
+.background-number,
+.contact-number {
   position: absolute;
   left: 5.45%;
-  top: 21.9%;
   transform: rotate(-90deg);
   transform-origin: top left;
-  color: var(--blue);
+  color: var(--light);
   font-size: .52vw;
-  font-weight: 300;
   letter-spacing: .15em;
   white-space: nowrap;
+}
+
+.about-number {
+  top: 21.9%;
+  color: var(--blue);
 }
 
 .about-copy {
@@ -272,139 +305,183 @@ nav a {
   left: 34%;
   top: 13%;
   width: 44.7%;
-  color: white;
   font-size: .83vw;
   line-height: 1.5;
-  font-weight: 300;
 }
 
-.about-copy p+p {
+.about-copy p + p {
   margin-top: 1.15vw;
 }
 
-/* SELECTED WORK */
+/* ================= SELECTED WORK ================= */
 
 .work {
   position: relative;
   width: 100%;
-  height: 72.97vw;
-  max-height: 1401px;
+  padding: 7.7vw 0 8vw;
   background: var(--dark);
 }
 
 .work-line {
-  position: absolute;
-  left: 7.8%;
-  top: 2.65%;
-  width: 83.25%;
-  height: 1px;
-  background: var(--light);
+  top: 2.1vw;
 }
 
 .work-label {
-  position: absolute;
-  left: 8.33%;
-  top: 4.1%;
-  color: var(--light);
-  font-size: .57vw;
-  font-weight: 300;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-}
-
-.work-intro {
-  position: absolute;
-  left: 34%;
-  top: 4.1%;
-  font-size: .83vw;
-  line-height: 1.5;
-  font-weight: 300;
+  top: 3.5vw;
 }
 
 .work-number {
-  position: absolute;
-  left: 5.45%;
-  top: 13.2%;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  color: var(--light);
-  font-size: .52vw;
-  letter-spacing: .15em;
-  white-space: nowrap;
+  top: 11vw;
 }
 
 .work-grid {
-  position: absolute;
-  left: 8.333%;
-  top: 9.71%;
-  width: 83.333%;
-  height: 85.65%;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  grid-template-rows: 1fr 1fr 1fr;
+  position: relative;
+  width: 70%;
+  margin-left: 15%;
+  display: flex;
+  flex-direction: column;
 }
+
+/* ================= PROJECT CARDS ================= */
 
 .card {
   position: relative;
+  display: grid;
+  grid-template-columns: 36% 64%;
+  grid-template-rows: auto 1fr auto;
+  min-height: 20vw;
+  padding: 3.2vw 2vw 3vw;
+  border: 1px solid rgba(225,225,225,.55);
   background: var(--blue);
-  border: 1px solid var(--light);
   overflow: hidden;
 }
 
+.card.academic {
+  background: #436085;
+}
+
+.card.published {
+  background: linear-gradient(
+    135deg,
+    #496481,
+    #596369
+  );
+}
+
+.card.reading {
+  background: linear-gradient(
+    135deg,
+    #575c54,
+    #6c6650
+  );
+}
+
+.card.film,
+.card.commercial {
+  background: linear-gradient(
+    120deg,
+    #65552f,
+    #766135
+  );
+}
+
 .card-number {
-  position: absolute;
-  left: 5.6%;
-  top: 12%;
-  color: #E9CE05;
-  font-size: .52vw;
-  font-weight: 300;
-  letter-spacing: .12em;
+  grid-column: 1;
+  grid-row: 1;
+  color: var(--yellow);
+  font-size: clamp(9px, .55vw, 12px);
+  letter-spacing: .1em;
+  text-transform: uppercase;
 }
 
 .card h3 {
-  position: absolute;
-  left: 5.6%;
-  top: 34%;
-  color: white;
-  font-size: 3.1vw;
-  line-height: 1;
+  grid-column: 1;
+  grid-row: 2;
+  align-self: center;
+  padding-right: 1vw;
+  font-size: clamp(24px, 2.7vw, 54px);
   font-weight: 400;
-  letter-spacing: -.035em;
+  line-height: 1.05;
+  letter-spacing: -.05em;
 }
 
-.card p {
-  position: absolute;
-  left: 5.6%;
-  top: 55%;
-  width: 54%;
-  color: rgba(245,244,239,.68);
-  font-size: .68vw;
+.card-subtitle {
+  grid-column: 1;
+  grid-row: 3;
+  max-width: 85%;
+  color: rgba(255,255,255,.6);
+  font-size: clamp(10px, .63vw, 13px);
   line-height: 1.5;
-  font-weight: 300;
 }
 
-/* NEW: READING APP DEMO BUTTON */
+.card-content {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1.25vw;
+}
 
-.demo-link {
+.card-content p {
+  color: rgba(255,255,255,.85);
+  font-size: clamp(11px, .84vw, 17px);
+  line-height: 1.35;
+}
+
+.card-links {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: .35vw;
+}
+
+/* ================= VIDEO STRIPS ================= */
+
+.card.with-video {
+  min-height: 30vw;
+  padding-bottom: 0;
+  grid-template-rows: auto 1fr auto auto;
+}
+
+.card.with-video .card-content {
+  grid-row: 1 / span 3;
+}
+
+.video-strip {
+  position: relative;
+  grid-column: 1 / -1;
+  grid-row: 4;
+  width: calc(100% + 4vw);
+  height: 11vw;
+  margin: 2.2vw -2vw 0;
+  overflow: hidden;
+  background: #121512;
+}
+
+.video-strip iframe {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border: none;
+  pointer-events: none;
+}
+
+.video-strip::after {
+  content: "";
   position: absolute;
-  left: 5.6%;
-  bottom: 12%;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  padding: .7vw 1.2vw;
-  background: var(--yellow);
-  color: var(--dark);
-  font-size: .68vw;
-  font-weight: 500;
-  border: 1px solid #134623;
+  inset: 0;
+  pointer-events: none;
+  background: linear-gradient(
+    90deg,
+    rgba(0,0,0,.3),
+    transparent 12%,
+    transparent 88%,
+    rgba(0,0,0,.3)
+  );
 }
 
-.demo-link:hover {
-  background: #ffd06b;
-}
-
-/* BACKGROUND */
+/* ================= BACKGROUND ================= */
 
 .lower {
   position: relative;
@@ -443,34 +520,15 @@ nav a {
 }
 
 .background-line {
-  position: absolute;
-  left: 7.8%;
   top: 3.5%;
-  width: 83.25%;
-  height: 1px;
-  background: var(--light);
 }
 
 .background-label {
-  position: absolute;
-  left: 8.33%;
   top: 5.5%;
-  color: var(--light);
-  font-size: .57vw;
-  letter-spacing: .14em;
-  text-transform: uppercase;
 }
 
 .background-number {
-  position: absolute;
-  left: 5.45%;
   top: 14.5%;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  color: var(--light);
-  font-size: .52vw;
-  letter-spacing: .15em;
-  white-space: nowrap;
 }
 
 .background-copy {
@@ -481,14 +539,13 @@ nav a {
   color: var(--light);
   font-size: .83vw;
   line-height: 1.5;
-  font-weight: 300;
 }
 
-.background-copy p+p {
+.background-copy p + p {
   margin-top: 1.15vw;
 }
 
-/* CONTACT */
+/* ================= CONTACT ================= */
 
 .contact {
   position: absolute;
@@ -501,35 +558,15 @@ nav a {
 }
 
 .contact-line {
-  position: absolute;
-  left: 7.8%;
   top: 29%;
-  width: 83.25%;
-  height: 1px;
-  background: var(--light);
 }
 
 .contact-label {
-  position: absolute;
-  left: 8.33%;
   top: 31.2%;
-  color: var(--light);
-  font-size: .57vw;
-  font-weight: 300;
-  letter-spacing: .14em;
-  text-transform: uppercase;
 }
 
 .contact-number {
-  position: absolute;
-  left: 5.45%;
   top: 38.8%;
-  transform: rotate(-90deg);
-  transform-origin: top left;
-  color: var(--light);
-  font-size: .52vw;
-  letter-spacing: .15em;
-  white-space: nowrap;
 }
 
 .grey-circle {
@@ -593,41 +630,28 @@ nav a {
   z-index: 8;
   left: 63.8%;
   top: 47%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 1vw;
 }
 
 .email {
-  display: block;
-  margin-bottom: 1.15vw;
   color: white;
   font-size: 1.67vw;
-  line-height: 1;
-  font-weight: 400;
   white-space: nowrap;
 }
 
 .phone {
-  display: block;
-  margin-bottom: 1vw;
   color: white;
   font-size: 1.04vw;
-  line-height: 1;
-  font-weight: 400;
 }
 
 .linkedin {
-  display: inline-flex;
-  align-items: center;
-  height: 2.3vw;
-  min-height: 40px;
-  padding: 0 1.1vw;
-  background: var(--yellow);
-  border: 1px solid #134623;
-  color: #3A3C39;
-  font-size: 1.25vw;
-  font-weight: 400;
+  font-size: 1.15vw;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
 footer {
   position: absolute;
@@ -644,10 +668,9 @@ footer {
   background: var(--dark);
   color: rgba(245,244,239,.55);
   font-size: .52vw;
-  font-weight: 300;
 }
 
-/* VERY LARGE SCREENS */
+/* ================= LARGE SCREENS ================= */
 
 @media (min-width:1920px) {
   .hero,
@@ -659,9 +682,10 @@ footer {
   }
 }
 
-/* MOBILE */
+/* ================= MOBILE ================= */
 
 @media (max-width:760px) {
+
   header {
     height: 70px;
     padding: 0 22px;
@@ -669,7 +693,6 @@ footer {
 
   .logo {
     font-size: 9px;
-    color: var(--light);
   }
 
   nav {
@@ -678,7 +701,6 @@ footer {
 
   nav a {
     font-size: 8px;
-    color: var(--light);
   }
 
   .hero {
@@ -716,10 +738,8 @@ footer {
   }
 
   .cv {
-    width: 68px;
-    height: 42px;
     margin-top: 20px;
-    font-size: 12px;
+    font-size: 13px;
   }
 
   .hero-circle {
@@ -765,7 +785,10 @@ footer {
     font-size: 10px;
   }
 
-  .about-number {
+  .about-number,
+  .work-number,
+  .background-number,
+  .contact-number {
     display: none;
   }
 
@@ -777,14 +800,12 @@ footer {
     line-height: 1.45;
   }
 
-  .about-copy p+p {
+  .about-copy p + p {
     margin-top: 12px;
   }
 
   .work {
-    height: auto;
-    max-height: none;
-    padding: 90px 25px 70px;
+    padding: 100px 25px 65px;
   }
 
   .work-line {
@@ -799,60 +820,59 @@ footer {
     font-size: 10px;
   }
 
-  .work-intro {
-    position: relative;
-    left: 0;
-    top: 0;
-    width: 100%;
-    margin-bottom: 35px;
-    font-size: 12px;
-  }
-
-  .work-number {
-    display: none;
-  }
-
   .work-grid {
-    position: relative;
-    left: 0;
-    top: 0;
     width: 100%;
-    height: auto;
-    display: grid;
-    grid-template-columns: 1fr;
-    grid-template-rows: none;
+    margin-left: 0;
   }
 
   .card {
-    height: 300px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-height: 0;
+    padding: 28px 24px 30px;
   }
 
   .card-number {
-    left: 25px;
-    top: 30px;
-    font-size: 9px;
+    font-size: 10px;
   }
 
   .card h3 {
-    left: 25px;
-    top: 115px;
-    font-size: 38px;
+    font-size: 34px;
+    align-self: flex-start;
   }
 
-  .card p {
-    left: 25px;
-    top: 175px;
-    width: 80%;
+  .card-subtitle {
     font-size: 11px;
+    max-width: 100%;
   }
 
-  /* READING APP BUTTON ON MOBILE */
+  .card-content {
+    gap: 16px;
+  }
 
-  .demo-link {
-    left: 25px;
-    bottom: 25px;
-    padding: 12px 16px;
+  .card-content p {
     font-size: 12px;
+    line-height: 1.5;
+  }
+
+  .card-links {
+    gap: 8px;
+  }
+
+  .text-link {
+    font-size: 13px;
+  }
+
+  .card.with-video {
+    padding-bottom: 0;
+  }
+
+  .video-strip {
+    flex: none;
+    width: calc(100% + 48px);
+    height: 140px;
+    margin: 5px -24px 0;
   }
 
   .lower {
@@ -874,10 +894,6 @@ footer {
     font-size: 10px;
   }
 
-  .background-number {
-    display: none;
-  }
-
   .background-copy {
     left: 25px;
     top: 90px;
@@ -885,7 +901,7 @@ footer {
     font-size: 12px;
   }
 
-  .background-copy p+p {
+  .background-copy p + p {
     margin-top: 12px;
   }
 
@@ -904,10 +920,6 @@ footer {
     left: 25px;
     top: 88px;
     font-size: 10px;
-  }
-
-  .contact-number {
-    display: none;
   }
 
   .grey-circle {
@@ -948,21 +960,18 @@ footer {
   .contact-details {
     left: 25px;
     top: 365px;
+    gap: 12px;
   }
 
   .email {
     font-size: 16px;
-    margin-bottom: 12px;
   }
 
   .phone {
     font-size: 14px;
-    margin-bottom: 15px;
   }
 
   .linkedin {
-    height: 40px;
-    padding: 0 15px;
     font-size: 16px;
   }
 
@@ -977,6 +986,8 @@ footer {
 
 <body>
 
+<!-- ================= HEADER ================= -->
+
 <header>
   <a href="#" class="logo">
     MH / PORTFOLIO
@@ -989,9 +1000,10 @@ footer {
   </nav>
 </header>
 
-<!-- HERO -->
+<!-- ================= HERO ================= -->
 
 <section class="hero">
+
   <div class="hero-circle"></div>
   <div class="hero-blue"></div>
 
@@ -1004,6 +1016,7 @@ footer {
   <div class="hero-yellow"></div>
 
   <div class="hero-content">
+
     <div class="eyebrow">
       Digital Production · UX/HCI · Technical Systems
     </div>
@@ -1019,29 +1032,26 @@ footer {
     </div>
 
     <a
-      class="cv"
+      class="cv text-link"
       href="MHall.CV.Eng.pdf"
       target="_blank"
       rel="noopener noreferrer"
     >
-      CV ↗
+      CV <span class="arrow">↗</span>
     </a>
+
   </div>
 
-  <!-- ABOUT -->
+  <!-- ================= ABOUT ================= -->
 
   <div class="about" id="about">
+
     <div class="about-line"></div>
-
-    <div class="about-label">
-      About
-    </div>
-
-    <div class="about-number">
-      01 — ABOUT
-    </div>
+    <div class="about-label">About</div>
+    <div class="about-number">01 — ABOUT</div>
 
     <div class="about-copy">
+
       <p>
         I’m a civil engineer with a background in film and a growing
         obsession with how people interact with technology.
@@ -1061,142 +1071,299 @@ footer {
         and about the difference between how something is supposed to work
         and how it actually works in the real world.
       </p>
+
     </div>
   </div>
+
 </section>
 
-<!-- SELECTED WORK -->
+<!-- ================= SELECTED WORK ================= -->
 
 <section class="work" id="work">
+
   <div class="work-line"></div>
-
-  <div class="work-label">
-    Selected Work
-  </div>
-
-  <div class="work-intro">
-    Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    Integer vitae justo at libero tincidunt.
-  </div>
-
-  <div class="work-number">
-    02 — SELECTED WORK
-  </div>
+  <div class="work-label">Selected Work</div>
+  <div class="work-number">02 — SELECTED WORK</div>
 
   <div class="work-grid">
 
-    <!-- AI READING TUTOR -->
+    <!-- ACADEMIC WORKS -->
 
-    <article class="card">
+    <article class="card academic">
+
       <span class="card-number">
-        01 / UX · HCI · AI
+        / ACADEMICS
       </span>
 
-      <h3>AI Reading Tutor</h3>
+      <h3>Academic Works</h3>
 
-      <p>
-        An interactive reading comprehension prototype using
-        cursor tracking and simulated AI feedback.
-      </p>
+      <div class="card-subtitle">
+        Research, technology and human behaviour.
+      </div>
 
-<a class="demo-link" href="Readingcomprehensionapp-main/" target="_blank" rel="noopener noreferrer">Try the demo ↗</a>
-    </article>
+      <div class="card-content">
 
-    <!-- SECOND CARD -->
+        <p>
+          My academic work reflects a growing interest in the
+          relationship between people, technology and design.
+          My early research explored how colour grading shapes
+          the perception of genre in film, followed by a
+          technical study of how real-world environments affect
+          wireless video transmission on film sets.
 
-    <article class="card">
-      <span class="card-number">
-        01 / LOREM
-      </span>
+          Most recently, my Master's thesis shifted the focus
+          towards Human–Computer Interaction, examining how
+          deceptive interface designs used in Swedish political
+          communication and how design choices can influence
+          perception and behaviour.
 
-      <h3>Lorem ipsum</h3>
+          Together, these projects trace a path from film and
+          visual perception, through technology, to user
+          experience and human behaviour.
+        </p>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Vestibulum ante ipsum primis in faucibus orci luctus et
-        ultrices posuere cubilia curae.
-      </p>
+        <div class="card-links">
+
+          <span class="text-link">
+            2025 — MSc thesis: Deceptive by Design
+          </span>
+
+          <span class="text-link">
+            2023 — BSc thesis: Life is like a Boxx
+          </span>
+
+          <span class="text-link">
+            2014 — BSc thesis: True Colors
+          </span>
+
+        </div>
+
+      </div>
     </article>
 
     <!-- PUBLISHED WORK -->
 
-    <article class="card">
+    <article class="card published">
+
       <span class="card-number">
-        02 / IPSUM
+        / UX
       </span>
 
       <h3>Published Work</h3>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Integer vitae justo at libero tincidunt consequat.
-      </p>
+      <div class="card-subtitle">
+        Research and published contributions.
+      </div>
+
+      <div class="card-content">
+
+        <p>
+          Research at the intersection of
+          human–computer interaction, learning and technology,
+          with a focus on how interactive tools can support
+          reading comprehension.
+        </p>
+
+        <div class="card-links">
+
+          <a
+            class="text-link"
+            href="https://link.springer.com/chapter/10.1007/978-3-032-37979-5_18"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Read the article
+            <span class="arrow">↗</span>
+          </a>
+
+          <a
+            class="text-link"
+            href="Readingcomprehensionapp-main/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Try the demo
+            <span class="arrow">↗</span>
+          </a>
+
+        </div>
+
+      </div>
     </article>
 
-    <!-- FILM WORK -->
+    <!-- AI READING TUTOR -->
 
-    <article class="card">
+    <article class="card reading">
+
       <span class="card-number">
-        02 / IPSUM
+        / UX · HCI · AI
       </span>
 
-      <h3>Film Work</h3>
+      <h3>AI Reading Tutor</h3>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Integer vitae justo at libero tincidunt consequat.
-      </p>
+      <div class="card-subtitle">
+        An interactive reading comprehension prototype.
+      </div>
+
+      <div class="card-content">
+
+        <p>
+          An interactive reading comprehension prototype
+          using cursor tracking and simulated AI feedback.
+          Explore the reading tasks and experience the
+          interaction design in a browser-based portfolio demo.
+        </p>
+
+        <div class="card-links">
+
+          <a
+            class="text-link"
+            href="Readingcomprehensionapp-main/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Try the demo
+            <span class="arrow">↗</span>
+          </a>
+
+        </div>
+
+      </div>
     </article>
 
-    <!-- MASTER THESIS -->
+    <!-- FILM & TV WORK -->
 
-    <article class="card">
+    <article class="card film with-video">
+
       <span class="card-number">
-        03 / LOREM
+        / MOVING IMAGE PRODUCTION
       </span>
 
-      <h3>Master Thesis</h3>
+      <h3>Film &amp; TV Work</h3>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse potenti. Curabitur euismod erat.
-      </p>
+      <div class="card-subtitle">
+        Selected film and television productions.
+      </div>
+
+      <div class="card-content">
+
+        <p>
+          My work in film and television spans more than a decade,
+          beginning in post-production before moving into technical
+          roles on set. I primarily work with Video Assist / VTR
+          and DIT, combining image workflows, wireless video
+          systems and hands-on problem solving in fast-moving
+          production environments.
+
+          As a freelance Video Assist Operator with Video Assist
+          Sweden, I have worked across feature films, television
+          series and commercial productions, alongside occasional
+          work in the camera department.
+
+          The experience has shaped how I approach technology:
+          practical, collaborative and always focused on how
+          systems actually work for the people using them.
+        </p>
+
+        <div class="card-links">
+
+          <a
+            class="text-link"
+            href="film.html"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            View Film &amp; TV Projects
+            <span class="arrow">↗</span>
+          </a>
+
+          <a
+            class="text-link"
+            href="https://videoassist.se/"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Video Assist Sweden — Crew
+            <span class="arrow">↗</span>
+          </a>
+
+        </div>
+
+      </div>
+
+      <div class="video-strip">
+        <iframe
+          src="film_slide.html"
+          title="Film and television showreel"
+          loading="lazy"
+          tabindex="-1"
+        ></iframe>
+      </div>
+
     </article>
 
-    <!-- COMMERCIAL -->
+    <!-- COMMERCIAL WORK -->
 
-    <article class="card">
+    <article class="card commercial with-video">
+
       <span class="card-number">
-        03 / LOREM
+        / MOVING IMAGE PRODUCTION
       </span>
 
-      <h3>Commercial</h3>
+      <h3>Commercial Work</h3>
 
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Suspendisse potenti. Curabitur euismod erat.
-      </p>
+      <div class="card-subtitle">
+        Selected commercial productions.
+      </div>
+
+      <div class="card-content">
+
+        <p>
+          My work in film and television spans more than a decade,
+          beginning in post-production before moving into technical
+          roles on set. I primarily work with Video Assist / VTR
+          and DIT, combining image workflows, wireless video
+          systems and hands-on problem solving in fast-moving
+          production environments.
+
+          As a freelance Video Assist Operator with Video Assist
+          Sweden, I have worked across feature films, television
+          series and commercial productions, alongside occasional
+          work in the camera department.
+
+          The experience has shaped how I approach technology:
+          practical, collaborative and always focused on how
+          systems actually work for the people using them.
+        </p>
+
+      </div>
+
+      <div class="video-strip">
+        <iframe
+          src="ad_slide.html"
+          title="Commercial video reel"
+          loading="lazy"
+          tabindex="-1"
+        ></iframe>
+      </div>
+
     </article>
 
   </div>
 </section>
 
-<!-- BACKGROUND AND CONTACT -->
+<!-- ================= BACKGROUND ================= -->
 
 <section class="lower">
 
   <div class="background-content">
+
     <div class="background-line"></div>
-
-    <div class="background-label">
-      Background
-    </div>
-
-    <div class="background-number">
-      03 — BACKGROUND
-    </div>
+    <div class="background-label">Background</div>
+    <div class="background-number">03 — BACKGROUND</div>
 
     <div class="background-copy">
+
       <p>
         I’ve spent more than ten years working in film and television,
         starting in post-production before moving into technical roles
@@ -1218,21 +1385,17 @@ footer {
         and technology — and about the difference between how something
         is supposed to work and how it actually works in the real world.
       </p>
+
     </div>
   </div>
 
-  <!-- CONTACT -->
+  <!-- ================= CONTACT ================= -->
 
   <div class="contact" id="contact">
+
     <div class="contact-line"></div>
-
-    <div class="contact-label">
-      Contact
-    </div>
-
-    <div class="contact-number">
-      04 — CONTACT
-    </div>
+    <div class="contact-label">Contact</div>
+    <div class="contact-number">04 — CONTACT</div>
 
     <div class="grey-circle"></div>
     <div class="blue-circle"></div>
@@ -1244,6 +1407,7 @@ footer {
     <div class="contact-yellow"></div>
 
     <div class="contact-details">
+
       <a
         class="email"
         href="mailto:malin.hall.eliasson@gmail.com"
@@ -1259,17 +1423,29 @@ footer {
       </a>
 
       <a
-        class="linkedin"
+        class="linkedin text-link"
         href="https://www.linkedin.com/in/malin-hall-9a073a339/"
         target="_blank"
         rel="noopener noreferrer"
       >
-        LinkedIn ↗
+        LinkedIn
+        <span class="arrow">↗</span>
       </a>
+
+      <a
+        class="text-link"
+        href="MHall.CV.Eng.pdf"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        CV
+        <span class="arrow">↗</span>
+      </a>
+
     </div>
   </div>
 
-  <!-- FOOTER -->
+  <!-- ================= FOOTER ================= -->
 
   <footer>
     <span>© 2026 Malin Hall</span>
