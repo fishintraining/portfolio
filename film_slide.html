@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,7 +8,6 @@
   <title>Film Work</title>
 
   <style>
-
     * {
       box-sizing: border-box;
       margin: 0;
@@ -19,55 +19,48 @@
       width: 100%;
       height: 100%;
       overflow: hidden;
-
       background: #000;
       font-family: Arial, sans-serif;
     }
 
-
-    /* ==========================================
+    /* =========================
        PAGE
-    ========================================== */
+    ========================= */
 
     .page {
-      width: 100vw;
-      height: 100vh;
-
+      width: 100%;
+      height: 100%;
       display: flex;
       flex-direction: column;
       justify-content: center;
-
       overflow: hidden;
       background: #000;
     }
 
-
-    /* ==========================================
+    /* =========================
        TITLE
-    ========================================== */
+    ========================= */
 
     .title {
-      margin-left: 6vw;
-      margin-bottom: 35px;
-
+      width: min(1500px, 100%);
+      margin: 0 auto 35px;
       font-size: clamp(16px, 1.2vw, 24px);
       font-weight: 500;
-
       letter-spacing: 0.08em;
       text-transform: uppercase;
-
       color: #fff;
     }
 
-
-    /* ==========================================
-       VIDEO WINDOW + SIDE FADES
-    ========================================== */
+    /* =========================
+       VIDEO WINDOW + FADE
+    ========================= */
 
     .reel-window {
       position: relative;
-
-      width: 100%;
+      width: 1500px;
+      max-width: 100%;
+      height: 225px;
+      margin: 0 auto;
       overflow: hidden;
 
       -webkit-mask-image: linear-gradient(
@@ -87,78 +80,59 @@
       );
     }
 
-
-    /* ==========================================
+    /* =========================
        MOVING REEL
-    ========================================== */
+    ========================= */
 
     .reel {
       display: flex;
       width: max-content;
-
+      height: 225px;
       animation: scroll 120s linear infinite;
-
       will-change: transform;
     }
-
 
     .reel:hover {
       animation-play-state: paused;
     }
 
-
-    /* ==========================================
-       VIDEO GROUP
-    ========================================== */
-
     .reel-group {
       display: flex;
+      height: 225px;
       gap: 0;
       padding: 0;
     }
 
-
-    /* ==========================================
-       VIDEO
-    ========================================== */
+    /* =========================
+       VIDEOS
+    ========================= */
 
     .video-card {
       position: relative;
-
-      width: 560px;
+      width: 400px;
+      height: 225px;
       aspect-ratio: 16 / 9;
-
       flex-shrink: 0;
-
       overflow: hidden;
-
       background: #000;
-
       border: 0;
       border-radius: 0;
     }
 
-
     .video-card iframe {
       position: absolute;
-
       inset: 0;
-
       width: 100%;
       height: 100%;
-
       border: 0;
-
       pointer-events: none;
     }
 
-
-    /* ==========================================
+    /* =========================
        INFINITE MOVEMENT
-    ========================================== */
+    ========================= */
 
     @keyframes scroll {
-
       from {
         transform: translateX(0);
       }
@@ -166,26 +140,19 @@
       to {
         transform: translateX(-50%);
       }
-
     }
 
-
-    /* ==========================================
+    /* =========================
        MOBILE
-    ========================================== */
+    ========================= */
 
     @media (max-width: 900px) {
-
-      .video-card {
-        width: 70vw;
-      }
 
       .reel {
         animation-duration: 100s;
       }
 
       .reel-window {
-
         -webkit-mask-image: linear-gradient(
           to right,
           transparent 0%,
@@ -201,37 +168,81 @@
           black 93%,
           transparent 100%
         );
-
       }
+    }
 
+    /* =========================
+       COMPACT MODE
+       Used when embedded in portfolio
+    ========================= */
+
+    body.compact .page {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    body.compact .title {
+      display: none;
+    }
+
+    body.compact .reel-window {
+      width: 1500px;
+      max-width: 100%;
+      height: 225px;
+      margin: 0 auto;
+    }
+
+    body.compact .reel {
+      height: 225px;
+    }
+
+    body.compact .reel-group {
+      height: 225px;
+    }
+
+    body.compact .video-card {
+      width: 400px;
+      height: 225px;
+      aspect-ratio: 16 / 9;
+    }
+
+    body.compact .reel:hover {
+      animation-play-state: running;
     }
 
   </style>
 </head>
 
-
 <body>
 
-  <main class="page">
+  <script>
+    if (
+      new URLSearchParams(window.location.search)
+        .get("mode") === "compact"
+    ) {
+      document.body.classList.add("compact");
+    }
+  </script>
 
+  <main class="page">
 
     <div class="title">
       Film & Television Work
     </div>
 
-
     <div class="reel-window">
 
       <div class="reel">
 
-
-        <!-- ==================================================
+        <!-- =========================
              FIRST GROUP
-        =================================================== -->
+        ========================= -->
 
         <div class="reel-group">
 
-
           <!-- FARTBLINDA -->
           <div class="video-card">
             <iframe
@@ -239,7 +250,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- JJ+E / VINTERVIKEN -->
           <div class="video-card">
@@ -249,7 +259,6 @@
             </iframe>
           </div>
 
-
           <!-- I DINA HÄNDER / DELIVER ME -->
           <div class="video-card">
             <iframe
@@ -257,7 +266,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- PARADIS CITY -->
           <div class="video-card">
@@ -267,7 +275,6 @@
             </iframe>
           </div>
 
-
           <!-- BARRACUDA QUEENS -->
           <div class="video-card">
             <iframe
@@ -275,7 +282,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- BERTS DAGBOK -->
           <div class="video-card">
@@ -285,7 +291,6 @@
             </iframe>
           </div>
 
-
           <!-- DYSTOPIA -->
           <div class="video-card">
             <iframe
@@ -293,7 +298,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- KONFERENSEN / THE CONFERENCE -->
           <div class="video-card">
@@ -303,7 +307,6 @@
             </iframe>
           </div>
 
-
           <!-- STORM PÅ LUGNA GATAN -->
           <div class="video-card">
             <iframe
@@ -311,7 +314,6 @@
               allow="autoplay; encrypted-media">
             </iframe>
           </div>
-
 
           <!-- HASSEL -->
           <div class="video-card">
@@ -321,7 +323,6 @@
             </iframe>
           </div>
 
-
           <!-- EXTRA FILM / SERIES CLIP -->
           <div class="video-card">
             <iframe
@@ -330,19 +331,15 @@
             </iframe>
           </div>
 
-
         </div>
 
-
-
-        <!-- ==================================================
+        <!-- =========================
              SECOND IDENTICAL GROUP
-             Creates the seamless infinite loop
-        =================================================== -->
+             Creates the seamless loop
+        ========================= -->
 
         <div class="reel-group" aria-hidden="true">
 
-
           <!-- FARTBLINDA -->
           <div class="video-card">
             <iframe
@@ -350,7 +347,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- JJ+E / VINTERVIKEN -->
           <div class="video-card">
@@ -360,7 +356,6 @@
             </iframe>
           </div>
 
-
           <!-- I DINA HÄNDER / DELIVER ME -->
           <div class="video-card">
             <iframe
@@ -368,7 +363,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- PARADIS CITY -->
           <div class="video-card">
@@ -378,7 +372,6 @@
             </iframe>
           </div>
 
-
           <!-- BARRACUDA QUEENS -->
           <div class="video-card">
             <iframe
@@ -386,7 +379,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- BERTS DAGBOK -->
           <div class="video-card">
@@ -396,7 +388,6 @@
             </iframe>
           </div>
 
-
           <!-- DYSTOPIA -->
           <div class="video-card">
             <iframe
@@ -404,7 +395,6 @@
               allow="autoplay; fullscreen">
             </iframe>
           </div>
-
 
           <!-- KONFERENSEN / THE CONFERENCE -->
           <div class="video-card">
@@ -414,7 +404,6 @@
             </iframe>
           </div>
 
-
           <!-- STORM PÅ LUGNA GATAN -->
           <div class="video-card">
             <iframe
@@ -422,7 +411,6 @@
               allow="autoplay; encrypted-media">
             </iframe>
           </div>
-
 
           <!-- HASSEL -->
           <div class="video-card">
@@ -432,7 +420,6 @@
             </iframe>
           </div>
 
-
           <!-- EXTRA FILM / SERIES CLIP -->
           <div class="video-card">
             <iframe
@@ -441,14 +428,10 @@
             </iframe>
           </div>
 
-
         </div>
 
-
       </div>
-
     </div>
-
 
   </main>
 
