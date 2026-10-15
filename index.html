@@ -86,11 +86,11 @@ nav a:hover {
   opacity: .65;
 }
 
-/* ================= LINK STYLE ================= */
+/* ================= MINIMAL LINKS ================= */
 
 .text-link {
   display: inline-flex;
-  align-items: center;
+  align-items: baseline;
   gap: .4em;
   width: fit-content;
   color: white;
@@ -106,7 +106,7 @@ nav a:hover {
 
 .text-link .arrow {
   display: inline-block;
-  font-size: 1.1em;
+  font-size: 1.05em;
   transition: transform .2s ease;
 }
 
@@ -297,7 +297,7 @@ nav a:hover {
 
 .about-number {
   top: 21.9%;
-  color: var(--blue);
+  color: var(--light);
 }
 
 .about-copy {
@@ -439,7 +439,7 @@ nav a:hover {
 /* ================= VIDEO STRIPS ================= */
 
 .card.with-video {
-  min-height: 30vw;
+  min-height: 25vw;
   padding-bottom: 0;
   grid-template-rows: auto 1fr auto auto;
 }
@@ -453,17 +453,21 @@ nav a:hover {
   grid-column: 1 / -1;
   grid-row: 4;
   width: calc(100% + 4vw);
-  height: 11vw;
-  margin: 2.2vw -2vw 0;
+  height: 6.5vw;
+  margin: 2vw -2vw 0;
   overflow: hidden;
-  background: #121512;
+  background: #101010;
 }
 
 .video-strip iframe {
+  position: absolute;
   display: block;
+  left: 50%;
+  top: -4vw;
   width: 100%;
-  height: 100%;
+  height: 15vw;
   border: none;
+  transform: translateX(-50%);
   pointer-events: none;
 }
 
@@ -474,10 +478,10 @@ nav a:hover {
   pointer-events: none;
   background: linear-gradient(
     90deg,
-    rgba(0,0,0,.3),
+    rgba(0,0,0,.25),
     transparent 12%,
     transparent 88%,
-    rgba(0,0,0,.3)
+    rgba(0,0,0,.25)
   );
 }
 
@@ -569,6 +573,8 @@ nav a:hover {
   top: 38.8%;
 }
 
+/* Transparent blue outer circle */
+
 .grey-circle {
   position: absolute;
   z-index: 1;
@@ -577,8 +583,10 @@ nav a:hover {
   width: 57.3vw;
   height: 57.3vw;
   border-radius: 50%;
-  background: var(--grey);
+  background: rgba(67,96,133,.72);
 }
+
+/* Transparent golden inner circle */
 
 .blue-circle {
   position: absolute;
@@ -588,7 +596,7 @@ nav a:hover {
   width: 52.08vw;
   height: 52.08vw;
   border-radius: 50%;
-  background: var(--blue);
+  background: rgba(244,175,33,.48);
 }
 
 .contact-heading {
@@ -871,8 +879,14 @@ footer {
   .video-strip {
     flex: none;
     width: calc(100% + 48px);
-    height: 140px;
+    height: 100px;
     margin: 5px -24px 0;
+  }
+
+  .video-strip iframe {
+    top: -50px;
+    width: 100%;
+    height: 240px;
   }
 
   .lower {
@@ -1126,14 +1140,17 @@ footer {
 
           <span class="text-link">
             2025 — MSc thesis: Deceptive by Design
+            <span class="arrow">↗</span>
           </span>
 
           <span class="text-link">
             2023 — BSc thesis: Life is like a Boxx
+            <span class="arrow">↗</span>
           </span>
 
           <span class="text-link">
             2014 — BSc thesis: True Colors
+            <span class="arrow">↗</span>
           </span>
 
         </div>
