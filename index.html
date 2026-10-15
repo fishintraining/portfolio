@@ -1,1259 +1,983 @@
-/* =========================================================
-   KORREKT VERSION
-========================================================= */
 
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Malin Hall — Portfolio</title>
-
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-
-:root{
-  --dark:#292B28;
-  --blue:#436085;
-  --yellow:#F4AF21;
-  --light:#E1E1E1;
-  --grey:#C4C5CD;
-  --side:8.333333vw;
+:root {
+  --dark: #292B28;
+  --blue: #436085;
+  --yellow: #F4AF21;
+  --light: #E1E1E1;
+  --grey: #C4C5CD;
+  --side: 8.333333vw;
 }
 
-*{
-  box-sizing:border-box;
-  margin:0;
-  padding:0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
 }
 
-html{
-  scroll-behavior:smooth;
+html {
+  scroll-behavior: smooth;
 }
 
-body{
-  margin:0;
-  background:var(--dark);
-  color:white;
-  font-family:"Manrope",sans-serif;
-  overflow-x:hidden;
+body {
+  margin: 0;
+  background: var(--dark);
+  color: white;
+  font-family: "Manrope", sans-serif;
+  overflow-x: hidden;
 }
 
-a{
-  color:inherit;
-  text-decoration:none;
+a {
+  color: inherit;
+  text-decoration: none;
 }
 
-img{
-  display:block;
+img {
+  display: block;
 }
 
+/* HEADER */
 
-/* =========================================================
-   HEADER
-========================================================= */
-
-header{
-  position:absolute;
-  z-index:100;
-  top:0;
-  left:0;
-
-  width:100%;
-  height:7.2vw;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 5vw;
+header {
+  position: absolute;
+  z-index: 100;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 7.2vw;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
 }
 
-.logo{
-  color:#3A3C39;
-  font-size:.83vw;
-  font-weight:300;
-  letter-spacing:.08em;
-  text-transform:uppercase;
-
-  padding-bottom:.4vw;
-  border-bottom:1px solid #E1E1E1;
+.logo {
+  color: #3A3C39;
+  font-size: .83vw;
+  font-weight: 300;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  padding-bottom: .4vw;
+  border-bottom: 1px solid #E1E1E1;
 }
 
-nav{
-  display:flex;
-  gap:3.6vw;
+nav {
+  display: flex;
+  gap: 3.6vw;
 }
 
-nav a{
-  color:#3A3C39;
-  font-size:.57vw;
-  font-weight:300;
-  letter-spacing:.14em;
-  text-transform:uppercase;
-  text-decoration:underline;
+nav a {
+  color: #3A3C39;
+  font-size: .57vw;
+  font-weight: 300;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  text-decoration: underline;
 }
 
+/* HERO */
 
-/* =========================================================
-   HERO + ABOUT
-
-   Figma hero image is treated as one 1526 / 1920 composition.
-   About sits INSIDE its lower part.
-========================================================= */
-
-.hero{
-  position:relative;
-
-  width:100%;
-  height:79.48vw;
-  max-height:1526px;
-
-  background-image:url("background.png");
-  background-size:cover;
-  background-position:center top;
-  background-repeat:no-repeat;
-
-  overflow:hidden;
+.hero {
+  position: relative;
+  width: 100%;
+  height: 79.48vw;
+  max-height: 1526px;
+  background-image: url("background.png");
+  background-size: cover;
+  background-position: center top;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-
-/* Hero content */
-
-.hero-content{
-  position:absolute;
-  z-index:10;
-
-  left:13%;
-  top:22.38%;
-
-  width:50%;
+.hero-content {
+  position: absolute;
+  z-index: 10;
+  left: 13%;
+  top: 22.38%;
+  width: 50%;
 }
 
-.eyebrow{
-  position:relative;
-
-  margin-bottom:1.3vw;
-  padding-left:3vw;
-
-  color:var(--yellow);
-
-  font-size:.57vw;
-  font-weight:300;
-  line-height:1.5;
-  letter-spacing:.16em;
-  text-transform:uppercase;
+.eyebrow {
+  position: relative;
+  margin-bottom: 1.3vw;
+  padding-left: 3vw;
+  color: var(--yellow);
+  font-size: .57vw;
+  font-weight: 300;
+  line-height: 1.5;
+  letter-spacing: .16em;
+  text-transform: uppercase;
 }
 
-.eyebrow::before{
-  content:"";
-
-  position:absolute;
-  left:0;
-  top:50%;
-
-  width:2.35vw;
-  height:1px;
-
-  background:var(--light);
+.eyebrow::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 50%;
+  width: 2.35vw;
+  height: 1px;
+  background: var(--light);
 }
 
-.hero h1{
-  font-size:7.55vw;
-  line-height:.84;
-  letter-spacing:-.045em;
-  font-weight:500;
+.hero h1 {
+  font-size: 7.55vw;
+  line-height: .84;
+  letter-spacing: -.045em;
+  font-weight: 500;
 }
 
-.hero h1 span{
-  display:block;
+.hero h1 span {
+  display: block;
 }
 
-.hero h1 span:last-child{
-  color:var(--light);
+.hero h1 span:last-child {
+  color: var(--light);
 }
 
-.hero-copy{
-  width:27.5vw;
-
-  margin-top:3.9vw;
-
-  color:var(--light);
-
-  font-size:.78vw;
-  line-height:1.5;
-  font-weight:300;
+.hero-copy {
+  width: 27.5vw;
+  margin-top: 3.9vw;
+  color: var(--light);
+  font-size: .78vw;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
-.hero-copy strong{
-  font-weight:500;
+.hero-copy strong {
+  font-weight: 500;
 }
 
-.cv{
-  display:flex;
-  align-items:center;
-  justify-content:center;
-
-  width:3.66vw;
-  height:2.27vw;
-
-  min-width:60px;
-  min-height:38px;
-
-  margin-top:1.3vw;
-
-  background:var(--yellow);
-  border:1px solid #134623;
-
-  color:#000;
-
-  font-size:.63vw;
-  font-weight:300;
+.cv {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3.66vw;
+  height: 2.27vw;
+  min-width: 60px;
+  min-height: 38px;
+  margin-top: 1.3vw;
+  background: var(--yellow);
+  border: 1px solid #134623;
+  color: #000;
+  font-size: .63vw;
+  font-weight: 300;
 }
 
-
-/* Hero artwork */
-
-.hero-circle{
-  position:absolute;
-  z-index:2;
-
-  left:66.27%;
-  top:16.98%;
-
-  width:40.57vw;
-  height:40.57vw;
-
-  border-radius:50%;
-  background:var(--blue);
+.hero-circle {
+  position: absolute;
+  z-index: 2;
+  left: 66.27%;
+  top: 16.98%;
+  width: 40.57vw;
+  height: 40.57vw;
+  border-radius: 50%;
+  background: var(--blue);
 }
 
-.hero-portrait{
-  position:absolute;
-  z-index:4;
-
-  left:64.37%;
-  top:23.25%;
-
-  width:21.875vw;
-  height:21.875vw;
-
-  object-fit:cover;
-
-  /*
-    Figma screenshot is monochrome.
-    Remove this filter if portrait_malin.png is already B/W.
-  */
-  filter:grayscale(100%);
+.hero-portrait {
+  position: absolute;
+  z-index: 4;
+  left: 64.37%;
+  top: 23.25%;
+  width: 21.875vw;
+  height: 21.875vw;
+  object-fit: cover;
+  filter: grayscale(100%);
 }
 
-.hero-blue{
-  position:absolute;
-  z-index:5;
-
-  left:59.27%;
-  top:16.98%;
-
-  width:3.91vw;
-  height:7.81vw;
-
-  background:var(--blue);
+.hero-blue {
+  position: absolute;
+  z-index: 5;
+  left: 59.27%;
+  top: 16.98%;
+  width: 3.91vw;
+  height: 7.81vw;
+  background: var(--blue);
 }
 
-.hero-yellow{
-  position:absolute;
-  z-index:6;
-
-  left:80.54%;
-  top:44.83%;
-
-  width:8.91vw;
-  height:8.91vw;
-
-  background:rgba(244,175,33,.8);
+.hero-yellow {
+  position: absolute;
+  z-index: 6;
+  left: 80.54%;
+  top: 44.83%;
+  width: 8.91vw;
+  height: 8.91vw;
+  background: rgba(244,175,33,.8);
 }
 
+/* ABOUT */
 
-/* =========================================================
-   ABOUT — embedded in hero
-========================================================= */
-
-.about{
-  position:absolute;
-  z-index:20;
-
-  left:0;
-  bottom:0;
-
-  width:100%;
-  height:29.36%;
-
-  background:
-    linear-gradient(
-      to bottom,
-      rgba(41,43,40,0) 0%,
-      rgba(41,43,40,.22) 18%,
-      rgba(41,43,40,.58) 48%,
-      rgba(41,43,40,.88) 75%,
-      #292B28 100%
-    );
+.about {
+  position: absolute;
+  z-index: 20;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 29.36%;
+  background: linear-gradient(
+    to bottom,
+    rgba(41,43,40,0) 0%,
+    rgba(41,43,40,.22) 18%,
+    rgba(41,43,40,.58) 48%,
+    rgba(41,43,40,.88) 75%,
+    #292B28 100%
+  );
 }
 
-.about-line{
-  position:absolute;
-
-  left:7.8%;
-  top:8.4%;
-
-  width:83.25%;
-  height:1px;
-
-  background:var(--light);
+.about-line {
+  position: absolute;
+  left: 7.8%;
+  top: 8.4%;
+  width: 83.25%;
+  height: 1px;
+  background: var(--light);
 }
 
-.about-label{
-  position:absolute;
-
-  left:8.33%;
-  top:13%;
-
-  color:var(--light);
-
-  font-size:.57vw;
-  font-weight:300;
-  letter-spacing:.14em;
-  text-transform:uppercase;
+.about-label {
+  position: absolute;
+  left: 8.33%;
+  top: 13%;
+  color: var(--light);
+  font-size: .57vw;
+  font-weight: 300;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
-.about-number{
-  position:absolute;
-
-  left:5.45%;
-  top:21.9%;
-
-  transform:rotate(-90deg);
-  transform-origin:top left;
-
-  color:var(--blue);
-
-  font-size:.52vw;
-  font-weight:300;
-  letter-spacing:.15em;
-
-  white-space:nowrap;
+.about-number {
+  position: absolute;
+  left: 5.45%;
+  top: 21.9%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  color: var(--blue);
+  font-size: .52vw;
+  font-weight: 300;
+  letter-spacing: .15em;
+  white-space: nowrap;
 }
 
-.about-copy{
-  position:absolute;
-
-  left:34%;
-  top:13%;
-
-  width:44.7%;
-
-  color:white;
-
-  font-size:.83vw;
-  line-height:1.5;
-  font-weight:300;
+.about-copy {
+  position: absolute;
+  left: 34%;
+  top: 13%;
+  width: 44.7%;
+  color: white;
+  font-size: .83vw;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
-.about-copy p+p{
-  margin-top:1.15vw;
+.about-copy p+p {
+  margin-top: 1.15vw;
 }
 
+/* SELECTED WORK */
 
-/* =========================================================
-   SELECTED WORK
-========================================================= */
-
-.work{
-  position:relative;
-
-  width:100%;
-  height:72.97vw;
-  max-height:1401px;
-
-  background:var(--dark);
+.work {
+  position: relative;
+  width: 100%;
+  height: 72.97vw;
+  max-height: 1401px;
+  background: var(--dark);
 }
 
-.work-line{
-  position:absolute;
-
-  left:7.8%;
-  top:2.65%;
-
-  width:83.25%;
-  height:1px;
-
-  background:var(--light);
+.work-line {
+  position: absolute;
+  left: 7.8%;
+  top: 2.65%;
+  width: 83.25%;
+  height: 1px;
+  background: var(--light);
 }
 
-.work-label{
-  position:absolute;
-
-  left:8.33%;
-  top:4.1%;
-
-  color:var(--light);
-
-  font-size:.57vw;
-  font-weight:300;
-  letter-spacing:.14em;
-  text-transform:uppercase;
+.work-label {
+  position: absolute;
+  left: 8.33%;
+  top: 4.1%;
+  color: var(--light);
+  font-size: .57vw;
+  font-weight: 300;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
-.work-intro{
-  position:absolute;
-
-  left:34%;
-  top:4.1%;
-
-  font-size:.83vw;
-  line-height:1.5;
-  font-weight:300;
+.work-intro {
+  position: absolute;
+  left: 34%;
+  top: 4.1%;
+  font-size: .83vw;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
-.work-number{
-  position:absolute;
-
-  left:5.45%;
-  top:13.2%;
-
-  transform:rotate(-90deg);
-  transform-origin:top left;
-
-  color:var(--light);
-
-  font-size:.52vw;
-  letter-spacing:.15em;
-
-  white-space:nowrap;
+.work-number {
+  position: absolute;
+  left: 5.45%;
+  top: 13.2%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  color: var(--light);
+  font-size: .52vw;
+  letter-spacing: .15em;
+  white-space: nowrap;
 }
 
-
-/* 1600 × 1200 Figma grid */
-
-.work-grid{
-  position:absolute;
-
-  left:8.333%;
-  top:9.71%;
-
-  width:83.333%;
-  height:85.65%;
-
-  display:grid;
-
-  grid-template-columns:1fr 1fr;
-  grid-template-rows:1fr 1fr 1fr;
+.work-grid {
+  position: absolute;
+  left: 8.333%;
+  top: 9.71%;
+  width: 83.333%;
+  height: 85.65%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr 1fr;
 }
 
-.card{
-  position:relative;
-
-  background:var(--blue);
-
-  border:1px solid var(--light);
-
-  overflow:hidden;
+.card {
+  position: relative;
+  background: var(--blue);
+  border: 1px solid var(--light);
+  overflow: hidden;
 }
 
-.card-number{
-  position:absolute;
-
-  left:5.6%;
-  top:12%;
-
-  color:#E9CE05;
-
-  font-size:.52vw;
-  font-weight:300;
-  letter-spacing:.12em;
+.card-number {
+  position: absolute;
+  left: 5.6%;
+  top: 12%;
+  color: #E9CE05;
+  font-size: .52vw;
+  font-weight: 300;
+  letter-spacing: .12em;
 }
 
-.card h3{
-  position:absolute;
-
-  left:5.6%;
-  top:34%;
-
-  color:white;
-
-  font-size:3.1vw;
-  line-height:1;
-  font-weight:400;
-  letter-spacing:-.035em;
+.card h3 {
+  position: absolute;
+  left: 5.6%;
+  top: 34%;
+  color: white;
+  font-size: 3.1vw;
+  line-height: 1;
+  font-weight: 400;
+  letter-spacing: -.035em;
 }
 
-.card p{
-  position:absolute;
-
-  left:5.6%;
-  top:55%;
-
-  width:54%;
-
-  color:rgba(245,244,239,.68);
-
-  font-size:.68vw;
-  line-height:1.5;
-  font-weight:300;
+.card p {
+  position: absolute;
+  left: 5.6%;
+  top: 55%;
+  width: 54%;
+  color: rgba(245,244,239,.68);
+  font-size: .68vw;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
+/* NEW: READING APP DEMO BUTTON */
 
-/* =========================================================
-   BACKGROUND + CONTACT
-
-   One continuous image area.
-========================================================= */
-
-.lower{
-  position:relative;
-
-  width:100%;
-  height:55.94vw;
-  max-height:1074px;
-
-  background-image:url("background.png");
-  background-size:cover;
-  background-position:center 55%;
-  background-repeat:no-repeat;
-
-  overflow:hidden;
+.demo-link {
+  position: absolute;
+  left: 5.6%;
+  bottom: 12%;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: .7vw 1.2vw;
+  background: var(--yellow);
+  color: var(--dark);
+  font-size: .68vw;
+  font-weight: 500;
+  border: 1px solid #134623;
 }
 
-
-/* Dark fade from work into background image */
-
-.lower::before{
-  content:"";
-
-  position:absolute;
-  z-index:1;
-
-  inset:0;
-
-  background:
-    linear-gradient(
-      to bottom,
-      #292B28 0%,
-      rgba(41,43,40,.98) 8%,
-      rgba(41,43,40,.90) 18%,
-      rgba(41,43,40,.68) 30%,
-      rgba(41,43,40,.38) 43%,
-      rgba(41,43,40,.10) 58%,
-      rgba(41,43,40,0) 72%
-    );
-
-  pointer-events:none;
+.demo-link:hover {
+  background: #ffd06b;
 }
 
+/* BACKGROUND */
 
-/* =========================================================
-   BACKGROUND CONTENT
-========================================================= */
-
-.background-content{
-  position:absolute;
-  z-index:5;
-
-  inset:0;
+.lower {
+  position: relative;
+  width: 100%;
+  height: 55.94vw;
+  max-height: 1074px;
+  background-image: url("background.png");
+  background-size: cover;
+  background-position: center 55%;
+  background-repeat: no-repeat;
+  overflow: hidden;
 }
 
-.background-line{
-  position:absolute;
-
-  left:7.8%;
-  top:3.5%;
-
-  width:83.25%;
-  height:1px;
-
-  background:var(--light);
+.lower::before {
+  content: "";
+  position: absolute;
+  z-index: 1;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #292B28 0%,
+    rgba(41,43,40,.98) 8%,
+    rgba(41,43,40,.90) 18%,
+    rgba(41,43,40,.68) 30%,
+    rgba(41,43,40,.38) 43%,
+    rgba(41,43,40,.10) 58%,
+    rgba(41,43,40,0) 72%
+  );
+  pointer-events: none;
 }
 
-.background-label{
-  position:absolute;
-
-  left:8.33%;
-  top:5.5%;
-
-  color:var(--light);
-
-  font-size:.57vw;
-  letter-spacing:.14em;
-  text-transform:uppercase;
+.background-content {
+  position: absolute;
+  z-index: 5;
+  inset: 0;
 }
 
-.background-number{
-  position:absolute;
-
-  left:5.45%;
-  top:14.5%;
-
-  transform:rotate(-90deg);
-  transform-origin:top left;
-
-  color:var(--light);
-
-  font-size:.52vw;
-  letter-spacing:.15em;
-
-  white-space:nowrap;
+.background-line {
+  position: absolute;
+  left: 7.8%;
+  top: 3.5%;
+  width: 83.25%;
+  height: 1px;
+  background: var(--light);
 }
 
-.background-copy{
-  position:absolute;
-
-  left:34%;
-  top:5.5%;
-
-  width:44.7%;
-
-  color:var(--light);
-
-  font-size:.83vw;
-  line-height:1.5;
-  font-weight:300;
+.background-label {
+  position: absolute;
+  left: 8.33%;
+  top: 5.5%;
+  color: var(--light);
+  font-size: .57vw;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
-.background-copy p+p{
-  margin-top:1.15vw;
+.background-number {
+  position: absolute;
+  left: 5.45%;
+  top: 14.5%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  color: var(--light);
+  font-size: .52vw;
+  letter-spacing: .15em;
+  white-space: nowrap;
 }
 
-
-/* =========================================================
-   CONTACT
-
-   Starts inside the background section, as in Figma.
-========================================================= */
-
-.contact{
-  position:absolute;
-  z-index:10;
-
-  left:0;
-  top:22.5%;
-
-  width:100%;
-  height:77.5%;
-
-  overflow:hidden;
+.background-copy {
+  position: absolute;
+  left: 34%;
+  top: 5.5%;
+  width: 44.7%;
+  color: var(--light);
+  font-size: .83vw;
+  line-height: 1.5;
+  font-weight: 300;
 }
 
-.contact-line{
-  position:absolute;
-
-  left:7.8%;
-  top:29%;
-
-  width:83.25%;
-  height:1px;
-
-  background:var(--light);
+.background-copy p+p {
+  margin-top: 1.15vw;
 }
 
-.contact-label{
-  position:absolute;
+/* CONTACT */
 
-  left:8.33%;
-  top:31.2%;
-
-  color:var(--light);
-
-  font-size:.57vw;
-  font-weight:300;
-  letter-spacing:.14em;
-  text-transform:uppercase;
+.contact {
+  position: absolute;
+  z-index: 10;
+  left: 0;
+  top: 22.5%;
+  width: 100%;
+  height: 77.5%;
+  overflow: hidden;
 }
 
-.contact-number{
-  position:absolute;
-
-  left:5.45%;
-  top:38.8%;
-
-  transform:rotate(-90deg);
-  transform-origin:top left;
-
-  color:var(--light);
-
-  font-size:.52vw;
-  letter-spacing:.15em;
-
-  white-space:nowrap;
+.contact-line {
+  position: absolute;
+  left: 7.8%;
+  top: 29%;
+  width: 83.25%;
+  height: 1px;
+  background: var(--light);
 }
 
-
-/* Circles */
-
-.grey-circle{
-  position:absolute;
-  z-index:1;
-
-  left:49.43%;
-  top:4%;
-
-  width:57.3vw;
-  height:57.3vw;
-
-  border-radius:50%;
-
-  background:var(--grey);
+.contact-label {
+  position: absolute;
+  left: 8.33%;
+  top: 31.2%;
+  color: var(--light);
+  font-size: .57vw;
+  font-weight: 300;
+  letter-spacing: .14em;
+  text-transform: uppercase;
 }
 
-.blue-circle{
-  position:absolute;
-  z-index:2;
-
-  left:53.77%;
-  top:13.5%;
-
-  width:52.08vw;
-  height:52.08vw;
-
-  border-radius:50%;
-
-  background:var(--blue);
+.contact-number {
+  position: absolute;
+  left: 5.45%;
+  top: 38.8%;
+  transform: rotate(-90deg);
+  transform-origin: top left;
+  color: var(--light);
+  font-size: .52vw;
+  letter-spacing: .15em;
+  white-space: nowrap;
 }
 
-
-/* Contact title */
-
-.contact-heading{
-  position:absolute;
-  z-index:5;
-
-  left:9.67%;
-  top:43%;
+.grey-circle {
+  position: absolute;
+  z-index: 1;
+  left: 49.43%;
+  top: 4%;
+  width: 57.3vw;
+  height: 57.3vw;
+  border-radius: 50%;
+  background: var(--grey);
 }
 
-.contact-heading::before{
-  content:"";
-
-  display:block;
-
-  width:2.35vw;
-  height:1px;
-
-  margin-bottom:1.7vw;
-
-  background:var(--light);
+.blue-circle {
+  position: absolute;
+  z-index: 2;
+  left: 53.77%;
+  top: 13.5%;
+  width: 52.08vw;
+  height: 52.08vw;
+  border-radius: 50%;
+  background: var(--blue);
 }
 
-.contact-heading h2{
-  color:var(--light);
-
-  font-size:6.25vw;
-  line-height:.88;
-  font-weight:500;
-  letter-spacing:-.045em;
+.contact-heading {
+  position: absolute;
+  z-index: 5;
+  left: 9.67%;
+  top: 43%;
 }
 
-.contact-yellow{
-  position:absolute;
-  z-index:6;
-
-  left:31.6%;
-  top:55%;
-
-  width:2.6vw;
-  height:5.21vw;
-
-  background:rgba(244,175,33,.8);
+.contact-heading::before {
+  content: "";
+  display: block;
+  width: 2.35vw;
+  height: 1px;
+  margin-bottom: 1.7vw;
+  background: var(--light);
 }
 
-
-/* Details */
-
-.contact-details{
-  position:absolute;
-  z-index:8;
-
-  left:63.8%;
-  top:47%;
+.contact-heading h2 {
+  color: var(--light);
+  font-size: 6.25vw;
+  line-height: .88;
+  font-weight: 500;
+  letter-spacing: -.045em;
 }
 
-.email{
-  display:block;
-
-  margin-bottom:1.15vw;
-
-  color:white;
-
-  font-size:1.67vw;
-  line-height:1;
-  font-weight:400;
-
-  white-space:nowrap;
+.contact-yellow {
+  position: absolute;
+  z-index: 6;
+  left: 31.6%;
+  top: 55%;
+  width: 2.6vw;
+  height: 5.21vw;
+  background: rgba(244,175,33,.8);
 }
 
-.phone{
-  display:block;
-
-  margin-bottom:1vw;
-
-  color:white;
-
-  font-size:1.04vw;
-  line-height:1;
-  font-weight:400;
+.contact-details {
+  position: absolute;
+  z-index: 8;
+  left: 63.8%;
+  top: 47%;
 }
 
-.linkedin{
-  display:inline-flex;
-  align-items:center;
-
-  height:2.3vw;
-  min-height:40px;
-
-  padding:0 1.1vw;
-
-  background:var(--yellow);
-  border:1px solid #134623;
-
-  color:#3A3C39;
-
-  font-size:1.25vw;
-  font-weight:400;
+.email {
+  display: block;
+  margin-bottom: 1.15vw;
+  color: white;
+  font-size: 1.67vw;
+  line-height: 1;
+  font-weight: 400;
+  white-space: nowrap;
 }
 
-
-/* =========================================================
-   FOOTER
-========================================================= */
-
-footer{
-  position:absolute;
-  z-index:30;
-
-  left:0;
-  bottom:0;
-
-  width:100%;
-  height:3.39vw;
-  min-height:55px;
-
-  display:flex;
-  align-items:center;
-  justify-content:space-between;
-
-  padding:0 5vw;
-
-  background:var(--dark);
-
-  color:rgba(245,244,239,.55);
-
-  font-size:.52vw;
-  font-weight:300;
+.phone {
+  display: block;
+  margin-bottom: 1vw;
+  color: white;
+  font-size: 1.04vw;
+  line-height: 1;
+  font-weight: 400;
 }
 
+.linkedin {
+  display: inline-flex;
+  align-items: center;
+  height: 2.3vw;
+  min-height: 40px;
+  padding: 0 1.1vw;
+  background: var(--yellow);
+  border: 1px solid #134623;
+  color: #3A3C39;
+  font-size: 1.25vw;
+  font-weight: 400;
+}
 
-/* =========================================================
-   VERY LARGE SCREENS
+/* FOOTER */
 
-   Stop the composition growing past Figma's 1920px canvas.
-========================================================= */
+footer {
+  position: absolute;
+  z-index: 30;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 3.39vw;
+  min-height: 55px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 5vw;
+  background: var(--dark);
+  color: rgba(245,244,239,.55);
+  font-size: .52vw;
+  font-weight: 300;
+}
 
-@media (min-width:1920px){
+/* VERY LARGE SCREENS */
 
+@media (min-width:1920px) {
   .hero,
   .work,
-  .lower{
-    max-width:1920px;
-    margin-left:auto;
-    margin-right:auto;
+  .lower {
+    max-width: 1920px;
+    margin-left: auto;
+    margin-right: auto;
   }
-
 }
 
+/* MOBILE */
 
-/* =========================================================
-   MOBILE
-
-   Separate responsive layout.
-========================================================= */
-
-@media (max-width:760px){
-
-  header{
-    height:70px;
-    padding:0 22px;
+@media (max-width:760px) {
+  header {
+    height: 70px;
+    padding: 0 22px;
   }
 
-  .logo{
-    font-size:9px;
-    color:var(--light);
+  .logo {
+    font-size: 9px;
+    color: var(--light);
   }
 
-  nav{
-    gap:14px;
+  nav {
+    gap: 14px;
   }
 
-  nav a{
-    font-size:8px;
-    color:var(--light);
+  nav a {
+    font-size: 8px;
+    color: var(--light);
   }
 
-
-  /* HERO */
-
-  .hero{
-    height:930px;
-    max-height:none;
-
-    background-size:auto 930px;
-    background-position:center top;
+  .hero {
+    height: 930px;
+    max-height: none;
+    background-size: auto 930px;
+    background-position: center top;
   }
 
-  .hero-content{
-    left:25px;
-    top:170px;
-
-    width:calc(100% - 50px);
+  .hero-content {
+    left: 25px;
+    top: 170px;
+    width: calc(100% - 50px);
   }
 
-  .eyebrow{
-    padding-left:55px;
-
-    font-size:9px;
+  .eyebrow {
+    padding-left: 55px;
+    font-size: 9px;
   }
 
-  .eyebrow::before{
-    width:42px;
+  .eyebrow::before {
+    width: 42px;
   }
 
-  .hero h1{
-    margin-top:25px;
-
-    font-size:76px;
-    line-height:.82;
+  .hero h1 {
+    margin-top: 25px;
+    font-size: 76px;
+    line-height: .82;
   }
 
-  .hero-copy{
-    width:75%;
-
-    margin-top:40px;
-
-    font-size:13px;
+  .hero-copy {
+    width: 75%;
+    margin-top: 40px;
+    font-size: 13px;
   }
 
-  .cv{
-    width:68px;
-    height:42px;
-
-    margin-top:20px;
-
-    font-size:12px;
+  .cv {
+    width: 68px;
+    height: 42px;
+    margin-top: 20px;
+    font-size: 12px;
   }
 
-  .hero-circle{
-    left:45%;
-    top:500px;
-
-    width:500px;
-    height:500px;
+  .hero-circle {
+    left: 45%;
+    top: 500px;
+    width: 500px;
+    height: 500px;
   }
 
-  .hero-portrait{
-    left:55%;
-    top:565px;
-
-    width:245px;
-    height:245px;
+  .hero-portrait {
+    left: 55%;
+    top: 565px;
+    width: 245px;
+    height: 245px;
   }
 
-  .hero-blue{
-    left:48%;
-    top:520px;
-
-    width:50px;
-    height:100px;
+  .hero-blue {
+    left: 48%;
+    top: 520px;
+    width: 50px;
+    height: 100px;
   }
 
-  .hero-yellow{
-    left:74%;
-    top:720px;
-
-    width:100px;
-    height:100px;
+  .hero-yellow {
+    left: 74%;
+    top: 720px;
+    width: 100px;
+    height: 100px;
   }
 
-
-  /* ABOUT */
-
-  .about{
-    height:330px;
+  .about {
+    height: 330px;
   }
 
-  .about-line{
-    left:25px;
-    width:calc(100% - 50px);
+  .about-line {
+    left: 25px;
+    width: calc(100% - 50px);
   }
 
-  .about-label{
-    left:25px;
-    top:14%;
-
-    font-size:10px;
+  .about-label {
+    left: 25px;
+    top: 14%;
+    font-size: 10px;
   }
 
-  .about-number{
-    display:none;
+  .about-number {
+    display: none;
   }
 
-  .about-copy{
-    left:25px;
-    top:25%;
-
-    width:calc(100% - 50px);
-
-    font-size:12px;
-    line-height:1.45;
+  .about-copy {
+    left: 25px;
+    top: 25%;
+    width: calc(100% - 50px);
+    font-size: 12px;
+    line-height: 1.45;
   }
 
-  .about-copy p+p{
-    margin-top:12px;
+  .about-copy p+p {
+    margin-top: 12px;
   }
 
-
-  /* WORK */
-
-  .work{
-    height:auto;
-    max-height:none;
-
-    padding:90px 25px 70px;
+  .work {
+    height: auto;
+    max-height: none;
+    padding: 90px 25px 70px;
   }
 
-  .work-line{
-    left:25px;
-    top:35px;
-
-    width:calc(100% - 50px);
+  .work-line {
+    left: 25px;
+    top: 35px;
+    width: calc(100% - 50px);
   }
 
-  .work-label{
-    left:25px;
-    top:52px;
-
-    font-size:10px;
+  .work-label {
+    left: 25px;
+    top: 52px;
+    font-size: 10px;
   }
 
-  .work-intro{
-    position:relative;
-
-    left:0;
-    top:0;
-
-    width:100%;
-
-    margin-bottom:35px;
-
-    font-size:12px;
+  .work-intro {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    margin-bottom: 35px;
+    font-size: 12px;
   }
 
-  .work-number{
-    display:none;
+  .work-number {
+    display: none;
   }
 
-  .work-grid{
-    position:relative;
-
-    left:0;
-    top:0;
-
-    width:100%;
-    height:auto;
-
-    display:grid;
-    grid-template-columns:1fr;
-    grid-template-rows:none;
+  .work-grid {
+    position: relative;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: auto;
+    display: grid;
+    grid-template-columns: 1fr;
+    grid-template-rows: none;
   }
 
-  .card{
-    height:300px;
+  .card {
+    height: 300px;
   }
 
-  .card-number{
-    left:25px;
-    top:30px;
-
-    font-size:9px;
+  .card-number {
+    left: 25px;
+    top: 30px;
+    font-size: 9px;
   }
 
-  .card h3{
-    left:25px;
-    top:115px;
-
-    font-size:38px;
+  .card h3 {
+    left: 25px;
+    top: 115px;
+    font-size: 38px;
   }
 
-  .card p{
-    left:25px;
-    top:175px;
-
-    width:80%;
-
-    font-size:11px;
+  .card p {
+    left: 25px;
+    top: 175px;
+    width: 80%;
+    font-size: 11px;
   }
 
+  /* READING APP BUTTON ON MOBILE */
 
-  /* LOWER */
-
-  .lower{
-    height:1050px;
-    max-height:none;
-
-    background-size:auto 1050px;
-    background-position:center bottom;
+  .demo-link {
+    left: 25px;
+    bottom: 25px;
+    padding: 12px 16px;
+    font-size: 12px;
   }
 
-  .background-line{
-    left:25px;
-    top:35px;
-
-    width:calc(100% - 50px);
+  .lower {
+    height: 1050px;
+    max-height: none;
+    background-size: auto 1050px;
+    background-position: center bottom;
   }
 
-  .background-label{
-    left:25px;
-    top:52px;
-
-    font-size:10px;
+  .background-line {
+    left: 25px;
+    top: 35px;
+    width: calc(100% - 50px);
   }
 
-  .background-number{
-    display:none;
+  .background-label {
+    left: 25px;
+    top: 52px;
+    font-size: 10px;
   }
 
-  .background-copy{
-    left:25px;
-    top:90px;
-
-    width:calc(100% - 50px);
-
-    font-size:12px;
+  .background-number {
+    display: none;
   }
 
-  .background-copy p+p{
-    margin-top:12px;
+  .background-copy {
+    left: 25px;
+    top: 90px;
+    width: calc(100% - 50px);
+    font-size: 12px;
   }
 
-
-  /* CONTACT */
-
-  .contact{
-    top:430px;
-    height:620px;
+  .background-copy p+p {
+    margin-top: 12px;
   }
 
-  .contact-line{
-    left:25px;
-    top:70px;
-
-    width:calc(100% - 50px);
+  .contact {
+    top: 430px;
+    height: 620px;
   }
 
-  .contact-label{
-    left:25px;
-    top:88px;
-
-    font-size:10px;
+  .contact-line {
+    left: 25px;
+    top: 70px;
+    width: calc(100% - 50px);
   }
 
-  .contact-number{
-    display:none;
+  .contact-label {
+    left: 25px;
+    top: 88px;
+    font-size: 10px;
   }
 
-  .grey-circle{
-    left:43%;
-    top:150px;
-
-    width:600px;
-    height:600px;
+  .contact-number {
+    display: none;
   }
 
-  .blue-circle{
-    left:51%;
-    top:180px;
-
-    width:550px;
-    height:550px;
+  .grey-circle {
+    left: 43%;
+    top: 150px;
+    width: 600px;
+    height: 600px;
   }
 
-  .contact-heading{
-    left:25px;
-    top:170px;
+  .blue-circle {
+    left: 51%;
+    top: 180px;
+    width: 550px;
+    height: 550px;
   }
 
-  .contact-heading::before{
-    width:45px;
-
-    margin-bottom:20px;
+  .contact-heading {
+    left: 25px;
+    top: 170px;
   }
 
-  .contact-heading h2{
-    font-size:65px;
+  .contact-heading::before {
+    width: 45px;
+    margin-bottom: 20px;
   }
 
-  .contact-yellow{
-    left:215px;
-    top:245px;
-
-    width:35px;
-    height:70px;
+  .contact-heading h2 {
+    font-size: 65px;
   }
 
-  .contact-details{
-    left:25px;
-    top:365px;
+  .contact-yellow {
+    left: 215px;
+    top: 245px;
+    width: 35px;
+    height: 70px;
   }
 
-  .email{
-    font-size:16px;
-
-    margin-bottom:12px;
+  .contact-details {
+    left: 25px;
+    top: 365px;
   }
 
-  .phone{
-    font-size:14px;
-
-    margin-bottom:15px;
+  .email {
+    font-size: 16px;
+    margin-bottom: 12px;
   }
 
-  .linkedin{
-    height:40px;
-
-    padding:0 15px;
-
-    font-size:16px;
+  .phone {
+    font-size: 14px;
+    margin-bottom: 15px;
   }
 
-  footer{
-    height:55px;
-
-    padding:0 25px;
-
-    font-size:8px;
+  .linkedin {
+    height: 40px;
+    padding: 0 15px;
+    font-size: 16px;
   }
 
+  footer {
+    height: 55px;
+    padding: 0 25px;
+    font-size: 8px;
+  }
 }
-
 </style>
 </head>
 
-
 <body>
 
-
 <header>
-
   <a href="#" class="logo">
     MH / PORTFOLIO
   </a>
@@ -1263,19 +987,12 @@ footer{
     <a href="#work">Work</a>
     <a href="#contact">Contact</a>
   </nav>
-
 </header>
 
-
-
-<!-- ======================================================
-     HERO
-======================================================= -->
+<!-- HERO -->
 
 <section class="hero">
-
   <div class="hero-circle"></div>
-
   <div class="hero-blue"></div>
 
   <img
@@ -1286,9 +1003,7 @@ footer{
 
   <div class="hero-yellow"></div>
 
-
   <div class="hero-content">
-
     <div class="eyebrow">
       Digital Production · UX/HCI · Technical Systems
     </div>
@@ -1311,17 +1026,11 @@ footer{
     >
       CV ↗
     </a>
-
   </div>
 
-
-
-  <!-- ====================================================
-       ABOUT — intentionally inside Hero
-  ===================================================== -->
+  <!-- ABOUT -->
 
   <div class="about" id="about">
-
     <div class="about-line"></div>
 
     <div class="about-label">
@@ -1333,7 +1042,6 @@ footer{
     </div>
 
     <div class="about-copy">
-
       <p>
         I’m a civil engineer with a background in film and a growing
         obsession with how people interact with technology.
@@ -1353,21 +1061,13 @@ footer{
         and about the difference between how something is supposed to work
         and how it actually works in the real world.
       </p>
-
     </div>
-
   </div>
-
 </section>
 
-
-
-<!-- ======================================================
-     SELECTED WORK
-======================================================= -->
+<!-- SELECTED WORK -->
 
 <section class="work" id="work">
-
   <div class="work-line"></div>
 
   <div class="work-label">
@@ -1383,12 +1083,35 @@ footer{
     02 — SELECTED WORK
   </div>
 
-
   <div class="work-grid">
 
+    <!-- AI READING TUTOR -->
 
     <article class="card">
+      <span class="card-number">
+        01 / UX · HCI · AI
+      </span>
 
+      <h3>AI Reading Tutor</h3>
+
+      <p>
+        An interactive reading comprehension prototype using
+        cursor tracking and simulated AI feedback.
+      </p>
+
+      <a
+        class="demo-link"
+        href="reading-app/"
+        target="_blank"
+        rel="noopener noreferrer"
+      >
+        Try the demo ↗
+      </a>
+    </article>
+
+    <!-- SECOND CARD -->
+
+    <article class="card">
       <span class="card-number">
         01 / LOREM
       </span>
@@ -1400,29 +1123,11 @@ footer{
         Vestibulum ante ipsum primis in faucibus orci luctus et
         ultrices posuere cubilia curae.
       </p>
-
     </article>
 
+    <!-- PUBLISHED WORK -->
 
     <article class="card">
-
-      <span class="card-number">
-        01 / LOREM
-      </span>
-
-      <h3>Lorem ipsum</h3>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-        Vestibulum ante ipsum primis in faucibus orci luctus et
-        ultrices posuere cubilia curae.
-      </p>
-
-    </article>
-
-
-    <article class="card">
-
       <span class="card-number">
         02 / IPSUM
       </span>
@@ -1433,12 +1138,11 @@ footer{
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Integer vitae justo at libero tincidunt consequat.
       </p>
-
     </article>
 
+    <!-- FILM WORK -->
 
     <article class="card">
-
       <span class="card-number">
         02 / IPSUM
       </span>
@@ -1449,12 +1153,11 @@ footer{
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Integer vitae justo at libero tincidunt consequat.
       </p>
-
     </article>
 
+    <!-- MASTER THESIS -->
 
     <article class="card">
-
       <span class="card-number">
         03 / LOREM
       </span>
@@ -1465,12 +1168,11 @@ footer{
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Suspendisse potenti. Curabitur euismod erat.
       </p>
-
     </article>
 
+    <!-- COMMERCIAL -->
 
     <article class="card">
-
       <span class="card-number">
         03 / LOREM
       </span>
@@ -1481,27 +1183,16 @@ footer{
         Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Suspendisse potenti. Curabitur euismod erat.
       </p>
-
     </article>
 
-
   </div>
-
 </section>
 
-
-
-<!-- ======================================================
-     BACKGROUND + CONTACT
-======================================================= -->
+<!-- BACKGROUND AND CONTACT -->
 
 <section class="lower">
 
-
-  <!-- BACKGROUND -->
-
   <div class="background-content">
-
     <div class="background-line"></div>
 
     <div class="background-label">
@@ -1513,7 +1204,6 @@ footer{
     </div>
 
     <div class="background-copy">
-
       <p>
         I’ve spent more than ten years working in film and television,
         starting in post-production before moving into technical roles
@@ -1535,17 +1225,12 @@ footer{
         and technology — and about the difference between how something
         is supposed to work and how it actually works in the real world.
       </p>
-
     </div>
-
   </div>
-
-
 
   <!-- CONTACT -->
 
   <div class="contact" id="contact">
-
     <div class="contact-line"></div>
 
     <div class="contact-label">
@@ -1556,25 +1241,16 @@ footer{
       04 — CONTACT
     </div>
 
-
     <div class="grey-circle"></div>
     <div class="blue-circle"></div>
 
-
     <div class="contact-heading">
-
-      <h2>
-        Contact
-      </h2>
-
+      <h2>Contact</h2>
     </div>
-
 
     <div class="contact-yellow"></div>
 
-
     <div class="contact-details">
-
       <a
         class="email"
         href="mailto:malin.hall.eliasson@gmail.com"
@@ -1597,28 +1273,17 @@ footer{
       >
         LinkedIn ↗
       </a>
-
     </div>
-
   </div>
 
-
+  <!-- FOOTER -->
 
   <footer>
-
-    <span>
-      © 2026 Malin Hall
-    </span>
-
-    <span>
-      Lorem ipsum dolor sit amet
-    </span>
-
+    <span>© 2026 Malin Hall</span>
+    <span>Lorem ipsum dolor sit amet</span>
   </footer>
 
-
 </section>
-
 
 </body>
 </html>
