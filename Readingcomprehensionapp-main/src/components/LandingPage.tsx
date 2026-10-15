@@ -269,20 +269,14 @@ export function LandingPage({ onStart }: LandingPageProps) {
             </div>
           </div>
 
-          <Button
-            onClick={handleStart}
-            disabled={!isFormValid}
-            className="w-full py-6 bg-blue-400 hover:bg-blue-500 disabled:bg-gray-300 disabled:cursor-not-allowed text-white rounded-lg mb-6"
-          >
-            Start the Study
-          </Button>
+    
+<Button
+  onClick={onStart}
+  className="w-full py-6 bg-blue-400 hover:bg-blue-500 text-white rounded-lg mb-6"
+>
+  Start the Study
+</Button>
 
-          <Button
-            onClick={onStart}
-            className="w-full py-4 bg-pink-500 hover:bg-pink-600 text-white rounded-lg text-xs"
-          >
-            temporary button to skip to first text
-          </Button>
         </div>
       </div>
     </div>
