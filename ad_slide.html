@@ -171,7 +171,6 @@
 
     /* =========================
        COMPACT MODE
-       Used when embedded in portfolio
     ========================= */
 
     body.compact .page {
@@ -211,6 +210,18 @@
       animation-play-state: running;
     }
 
+    /* =========================
+       TRANSPARENT BACKGROUND
+       IN COMPACT MODE
+    ========================= */
+
+    html:has(body.compact),
+    body.compact,
+    body.compact .page,
+    body.compact .reel-window {
+      background: transparent;
+    }
+
   </style>
 </head>
 
@@ -235,9 +246,7 @@
 
       <div class="reel">
 
-        <!-- =========================
-             FIRST GROUP
-        ========================= -->
+        <!-- FIRST GROUP -->
 
         <div class="reel-group">
 
@@ -279,10 +288,7 @@
 
         </div>
 
-        <!-- =========================
-             SECOND GROUP
-             Identical copy for loop
-        ========================= -->
+        <!-- SECOND GROUP -->
 
         <div class="reel-group" aria-hidden="true">
 
