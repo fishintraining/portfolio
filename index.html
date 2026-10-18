@@ -121,7 +121,7 @@ nav a:hover {
   width: 100%;
   height: 79.48vw;
   max-height: 1526px;
-  background-image: url("background.png");
+  background-image: url("bilder/background.png");
   background-size: cover;
   background-position: center top;
   background-repeat: no-repeat;
@@ -440,7 +440,7 @@ nav a:hover {
 
 .card.with-video {
   min-height: 25vw;
-  padding-bottom: 0;
+  padding-bottom: 2vw;
   grid-template-rows: auto 1fr auto auto;
 }
 
@@ -452,37 +452,23 @@ nav a:hover {
   position: relative;
   grid-column: 1 / -1;
   grid-row: 4;
-  width: calc(100% + 4vw);
-  height: 6.5vw;
-  margin: 2vw -2vw 0;
+  width: 100%;
+  max-width: 1500px;
+  height: 225px;
+  margin: 2vw auto 0;
   overflow: hidden;
-  background: #101010;
+  background: transparent;
 }
 
 .video-strip iframe {
   position: absolute;
   display: block;
-  left: 50%;
-  top: -4vw;
-  width: 100%;
-  height: 15vw;
-  border: none;
-  transform: translateX(-50%);
-  pointer-events: none;
-}
-
-.video-strip::after {
-  content: "";
-  position: absolute;
   inset: 0;
+  width: 100%;
+  height: 100%;
+  border: none;
+  background: transparent;
   pointer-events: none;
-  background: linear-gradient(
-    90deg,
-    rgba(0,0,0,.25),
-    transparent 12%,
-    transparent 88%,
-    rgba(0,0,0,.25)
-  );
 }
 
 /* ================= BACKGROUND ================= */
@@ -492,7 +478,7 @@ nav a:hover {
   width: 100%;
   height: 55.94vw;
   max-height: 1074px;
-  background-image: url("background.png");
+  background-image: url("bilder/background.png");
   background-size: cover;
   background-position: center 55%;
   background-repeat: no-repeat;
@@ -550,6 +536,22 @@ nav a:hover {
 }
 
 /* ================= CONTACT ================= */
+
+/* Zoomed/cropped background behind Contact, fading in at the top. */
+.contact::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  background-image: url("bilder/background.png");
+  background-repeat: no-repeat;
+  background-size: 135% auto;
+  background-position: center 72%;
+  -webkit-mask-image: linear-gradient(to bottom, transparent, black 24%);
+  mask-image: linear-gradient(to bottom, transparent, black 24%);
+  pointer-events: none;
+}
+
 
 .contact {
   position: absolute;
@@ -873,20 +875,27 @@ footer {
   }
 
   .card.with-video {
-    padding-bottom: 0;
+    padding-bottom: 20px;
   }
 
   .video-strip {
     flex: none;
-    width: calc(100% + 48px);
-    height: 100px;
-    margin: 5px -24px 0;
+    width: 100%;
+    max-width: 1500px;
+    height: 225px;
+    margin: 0 auto;
   }
 
   .video-strip iframe {
-    top: -50px;
+    inset: 0;
     width: 100%;
-    height: 240px;
+    height: 100%;
+    transform: none;
+  }
+
+  .contact::before {
+    background-size: auto 1250px;
+    background-position: center 70%;
   }
 
   .lower {
@@ -1023,7 +1032,7 @@ footer {
 
   <img
     class="hero-portrait"
-    src="portrait_malin.png"
+    src="bilder/portrait_malin.png"
     alt="Portrait of Malin Hall"
   >
 
@@ -1047,7 +1056,7 @@ footer {
 
     <a
       class="cv text-link"
-      href="MHall.CV.Eng.pdf"
+      href="pdf/MHall.CV.Eng.pdf"
       target="_blank"
       rel="noopener noreferrer"
     >
@@ -1286,16 +1295,6 @@ footer {
 
           <a
             class="text-link"
-            href="film.html"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            View Film &amp; TV Projects
-            <span class="arrow">↗</span>
-          </a>
-
-          <a
-            class="text-link"
             href="https://videoassist.se/"
             target="_blank"
             rel="noopener noreferrer"
@@ -1310,8 +1309,9 @@ footer {
 
       <div class="video-strip">
         <iframe
-          src="film_slide.html"
+          src="film_slide.html?mode=compact"
           title="Film and television showreel"
+          allow="autoplay; encrypted-media"
           loading="lazy"
           tabindex="-1"
         ></iframe>
@@ -1357,8 +1357,9 @@ footer {
 
       <div class="video-strip">
         <iframe
-          src="ad_slide.html"
+          src="ad_slide.html?mode=compact"
           title="Commercial video reel"
+          allow="autoplay; encrypted-media"
           loading="lazy"
           tabindex="-1"
         ></iframe>
@@ -1451,7 +1452,7 @@ footer {
 
       <a
         class="text-link"
-        href="MHall.CV.Eng.pdf"
+        href="pdf/MHall.CV.Eng.pdf"
         target="_blank"
         rel="noopener noreferrer"
       >
