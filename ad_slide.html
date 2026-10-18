@@ -87,7 +87,7 @@
       display: flex;
       width: max-content;
       height: 225px;
-      animation: scroll 60s linear infinite;
+      animation: scroll 270s linear infinite;
       will-change: transform;
     }
 
@@ -100,6 +100,7 @@
       height: 225px;
       gap: 0;
       padding: 0;
+      flex-shrink: 0;
     }
 
     /* =========================
@@ -117,11 +118,13 @@
       border: 0;
     }
 
-    .video-card iframe {
+    .video-card video {
       position: absolute;
       inset: 0;
+      display: block;
       width: 100%;
       height: 100%;
+      object-fit: cover;
       border: 0;
       pointer-events: none;
     }
@@ -147,7 +150,7 @@
     @media (max-width: 900px) {
 
       .reel {
-        animation-duration: 50s;
+        animation-duration: 225s;
       }
 
       .reel-window {
@@ -244,92 +247,169 @@
 
     <div class="reel-window">
 
-      <div class="reel">
+      <div class="reel" id="reel">
 
         <!-- FIRST GROUP -->
 
-        <div class="reel-group">
+        <div class="reel-group" id="first-group">
 
-          <!-- YouTube -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/Ltfmp5kHeuo?autoplay=1&mute=1&loop=1&playlist=Ltfmp5kHeuo&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media"
-              allowfullscreen>
-            </iframe>
-          </div>
-
-          <!-- Vimeo: Vattenfall & Cake -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/761787230?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen"
-              allowfullscreen>
-            </iframe>
-          </div>
-
-          <!-- Vimeo: Estrid -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/808499082?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen"
-              allowfullscreen>
-            </iframe>
-          </div>
-
-          <!-- YouTube -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/EmmtT55uu_o?autoplay=1&mute=1&loop=1&playlist=EmmtT55uu_o&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media"
-              allowfullscreen>
-            </iframe>
-          </div>
+          <!-- Videos inserted by JavaScript -->
 
         </div>
 
         <!-- SECOND GROUP -->
 
-        <div class="reel-group" aria-hidden="true">
+        <div
+          class="reel-group"
+          id="second-group"
+          aria-hidden="true"
+        >
 
-          <!-- YouTube -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/Ltfmp5kHeuo?autoplay=1&mute=1&loop=1&playlist=Ltfmp5kHeuo&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- Vimeo: Vattenfall & Cake -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/761787230?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- Vimeo: Estrid -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/808499082?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- YouTube -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/EmmtT55uu_o?autoplay=1&mute=1&loop=1&playlist=EmmtT55uu_o&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
+          <!-- Duplicate videos for seamless scrolling -->
 
         </div>
 
       </div>
+
     </div>
 
   </main>
+
+  <script>
+
+    /* =========================
+       VIDEO FILES
+       EXACT PLAYBACK ORDER
+    ========================= */
+
+    const videoFiles = [
+      "A1_Forsvaret3.mp4",
+      "A2_Postnord1.mp4",
+      "A3_Electrolux.mp4",
+      "A5_Postnord5.mp4",
+      "A6_Forsvaret1.mp4",
+      "A7_Estrid.mp4",
+      "A8_Postnord3.mp4",
+      "A9_storytell.mp4",
+      "AB1_forsvaret4.mp4",
+      "AB2_st1.mp4",
+      "AB3_RedCross.mp4",
+      "AB4_Postnord7.mp4",
+      "AB5_Netonnet.mp4",
+      "AB6_Postnord4.mp4",
+      "AB7_CocaCola.mp4",
+      "AB8_Postnord6.mp4",
+      "AB9_Forsvaret2.mp4",
+      "ABC1_Postnord2.mp4"
+    ];
+
+    /* =========================
+       BUILD VIDEO GROUPS
+    ========================= */
+
+    const firstGroup =
+      document.getElementById("first-group");
+
+    const secondGroup =
+      document.getElementById("second-group");
+
+    function createVideoCard(filename) {
+
+      const card = document.createElement("div");
+      card.className = "video-card";
+
+      const video = document.createElement("video");
+
+      video.src = "videos/" + filename;
+
+      video.autoplay = true;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+
+      video.setAttribute("muted", "");
+      video.setAttribute("autoplay", "");
+      video.setAttribute("loop", "");
+      video.setAttribute("playsinline", "");
+
+      video.preload = "metadata";
+
+      card.appendChild(video);
+
+      return card;
+    }
+
+    /* =========================
+       INSERT VIDEOS
+    ========================= */
+
+    videoFiles.forEach(filename => {
+
+      firstGroup.appendChild(
+        createVideoCard(filename)
+      );
+
+      secondGroup.appendChild(
+        createVideoCard(filename)
+      );
+
+    });
+
+    /* =========================
+       START PLAYBACK
+    ========================= */
+
+    const videos =
+      document.querySelectorAll(".video-card video");
+
+    videos.forEach(video => {
+
+      video.play().catch(() => {
+        // Browser may delay playback until allowed.
+      });
+
+    });
+
+    /* =========================
+       PAUSE OFFSCREEN VIDEOS
+       TO REDUCE RESOURCE USAGE
+    ========================= */
+
+    const observer = new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          const video =
+            entry.target.querySelector("video");
+
+          if (!video) return;
+
+          if (entry.isIntersecting) {
+
+            video.play().catch(() => {});
+
+          } else {
+
+            video.pause();
+
+          }
+
+        });
+
+      },
+      {
+        root: document.querySelector(".reel-window"),
+        rootMargin: "400px 0px",
+        threshold: 0
+      }
+    );
+
+    document.querySelectorAll(".video-card")
+      .forEach(card => observer.observe(card));
+
+  </script>
 
 </body>
 </html>

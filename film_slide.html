@@ -4,7 +4,6 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
   <title>Film Work</title>
 
   <style>
@@ -88,7 +87,7 @@
       display: flex;
       width: max-content;
       height: 225px;
-      animation: scroll 120s linear infinite;
+      animation: scroll 210s linear infinite;
       will-change: transform;
     }
 
@@ -101,6 +100,7 @@
       height: 225px;
       gap: 0;
       padding: 0;
+      flex-shrink: 0;
     }
 
     /* =========================
@@ -119,11 +119,13 @@
       border-radius: 0;
     }
 
-    .video-card iframe {
+    .video-card video {
       position: absolute;
       inset: 0;
+      display: block;
       width: 100%;
       height: 100%;
+      object-fit: cover;
       border: 0;
       pointer-events: none;
     }
@@ -149,7 +151,7 @@
     @media (max-width: 900px) {
 
       .reel {
-        animation-duration: 100s;
+        animation-duration: 175s;
       }
 
       .reel-window {
@@ -249,197 +251,153 @@
       <div class="reel">
 
         <!-- FIRST GROUP -->
-
-        <div class="reel-group">
-
-          <!-- FARTBLINDA -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/357607008?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- JJ+E / VINTERVIKEN -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/PG1Zn5wGfbY?autoplay=1&mute=1&loop=1&playlist=PG1Zn5wGfbY&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- I DINA HÄNDER / DELIVER ME -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/938168034?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- PARADIS CITY -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/XSxuIdIhC4o?autoplay=1&mute=1&loop=1&playlist=XSxuIdIhC4o&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- BARRACUDA QUEENS -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/1154337901?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- BERTS DAGBOK -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/WH2pX1QPrb4?autoplay=1&mute=1&loop=1&playlist=WH2pX1QPrb4&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- DYSTOPIA -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/1108653755?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- KONFERENSEN / THE CONFERENCE -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/876966643?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- STORM PÅ LUGNA GATAN -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/IcdloQukeL0?autoplay=1&mute=1&loop=1&playlist=IcdloQukeL0&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- HASSEL -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/391496478?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- EXTRA FILM / SERIES CLIP -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/hh5UunZJSz4?autoplay=1&mute=1&loop=1&playlist=hh5UunZJSz4&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
+        <div class="reel-group" id="first-group">
         </div>
 
         <!-- SECOND IDENTICAL GROUP -->
-
-        <div class="reel-group" aria-hidden="true">
-
-          <!-- FARTBLINDA -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/357607008?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- JJ+E / VINTERVIKEN -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/PG1Zn5wGfbY?autoplay=1&mute=1&loop=1&playlist=PG1Zn5wGfbY&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- I DINA HÄNDER / DELIVER ME -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/938168034?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- PARADIS CITY -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/XSxuIdIhC4o?autoplay=1&mute=1&loop=1&playlist=XSxuIdIhC4o&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- BARRACUDA QUEENS -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/1154337901?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- BERTS DAGBOK -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/WH2pX1QPrb4?autoplay=1&mute=1&loop=1&playlist=WH2pX1QPrb4&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- DYSTOPIA -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/1108653755?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- KONFERENSEN / THE CONFERENCE -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/876966643?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- STORM PÅ LUGNA GATAN -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/IcdloQukeL0?autoplay=1&mute=1&loop=1&playlist=IcdloQukeL0&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
-          <!-- HASSEL -->
-          <div class="video-card">
-            <iframe
-              src="https://player.vimeo.com/video/391496478?autoplay=1&muted=1&loop=1&background=1"
-              allow="autoplay; fullscreen">
-            </iframe>
-          </div>
-
-          <!-- EXTRA FILM / SERIES CLIP -->
-          <div class="video-card">
-            <iframe
-              src="https://www.youtube.com/embed/hh5UunZJSz4?autoplay=1&mute=1&loop=1&playlist=hh5UunZJSz4&controls=0&modestbranding=1&rel=0"
-              allow="autoplay; encrypted-media">
-            </iframe>
-          </div>
-
+        <div
+          class="reel-group"
+          id="second-group"
+          aria-hidden="true">
         </div>
 
       </div>
+
     </div>
 
   </main>
+
+  <script>
+
+    /* =========================
+       VIDEO FILES
+       EXACT PLAYBACK ORDER
+    ========================= */
+
+    const videoFiles = [
+      "F1_Bert.mp4",
+      "F2_BarracudaQueens.mp4",
+      "F3_IDH.mp4",
+      "F4_Stormpalugngatan.mp4",
+      "F5_Fartblinda.mp4",
+      "F6_konferensen.mp4",
+      "F7_VV.mp4",
+      "F8_hassel.mp4",
+      "F9_Maklarna.mp4",
+      "FB1_ParadisCity.mp4",
+      "FB2_Svartan.mp4",
+      "FB3_vaka.mp4",
+      "FB4_HappyPride.mp4",
+      "FB5_Dystopia.mp4"
+    ];
+
+    /* =========================
+       BUILD VIDEO GROUPS
+    ========================= */
+
+    const firstGroup =
+      document.getElementById("first-group");
+
+    const secondGroup =
+      document.getElementById("second-group");
+
+    function createVideoCard(filename) {
+
+      const card = document.createElement("div");
+      card.className = "video-card";
+
+      const video = document.createElement("video");
+
+      video.src = "videos/" + filename;
+
+      video.autoplay = true;
+      video.muted = true;
+      video.defaultMuted = true;
+      video.loop = true;
+      video.playsInline = true;
+
+      video.setAttribute("muted", "");
+      video.setAttribute("autoplay", "");
+      video.setAttribute("loop", "");
+      video.setAttribute("playsinline", "");
+
+      video.preload = "metadata";
+
+      card.appendChild(video);
+
+      return card;
+    }
+
+    /* =========================
+       INSERT VIDEOS
+    ========================= */
+
+    videoFiles.forEach(filename => {
+
+      firstGroup.appendChild(
+        createVideoCard(filename)
+      );
+
+      secondGroup.appendChild(
+        createVideoCard(filename)
+      );
+
+    });
+
+    /* =========================
+       START PLAYBACK
+    ========================= */
+
+    const videos =
+      document.querySelectorAll(".video-card video");
+
+    videos.forEach(video => {
+
+      video.play().catch(() => {
+        // Browser may delay playback until allowed.
+      });
+
+    });
+
+    /* =========================
+       PAUSE OFFSCREEN VIDEOS
+       TO REDUCE RESOURCE USAGE
+    ========================= */
+
+    const observer = new IntersectionObserver(
+      entries => {
+
+        entries.forEach(entry => {
+
+          const video =
+            entry.target.querySelector("video");
+
+          if (!video) return;
+
+          if (entry.isIntersecting) {
+
+            video.play().catch(() => {});
+
+          } else {
+
+            video.pause();
+
+          }
+
+        });
+
+      },
+      {
+        root: document.querySelector(".reel-window"),
+        rootMargin: "400px 0px",
+        threshold: 0
+      }
+    );
+
+    document.querySelectorAll(".video-card")
+      .forEach(card => observer.observe(card));
+
+  </script>
 
 </body>
 </html>
