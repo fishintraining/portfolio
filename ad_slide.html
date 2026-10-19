@@ -7,6 +7,8 @@
   <title>Commercial Work</title>
 
   <style>
+    /* ===== GLOBAL ===== */
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -22,9 +24,7 @@
       font-family: Arial, sans-serif;
     }
 
-    /* =========================
-       PAGE
-    ========================= */
+    /* ===== PAGE ===== */
 
     .page {
       width: 100%;
@@ -36,12 +36,8 @@
       background: #000;
     }
 
-    /* =========================
-       TITLE
-    ========================= */
-
     .title {
-      width: min(1500px, 100%);
+      width: min(1100px, 100%);
       margin: 0 auto 35px;
       font-size: clamp(16px, 1.2vw, 24px);
       font-weight: 500;
@@ -50,17 +46,16 @@
       color: #fff;
     }
 
-    /* =========================
-       VIDEO WINDOW + FADE
-    ========================= */
+    /* ===== VIDEO WINDOW ===== */
 
     .reel-window {
       position: relative;
-      width: 1500px;
+      width: 1100px;
       max-width: 100%;
-      height: 225px;
+      height: 160px;
       margin: 0 auto;
       overflow: hidden;
+      background: #000;
 
       -webkit-mask-image: linear-gradient(
         to right,
@@ -79,15 +74,16 @@
       );
     }
 
-    /* =========================
-       MOVING REEL
-    ========================= */
+    /* ===== MOVING REEL ===== */
 
     .reel {
       display: flex;
       width: max-content;
-      height: 225px;
-      animation: scroll 270s linear infinite;
+      height: 160px;
+
+      /* Adjusted for smaller videos */
+      animation: scroll 131s linear infinite;
+
       will-change: transform;
     }
 
@@ -97,20 +93,20 @@
 
     .reel-group {
       display: flex;
-      height: 225px;
-      gap: 0;
-      padding: 0;
+      align-items: center;
+      height: 160px;
+      gap: 4px;
+      padding-right: 4px;
       flex-shrink: 0;
+      background: #000;
     }
 
-    /* =========================
-       VIDEOS
-    ========================= */
+    /* ===== VIDEOS ===== */
 
     .video-card {
       position: relative;
-      width: 400px;
-      height: 225px;
+      width: calc(150px * 16 / 9);
+      height: 150px;
       aspect-ratio: 16 / 9;
       flex-shrink: 0;
       overflow: hidden;
@@ -129,9 +125,7 @@
       pointer-events: none;
     }
 
-    /* =========================
-       INFINITE SCROLL
-    ========================= */
+    /* ===== INFINITE SCROLL ===== */
 
     @keyframes scroll {
       from {
@@ -143,14 +137,12 @@
       }
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    /* ===== MOBILE ===== */
 
     @media (max-width: 900px) {
 
       .reel {
-        animation-duration: 225s;
+        animation-duration: 109s;
       }
 
       .reel-window {
@@ -172,9 +164,7 @@
       }
     }
 
-    /* =========================
-       COMPACT MODE
-    ========================= */
+    /* ===== COMPACT MODE ===== */
 
     body.compact .page {
       width: 100%;
@@ -189,23 +179,21 @@
     }
 
     body.compact .reel-window {
-      width: 1500px;
+      width: 1100px;
       max-width: 100%;
-      height: 225px;
+      height: 160px;
       margin: 0 auto;
+      background: #000;
     }
 
-    body.compact .reel {
-      height: 225px;
-    }
-
+    body.compact .reel,
     body.compact .reel-group {
-      height: 225px;
+      height: 160px;
     }
 
     body.compact .video-card {
-      width: 400px;
-      height: 225px;
+      width: calc(150px * 16 / 9);
+      height: 150px;
       aspect-ratio: 16 / 9;
     }
 
@@ -213,24 +201,20 @@
       animation-play-state: running;
     }
 
-    /* =========================
-       TRANSPARENT BACKGROUND
-       IN COMPACT MODE
-    ========================= */
+    /* Transparent surrounding area in compact mode */
 
     html:has(body.compact),
     body.compact,
-    body.compact .page,
-    body.compact .reel-window {
+    body.compact .page {
       background: transparent;
     }
-
   </style>
 </head>
 
 <body>
 
   <script>
+    // Activate compact mode when embedded in portfolio
     if (
       new URLSearchParams(window.location.search)
         .get("mode") === "compact"
@@ -249,25 +233,15 @@
 
       <div class="reel" id="reel">
 
-        <!-- FIRST GROUP -->
+        <!-- Original video sequence -->
+        <div class="reel-group" id="first-group"></div>
 
-        <div class="reel-group" id="first-group">
-
-          <!-- Videos inserted by JavaScript -->
-
-        </div>
-
-        <!-- SECOND GROUP -->
-
+        <!-- Duplicate sequence for seamless scrolling -->
         <div
           class="reel-group"
           id="second-group"
           aria-hidden="true"
-        >
-
-          <!-- Duplicate videos for seamless scrolling -->
-
-        </div>
+        ></div>
 
       </div>
 
@@ -276,11 +250,7 @@
   </main>
 
   <script>
-
-    /* =========================
-       VIDEO FILES
-       EXACT PLAYBACK ORDER
-    ========================= */
+    /* ===== VIDEO FILES ===== */
 
     const videoFiles = [
       "A1_Forsvaret3.mp4",
@@ -303,9 +273,7 @@
       "ABC1_Postnord2.mp4"
     ];
 
-    /* =========================
-       BUILD VIDEO GROUPS
-    ========================= */
+    /* ===== BUILD VIDEO GROUPS ===== */
 
     const firstGroup =
       document.getElementById("first-group");
@@ -340,9 +308,7 @@
       return card;
     }
 
-    /* =========================
-       INSERT VIDEOS
-    ========================= */
+    /* ===== INSERT VIDEOS ===== */
 
     videoFiles.forEach(filename => {
 
@@ -356,9 +322,7 @@
 
     });
 
-    /* =========================
-       START PLAYBACK
-    ========================= */
+    /* ===== START PLAYBACK ===== */
 
     const videos =
       document.querySelectorAll(".video-card video");
@@ -366,15 +330,12 @@
     videos.forEach(video => {
 
       video.play().catch(() => {
-        // Browser may delay playback until allowed.
+        // Browser may delay autoplay
       });
 
     });
 
-    /* =========================
-       PAUSE OFFSCREEN VIDEOS
-       TO REDUCE RESOURCE USAGE
-    ========================= */
+    /* ===== PAUSE OFFSCREEN VIDEOS ===== */
 
     const observer = new IntersectionObserver(
       entries => {

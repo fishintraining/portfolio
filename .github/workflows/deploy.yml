@@ -39,11 +39,20 @@ jobs:
       - name: Assemble portfolio
         run: |
           mkdir -p _site
+
+          # Copy portfolio HTML files
           cp -a ./*.html _site/
-          cp -a ./*.png _site/
-          cp -a ./*.pdf _site/
+
+          # Copy images, PDFs and videos
+          cp -a bilder _site/
+          cp -a pdf _site/
+          cp -a videos _site/
+
+          # Copy built Reading App
           mkdir -p _site/Readingcomprehensionapp-main
           cp -a Readingcomprehensionapp-main/build/. _site/Readingcomprehensionapp-main/
+
+          # Disable Jekyll processing
           touch _site/.nojekyll
 
       - name: Upload website
