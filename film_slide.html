@@ -7,6 +7,8 @@
   <title>Film Work</title>
 
   <style>
+    /* ===== GLOBAL ===== */
+
     * {
       box-sizing: border-box;
       margin: 0;
@@ -22,9 +24,7 @@
       font-family: Arial, sans-serif;
     }
 
-    /* =========================
-       PAGE
-    ========================= */
+    /* ===== PAGE ===== */
 
     .page {
       width: 100%;
@@ -36,9 +36,7 @@
       background: #000;
     }
 
-    /* =========================
-       TITLE
-    ========================= */
+    /* ===== TITLE ===== */
 
     .title {
       width: min(1500px, 100%);
@@ -50,9 +48,7 @@
       color: #fff;
     }
 
-    /* =========================
-       VIDEO WINDOW + FADE
-    ========================= */
+    /* ===== VIDEO WINDOW + FADE ===== */
 
     .reel-window {
       position: relative;
@@ -79,15 +75,16 @@
       );
     }
 
-    /* =========================
-       MOVING REEL
-    ========================= */
+    /* ===== MOVING REEL ===== */
 
     .reel {
       display: flex;
       width: max-content;
       height: 225px;
-      animation: scroll 210s linear infinite;
+
+      /* 40% faster scrolling */
+      animation: scroll 150s linear infinite;
+
       will-change: transform;
     }
 
@@ -103,9 +100,7 @@
       flex-shrink: 0;
     }
 
-    /* =========================
-       VIDEOS
-    ========================= */
+    /* ===== VIDEOS ===== */
 
     .video-card {
       position: relative;
@@ -130,9 +125,7 @@
       pointer-events: none;
     }
 
-    /* =========================
-       INFINITE MOVEMENT
-    ========================= */
+    /* ===== INFINITE SCROLL ===== */
 
     @keyframes scroll {
       from {
@@ -144,14 +137,12 @@
       }
     }
 
-    /* =========================
-       MOBILE
-    ========================= */
+    /* ===== MOBILE ===== */
 
     @media (max-width: 900px) {
 
       .reel {
-        animation-duration: 175s;
+        animation-duration: 125s;
       }
 
       .reel-window {
@@ -173,9 +164,7 @@
       }
     }
 
-    /* =========================
-       COMPACT MODE
-    ========================= */
+    /* ===== COMPACT MODE ===== */
 
     body.compact .page {
       width: 100%;
@@ -196,10 +185,7 @@
       margin: 0 auto;
     }
 
-    body.compact .reel {
-      height: 225px;
-    }
-
+    body.compact .reel,
     body.compact .reel-group {
       height: 225px;
     }
@@ -214,10 +200,7 @@
       animation-play-state: running;
     }
 
-    /* =========================
-       TRANSPARENT BACKGROUND
-       IN COMPACT MODE
-    ========================= */
+    /* ===== TRANSPARENT BACKGROUND IN COMPACT MODE ===== */
 
     html:has(body.compact),
     body.compact,
@@ -232,6 +215,8 @@
 <body>
 
   <script>
+    /* Activate compact mode when embedded in portfolio */
+
     if (
       new URLSearchParams(window.location.search)
         .get("mode") === "compact"
@@ -250,16 +235,15 @@
 
       <div class="reel">
 
-        <!-- FIRST GROUP -->
-        <div class="reel-group" id="first-group">
-        </div>
+        <!-- Original video sequence -->
+        <div class="reel-group" id="first-group"></div>
 
-        <!-- SECOND IDENTICAL GROUP -->
+        <!-- Duplicate sequence for seamless scrolling -->
         <div
           class="reel-group"
           id="second-group"
-          aria-hidden="true">
-        </div>
+          aria-hidden="true"
+        ></div>
 
       </div>
 
@@ -269,10 +253,7 @@
 
   <script>
 
-    /* =========================
-       VIDEO FILES
-       EXACT PLAYBACK ORDER
-    ========================= */
+    /* ===== VIDEO FILES ===== */
 
     const videoFiles = [
       "F1_Bert.mp4",
@@ -291,9 +272,7 @@
       "FB5_Dystopia.mp4"
     ];
 
-    /* =========================
-       BUILD VIDEO GROUPS
-    ========================= */
+    /* ===== BUILD VIDEO GROUPS ===== */
 
     const firstGroup =
       document.getElementById("first-group");
@@ -328,9 +307,7 @@
       return card;
     }
 
-    /* =========================
-       INSERT VIDEOS
-    ========================= */
+    /* ===== INSERT VIDEOS ===== */
 
     videoFiles.forEach(filename => {
 
@@ -344,9 +321,7 @@
 
     });
 
-    /* =========================
-       START PLAYBACK
-    ========================= */
+    /* ===== START PLAYBACK ===== */
 
     const videos =
       document.querySelectorAll(".video-card video");
@@ -354,15 +329,12 @@
     videos.forEach(video => {
 
       video.play().catch(() => {
-        // Browser may delay playback until allowed.
+        // Browser may delay autoplay
       });
 
     });
 
-    /* =========================
-       PAUSE OFFSCREEN VIDEOS
-       TO REDUCE RESOURCE USAGE
-    ========================= */
+    /* ===== PAUSE OFFSCREEN VIDEOS ===== */
 
     const observer = new IntersectionObserver(
       entries => {
