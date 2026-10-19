@@ -24,14 +24,13 @@
       --light: #E1E1E1;
       --grey: #C4C5CD;
 
-      /* Shared content alignment */
       --content-width: 62%;
       --content-left: 19%;
 
-      /* Spacing based on yellow hero square */
+      /* Half the width of the yellow hero square */
       --half-yellow: 4.45vw;
 
-      /* Existing slide dimensions */
+      /* Existing video slide dimensions */
       --reel-width: 1100px;
       --reel-height: 160px;
     }
@@ -379,11 +378,6 @@
       top: 8vw;
     }
 
-    /*
-      Same horizontal boundaries as
-      Selected Work cards.
-    */
-
     .about-copy {
       position: absolute;
 
@@ -409,10 +403,7 @@
 
       width: 100%;
 
-      padding:
-        5vw
-        0
-        var(--half-yellow);
+      padding: 5vw 0 0;
 
       background: var(--dark);
     }
@@ -428,10 +419,6 @@
     .work-number {
       top: 8vw;
     }
-
-    /*
-      Cards shortened from 70% to 62%.
-    */
 
     .work-grid {
       position: relative;
@@ -459,7 +446,14 @@
 
       padding: 2.5vw 2vw;
 
-      border: 1px solid rgba(225,225,225,.07);
+      /*
+        Slightly stronger, but still very
+        subtle, edge fade.
+      */
+      border: 1px solid rgba(225,225,225,.035);
+
+      box-shadow:
+        inset 0 0 16px rgba(225,225,225,.055);
 
       overflow: hidden;
     }
@@ -496,6 +490,10 @@
       text-transform: uppercase;
     }
 
+    /*
+      Titles reduced from 2.35vw to 1.85vw.
+    */
+
     .card h3 {
       grid-column: 1;
       grid-row: 2;
@@ -504,7 +502,7 @@
 
       padding-right: 1vw;
 
-      font-size: clamp(22px, 2.35vw, 45px);
+      font-size: clamp(18px, 1.85vw, 36px);
       font-weight: 400;
       line-height: 1.08;
       letter-spacing: -.05em;
@@ -555,9 +553,8 @@
     }
 
     /*
-      Matches existing film_slide.html
-      and ad_slide.html:
-      1100px wide, 160px high.
+      Matches film_slide.html and ad_slide.html.
+      No changes needed to those files.
     */
 
     .video-strip {
@@ -601,29 +598,48 @@
       width: 100%;
       overflow: hidden;
 
-      background-color: var(--dark);
-      background-image: url("bilder/background.png");
-      background-repeat: no-repeat;
-
-      background-size: 200% auto;
-      background-position: 52% 62%;
+      background: var(--dark);
     }
 
-    .lower::before {
-      content: "";
+    /*
+      BACKGROUND IMAGE LAYER
 
+      Starts completely hidden by dark grey
+      and gradually becomes visible.
+
+      It is fully visible by the beginning
+      of Contact.
+    */
+
+    .lower-image {
       position: absolute;
-      z-index: 1;
+      z-index: 0;
+
       inset: 0;
 
-      background: linear-gradient(
+      background-image: url("bilder/background.png");
+      background-repeat: no-repeat;
+      background-size: 200% auto;
+      background-position: 52% 62%;
+
+      -webkit-mask-image: linear-gradient(
         to bottom,
-        #292B28 0%,
-        rgba(41,43,40,.98) 12%,
-        rgba(41,43,40,.88) 24%,
-        rgba(41,43,40,.55) 35%,
-        rgba(41,43,40,.20) 47%,
-        transparent 60%
+        transparent 0%,
+        transparent 5%,
+        rgba(0,0,0,.15) 20%,
+        rgba(0,0,0,.4) 40%,
+        rgba(0,0,0,.75) 60%,
+        black 80%
+      );
+
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 5%,
+        rgba(0,0,0,.15) 20%,
+        rgba(0,0,0,.4) 40%,
+        rgba(0,0,0,.75) 60%,
+        black 80%
       );
 
       pointer-events: none;
@@ -639,7 +655,11 @@
 
       width: 100%;
 
-      padding: 4.5vw 0 3vw;
+      /*
+        Text starts half a yellow square
+        beneath the final project card.
+      */
+      padding: var(--half-yellow) 0 4vw;
     }
 
     .background-line {
@@ -653,11 +673,6 @@
     .background-number {
       top: 8vw;
     }
-
-    /*
-      Same width and left alignment
-      as About text and work cards.
-    */
 
     .background-copy {
       position: relative;
@@ -687,6 +702,38 @@
       height: 33vw;
 
       overflow: hidden;
+
+      /*
+        New cropped image from Figma.
+        No zoom or manual cropping.
+      */
+      background-image: url("bilder/background2.png");
+      background-repeat: no-repeat;
+      background-position: center center;
+      background-size: 100% 100%;
+    }
+
+    /*
+      Soft transition from Background's
+      image to Contact's cropped image.
+    */
+
+    .contact::before {
+      content: "";
+
+      position: absolute;
+      z-index: 0;
+
+      inset: 0;
+
+      background: linear-gradient(
+        to bottom,
+        rgba(41,43,40,.25) 0%,
+        rgba(41,43,40,.12) 12%,
+        transparent 28%
+      );
+
+      pointer-events: none;
     }
 
     .contact-line {
@@ -701,10 +748,9 @@
       top: 10vw;
     }
 
-    /*
-      Slightly smaller circles,
-      still crossing the chapter line.
-    */
+    /* ==========================================
+       CONTACT CIRCLES
+       ========================================== */
 
     .grey-circle {
       position: absolute;
@@ -733,6 +779,10 @@
       border-radius: 50%;
       background: rgba(244,175,33,.48);
     }
+
+    /* ==========================================
+       CONTACT HEADING
+       ========================================== */
 
     .contact-heading {
       position: absolute;
@@ -1017,7 +1067,7 @@
       /* SELECTED WORK */
 
       .work {
-        padding: 90px 25px 50px;
+        padding: 90px 25px 0;
       }
 
       .work-line {
@@ -1057,8 +1107,7 @@
 
       .card h3 {
         align-self: flex-start;
-
-        font-size: 31px;
+        font-size: 25px;
       }
 
       .card-content {
@@ -1103,25 +1152,8 @@
 
       /* BACKGROUND */
 
-      .lower {
-        background-size: auto 1500px;
-        background-position: 52% 62%;
-      }
-
-      .lower::before {
-        background: linear-gradient(
-          to bottom,
-          #292B28 0%,
-          rgba(41,43,40,.98) 12%,
-          rgba(41,43,40,.88) 25%,
-          rgba(41,43,40,.55) 40%,
-          rgba(41,43,40,.20) 55%,
-          transparent 70%
-        );
-      }
-
       .background-content {
-        padding: 90px 0 50px;
+        padding: 50px 0 50px;
       }
 
       .background-line {
@@ -1150,10 +1182,18 @@
         margin-top: 14px;
       }
 
+      .lower-image {
+        background-size: auto 1500px;
+        background-position: 52% 62%;
+      }
+
       /* CONTACT */
 
       .contact {
         height: 620px;
+
+        background-size: cover;
+        background-position: center center;
       }
 
       .contact-line {
@@ -1355,9 +1395,7 @@
 
     <div class="work-grid">
 
-      <!-- ==================================
-           ACADEMIC WORKS
-           ================================== -->
+      <!-- ACADEMIC WORKS -->
 
       <article class="card academic">
 
@@ -1425,9 +1463,7 @@
 
       </article>
 
-      <!-- ==================================
-           PUBLISHED PROJECTS
-           ================================== -->
+      <!-- PUBLISHED PROJECTS -->
 
       <article class="card published">
 
@@ -1488,9 +1524,7 @@
 
       </article>
 
-      <!-- ==================================
-           FILM & TV WORK
-           ================================== -->
+      <!-- FILM & TV WORK -->
 
       <article class="card film with-video">
 
@@ -1561,9 +1595,7 @@
 
       </article>
 
-      <!-- ==================================
-           COMMERCIAL WORK
-           ================================== -->
+      <!-- COMMERCIAL WORK -->
 
       <article class="card commercial with-video">
 
@@ -1618,9 +1650,10 @@
 
   <section class="lower">
 
-    <!-- ==================================
-         BACKGROUND
-         ================================== -->
+    <!-- Background image fade layer -->
+    <div class="lower-image"></div>
+
+    <!-- BACKGROUND -->
 
     <div class="background-content">
 
@@ -1697,9 +1730,7 @@
 
     </div>
 
-    <!-- ==================================
-         CONTACT
-         ================================== -->
+    <!-- CONTACT -->
 
     <div class="contact" id="contact">
 
@@ -1766,7 +1797,7 @@
 
   <footer>
     <span>© 2026 Malin Hall</span>
-    <span>MH / Portfolio</span>
+    <span>MH / PORTFOLIO</span>
   </footer>
 
 </body>
