@@ -39,7 +39,7 @@
     /* ===== TITLE ===== */
 
     .title {
-      width: min(1500px, 100%);
+      width: min(1100px, 100%);
       margin: 0 auto 35px;
       font-size: clamp(16px, 1.2vw, 24px);
       font-weight: 500;
@@ -52,11 +52,12 @@
 
     .reel-window {
       position: relative;
-      width: 1500px;
+      width: 1100px;
       max-width: 100%;
-      height: 225px;
+      height: 160px;
       margin: 0 auto;
       overflow: hidden;
+      background: #000;
 
       -webkit-mask-image: linear-gradient(
         to right,
@@ -80,10 +81,10 @@
     .reel {
       display: flex;
       width: max-content;
-      height: 225px;
+      height: 160px;
 
-      /* 40% faster scrolling */
-      animation: scroll 150s linear infinite;
+      /* Adjusted for smaller videos */
+      animation: scroll 103s linear infinite;
 
       will-change: transform;
     }
@@ -94,18 +95,20 @@
 
     .reel-group {
       display: flex;
-      height: 225px;
-      gap: 0;
-      padding: 0;
+      align-items: center;
+      height: 160px;
+      gap: 4px;
+      padding-right: 4px;
       flex-shrink: 0;
+      background: #000;
     }
 
     /* ===== VIDEOS ===== */
 
     .video-card {
       position: relative;
-      width: 400px;
-      height: 225px;
+      width: calc(150px * 16 / 9);
+      height: 150px;
       aspect-ratio: 16 / 9;
       flex-shrink: 0;
       overflow: hidden;
@@ -142,7 +145,7 @@
     @media (max-width: 900px) {
 
       .reel {
-        animation-duration: 125s;
+        animation-duration: 86s;
       }
 
       .reel-window {
@@ -179,20 +182,21 @@
     }
 
     body.compact .reel-window {
-      width: 1500px;
+      width: 1100px;
       max-width: 100%;
-      height: 225px;
+      height: 160px;
       margin: 0 auto;
+      background: #000;
     }
 
     body.compact .reel,
     body.compact .reel-group {
-      height: 225px;
+      height: 160px;
     }
 
     body.compact .video-card {
-      width: 400px;
-      height: 225px;
+      width: calc(150px * 16 / 9);
+      height: 150px;
       aspect-ratio: 16 / 9;
     }
 
@@ -200,12 +204,11 @@
       animation-play-state: running;
     }
 
-    /* ===== TRANSPARENT BACKGROUND IN COMPACT MODE ===== */
+    /* ===== TRANSPARENT SURROUNDING AREA ===== */
 
     html:has(body.compact),
     body.compact,
-    body.compact .page,
-    body.compact .reel-window {
+    body.compact .page {
       background: transparent;
     }
 
