@@ -24,14 +24,13 @@
       --light: #E1E1E1;
       --grey: #C4C5CD;
 
-      /* Shared content alignment */
       --content-width: 62%;
       --content-left: 19%;
 
-      /* Spacing based on yellow hero square */
+      /* Half the width of the yellow hero square */
       --half-yellow: 4.45vw;
 
-      /* Existing slide dimensions */
+      /* Existing video slide dimensions */
       --reel-width: 1100px;
       --reel-height: 160px;
     }
@@ -87,11 +86,9 @@
 
     .logo {
       color: var(--light);
-
       font-size: .83vw;
       letter-spacing: .08em;
       text-transform: uppercase;
-
       padding-bottom: .4vw;
       border-bottom: 1px solid var(--light);
     }
@@ -103,7 +100,6 @@
 
     nav a {
       color: var(--light);
-
       font-size: .57vw;
       letter-spacing: .14em;
       text-transform: uppercase;
@@ -123,7 +119,6 @@
       gap: .4em;
 
       width: fit-content;
-
       color: white;
 
       font-size: clamp(11px, .85vw, 16px);
@@ -140,7 +135,6 @@
     .text-link .arrow {
       display: inline-block;
       font-size: 1.05em;
-
       transition: transform .2s ease;
     }
 
@@ -172,7 +166,6 @@
 
       left: 13%;
       top: 12.5%;
-
       width: 50%;
     }
 
@@ -230,7 +223,6 @@
 
     .cv {
       margin-top: 1.6vw;
-
       font-size: clamp(13px, 1.08vw, 21px);
       font-weight: 400;
     }
@@ -317,7 +309,6 @@
       position: absolute;
 
       left: 8.33%;
-
       color: var(--light);
 
       font-size: .57vw;
@@ -379,11 +370,6 @@
       top: 8vw;
     }
 
-    /*
-      Same horizontal boundaries as
-      Selected Work cards.
-    */
-
     .about-copy {
       position: absolute;
 
@@ -406,14 +392,8 @@
 
     .work {
       position: relative;
-
       width: 100%;
-
-      padding:
-        5vw
-        0
-        var(--half-yellow);
-
+      padding: 5vw 0 0;
       background: var(--dark);
     }
 
@@ -428,10 +408,6 @@
     .work-number {
       top: 8vw;
     }
-
-    /*
-      Cards shortened from 70% to 62%.
-    */
 
     .work-grid {
       position: relative;
@@ -451,23 +427,19 @@
       position: relative;
 
       display: grid;
-
       grid-template-columns: 34% 66%;
       grid-template-rows: auto 1fr;
 
       min-height: 16.5vw;
-
       padding: 2.5vw 2vw;
 
-      border: 1px solid rgba(225,225,225,.07);
+      border: 1px solid rgba(225,225,225,.035);
+
+      box-shadow:
+        inset 0 0 16px rgba(225,225,225,.055);
 
       overflow: hidden;
     }
-
-    /*
-      Consistent transparency.
-      Blue -> blue-grey -> ochre -> gold.
-    */
 
     .card.academic {
       background: rgba(67,96,133,.72);
@@ -501,10 +473,9 @@
       grid-row: 2;
 
       align-self: center;
-
       padding-right: 1vw;
 
-      font-size: clamp(22px, 2.35vw, 45px);
+      font-size: clamp(18px, 1.85vw, 36px);
       font-weight: 400;
       line-height: 1.08;
       letter-spacing: -.05em;
@@ -546,19 +517,12 @@
 
     .card.with-video {
       grid-template-rows: auto 1fr auto;
-
       padding-bottom: 2vw;
     }
 
     .card.with-video .card-content {
       grid-row: 1 / span 2;
     }
-
-    /*
-      Matches existing film_slide.html
-      and ad_slide.html:
-      1100px wide, 160px high.
-    */
 
     .video-strip {
       position: relative;
@@ -581,7 +545,6 @@
       inset: 0;
 
       display: block;
-
       width: 100%;
       height: 100%;
 
@@ -593,37 +556,86 @@
 
     /* ==========================================
        BACKGROUND + CONTACT
+
+       NEW:
+       One continuous background image
+       behind both chapters.
        ========================================== */
 
     .lower {
       position: relative;
-
       width: 100%;
+
+      /*
+        Exactly half the width of the
+        yellow hero square between the
+        last project card and chapter 03.
+      */
+
+      margin-top: var(--half-yellow);
+
       overflow: hidden;
-
-      background-color: var(--dark);
-      background-image: url("bilder/background.png");
-      background-repeat: no-repeat;
-
-      background-size: 200% auto;
-      background-position: 52% 62%;
+      background: var(--dark);
     }
 
-    .lower::before {
-      content: "";
+    /*
+      The same background2.png is used
+      throughout Background and Contact.
 
+      The image extends behind both
+      sections, instead of restarting
+      at Contact.
+    */
+
+    .lower-image {
       position: absolute;
-      z-index: 1;
+      z-index: 0;
       inset: 0;
 
-      background: linear-gradient(
+      background-image: url("bilder/background2.png");
+      background-repeat: no-repeat;
+
+      /*
+        Cover the complete shared area.
+        Keep the image anchored at the
+        bottom so Contact shows the
+        intended portion.
+      */
+
+      background-size: cover;
+      background-position: center bottom;
+
+      /*
+        Long gradual fade from solid
+        dark grey to the background image.
+
+        No hard transition at Contact.
+      */
+
+      -webkit-mask-image: linear-gradient(
         to bottom,
-        #292B28 0%,
-        rgba(41,43,40,.98) 12%,
-        rgba(41,43,40,.88) 24%,
-        rgba(41,43,40,.55) 35%,
-        rgba(41,43,40,.20) 47%,
-        transparent 60%
+        transparent 0%,
+        transparent 7%,
+        rgba(0,0,0,.08) 16%,
+        rgba(0,0,0,.22) 27%,
+        rgba(0,0,0,.45) 40%,
+        rgba(0,0,0,.72) 54%,
+        rgba(0,0,0,.92) 67%,
+        black 78%,
+        black 100%
+      );
+
+      mask-image: linear-gradient(
+        to bottom,
+        transparent 0%,
+        transparent 7%,
+        rgba(0,0,0,.08) 16%,
+        rgba(0,0,0,.22) 27%,
+        rgba(0,0,0,.45) 40%,
+        rgba(0,0,0,.72) 54%,
+        rgba(0,0,0,.92) 67%,
+        black 78%,
+        black 100%
       );
 
       pointer-events: none;
@@ -639,7 +651,13 @@
 
       width: 100%;
 
-      padding: 4.5vw 0 3vw;
+      /*
+        The chapter line is at top: 0.
+        The half-square spacing is
+        provided by .lower margin-top.
+      */
+
+      padding: 5vw 0 4vw;
     }
 
     .background-line {
@@ -653,11 +671,6 @@
     .background-number {
       top: 8vw;
     }
-
-    /*
-      Same width and left alignment
-      as About text and work cards.
-    */
 
     .background-copy {
       position: relative;
@@ -677,6 +690,11 @@
 
     /* ==========================================
        CONTACT
+
+       NEW:
+       No separate background image.
+       The shared image continues
+       behind this entire section.
        ========================================== */
 
     .contact {
@@ -687,6 +705,8 @@
       height: 33vw;
 
       overflow: hidden;
+
+      background: transparent;
     }
 
     .contact-line {
@@ -701,38 +721,65 @@
       top: 10vw;
     }
 
-    /*
-      Slightly smaller circles,
-      still crossing the chapter line.
-    */
+    /* ==========================================
+       CONTACT CIRCLE
 
-    .grey-circle {
+       NEW:
+       Smaller, completely visible,
+       centered around contact details.
+       ========================================== */
+
+    .contact-circle {
       position: absolute;
       z-index: 1;
 
-      left: 49.5%;
-      top: 0;
+      /*
+        Circle center:
+        approximately 70% of page width.
 
-      width: 48vw;
-      height: 48vw;
+        Its complete outline stays
+        inside the Contact section.
+      */
+
+      left: 56%;
+      top: 5.5vw;
+
+      width: 27vw;
+      height: 27vw;
 
       border-radius: 50%;
-      background: rgba(67,96,133,.72);
+
+      /*
+        Subtle blue outer frame.
+      */
+
+      background: rgba(67,96,133,.76);
     }
 
-    .blue-circle {
+    .contact-circle-inner {
       position: absolute;
       z-index: 2;
 
-      left: 53%;
-      top: 2vw;
+      left: 57.1%;
+      top: 6.6vw;
 
-      width: 45vw;
-      height: 45vw;
+      width: 24.8vw;
+      height: 24.8vw;
 
       border-radius: 50%;
+
+      /*
+        Warm translucent center.
+        Blue remains visible as a
+        narrow outer ring.
+      */
+
       background: rgba(244,175,33,.48);
     }
+
+    /* ==========================================
+       CONTACT HEADING
+       ========================================== */
 
     .contact-heading {
       position: absolute;
@@ -778,23 +825,31 @@
 
     /* ==========================================
        CONTACT DETAILS
+
+       NEW:
+       Centered inside the circle.
        ========================================== */
 
     .contact-details {
       position: absolute;
       z-index: 8;
 
-      left: 53%;
-      top: 12vw;
+      /*
+        Match the center of the circle.
+      */
 
-      width: 45vw;
+      left: 56%;
+      top: 5.5vw;
+
+      width: 27vw;
+      height: 27vw;
 
       display: flex;
       flex-direction: column;
       align-items: center;
+      justify-content: center;
 
       gap: .8vw;
-
       text-align: center;
     }
 
@@ -851,7 +906,6 @@
        ========================================== */
 
     @media (min-width: 1920px) {
-
       .hero,
       .work,
       .lower,
@@ -860,7 +914,6 @@
         margin-left: auto;
         margin-right: auto;
       }
-
     }
 
     /* ==========================================
@@ -901,7 +954,6 @@
 
       .hero {
         height: 840px;
-
         background-size: auto 1050px;
         background-position: center -110px;
       }
@@ -909,7 +961,6 @@
       .hero-content {
         left: 25px;
         top: 135px;
-
         width: calc(100% - 50px);
       }
 
@@ -924,7 +975,6 @@
 
       .hero h1 {
         margin-top: 25px;
-
         font-size: 76px;
         line-height: .82;
       }
@@ -932,7 +982,6 @@
       .hero-copy {
         width: 78%;
         margin-top: 40px;
-
         font-size: 13px;
       }
 
@@ -944,7 +993,6 @@
       .hero-circle {
         left: 45%;
         top: 430px;
-
         width: 500px;
         height: 500px;
       }
@@ -952,7 +1000,6 @@
       .hero-portrait {
         left: 55%;
         top: 495px;
-
         width: 245px;
         height: 245px;
       }
@@ -960,7 +1007,6 @@
       .hero-blue {
         left: 48%;
         top: 450px;
-
         width: 50px;
         height: 100px;
       }
@@ -968,7 +1014,6 @@
       .hero-yellow {
         left: 74%;
         top: 650px;
-
         width: 100px;
         height: 100px;
       }
@@ -982,14 +1027,12 @@
       .about-line {
         left: 25px;
         top: 10px;
-
         width: calc(100% - 50px);
       }
 
       .about-label {
         left: 25px;
         top: 25px;
-
         font-size: 10px;
       }
 
@@ -1017,20 +1060,18 @@
       /* SELECTED WORK */
 
       .work {
-        padding: 90px 25px 50px;
+        padding: 90px 25px 0;
       }
 
       .work-line {
         left: 25px;
         top: 0;
-
         width: calc(100% - 50px);
       }
 
       .work-label {
         left: 25px;
         top: 15px;
-
         font-size: 10px;
       }
 
@@ -1057,8 +1098,7 @@
 
       .card h3 {
         align-self: flex-start;
-
-        font-size: 31px;
+        font-size: 25px;
       }
 
       .card-content {
@@ -1094,47 +1134,55 @@
 
       .video-strip iframe {
         inset: 0;
-
         width: 100%;
         height: 100%;
-
         transform: none;
       }
 
       /* BACKGROUND */
 
       .lower {
-        background-size: auto 1500px;
-        background-position: 52% 62%;
+        margin-top: 50px;
       }
 
-      .lower::before {
-        background: linear-gradient(
+      .lower-image {
+        background-size: cover;
+        background-position: center bottom;
+
+        -webkit-mask-image: linear-gradient(
           to bottom,
-          #292B28 0%,
-          rgba(41,43,40,.98) 12%,
-          rgba(41,43,40,.88) 25%,
-          rgba(41,43,40,.55) 40%,
-          rgba(41,43,40,.20) 55%,
-          transparent 70%
+          transparent 0%,
+          transparent 8%,
+          rgba(0,0,0,.15) 25%,
+          rgba(0,0,0,.55) 50%,
+          black 75%,
+          black 100%
+        );
+
+        mask-image: linear-gradient(
+          to bottom,
+          transparent 0%,
+          transparent 8%,
+          rgba(0,0,0,.15) 25%,
+          rgba(0,0,0,.55) 50%,
+          black 75%,
+          black 100%
         );
       }
 
       .background-content {
-        padding: 90px 0 50px;
+        padding: 65px 0 50px;
       }
 
       .background-line {
         left: 25px;
         top: 0;
-
         width: calc(100% - 50px);
       }
 
       .background-label {
         left: 25px;
         top: 15px;
-
         font-size: 10px;
       }
 
@@ -1153,42 +1201,24 @@
       /* CONTACT */
 
       .contact {
-        height: 620px;
+        height: 680px;
       }
 
       .contact-line {
         left: 25px;
-        top: 70px;
-
+        top: 40px;
         width: calc(100% - 50px);
       }
 
       .contact-label {
         left: 25px;
-        top: 88px;
-
+        top: 58px;
         font-size: 10px;
-      }
-
-      .grey-circle {
-        left: 43%;
-        top: 35px;
-
-        width: 500px;
-        height: 500px;
-      }
-
-      .blue-circle {
-        left: 51%;
-        top: 55px;
-
-        width: 465px;
-        height: 465px;
       }
 
       .contact-heading {
         left: 25px;
-        top: 170px;
+        top: 125px;
       }
 
       .contact-heading::before {
@@ -1202,24 +1232,51 @@
 
       .contact-yellow {
         left: 215px;
-        top: 245px;
+        top: 200px;
 
         width: 35px;
         height: 70px;
       }
 
+      /*
+        Mobile circle:
+        completely visible and centered.
+      */
+
+      .contact-circle {
+        left: 50%;
+        top: 305px;
+
+        width: min(82vw, 330px);
+        height: min(82vw, 330px);
+
+        transform: translateX(-50%);
+      }
+
+      .contact-circle-inner {
+        left: 50%;
+        top: 315px;
+
+        width: min(calc(82vw - 20px), 310px);
+        height: min(calc(82vw - 20px), 310px);
+
+        transform: translateX(-50%);
+      }
+
       .contact-details {
-        left: 25px;
-        top: 365px;
+        left: 50%;
+        top: 305px;
 
-        width: calc(100% - 50px);
+        width: min(82vw, 330px);
+        height: min(82vw, 330px);
 
+        transform: translateX(-50%);
         gap: 12px;
       }
 
       .email,
       .phone {
-        font-size: 14px;
+        font-size: 12px;
       }
 
       .contact-socials {
@@ -1228,13 +1285,12 @@
       }
 
       .contact-socials .text-link {
-        font-size: 14px;
+        font-size: 13px;
       }
 
       footer {
         min-height: 55px;
         padding: 0 25px;
-
         font-size: 8px;
       }
 
@@ -1355,9 +1411,7 @@
 
     <div class="work-grid">
 
-      <!-- ==================================
-           ACADEMIC WORKS
-           ================================== -->
+      <!-- ACADEMIC WORKS -->
 
       <article class="card academic">
 
@@ -1425,9 +1479,7 @@
 
       </article>
 
-      <!-- ==================================
-           PUBLISHED PROJECTS
-           ================================== -->
+      <!-- PUBLISHED PROJECTS -->
 
       <article class="card published">
 
@@ -1488,9 +1540,7 @@
 
       </article>
 
-      <!-- ==================================
-           FILM & TV WORK
-           ================================== -->
+      <!-- FILM & TV WORK -->
 
       <article class="card film with-video">
 
@@ -1561,9 +1611,7 @@
 
       </article>
 
-      <!-- ==================================
-           COMMERCIAL WORK
-           ================================== -->
+      <!-- COMMERCIAL WORK -->
 
       <article class="card commercial with-video">
 
@@ -1618,9 +1666,10 @@
 
   <section class="lower">
 
-    <!-- ==================================
-         BACKGROUND
-         ================================== -->
+    <!-- One shared background image -->
+    <div class="lower-image"></div>
+
+    <!-- BACKGROUND -->
 
     <div class="background-content">
 
@@ -1697,9 +1746,7 @@
 
     </div>
 
-    <!-- ==================================
-         CONTACT
-         ================================== -->
+    <!-- CONTACT -->
 
     <div class="contact" id="contact">
 
@@ -1707,8 +1754,9 @@
       <div class="contact-label">Contact</div>
       <div class="contact-number">04 — CONTACT</div>
 
-      <div class="grey-circle"></div>
-      <div class="blue-circle"></div>
+      <!-- Smaller, fully visible circle -->
+      <div class="contact-circle"></div>
+      <div class="contact-circle-inner"></div>
 
       <div class="contact-heading">
         <h2>Contact</h2>
@@ -1766,7 +1814,7 @@
 
   <footer>
     <span>© 2026 Malin Hall</span>
-    <span>MH / Portfolio</span>
+    <span>MH / PORTFOLIO</span>
   </footer>
 
 </body>
