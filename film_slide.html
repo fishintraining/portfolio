@@ -2,447 +2,169 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Film Work</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
-
-    html, body {
-      width: 100%;
-      height: 100%;
-      overflow: hidden;
-      background: #000;
-      font-family: Arial, sans-serif;
-    }
-
-    .page {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      overflow: hidden;
-      background: #000;
-    }
-
-    .title {
-      width: min(1100px, 100%);
-      margin: 0 auto 35px;
-      font-size: clamp(16px, 1.2vw, 24px);
-      font-weight: 500;
-      letter-spacing: .08em;
-      text-transform: uppercase;
-      color: #fff;
-    }
-
-    .reel-window {
-      position: relative;
-      width: 1100px;
-      max-width: 100%;
-      height: 160px;
-      margin: 0 auto;
-      overflow: hidden;
-      background: #000;
-
-      -webkit-mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 12%,
-        black 88%,
-        transparent 100%
-      );
-
-      mask-image: linear-gradient(
-        to right,
-        transparent 0%,
-        black 12%,
-        black 88%,
-        transparent 100%
-      );
-    }
-
-    .reel {
-      display: flex;
-      width: max-content;
-      height: 160px;
-      animation: scroll 103s linear infinite;
-      animation-play-state: paused;
-      will-change: transform;
-    }
-
-    .reel.running {
-      animation-play-state: running;
-    }
-
-    .reel-group {
-      display: flex;
-      align-items: center;
-      height: 160px;
-      gap: 4px;
-      padding-right: 4px;
-      flex-shrink: 0;
-      background: #000;
-    }
-
-    .video-card {
-      position: relative;
-      width: calc(150px * 16 / 9);
-      height: 150px;
-      flex-shrink: 0;
-      overflow: hidden;
-      background: #000;
-      border: 0;
-      border-radius: 0;
-    }
-
-    .video-card video {
-      position: absolute;
-      inset: 0;
-      display: block;
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-      pointer-events: none;
-    }
-
-    @keyframes scroll {
-      from { transform: translateX(0); }
-      to { transform: translateX(-50%); }
-    }
-
-    @media (max-width: 900px) {
-      .reel {
-        animation-duration: 86s;
-      }
-
-      .reel-window {
-        -webkit-mask-image: linear-gradient(
-          to right,
-          transparent 0%,
-          black 7%,
-          black 93%,
-          transparent 100%
-        );
-
-        mask-image: linear-gradient(
-          to right,
-          transparent 0%,
-          black 7%,
-          black 93%,
-          transparent 100%
-        );
-      }
-    }
-
-    body.compact .page {
-      width: 100%;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-    }
-
-    body.compact .title {
-      display: none;
-    }
-
-    body.compact .reel-window {
-      width: 1100px;
-      max-width: 100%;
-      height: 160px;
-      margin: 0 auto;
-    }
-
-    body.compact .reel,
-    body.compact .reel-group {
-      height: 160px;
-    }
-
-    html:has(body.compact),
-    body.compact,
-    body.compact .page {
-      background: transparent;
-    }
-  </style>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Film Work</title>
+<style>
+* { box-sizing:border-box; margin:0; padding:0; }
+html,body { width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial,sans-serif; }
+.page { width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:#000; }
+.title { width:min(1100px,100%);margin:0 auto 35px;font-size:clamp(16px,1.2vw,24px);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#fff; }
+.reel-window { position:relative;width:1100px;max-width:100%;height:160px;margin:0 auto;overflow:hidden;background:#000;
+  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 12%,black 88%,transparent 100%);
+  mask-image:linear-gradient(to right,transparent 0%,black 12%,black 88%,transparent 100%); }
+.reel { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;width:100%;height:160px;background:#000;padding:5px 0; }
+.video-card { position:relative;min-width:0;height:150px;background:#000;overflow:hidden; }
+.video-card video { position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:0;transition:opacity 1s ease; }
+.video-card video.visible { opacity:1; }
+@media(max-width:900px) {
+ .reel-window { -webkit-mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%); }
+}
+body.compact .page { align-items:center;justify-content:center; }
+body.compact .title { display:none; }
+html:has(body.compact),body.compact,body.compact .page { background:transparent; }
+</style>
 </head>
-
 <body>
-
-<script>
-  if (
-    new URLSearchParams(location.search).get("mode")
-    === "compact"
-  ) {
-    document.body.classList.add("compact");
-  }
-</script>
-
+<script>if(new URLSearchParams(location.search).get('mode')==='compact')document.body.classList.add('compact');</script>
 <main class="page">
-  <div class="title">Film & Television Work</div>
-
-  <div class="reel-window" id="reel-window">
-    <div class="reel" id="reel">
-      <div class="reel-group" id="first-group"></div>
-      <div
-        class="reel-group"
-        id="second-group"
-        aria-hidden="true"
-      ></div>
-    </div>
-  </div>
+<div class="title">Film & Television Work</div>
+<div class="reel-window" id="reel-window"><div class="reel" id="reel"><div class="video-card"></div><div class="video-card"></div><div class="video-card"></div></div></div>
 </main>
-
 <script>
-  const videoFiles = [
-    "F1_Bert.mp4",
-    "F2_BarracudaQueens.mp4",
-    "F3_IDH.mp4",
-    "F4_Stormpalugngatan.mp4",
-    "F5_Fartblinda.mp4",
-    "F6_konferensen.mp4",
-    "F7_VV.mp4",
-    "F8_hassel.mp4",
-    "F9_Maklarna.mp4",
-    "FB1_ParadisCity.mp4",
-    "FB2_Svartan.mp4",
-    "FB3_vaka.mp4",
-    "FB4_HappyPride.mp4",
-    "FB5_Dystopia.mp4"
-  ];
-
-  const reel = document.getElementById("reel");
-  const reelWindow = document.getElementById("reel-window");
-  const firstGroup = document.getElementById("first-group");
-  const secondGroup = document.getElementById("second-group");
-
-  const CARD_WIDTH = 150 * 16 / 9;
-  const CARD_STEP = CARD_WIDTH + 4;
-
-  const LOOKAHEAD = 700;
-  const LOOKBEHIND = 150;
-  const MAX_PLAYERS = 9;
-
-  const cards = [];
-  const active = new Map();
-  const available = [];
-
-  let pageVisible = false;
-  let frameId = null;
-  let lastFrame = 0;
-
-  function buildGroup(group) {
-    videoFiles.forEach((filename, index) => {
-      const card = document.createElement("div");
-      card.className = "video-card";
-      card.dataset.filename = filename;
-      card.dataset.index = index;
-
-      group.appendChild(card);
-      cards.push(card);
-    });
+const videoFiles = [
+  "F1_Bert.mp4",
+  "F2_BarracudaQueens.mp4",
+  "F3_IDH.mp4",
+  "F4_Stormpalugngatan.mp4",
+  "F5_Fartblinda.mp4",
+  "F6_konferensen.mp4",
+  "F7_VV.mp4",
+  "F8_hassel.mp4",
+  "F9_Maklarna.mp4",
+  "FB1_ParadisCity.mp4",
+  "FB2_Svartan.mp4",
+  "FB3_vaka.mp4",
+  "FB4_HappyPride.mp4",
+  "FB5_Dystopia.mp4"
+];
+const cards = [...document.querySelectorAll('.video-card')];
+const windowEl = document.getElementById('reel-window');
+const FADE_MS = 1000;
+const BASE_INTERVAL_MS = 3000;
+const JITTER_MS = 1000;
+const MAX_WAIT_MS = 6500;
+const slots = cards.map(card => ({card,current:null,next:null,timer:null,busy:false,token:0}));
+let running = false;
+let sequence = 0;
+const random = (a,b) => a+Math.random()*(b-a);
+const delay = ms => new Promise(resolve=>setTimeout(resolve,ms));
+function makeVideo(filename){
+ const v=document.createElement('video');
+ v.src='videos/'+filename;
+ v.muted=true;v.defaultMuted=true;v.playsInline=true;v.loop=true;
+ v.preload='auto';v.setAttribute('muted','');v.setAttribute('playsinline','');
+ v.dataset.filename=filename;
+ return v;
+}
+function waitEvent(video,event,timeout=MAX_WAIT_MS){
+ return new Promise((resolve,reject)=>{
+  let timer;
+  const clean=()=>{clearTimeout(timer);video.removeEventListener(event,ok);video.removeEventListener('error',fail)};
+  const ok=()=>{clean();resolve()};
+  const fail=()=>{clean();reject(new Error('Video failed: '+video.currentSrc))};
+  video.addEventListener(event,ok,{once:true});video.addEventListener('error',fail,{once:true});
+  timer=setTimeout(()=>{clean();reject(new Error('Timed out: '+video.currentSrc))},timeout);
+ });
+}
+async function prepare(video){
+ video.load();
+ if(video.readyState<1)await waitEvent(video,'loadedmetadata');
+ const duration=video.duration;
+ if(Number.isFinite(duration)&&duration>0.5){
+  const margin=Math.min(0.25,duration/10);
+  const target=random(margin,Math.max(margin,duration-margin));
+  if(Math.abs(video.currentTime-target)>0.05){
+   const seeked=waitEvent(video,'seeked');
+   video.currentTime=target;
+   await seeked;
   }
-
-  buildGroup(firstGroup);
-  buildGroup(secondGroup);
-
-  function makePlayer() {
-    const video = document.createElement("video");
-
-    video.muted = true;
-    video.defaultMuted = true;
-    video.loop = true;
-    video.playsInline = true;
-    video.autoplay = false;
-    video.preload = "none";
-
-    video.setAttribute("muted", "");
-    video.setAttribute("loop", "");
-    video.setAttribute("playsinline", "");
-
-    return video;
-  }
-
-  function getPlayer() {
-    if (available.length) {
-      return available.pop();
-    }
-
-    if (active.size < MAX_PLAYERS) {
-      return makePlayer();
-    }
-
-    return null;
-  }
-
-  function releasePlayer(card) {
-    const video = active.get(card);
-    if (!video) return;
-
-    video.pause();
-    video.removeAttribute("src");
-    video.load();
-    video.remove();
-
-    active.delete(card);
-    available.push(video);
-  }
-
-  function attachPlayer(card) {
-    if (active.has(card)) return;
-
-    const video = getPlayer();
-    if (!video) return;
-
-    video.src = "videos/" + card.dataset.filename;
-    video.preload = "auto";
-
-    card.appendChild(video);
-    active.set(card, video);
-
-    if (pageVisible) {
-      video.play().catch(() => {});
-    }
-  }
-
-  function getScrollOffset() {
-    const transform = getComputedStyle(reel).transform;
-
-    if (!transform || transform === "none") return 0;
-
-    return new DOMMatrixReadOnly(transform).m41;
-  }
-
-  function updatePlayers() {
-    if (!pageVisible) return;
-
-    const offset = getScrollOffset();
-    const width = reelWindow.clientWidth;
-
-    const needed = [];
-
-    cards.forEach((card, index) => {
-      const groupIndex = index % videoFiles.length;
-      const groupNumber =
-        Math.floor(index / videoFiles.length);
-
-      const x =
-        groupNumber * firstGroup.offsetWidth +
-        groupIndex * CARD_STEP +
-        offset;
-
-      if (
-        x + CARD_WIDTH >= -LOOKBEHIND &&
-        x <= width + LOOKAHEAD
-      ) {
-        needed.push(card);
-      }
-    });
-
-    const neededSet = new Set(needed);
-
-    for (const card of active.keys()) {
-      if (!neededSet.has(card)) {
-        releasePlayer(card);
-      }
-    }
-
-    needed.sort((a, b) => {
-      const ar = a.getBoundingClientRect();
-      const br = b.getBoundingClientRect();
-      const wr = reelWindow.getBoundingClientRect();
-
-      const da = Math.max(
-        0,
-        ar.left - wr.right,
-        wr.left - ar.right
-      );
-
-      const db = Math.max(
-        0,
-        br.left - wr.right,
-        wr.left - br.right
-      );
-
-      return da - db;
-    });
-
-    needed.forEach(attachPlayer);
-  }
-
-  function tick(timestamp) {
-    if (!pageVisible) return;
-
-    if (timestamp - lastFrame > 100) {
-      updatePlayers();
-      lastFrame = timestamp;
-    }
-
-    frameId = requestAnimationFrame(tick);
-  }
-
-  function setVisible(visible) {
-    if (pageVisible === visible) return;
-
-    pageVisible = visible;
-
-    if (visible) {
-      reel.classList.add("running");
-
-      updatePlayers();
-
-      active.forEach(video => {
-        video.play().catch(() => {});
-      });
-
-      lastFrame = 0;
-      frameId = requestAnimationFrame(tick);
-    } else {
-      reel.classList.remove("running");
-
-      if (frameId !== null) {
-        cancelAnimationFrame(frameId);
-        frameId = null;
-      }
-
-      active.forEach(video => video.pause());
-    }
-  }
-
-  const visibilityObserver = new IntersectionObserver(
-    entries => {
-      setVisible(
-        entries.some(entry => entry.isIntersecting)
-        && !document.hidden
-      );
-    },
-    { threshold: 0.01 }
-  );
-
-  visibilityObserver.observe(reelWindow);
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      setVisible(false);
-    } else {
-      const rect = reelWindow.getBoundingClientRect();
-
-      setVisible(
-        rect.bottom > 0 &&
-        rect.top < window.innerHeight
-      );
-    }
-  });
-
-  window.addEventListener("pagehide", () => {
-    setVisible(false);
-  });
+ }
+ if(video.readyState<2)await waitEvent(video,'loadeddata');
+}
+function usedNames(except){
+ const names=new Set();
+ for(const s of slots){
+  if(s===except)continue;
+  if(s.current)names.add(s.current.dataset.filename);
+  if(s.next)names.add(s.next.dataset.filename);
+ }
+ if(except.current)names.add(except.current.dataset.filename);
+ return names;
+}
+function choose(except){
+ const used=usedNames(except);
+ const choices=videoFiles.filter(name=>!used.has(name));
+ return choices.length?choices[Math.floor(Math.random()*choices.length)]:null;
+}
+function destroy(video){if(!video)return;video.pause();video.removeAttribute('src');video.load();video.remove();}
+async function change(slot){
+ if(!running||slot.busy)return;
+ slot.busy=true;
+ const token=++slot.token;
+ let next=null;
+ try{
+  const filename=choose(slot);
+  if(!filename)throw new Error('No unused video available');
+  next=makeVideo(filename);slot.next=next;
+  next.style.zIndex='2';slot.card.appendChild(next);
+  await prepare(next);
+  if(!running||token!==slot.token)return;
+  await next.play();
+  if(!running||token!==slot.token)return;
+  next.classList.add('visible');
+  await delay(FADE_MS+50);
+  if(token!==slot.token)return;
+  const old=slot.current;
+  slot.current=next;slot.next=null;next=null;
+  destroy(old);
+ }catch(error){console.warn('Reel video unavailable:',error.message);}
+ finally{
+  if(next){if(slot.next===next)slot.next=null;destroy(next);}
+  slot.busy=false;
+  if(running&&token===slot.token)schedule(slot);
+ }
+}
+function schedule(slot){
+ clearTimeout(slot.timer);
+ slot.timer=setTimeout(()=>change(slot),Math.max(1100,BASE_INTERVAL_MS+random(-JITTER_MS,JITTER_MS)));
+}
+function start(){
+ if(running)return;
+ running=true;
+ slots.forEach((slot,index)=>{
+  if(slot.current){slot.current.play().catch(err=>console.warn('Resume failed:',err));schedule(slot);}
+  else slot.timer=setTimeout(()=>change(slot),index*500+random(0,450));
+ });
+}
+function stop(){
+ if(!running)return;
+ running=false;
+ slots.forEach(slot=>{
+  clearTimeout(slot.timer);
+  slot.token++;
+  if(slot.current)slot.current.pause();
+  if(slot.next){destroy(slot.next);slot.next=null;}
+ });
+}
+const observer=new IntersectionObserver(entries=>{
+ if(entries.some(e=>e.isIntersecting)&&!document.hidden)start();else stop();
+},{threshold:0.01});
+observer.observe(windowEl);
+document.addEventListener('visibilitychange',()=>{
+ if(document.hidden)stop();else if(windowEl.getBoundingClientRect().bottom>0&&windowEl.getBoundingClientRect().top<innerHeight)start();
+});
+window.addEventListener('pagehide',stop);
 </script>
-
 </body>
 </html>
