@@ -26,6 +26,9 @@
 
   --reel-width: 1100px;
   --reel-height: 160px;
+
+  /* New background positioning controls */
+  --contact-image-shift: 8vw;
 }
 
 * {
@@ -147,46 +150,45 @@ nav a:hover {
 /*
   HERO BACKGROUND
 
-  The image is scaled proportionally to
-  the page width and anchored top-left.
+  Image anchored top-left, scaled to the
+  full page width without cover cropping.
 
-  No cover, no cropping to fill the area,
-  and no vertical displacement.
+  The fade is anchored to the bottom of
+  HERO, directly above Selected Work.
 */
 
 .hero::before {
   content: "";
   position: absolute;
   z-index: 0;
-
-  top: 0;
-  left: 0;
-
-  width: 100%;
-  height: 100%;
+  inset: 0;
 
   background-image: url("bilder/background.png");
   background-size: 100% auto;
   background-position: left top;
   background-repeat: no-repeat;
 
+  /*
+    Fade follows the bottom of the HERO
+    section, not an arbitrary image height.
+  */
   -webkit-mask-image: linear-gradient(
     to bottom,
     black 0%,
-    black 55%,
-    rgba(0,0,0,.85) 65%,
-    rgba(0,0,0,.55) 77%,
-    rgba(0,0,0,.2) 90%,
+    black 65%,
+    rgba(0,0,0,.9) 72%,
+    rgba(0,0,0,.65) 82%,
+    rgba(0,0,0,.3) 92%,
     transparent 100%
   );
 
   mask-image: linear-gradient(
     to bottom,
     black 0%,
-    black 55%,
-    rgba(0,0,0,.85) 65%,
-    rgba(0,0,0,.55) 77%,
-    rgba(0,0,0,.2) 90%,
+    black 65%,
+    rgba(0,0,0,.9) 72%,
+    rgba(0,0,0,.65) 82%,
+    rgba(0,0,0,.3) 92%,
     transparent 100%
   );
 }
@@ -530,10 +532,23 @@ nav a:hover {
   background: var(--dark);
 }
 
+/*
+  LOWER BACKGROUND
+
+  The image is shifted down independently
+  of the text and contact shapes.
+
+  The image keeps its original aspect ratio.
+*/
+
 .lower-image {
   position: absolute;
   z-index: 0;
-  inset: 0;
+
+  top: var(--contact-image-shift);
+  left: 0;
+  right: 0;
+  bottom: 0;
 
   background-image: url("bilder/background2.png");
   background-repeat: no-repeat;
@@ -766,6 +781,8 @@ footer {
     --yellow-box: 100px;
     --reel-width: 1100px;
     --reel-height: 160px;
+
+    --contact-image-shift: 80px;
   }
 
   header {
@@ -798,20 +815,22 @@ footer {
 
     -webkit-mask-image: linear-gradient(
       to bottom,
-      black 0px,
-      black 450px,
-      rgba(0,0,0,.85) 520px,
-      rgba(0,0,0,.45) 640px,
-      transparent 760px
+      black 0%,
+      black 65%,
+      rgba(0,0,0,.9) 72%,
+      rgba(0,0,0,.65) 82%,
+      rgba(0,0,0,.3) 92%,
+      transparent 100%
     );
 
     mask-image: linear-gradient(
       to bottom,
-      black 0px,
-      black 450px,
-      rgba(0,0,0,.85) 520px,
-      rgba(0,0,0,.45) 640px,
-      transparent 760px
+      black 0%,
+      black 65%,
+      rgba(0,0,0,.9) 72%,
+      rgba(0,0,0,.65) 82%,
+      rgba(0,0,0,.3) 92%,
+      transparent 100%
     );
   }
 
@@ -997,6 +1016,7 @@ footer {
   }
 
   .lower-image {
+    top: var(--contact-image-shift);
     background-size: auto 100%;
     background-position: center bottom;
   }
