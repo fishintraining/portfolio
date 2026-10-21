@@ -93,7 +93,7 @@
       object-fit: cover;
       pointer-events: none;
       opacity: 0;
-      transition: opacity 1s ease;
+      transition: opacity 1s linear;
     }
 
     .video-card video.visible {
@@ -140,7 +140,10 @@
 <body>
 
 <script>
-  if (new URLSearchParams(location.search).get("mode") === "compact") {
+  if (
+    new URLSearchParams(location.search).get("mode")
+    === "compact"
+  ) {
     document.body.classList.add("compact");
   }
 </script>
@@ -179,21 +182,24 @@
     "ABC1_Postnord2.mp4"
   ];
 
-  const cards = [...document.querySelectorAll(".video-card")];
+  const cards = [
+    ...document.querySelectorAll(".video-card")
+  ];
+
   const reelWindow = document.getElementById("reel-window");
 
-  const FADE_DURATION = 1000;
-  const MIN_INTERVAL = 2500;
-  const MAX_INTERVAL = 3500;
-  const LOAD_TIMEOUT = 8000;
+  const FADE_MS = 1000;
+  const MIN_HOLD_MS = 3000;
+  const MAX_HOLD_MS = 5000;
+  const LOAD_TIMEOUT_MS = 8000;
 
   const slots = cards.map(card => ({
     card,
     current: null,
-    prepared: null,
+    next: null,
     timer: null,
-    generation: 0,
-    busy: false
+    changing: false,
+    version: 0
   }));
 
   let running = false;
@@ -202,23 +208,50 @@
     return min + Math.random() * (max - min);
   }
 
-  function randomItem(items) {
-    return items[Math.floor(Math.random() * items.length)];
+  function pickRandom(array) {
+    return array[Math.floor(Math.random() * array.length)];
   }
 
-  function wait(ms) {
+  function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function usedFilenames() {
+    const used = new Set();
+
+    slots.forEach(slot => {
+      if (slot.current) {
+        used.add(slot.current.dataset.filename);
+      }
+
+      if (slot.next) {
+        used.add(slot.next.dataset.filename);
+      }
+    });
+
+    return used;
+  }
+
+  function chooseFilename() {
+    const used = usedFilenames();
+
+    const choices = videoFiles.filter(
+      filename => !used.has(filename)
+    );
+
+    return choices.length ? pickRandom(choices) : null;
   }
 
   function makeVideo(filename) {
     const video = document.createElement("video");
 
-    video.src = "videos/" + filename;
     video.dataset.filename = filename;
+    video.src = "videos/" + filename;
+
     video.muted = true;
     video.defaultMuted = true;
-    video.loop = true;
     video.playsInline = true;
+    video.loop = true;
     video.preload = "auto";
 
     video.setAttribute("muted", "");
@@ -228,7 +261,7 @@
     return video;
   }
 
-  function waitFor(video, eventName) {
+  function waitForEvent(video, eventName) {
     return new Promise((resolve, reject) => {
       let timeout;
 
@@ -245,16 +278,25 @@
 
       function failure() {
         cleanup();
-        reject(new Error("Could not load " + video.src));
+        reject(new Error("Failed to load " + video.src));
       }
 
-      video.addEventListener(eventName, success, { once: true });
-      video.addEventListener("error", failure, { once: true });
+      video.addEventListener(
+        eventName,
+        success,
+        { once: true }
+      );
+
+      video.addEventListener(
+        "error",
+        failure,
+        { once: true }
+      );
 
       timeout = setTimeout(() => {
         cleanup();
-        reject(new Error("Video load timeout: " + video.src));
-      }, LOAD_TIMEOUT);
+        reject(new Error("Timeout: " + video.src));
+      }, LOAD_TIMEOUT_MS);
     });
   }
 
@@ -262,39 +304,37 @@
     video.load();
 
     if (video.readyState < 1) {
-      await waitFor(video, "loadedmetadata");
+      await waitForEvent(video, "loadedmetadata");
     }
 
     const duration = video.duration;
 
-    if (Number.isFinite(duration) && duration > 1) {
-      const start = random(0, Math.max(0, duration - 0.5));
-      const seekPromise = waitFor(video, "seeked");
-      video.currentTime = start;
-      await seekPromise;
+    if (
+      Number.isFinite(duration) &&
+      duration > 1
+    ) {
+      const maxStart = Math.max(
+        0,
+        duration - 6
+      );
+
+      const position = random(0, maxStart);
+
+      if (position > 0.05) {
+        const seekPromise = waitForEvent(
+          video,
+          "seeked"
+        );
+
+        video.currentTime = position;
+
+        await seekPromise;
+      }
     }
 
     if (video.readyState < 2) {
-      await waitFor(video, "loadeddata");
+      await waitForEvent(video, "loadeddata");
     }
-  }
-
-  function getAvailableFilename(slot) {
-    const used = new Set();
-
-    slots.forEach(other => {
-      if (other.current) {
-        used.add(other.current.dataset.filename);
-      }
-
-      if (other.prepared) {
-        used.add(other.prepared.dataset.filename);
-      }
-    });
-
-    const available = videoFiles.filter(name => !used.has(name));
-
-    return available.length ? randomItem(available) : null;
   }
 
   function destroyVideo(video) {
@@ -306,86 +346,111 @@
     video.remove();
   }
 
-  async function prepareNext(slot) {
-    if (!running || slot.prepared) return;
+  async function createPreparedVideo(slot) {
+    if (!running || slot.next) return null;
 
-    const filename = getAvailableFilename(slot);
-    if (!filename) return;
+    const filename = chooseFilename();
+
+    if (!filename) return null;
 
     const video = makeVideo(filename);
-    slot.prepared = video;
+
+    slot.next = video;
     video.style.zIndex = "2";
     slot.card.appendChild(video);
 
     try {
       await prepareVideo(video);
-    } catch (error) {
-      console.warn(error.message);
 
-      if (slot.prepared === video) {
-        slot.prepared = null;
+      if (!running || slot.next !== video) {
+        return null;
+      }
+
+      return video;
+
+    } catch (error) {
+      console.warn(
+        "Video preparation failed:",
+        filename,
+        error
+      );
+
+      if (slot.next === video) {
+        slot.next = null;
       }
 
       destroyVideo(video);
+
+      return null;
     }
   }
 
-  async function changeVideo(slot) {
-    if (!running || slot.busy) return;
+  function scheduleChange(slot) {
+    clearTimeout(slot.timer);
 
-    slot.busy = true;
-    const generation = ++slot.generation;
+    slot.timer = setTimeout(
+      () => changeVideo(slot),
+      random(MIN_HOLD_MS, MAX_HOLD_MS)
+    );
+  }
+
+  async function changeVideo(slot) {
+    if (!running || slot.changing) return;
+
+    slot.changing = true;
+    const version = ++slot.version;
 
     try {
-      if (!slot.prepared) {
-        await prepareNext(slot);
+      let next = slot.next;
+
+      if (!next) {
+        next = await createPreparedVideo(slot);
       }
 
-      const next = slot.prepared;
+      if (!next) return;
 
-      if (!next || !running || generation !== slot.generation) {
+      if (!running || version !== slot.version) {
         return;
+      }
+
+      if (next.readyState < 2) {
+        await waitForEvent(next, "loadeddata");
       }
 
       await next.play();
 
-      if (!running || generation !== slot.generation) {
+      if (!running || version !== slot.version) {
         return;
       }
 
+      // The previous video remains visible
+      // until the new video is playing.
       next.classList.add("visible");
 
-      await wait(FADE_DURATION + 50);
+      await sleep(FADE_MS + 50);
 
-      if (!running || generation !== slot.generation) {
+      if (!running || version !== slot.version) {
         return;
       }
 
       const previous = slot.current;
 
       slot.current = next;
-      slot.prepared = null;
+      slot.next = null;
 
       destroyVideo(previous);
 
     } catch (error) {
-      console.warn("Playback problem:", error);
-    } finally {
-      slot.busy = false;
+      console.warn("Video switch failed:", error);
 
-      if (running && generation === slot.generation) {
-        scheduleNext(slot);
-        prepareNext(slot);
+    } finally {
+      slot.changing = false;
+
+      if (running && version === slot.version) {
+        scheduleChange(slot);
+        createPreparedVideo(slot);
       }
     }
-  }
-
-  function scheduleNext(slot) {
-    clearTimeout(slot.timer);
-
-    slot.timer = setTimeout(() => {
-      changeVideo(slot);
-    }, random(MIN_INTERVAL, MAX_INTERVAL));
   }
 
   function start() {
@@ -393,15 +458,15 @@
 
     running = true;
 
-    slots.forEach((slot, index) => {
+    // Start all three slots immediately.
+    slots.forEach(slot => {
       if (slot.current) {
         slot.current.play().catch(console.warn);
-        scheduleNext(slot);
-        prepareNext(slot);
+
+        scheduleChange(slot);
+        createPreparedVideo(slot);
       } else {
-        slot.timer = setTimeout(() => {
-          changeVideo(slot);
-        }, index * 450 + random(0, 400));
+        changeVideo(slot);
       }
     });
   }
@@ -413,42 +478,32 @@
 
     slots.forEach(slot => {
       clearTimeout(slot.timer);
-      slot.generation++;
+      slot.version++;
 
       if (slot.current) {
         slot.current.pause();
       }
 
-      if (slot.prepared) {
-        destroyVideo(slot.prepared);
-        slot.prepared = null;
+      if (slot.next) {
+        destroyVideo(slot.next);
+        slot.next = null;
       }
     });
   }
 
-  const observer = new IntersectionObserver(entries => {
-    const visible = entries.some(entry => entry.isIntersecting);
+  // Start immediately when the document loads.
+  start();
 
-    if (visible && !document.hidden) {
-      start();
-    } else {
-      stop();
-    }
-  }, { threshold: 0.01 });
-
-  observer.observe(reelWindow);
-
-  document.addEventListener("visibilitychange", () => {
-    if (document.hidden) {
-      stop();
-    } else {
-      const rect = reelWindow.getBoundingClientRect();
-
-      if (rect.bottom > 0 && rect.top < innerHeight) {
+  document.addEventListener(
+    "visibilitychange",
+    () => {
+      if (document.hidden) {
+        stop();
+      } else {
         start();
       }
     }
-  });
+  );
 
   window.addEventListener("pagehide", stop);
 </script>
