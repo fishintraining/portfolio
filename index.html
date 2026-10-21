@@ -137,10 +137,7 @@ nav a:hover {
   width: 100%;
   height: auto;
   min-height: 0;
-
-  /* ABOUT starts one yellow box lower */
   padding-top: calc(30vw + var(--yellow-box));
-
   background: var(--dark);
   overflow: hidden;
 }
@@ -153,8 +150,6 @@ nav a:hover {
 
   background-image: url("bilder/background.png");
   background-size: cover;
-
-  /* Background image shifted down */
   background-position: center var(--yellow-box);
   background-repeat: no-repeat;
 
@@ -331,8 +326,6 @@ nav a:hover {
 .about {
   position: relative;
   z-index: 20;
-  left: auto;
-  bottom: auto;
   width: 100%;
   height: auto;
   padding: 4.5vw 0;
@@ -354,7 +347,6 @@ nav a:hover {
 .about-copy {
   position: relative;
   left: var(--content-left);
-  top: auto;
   width: var(--content-width);
   font-size: .83vw;
   line-height: 1.55;
@@ -521,13 +513,21 @@ nav a:hover {
   background: var(--dark);
 }
 
+/*
+  BACKGROUND IMAGE
+
+  Use the image's natural aspect ratio
+  instead of cropping it with cover.
+*/
+
 .lower-image {
   position: absolute;
   z-index: 0;
   inset: 0;
+
   background-image: url("bilder/background2.png");
   background-repeat: no-repeat;
-  background-size: cover;
+  background-size: 100% auto;
   background-position: center bottom;
 
   -webkit-mask-image: linear-gradient(
@@ -621,13 +621,15 @@ nav a:hover {
   top: 8vw;
 }
 
-/* CONTACT HEADING */
+/* ========================================
+   CONTACT HEADING
+======================================== */
 
 .contact-heading {
   position: absolute;
   z-index: 5;
   left: 23.4%;
-  top: 10vw;
+  top: 12vw;
   width: max-content;
 }
 
@@ -640,14 +642,15 @@ nav a:hover {
   letter-spacing: -.06em;
 }
 
+/* ========================================
+   YELLOW CORNER
+======================================== */
+
 /*
-  YELLOW CORNER
-
   Two overlapping rectangles:
-  - one vertical
-  - one horizontal
+  one vertical and one horizontal.
 
-  Together they frame the lower-right
+  Positioned just beyond the lower-right
   corner of the word Contact.
 */
 
@@ -655,12 +658,10 @@ nav a:hover {
   position: absolute;
   z-index: 6;
 
-  /* Anchor to the end of the heading */
-  left: calc(100% - 0.7vw);
-  top: 52%;
+  left: calc(100% + 0.3vw);
+  top: 55%;
 
-  /* Vertical rectangle */
-  width: 1.9vw;
+  width: 2.3vw;
   height: 5.1vw;
 
   background: rgba(244,175,33,.85);
@@ -670,12 +671,11 @@ nav a:hover {
   content: "";
   position: absolute;
 
-  /* Horizontal rectangle extending left */
   right: 0;
   bottom: 0;
 
   width: 5.1vw;
-  height: 1.9vw;
+  height: 2.3vw;
 
   background: rgba(244,175,33,.85);
 }
@@ -687,13 +687,16 @@ nav a:hover {
 .contact-details {
   position: absolute;
   z-index: 8;
+
   left: 50%;
-  top: 10.5vw;
+  top: 12.5vw;
   width: 29%;
+
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: .8vw;
+
+  gap: 1.15vw;
   text-align: center;
 }
 
@@ -710,19 +713,15 @@ nav a:hover {
   display: flex;
   align-items: center;
   justify-content: center;
+
   width: 100%;
-  gap: .8vw;
-  text-align: center;
+  gap: 3vw;
+  margin-top: .65vw;
 }
 
 .contact-socials .text-link {
   font-size: 1.05vw;
   font-weight: 300;
-}
-
-.contact-socials {
-  gap: 3vw;
-  margin-top: .2vw;
 }
 
 /* ========================================
@@ -790,15 +789,11 @@ footer {
 
   .hero {
     height: auto;
-
-    /* ABOUT starts 100px lower */
     padding-top: 550px;
   }
 
   .hero::before {
     background-size: auto 1050px;
-
-    /* Image shifted down 100px */
     background-position: center -10px;
 
     -webkit-mask-image: linear-gradient(
@@ -910,7 +905,6 @@ footer {
   .about-copy {
     position: relative;
     left: 25px;
-    top: auto;
     width: calc(100% - 50px);
     font-size: 12px;
     line-height: 1.45;
@@ -1003,28 +997,8 @@ footer {
   }
 
   .lower-image {
-    background-size: cover;
+    background-size: auto 100%;
     background-position: center bottom;
-
-    -webkit-mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 8%,
-      rgba(0,0,0,.15) 25%,
-      rgba(0,0,0,.55) 50%,
-      black 75%,
-      black 100%
-    );
-
-    mask-image: linear-gradient(
-      to bottom,
-      transparent 0%,
-      transparent 8%,
-      rgba(0,0,0,.15) 25%,
-      rgba(0,0,0,.55) 50%,
-      black 75%,
-      black 100%
-    );
   }
 
   .background-content {
@@ -1075,19 +1049,17 @@ footer {
 
   .contact-heading {
     left: 25px;
-    top: 110px;
+    top: 130px;
   }
 
   .contact-heading h2 {
     font-size: clamp(55px, 13vw, 76px);
   }
 
-  /* Mobile yellow corner */
-
   .contact-yellow {
-    left: calc(100% - 7px);
-    top: 52%;
-    width: 19px;
+    left: calc(100% + 3px);
+    top: 55%;
+    width: 23px;
     height: 51px;
   }
 
@@ -1095,14 +1067,14 @@ footer {
     right: 0;
     bottom: 0;
     width: 51px;
-    height: 19px;
+    height: 23px;
   }
 
   .contact-details {
     left: 25px;
-    top: 255px;
+    top: 270px;
     width: calc(100% - 50px);
-    gap: 10px;
+    gap: 15px;
   }
 
   .email,
@@ -1114,7 +1086,7 @@ footer {
     width: 100%;
     justify-content: center;
     gap: 35px;
-    margin-top: 12px;
+    margin-top: 10px;
   }
 
   .contact-socials .text-link {
