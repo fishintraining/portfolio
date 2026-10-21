@@ -1,16 +1,28 @@
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Malin Hall — Portfolio</title>
+
+<!-- ========================================
+     1. EXTERNAL FONTS
+======================================== -->
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
+
+/* ========================================
+   2. GLOBAL STYLES
+======================================== */
+
+/* 2.1 Design variables */
+
 :root {
   --dark: #292B28;
   --blue: #436085;
@@ -30,11 +42,15 @@
   --contact-image-shift: 8vw;
 }
 
+/* 2.2 Reset */
+
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
 }
+
+/* 2.3 Page */
 
 html {
   scroll-behavior: smooth;
@@ -48,6 +64,8 @@ body {
   overflow-x: hidden;
 }
 
+/* 2.4 Basic elements */
+
 a {
   color: inherit;
   text-decoration: none;
@@ -58,8 +76,10 @@ img {
 }
 
 /* ========================================
-   HEADER
+   3. HEADER
 ======================================== */
+
+/* 3.1 Header container */
 
 header {
   position: absolute;
@@ -69,20 +89,27 @@ header {
   width: 100%;
   height: 5.2vw;
   min-height: 60px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 0 5vw;
 }
+
+/* 3.2 Logo */
 
 .logo {
   color: var(--light);
   font-size: .83vw;
   letter-spacing: .08em;
   text-transform: uppercase;
+
   padding-bottom: .4vw;
   border-bottom: 1px solid var(--light);
 }
+
+/* 3.3 Navigation */
 
 nav {
   display: flex;
@@ -101,24 +128,30 @@ nav a:hover {
 }
 
 /* ========================================
-   LINKS
+   4. SHARED LINKS
 ======================================== */
+
+/* 4.1 Text links */
 
 .text-link {
   display: inline-flex;
   align-items: baseline;
   gap: .4em;
   width: fit-content;
+
   color: white;
   font-size: clamp(11px, .85vw, 16px);
   font-weight: 300;
   line-height: 1.5;
+
   transition: opacity .2s ease;
 }
 
 .text-link:hover {
   opacity: .6;
 }
+
+/* 4.2 Link arrows */
 
 .text-link .arrow {
   display: inline-block;
@@ -131,8 +164,10 @@ nav a:hover {
 }
 
 /* ========================================
-   HERO
+   5. HERO
 ======================================== */
+
+/* 5.1 Hero section */
 
 .hero {
   position: relative;
@@ -146,19 +181,16 @@ nav a:hover {
   overflow: hidden;
 }
 
+/* 5.2 Hero background image */
+
 /*
-  HERO BACKGROUND
+  Image scales according to HERO height.
 
-  Scale according to the entire height of
-  HERO + ABOUT, not the page width.
+  Top-left corner remains anchored.
+  Image proportions are preserved.
+  Excess width may be cropped on the right.
 
-  Top-left of the image stays fixed at
-  top-left of the section.
-
-  The image keeps its aspect ratio.
-  Any excess width is clipped on the right.
-
-  Fade finishes exactly at Selected Work.
+  Fade finishes before Selected Work.
 */
 
 .hero::before {
@@ -193,18 +225,28 @@ nav a:hover {
   );
 }
 
+/* ========================================
+   5.3 HERO TEXT
+======================================== */
+
+/* 5.3.1 Hero text container */
+
 .hero-content {
   position: absolute;
   z-index: 10;
+
   left: 13%;
   top: 12.5%;
   width: 50%;
 }
 
+/* 5.3.2 Yellow eyebrow text */
+
 .eyebrow {
   position: relative;
   margin-bottom: 1.3vw;
   padding-left: 3vw;
+
   color: var(--yellow);
   font-size: .57vw;
   line-height: 1.5;
@@ -212,15 +254,21 @@ nav a:hover {
   text-transform: uppercase;
 }
 
+/* 5.3.3 Eyebrow horizontal line */
+
 .eyebrow::before {
   content: "";
   position: absolute;
   left: 0;
   top: 50%;
+
   width: 2.35vw;
   height: 1px;
+
   background: var(--light);
 }
+
+/* 5.3.4 Main name */
 
 .hero h1 {
   font-size: 7.55vw;
@@ -237,80 +285,116 @@ nav a:hover {
   color: var(--light);
 }
 
+/* 5.3.5 Short description */
+
+/*
+  Same vertical distance below the name
+  as the eyebrow has above the name.
+*/
+
 .hero-copy {
   width: 29vw;
-  margin-top: 3.9vw;
+  margin-top: 1.3vw;
+
   color: var(--light);
   font-size: .88vw;
   line-height: 1.55;
 }
 
+/* 5.3.6 CV link */
+
 .cv {
-  margin-top: 1.6vw;
+  margin-top: .65vw;
   font-size: clamp(13px, 1.08vw, 21px);
   font-weight: 400;
 }
 
 /* ========================================
-   HERO SHAPES
+   5.4 HERO GEOMETRIC SHAPES
 ======================================== */
+
+/* 5.4.1 Large blue circle */
 
 .hero-circle {
   position: absolute;
   z-index: 2;
+
   left: 66.27%;
   top: 8.5%;
+
   width: 40.57vw;
   height: 40.57vw;
+
   border-radius: 50%;
   background: var(--blue);
 }
 
+/* 5.4.2 Portrait */
+
 .hero-portrait {
   position: absolute;
   z-index: 4;
+
   left: 64.37%;
   top: 16.3%;
+
   width: 21.875vw;
   height: 21.875vw;
+
   object-fit: cover;
   filter: grayscale(100%);
 }
 
+/* 5.4.3 Blue rectangle */
+
 .hero-blue {
   position: absolute;
   z-index: 5;
+
   left: 59.27%;
   top: 8.5%;
+
   width: 3.91vw;
   height: 7.81vw;
+
   background: var(--blue);
 }
+
+/* 5.4.4 Yellow square */
 
 .hero-yellow {
   position: absolute;
   z-index: 6;
+
   left: 80.54%;
   top: 38%;
+
   width: 8.91vw;
   height: 8.91vw;
+
   background: rgba(244,175,33,.8);
 }
 
 /* ========================================
-   SHARED CHAPTER ELEMENTS
+   6. SHARED CHAPTER ELEMENTS
 ======================================== */
+
+/* 6.1 Horizontal chapter lines */
 
 .about-line,
 .work-line,
 .background-line,
 .contact-line {
   position: absolute;
+
   left: 7.8%;
   width: 83.25%;
   height: 1px;
+
   background: var(--light);
 }
+
+/* 6.2 Chapter labels */
 
 .about-label,
 .work-label,
@@ -318,11 +402,14 @@ nav a:hover {
 .contact-label {
   position: absolute;
   left: 8.33%;
+
   color: var(--light);
   font-size: .57vw;
   letter-spacing: .14em;
   text-transform: uppercase;
 }
+
+/* 6.3 Rotated chapter numbers */
 
 .about-number,
 .work-number,
@@ -330,8 +417,10 @@ nav a:hover {
 .contact-number {
   position: absolute;
   left: 5.45%;
+
   transform: rotate(-90deg);
   transform-origin: top left;
+
   color: var(--light);
   font-size: .52vw;
   letter-spacing: .15em;
@@ -339,133 +428,189 @@ nav a:hover {
 }
 
 /* ========================================
-   ABOUT
+   7. ABOUT
 ======================================== */
+
+/* 7.1 About section */
 
 .about {
   position: relative;
   z-index: 20;
+
   width: 100%;
   height: auto;
   padding: 4.5vw 0;
+
   background: transparent;
 }
+
+/* 7.2 About chapter line */
 
 .about-line {
   top: 0;
 }
 
+/* 7.3 About label */
+
 .about-label {
   top: 1.2vw;
 }
+
+/* 7.4 About number */
 
 .about-number {
   top: 8vw;
 }
 
+/* 7.5 About text */
+
 .about-copy {
   position: relative;
+
   left: var(--content-left);
   width: var(--content-width);
+
   font-size: .83vw;
   line-height: 1.55;
 }
+
+/* 7.6 About paragraph spacing */
 
 .about-copy p + p {
   margin-top: 1.15vw;
 }
 
 /* ========================================
-   SELECTED WORK
+   8. SELECTED WORK
 ======================================== */
+
+/* 8.1 Work section */
 
 .work {
   position: relative;
   width: 100%;
+
   padding: 5vw 0 0;
   background: var(--dark);
 }
+
+/* 8.2 Work chapter line */
 
 .work-line {
   top: 0;
 }
 
+/* 8.3 Work label */
+
 .work-label {
   top: 1.2vw;
 }
+
+/* 8.4 Work number */
 
 .work-number {
   top: 8vw;
 }
 
+/* 8.5 Project grid */
+
 .work-grid {
   position: relative;
+
   width: var(--content-width);
   margin-left: var(--content-left);
+
   display: flex;
   flex-direction: column;
 }
 
 /* ========================================
-   PROJECT CARDS
+   9. PROJECT CARDS
 ======================================== */
+
+/* 9.1 General card layout */
 
 .card {
   position: relative;
+
   display: grid;
   grid-template-columns: 34% 66%;
   grid-template-rows: auto 1fr;
+
   min-height: 16.5vw;
   padding: 2.5vw 2vw;
+
   border: 1px solid rgba(225,225,225,.035);
   box-shadow: inset 0 0 16px rgba(225,225,225,.055);
+
   overflow: hidden;
 }
+
+/* 9.2 Academic card colour */
 
 .card.academic {
   background: rgba(67,96,133,.72);
 }
 
+/* 9.3 Published card colour */
+
 .card.published {
   background: rgba(93,110,119,.72);
 }
+
+/* 9.4 Film card colour */
 
 .card.film {
   background: rgba(117,105,69,.72);
 }
 
+/* 9.5 Commercial card colour */
+
 .card.commercial {
   background: rgba(145,116,52,.72);
 }
 
+/* 9.6 Card category number */
+
 .card-number {
   grid-column: 1;
   grid-row: 1;
+
   color: var(--yellow);
   font-size: clamp(9px, .55vw, 12px);
   letter-spacing: .1em;
   text-transform: uppercase;
 }
 
+/* 9.7 Card title */
+
 .card h3 {
   grid-column: 1;
   grid-row: 2;
   align-self: center;
+
   padding-right: 1vw;
+
   font-size: clamp(18px, 1.85vw, 36px);
   font-weight: 400;
   line-height: 1.08;
   letter-spacing: -.05em;
 }
 
+/* 9.8 Card text column */
+
 .card-content {
   grid-column: 2;
   grid-row: 1 / span 2;
+
   display: flex;
   flex-direction: column;
   align-items: flex-start;
+
   gap: 1.25vw;
 }
+
+/* 9.9 Card paragraphs */
 
 .card-content p {
   color: rgba(255,255,255,.9);
@@ -477,6 +622,8 @@ nav a:hover {
   margin-top: .25vw;
 }
 
+/* 9.10 Card links */
+
 .card-links {
   display: flex;
   flex-direction: column;
@@ -485,58 +632,78 @@ nav a:hover {
 }
 
 /* ========================================
-   VIDEO CARDS
+   10. VIDEO CARDS
 ======================================== */
+
+/* 10.1 Card with video layout */
 
 .card.with-video {
   grid-template-rows: auto 1fr auto;
   padding-bottom: 2vw;
 }
 
+/* 10.2 Video card text */
+
 .card.with-video .card-content {
   grid-row: 1 / span 2;
 }
 
+/* 10.3 Video strip container */
+
 .video-strip {
   position: relative;
+
   grid-column: 1 / -1;
   grid-row: 3;
+
   width: 100%;
   max-width: var(--reel-width);
   height: var(--reel-height);
+
   margin: 2vw auto 0;
+
   overflow: hidden;
   background: transparent;
 }
 
+/* 10.4 Embedded video iframe */
+
 .video-strip iframe {
   position: absolute;
   inset: 0;
+
   display: block;
   width: 100%;
   height: 100%;
+
   border: none;
   background: transparent;
   pointer-events: none;
 }
 
 /* ========================================
-   BACKGROUND + CONTACT
+   11. BACKGROUND + CONTACT WRAPPER
 ======================================== */
+
+/* 11.1 Lower section container */
 
 .lower {
   position: relative;
+
   width: 100%;
   margin-top: var(--half-yellow);
+
   overflow: hidden;
   background: var(--dark);
 }
 
-/*
-  LOWER BACKGROUND
+/* 11.2 Lower background image */
 
-  Shift the image layer downward while
-  keeping all text and shapes stationary.
+/*
+  The image layer starts lower than the
+  content by --contact-image-shift.
+
+  Background and Contact text remain fixed.
 */
 
 .lower-image {
@@ -583,79 +750,113 @@ nav a:hover {
 }
 
 /* ========================================
-   BACKGROUND CONTENT
+   12. BACKGROUND CHAPTER
 ======================================== */
+
+/* 12.1 Background content container */
 
 .background-content {
   position: relative;
   z-index: 5;
+
   width: 100%;
   padding: 5vw 0 1.95vw;
 }
+
+/* 12.2 Background chapter line */
 
 .background-line {
   top: 0;
 }
 
+/* 12.3 Background label */
+
 .background-label {
   top: 1.2vw;
 }
+
+/* 12.4 Background number */
 
 .background-number {
   top: 8vw;
 }
 
+/* 12.5 Background text */
+
 .background-copy {
   position: relative;
+
   left: var(--content-left);
   width: var(--content-width);
+
   color: var(--light);
   font-size: .83vw;
   line-height: 1.55;
 }
+
+/* 12.6 Background paragraph spacing */
 
 .background-copy p + p {
   margin-top: 1.15vw;
 }
 
 /* ========================================
-   CONTACT
+   13. CONTACT CHAPTER
 ======================================== */
+
+/* 13.1 Contact section */
 
 .contact {
   position: relative;
   z-index: 10;
+
   width: 100%;
   height: 25vw;
   min-height: 290px;
+
   overflow: hidden;
   background: transparent;
 }
+
+/* 13.2 Contact chapter line */
 
 .contact-line {
   top: 2.5vw;
 }
 
+/* 13.3 Contact label */
+
 .contact-label {
   top: 3.55vw;
 }
+
+/* 13.4 Contact number */
 
 .contact-number {
   top: 8vw;
 }
 
-/* CONTACT HEADING */
+/* ========================================
+   13.5 CONTACT MAIN HEADING
+======================================== */
+
+/* 13.5.1 Contact heading position */
 
 .contact-heading {
   position: absolute;
   z-index: 5;
+
   left: 23.4%;
   top: 12vw;
+
   width: max-content;
 }
 
+/* 13.5.2 Contact heading typography */
+
 .contact-heading h2 {
   position: relative;
+
   color: var(--light);
   font-size: 5.9vw;
   line-height: 1;
@@ -664,22 +865,29 @@ nav a:hover {
 }
 
 /* ========================================
-   CONTACT YELLOW CORNER
+   13.6 CONTACT YELLOW CORNER
 ======================================== */
 
 /*
-  The two yellow rectangles form a corner
-  outside the word Contact.
+  Two rectangles form a rotated corner.
 
-  A small horizontal and vertical gap
-  keeps them clear of the letters.
+  The vertical rectangle sits to the
+  right of Contact.
+
+  The horizontal rectangle extends left
+  from its bottom edge.
+
+  Both remain outside the letters, with
+  a small horizontal and vertical gap.
 */
+
+/* 13.6.1 Vertical rectangle */
 
 .contact-yellow {
   position: absolute;
   z-index: 6;
 
-  left: calc(100% + 3.2vw);
+  left: calc(100% + 3.1vw);
   top: calc(100% + 0.3vw);
 
   width: 2.3vw;
@@ -688,12 +896,14 @@ nav a:hover {
   background: rgba(244,175,33,.85);
 }
 
+/* 13.6.2 Horizontal rectangle */
+
 .contact-yellow::after {
   content: "";
   position: absolute;
 
   right: 0;
-  top: 0;
+  bottom: 0;
 
   width: 5.1vw;
   height: 2.3vw;
@@ -702,8 +912,10 @@ nav a:hover {
 }
 
 /* ========================================
-   CONTACT DETAILS
+   13.7 CONTACT DETAILS
 ======================================== */
+
+/* 13.7.1 Contact details container */
 
 .contact-details {
   position: absolute;
@@ -721,6 +933,8 @@ nav a:hover {
   text-align: center;
 }
 
+/* 13.7.2 Email and phone */
+
 .email,
 .phone {
   color: var(--light);
@@ -729,6 +943,8 @@ nav a:hover {
   line-height: 1.5;
   white-space: nowrap;
 }
+
+/* 13.7.3 Social links container */
 
 .contact-socials {
   display: flex;
@@ -740,28 +956,42 @@ nav a:hover {
   margin-top: .65vw;
 }
 
+/* 13.7.4 Social link typography */
+
 .contact-socials .text-link {
   font-size: 1.05vw;
   font-weight: 300;
 }
 
 /* ========================================
-   FOOTER
+   14. FOOTER
 ======================================== */
+
+/* 14.1 Footer layout */
 
 footer {
   position: relative;
   z-index: 30;
+
   width: 100%;
   min-height: 55px;
+
   display: flex;
   align-items: center;
   justify-content: space-between;
+
   padding: 0 5vw;
+
   background: var(--dark);
   color: rgba(245,244,239,.55);
   font-size: .52vw;
 }
+
+/* ========================================
+   15. LARGE SCREEN ADJUSTMENTS
+======================================== */
+
+/* 15.1 Maximum page width */
 
 @media (min-width: 1920px) {
   .hero,
@@ -775,30 +1005,45 @@ footer {
 }
 
 /* ========================================
-   MOBILE
+   16. MOBILE STYLES
 ======================================== */
 
 @media (max-width: 760px) {
+
+  /* ========================================
+     16.1 MOBILE VARIABLES
+  ======================================== */
 
   :root {
     --content-width: calc(100% - 50px);
     --content-left: 25px;
     --half-yellow: 50px;
     --yellow-box: 100px;
+
     --reel-width: 1100px;
     --reel-height: 160px;
 
     --contact-image-shift: 80px;
   }
 
+  /* ========================================
+     16.2 MOBILE HEADER
+  ======================================== */
+
+  /* 16.2.1 Header */
+
   header {
     height: 70px;
     padding: 0 22px;
   }
 
+  /* 16.2.2 Logo */
+
   .logo {
     font-size: 9px;
   }
+
+  /* 16.2.3 Navigation */
 
   nav {
     gap: 14px;
@@ -808,12 +1053,18 @@ footer {
     font-size: 8px;
   }
 
-  /* HERO MOBILE */
+  /* ========================================
+     16.3 MOBILE HERO
+  ======================================== */
+
+  /* 16.3.1 Hero height */
 
   .hero {
     height: auto;
     padding-top: 550px;
   }
+
+  /* 16.3.2 Hero background */
 
   .hero::before {
     background-size: auto 100%;
@@ -840,11 +1091,15 @@ footer {
     );
   }
 
+  /* 16.3.3 Hero text position */
+
   .hero-content {
     left: 25px;
     top: 135px;
     width: calc(100% - 50px);
   }
+
+  /* 16.3.4 Eyebrow */
 
   .eyebrow {
     padding-left: 55px;
@@ -855,22 +1110,30 @@ footer {
     width: 42px;
   }
 
+  /* 16.3.5 Main name */
+
   .hero h1 {
     margin-top: 25px;
     font-size: 76px;
     line-height: .82;
   }
 
+  /* 16.3.6 Short description */
+
   .hero-copy {
     width: 78%;
-    margin-top: 40px;
+    margin-top: 25px;
     font-size: 13px;
   }
 
+  /* 16.3.7 CV link */
+
   .cv {
-    margin-top: 20px;
+    margin-top: 12px;
     font-size: 16px;
   }
+
+  /* 16.3.8 Blue circle */
 
   .hero-circle {
     left: 45%;
@@ -879,12 +1142,16 @@ footer {
     height: 500px;
   }
 
+  /* 16.3.9 Portrait */
+
   .hero-portrait {
     left: 55%;
     top: 495px;
     width: 245px;
     height: 245px;
   }
+
+  /* 16.3.10 Blue rectangle */
 
   .hero-blue {
     left: 48%;
@@ -893,6 +1160,8 @@ footer {
     height: 100px;
   }
 
+  /* 16.3.11 Yellow square */
+
   .hero-yellow {
     left: 74%;
     top: 650px;
@@ -900,7 +1169,11 @@ footer {
     height: 100px;
   }
 
-  /* ABOUT MOBILE */
+  /* ========================================
+     16.4 MOBILE ABOUT
+  ======================================== */
+
+  /* 16.4.1 About section */
 
   .about {
     position: relative;
@@ -908,11 +1181,15 @@ footer {
     padding: 65px 0;
   }
 
+  /* 16.4.2 About line */
+
   .about-line {
     left: 25px;
     top: 0;
     width: calc(100% - 50px);
   }
+
+  /* 16.4.3 About label */
 
   .about-label {
     left: 25px;
@@ -920,12 +1197,16 @@ footer {
     font-size: 10px;
   }
 
+  /* 16.4.4 Hide chapter numbers */
+
   .about-number,
   .work-number,
   .background-number,
   .contact-number {
     display: none;
   }
+
+  /* 16.4.5 About text */
 
   .about-copy {
     position: relative;
@@ -935,15 +1216,23 @@ footer {
     line-height: 1.45;
   }
 
+  /* 16.4.6 About paragraph spacing */
+
   .about-copy p + p {
     margin-top: 12px;
   }
 
-  /* WORK MOBILE */
+  /* ========================================
+     16.5 MOBILE WORK
+  ======================================== */
+
+  /* 16.5.1 Work section */
 
   .work {
     padding: 90px 25px 0;
   }
+
+  /* 16.5.2 Work line */
 
   .work-line {
     left: 25px;
@@ -951,16 +1240,26 @@ footer {
     width: calc(100% - 50px);
   }
 
+  /* 16.5.3 Work label */
+
   .work-label {
     left: 25px;
     top: 15px;
     font-size: 10px;
   }
 
+  /* 16.5.4 Work grid */
+
   .work-grid {
     width: 100%;
     margin-left: 0;
   }
+
+  /* ========================================
+     16.6 MOBILE PROJECT CARDS
+  ======================================== */
+
+  /* 16.6.1 Card layout */
 
   .card {
     display: flex;
@@ -970,23 +1269,33 @@ footer {
     padding: 28px 24px 30px;
   }
 
+  /* 16.6.2 Card number */
+
   .card-number {
     font-size: 10px;
   }
+
+  /* 16.6.3 Card title */
 
   .card h3 {
     align-self: flex-start;
     font-size: 25px;
   }
 
+  /* 16.6.4 Card content */
+
   .card-content {
     gap: 16px;
   }
+
+  /* 16.6.5 Card paragraphs */
 
   .card-content p {
     font-size: 12px;
     line-height: 1.5;
   }
+
+  /* 16.6.6 Card links */
 
   .card-links {
     gap: 8px;
@@ -996,9 +1305,17 @@ footer {
     font-size: 13px;
   }
 
+  /* ========================================
+     16.7 MOBILE VIDEO CARDS
+  ======================================== */
+
+  /* 16.7.1 Video card padding */
+
   .card.with-video {
     padding-bottom: 20px;
   }
+
+  /* 16.7.2 Video strip */
 
   .video-strip {
     flex: none;
@@ -1008,6 +1325,8 @@ footer {
     margin: 0 auto;
   }
 
+  /* 16.7.3 Video iframe */
+
   .video-strip iframe {
     inset: 0;
     width: 100%;
@@ -1015,11 +1334,17 @@ footer {
     transform: none;
   }
 
-  /* BACKGROUND MOBILE */
+  /* ========================================
+     16.8 MOBILE BACKGROUND
+  ======================================== */
+
+  /* 16.8.1 Lower section */
 
   .lower {
     margin-top: 50px;
   }
+
+  /* 16.8.2 Background image */
 
   .lower-image {
     top: var(--contact-image-shift);
@@ -1027,9 +1352,13 @@ footer {
     background-position: center bottom;
   }
 
+  /* 16.8.3 Background content */
+
   .background-content {
     padding: 65px 0 50px;
   }
+
+  /* 16.8.4 Background line */
 
   .background-line {
     left: 25px;
@@ -1037,11 +1366,15 @@ footer {
     width: calc(100% - 50px);
   }
 
+  /* 16.8.5 Background label */
+
   .background-label {
     left: 25px;
     top: 15px;
     font-size: 10px;
   }
+
+  /* 16.8.6 Background text */
 
   .background-copy {
     left: 25px;
@@ -1050,16 +1383,24 @@ footer {
     line-height: 1.5;
   }
 
+  /* 16.8.7 Paragraph spacing */
+
   .background-copy p + p {
     margin-top: 14px;
   }
 
-  /* CONTACT MOBILE */
+  /* ========================================
+     16.9 MOBILE CONTACT
+  ======================================== */
+
+  /* 16.9.1 Contact section */
 
   .contact {
     height: 430px;
     min-height: 0;
   }
+
+  /* 16.9.2 Contact line */
 
   .contact-line {
     left: 25px;
@@ -1067,34 +1408,46 @@ footer {
     width: calc(100% - 50px);
   }
 
+  /* 16.9.3 Contact label */
+
   .contact-label {
     left: 25px;
     top: 38px;
     font-size: 10px;
   }
 
+  /* 16.9.4 Main heading position */
+
   .contact-heading {
     left: 25px;
     top: 130px;
   }
 
+  /* 16.9.5 Main heading typography */
+
   .contact-heading h2 {
     font-size: clamp(55px, 13vw, 76px);
   }
 
+  /* 16.9.6 Yellow vertical rectangle */
+
   .contact-yellow {
-    left: calc(100% + 32px);
+    left: calc(100% + 31px);
     top: calc(100% + 3px);
     width: 23px;
     height: 51px;
   }
 
+  /* 16.9.7 Yellow horizontal rectangle */
+
   .contact-yellow::after {
     right: 0;
-    top: 0;
+    bottom: 0;
     width: 51px;
     height: 23px;
   }
+
+  /* 16.9.8 Contact details */
 
   .contact-details {
     left: 25px;
@@ -1103,10 +1456,14 @@ footer {
     gap: 15px;
   }
 
+  /* 16.9.9 Email and phone */
+
   .email,
   .phone {
     font-size: 12px;
   }
+
+  /* 16.9.10 Social links */
 
   .contact-socials {
     width: 100%;
@@ -1119,39 +1476,63 @@ footer {
     font-size: 13px;
   }
 
+  /* ========================================
+     16.10 MOBILE FOOTER
+  ======================================== */
+
+  /* 16.10.1 Footer */
+
   footer {
     min-height: 55px;
     padding: 0 25px;
     font-size: 8px;
   }
 }
+
 </style>
 </head>
 
 <body>
 
 <!-- ========================================
-     HEADER
+     17. HEADER
 ======================================== -->
 
 <header>
+
+  <!-- 17.1 Logo -->
+
   <a href="#" class="logo">MH / PORTFOLIO</a>
+
+  <!-- 17.2 Navigation -->
 
   <nav>
     <a href="#about">About</a>
     <a href="#work">Work</a>
     <a href="#contact">Contact</a>
   </nav>
+
 </header>
 
 <!-- ========================================
-     HERO + ABOUT
+     18. HERO + ABOUT
 ======================================== -->
 
 <section class="hero">
 
+  <!-- ========================================
+       18.1 HERO SHAPES
+  ======================================== -->
+
+  <!-- 18.1.1 Blue circle -->
+
   <div class="hero-circle"></div>
+
+  <!-- 18.1.2 Blue rectangle -->
+
   <div class="hero-blue"></div>
+
+  <!-- 18.1.3 Portrait -->
 
   <img
     class="hero-portrait"
@@ -1159,23 +1540,37 @@ footer {
     alt="Portrait of Malin Hall"
   >
 
+  <!-- 18.1.4 Yellow square -->
+
   <div class="hero-yellow"></div>
 
+  <!-- ========================================
+       18.2 HERO TEXT
+  ======================================== -->
+
   <div class="hero-content">
+
+    <!-- 18.2.1 Yellow eyebrow -->
 
     <div class="eyebrow">
       Digital Production · UX/HCI · Technical Systems
     </div>
+
+    <!-- 18.2.2 Main name -->
 
     <h1>
       <span>Malin</span>
       <span>Hall</span>
     </h1>
 
+    <!-- 18.2.3 Short description -->
+
     <div class="hero-copy">
       Exploring the space between people,
       technology and design.
     </div>
+
+    <!-- 18.2.4 CV link -->
 
     <a
       class="cv text-link"
@@ -1188,13 +1583,25 @@ footer {
 
   </div>
 
-  <!-- ABOUT -->
+  <!-- ========================================
+       18.3 ABOUT CHAPTER
+  ======================================== -->
 
   <div class="about" id="about">
 
+    <!-- 18.3.1 Chapter line -->
+
     <div class="about-line"></div>
+
+    <!-- 18.3.2 Chapter label -->
+
     <div class="about-label">About</div>
+
+    <!-- 18.3.3 Chapter number -->
+
     <div class="about-number">01 — ABOUT</div>
+
+    <!-- 18.3.4 About text -->
 
     <div class="about-copy">
 
@@ -1219,23 +1626,34 @@ footer {
       </p>
 
     </div>
+
   </div>
 
 </section>
 
 <!-- ========================================
-     SELECTED WORK
+     19. SELECTED WORK
 ======================================== -->
 
 <section class="work" id="work">
+
+  <!-- ========================================
+       19.1 WORK CHAPTER HEADER
+  ======================================== -->
 
   <div class="work-line"></div>
   <div class="work-label">Selected Work</div>
   <div class="work-number">02 — SELECTED WORK</div>
 
+  <!-- ========================================
+       19.2 PROJECT GRID
+  ======================================== -->
+
   <div class="work-grid">
 
-    <!-- ACADEMIC WORKS -->
+    <!-- ========================================
+         19.2.1 ACADEMIC WORKS
+    ======================================== -->
 
     <article class="card academic">
 
@@ -1244,6 +1662,8 @@ footer {
       <h3>Academic Works</h3>
 
       <div class="card-content">
+
+        <!-- 19.2.1.1 Academic description -->
 
         <p>
           My academic projects reflect a curiosity about how people
@@ -1262,6 +1682,8 @@ footer {
           Each project has given me a different perspective on how
           technical and creative decisions shape people's experiences.
         </p>
+
+        <!-- 19.2.1.2 Academic links -->
 
         <div class="card-links">
 
@@ -1296,10 +1718,14 @@ footer {
           </a>
 
         </div>
+
       </div>
+
     </article>
 
-    <!-- PUBLISHED PROJECTS -->
+    <!-- ========================================
+         19.2.2 PUBLISHED PROJECTS
+    ======================================== -->
 
     <article class="card published">
 
@@ -1308,6 +1734,8 @@ footer {
       <h3>Published Projects</h3>
 
       <div class="card-content">
+
+        <!-- 19.2.2.1 Published description -->
 
         <p>
           As part of a research project at KTH, I explored how AI
@@ -1329,6 +1757,8 @@ footer {
           me hands-on experience in designing and evaluating
           AI-driven interactions.
         </p>
+
+        <!-- 19.2.2.2 Published links -->
 
         <div class="card-links">
 
@@ -1353,10 +1783,14 @@ footer {
           </a>
 
         </div>
+
       </div>
+
     </article>
 
-    <!-- FILM & TV WORK -->
+    <!-- ========================================
+         19.2.3 FILM & TV WORK
+    ======================================== -->
 
     <article class="card film with-video">
 
@@ -1367,6 +1801,8 @@ footer {
       <h3>Film &amp; TV Work</h3>
 
       <div class="card-content">
+
+        <!-- 19.2.3.1 Film description -->
 
         <p>
           I've spent over a decade working behind the scenes
@@ -1386,6 +1822,8 @@ footer {
           practical problem-solving that has shaped much
           of how I approach my work today.
         </p>
+
+        <!-- 19.2.3.2 Film links -->
 
         <div class="card-links">
 
@@ -1410,7 +1848,10 @@ footer {
           </a>
 
         </div>
+
       </div>
+
+      <!-- 19.2.3.3 Film video carousel -->
 
       <div class="video-strip">
         <iframe
@@ -1424,7 +1865,9 @@ footer {
 
     </article>
 
-    <!-- COMMERCIAL WORK -->
+    <!-- ========================================
+         19.2.4 COMMERCIAL WORK
+    ======================================== -->
 
     <article class="card commercial with-video">
 
@@ -1435,6 +1878,8 @@ footer {
       <h3>Commercial Work</h3>
 
       <div class="card-content">
+
+        <!-- 19.2.4.1 Commercial description -->
 
         <p>
           Commercial productions are often fast-paced,
@@ -1455,6 +1900,8 @@ footer {
 
       </div>
 
+      <!-- 19.2.4.2 Commercial video carousel -->
+
       <div class="video-strip">
         <iframe
           src="ad_slide.html?mode=compact"
@@ -1468,23 +1915,40 @@ footer {
     </article>
 
   </div>
+
 </section>
 
 <!-- ========================================
-     BACKGROUND + CONTACT
+     20. BACKGROUND + CONTACT
 ======================================== -->
 
 <section class="lower">
 
+  <!-- ========================================
+       20.1 LOWER BACKGROUND IMAGE
+  ======================================== -->
+
   <div class="lower-image"></div>
 
-  <!-- BACKGROUND -->
+  <!-- ========================================
+       20.2 BACKGROUND CHAPTER
+  ======================================== -->
 
   <div class="background-content">
 
+    <!-- 20.2.1 Chapter line -->
+
     <div class="background-line"></div>
+
+    <!-- 20.2.2 Chapter label -->
+
     <div class="background-label">Background</div>
+
+    <!-- 20.2.3 Chapter number -->
+
     <div class="background-number">03 — BACKGROUND</div>
+
+    <!-- 20.2.4 Background text -->
 
     <div class="background-copy">
 
@@ -1552,22 +2016,48 @@ footer {
       </p>
 
     </div>
+
   </div>
 
-  <!-- CONTACT -->
+  <!-- ========================================
+       20.3 CONTACT CHAPTER
+  ======================================== -->
 
   <div class="contact" id="contact">
 
+    <!-- 20.3.1 Chapter line -->
+
     <div class="contact-line"></div>
+
+    <!-- 20.3.2 Chapter label -->
+
     <div class="contact-label">Contact</div>
+
+    <!-- 20.3.3 Chapter number -->
+
     <div class="contact-number">04 — CONTACT</div>
 
+    <!-- ========================================
+         20.3.4 CONTACT MAIN HEADING
+    ======================================== -->
+
     <div class="contact-heading">
+
       <h2>Contact</h2>
+
+      <!-- 20.3.4.1 Yellow corner -->
+
       <div class="contact-yellow"></div>
+
     </div>
 
+    <!-- ========================================
+         20.3.5 CONTACT DETAILS
+    ======================================== -->
+
     <div class="contact-details">
+
+      <!-- 20.3.5.1 Email -->
 
       <a
         class="email"
@@ -1576,6 +2066,8 @@ footer {
         malin.hall.eliasson@gmail.com
       </a>
 
+      <!-- 20.3.5.2 Phone -->
+
       <a
         class="phone"
         href="tel:+46709425612"
@@ -1583,7 +2075,13 @@ footer {
         +46 709 42 56 12
       </a>
 
+      <!-- ========================================
+           20.3.5.3 SOCIAL LINKS
+      ======================================== -->
+
       <div class="contact-socials">
+
+        <!-- 20.3.5.3.1 LinkedIn -->
 
         <a
           class="text-link"
@@ -1593,6 +2091,8 @@ footer {
         >
           LinkedIn <span class="arrow">↗</span>
         </a>
+
+        <!-- 20.3.5.3.2 CV -->
 
         <a
           class="text-link"
@@ -1606,17 +2106,25 @@ footer {
       </div>
 
     </div>
+
   </div>
 
 </section>
 
 <!-- ========================================
-     FOOTER
+     21. FOOTER
 ======================================== -->
 
 <footer>
+
+  <!-- 21.1 Copyright -->
+
   <span>© 2026 Malin Hall</span>
+
+  <!-- 21.2 Footer logo -->
+
   <span>MH / PORTFOLIO</span>
+
 </footer>
 
 </body>
