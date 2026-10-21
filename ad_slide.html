@@ -2,173 +2,456 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Commercial Work</title>
-<style>
-* { box-sizing:border-box; margin:0; padding:0; }
-html,body { width:100%;height:100%;overflow:hidden;background:#000;font-family:Arial,sans-serif; }
-.page { width:100%;height:100%;display:flex;flex-direction:column;justify-content:center;overflow:hidden;background:#000; }
-.title { width:min(1100px,100%);margin:0 auto 35px;font-size:clamp(16px,1.2vw,24px);font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:#fff; }
-.reel-window { position:relative;width:1100px;max-width:100%;height:160px;margin:0 auto;overflow:hidden;background:#000;
-  -webkit-mask-image:linear-gradient(to right,transparent 0%,black 12%,black 88%,transparent 100%);
-  mask-image:linear-gradient(to right,transparent 0%,black 12%,black 88%,transparent 100%); }
-.reel { display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:4px;width:100%;height:160px;background:#000;padding:5px 0; }
-.video-card { position:relative;min-width:0;height:150px;background:#000;overflow:hidden; }
-.video-card video { position:absolute;inset:0;display:block;width:100%;height:100%;object-fit:cover;pointer-events:none;opacity:0;transition:opacity 1s ease; }
-.video-card video.visible { opacity:1; }
-@media(max-width:900px) {
- .reel-window { -webkit-mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%);mask-image:linear-gradient(to right,transparent 0%,black 7%,black 93%,transparent 100%); }
-}
-body.compact .page { align-items:center;justify-content:center; }
-body.compact .title { display:none; }
-html:has(body.compact),body.compact,body.compact .page { background:transparent; }
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Commercial Work</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000;
+      font-family: Arial, sans-serif;
+    }
+
+    .page {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .title {
+      width: min(1100px, 100%);
+      margin: 0 auto 35px;
+      font-size: clamp(16px, 1.2vw, 24px);
+      font-weight: 500;
+      letter-spacing: .08em;
+      text-transform: uppercase;
+      color: #fff;
+    }
+
+    .reel-window {
+      position: relative;
+      width: 1100px;
+      max-width: 100%;
+      height: 160px;
+      margin: 0 auto;
+      overflow: hidden;
+      background: #000;
+
+      -webkit-mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+      );
+
+      mask-image: linear-gradient(
+        to right,
+        transparent 0%,
+        black 12%,
+        black 88%,
+        transparent 100%
+      );
+    }
+
+    .reel {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 4px;
+      width: 100%;
+      height: 160px;
+      padding: 5px 0;
+      background: #000;
+    }
+
+    .video-card {
+      position: relative;
+      min-width: 0;
+      height: 150px;
+      overflow: hidden;
+      background: #000;
+    }
+
+    .video-card video {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+      opacity: 0;
+      transition: opacity 1s ease;
+    }
+
+    .video-card video.visible {
+      opacity: 1;
+    }
+
+    @media (max-width: 900px) {
+      .reel-window {
+        -webkit-mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 7%,
+          black 93%,
+          transparent 100%
+        );
+
+        mask-image: linear-gradient(
+          to right,
+          transparent 0%,
+          black 7%,
+          black 93%,
+          transparent 100%
+        );
+      }
+    }
+
+    body.compact .page {
+      align-items: center;
+      justify-content: center;
+    }
+
+    body.compact .title {
+      display: none;
+    }
+
+    html:has(body.compact),
+    body.compact,
+    body.compact .page {
+      background: transparent;
+    }
+  </style>
 </head>
+
 <body>
-<script>if(new URLSearchParams(location.search).get('mode')==='compact')document.body.classList.add('compact');</script>
-<main class="page">
-<div class="title">Commercial Work</div>
-<div class="reel-window" id="reel-window"><div class="reel" id="reel"><div class="video-card"></div><div class="video-card"></div><div class="video-card"></div></div></div>
-</main>
+
 <script>
-const videoFiles = [
-  "A1_Forsvaret3.mp4",
-  "A2_Postnord1.mp4",
-  "A3_Electrolux.mp4",
-  "A5_Postnord5.mp4",
-  "A6_Forsvaret1.mp4",
-  "A7_Estrid.mp4",
-  "A8_Postnord3.mp4",
-  "A9_storytell.mp4",
-  "AB1_forsvaret4.mp4",
-  "AB2_st1.mp4",
-  "AB3_RedCross.mp4",
-  "AB4_Postnord7.mp4",
-  "AB5_Netonnet.mp4",
-  "AB6_Postnord4.mp4",
-  "AB7_CocaCola.mp4",
-  "AB8_Postnord6.mp4",
-  "AB9_Forsvaret2.mp4",
-  "ABC1_Postnord2.mp4"
-];
-const cards = [...document.querySelectorAll('.video-card')];
-const windowEl = document.getElementById('reel-window');
-const FADE_MS = 1000;
-const BASE_INTERVAL_MS = 3000;
-const JITTER_MS = 1000;
-const MAX_WAIT_MS = 6500;
-const slots = cards.map(card => ({card,current:null,next:null,timer:null,busy:false,token:0}));
-let running = false;
-let sequence = 0;
-const random = (a,b) => a+Math.random()*(b-a);
-const delay = ms => new Promise(resolve=>setTimeout(resolve,ms));
-function makeVideo(filename){
- const v=document.createElement('video');
- v.src='videos/'+filename;
- v.muted=true;v.defaultMuted=true;v.playsInline=true;v.loop=true;
- v.preload='auto';v.setAttribute('muted','');v.setAttribute('playsinline','');
- v.dataset.filename=filename;
- return v;
-}
-function waitEvent(video,event,timeout=MAX_WAIT_MS){
- return new Promise((resolve,reject)=>{
-  let timer;
-  const clean=()=>{clearTimeout(timer);video.removeEventListener(event,ok);video.removeEventListener('error',fail)};
-  const ok=()=>{clean();resolve()};
-  const fail=()=>{clean();reject(new Error('Video failed: '+video.currentSrc))};
-  video.addEventListener(event,ok,{once:true});video.addEventListener('error',fail,{once:true});
-  timer=setTimeout(()=>{clean();reject(new Error('Timed out: '+video.currentSrc))},timeout);
- });
-}
-async function prepare(video){
- video.load();
- if(video.readyState<1)await waitEvent(video,'loadedmetadata');
- const duration=video.duration;
- if(Number.isFinite(duration)&&duration>0.5){
-  const margin=Math.min(0.25,duration/10);
-  const target=random(margin,Math.max(margin,duration-margin));
-  if(Math.abs(video.currentTime-target)>0.05){
-   const seeked=waitEvent(video,'seeked');
-   video.currentTime=target;
-   await seeked;
+  if (new URLSearchParams(location.search).get("mode") === "compact") {
+    document.body.classList.add("compact");
   }
- }
- if(video.readyState<2)await waitEvent(video,'loadeddata');
-}
-function usedNames(except){
- const names=new Set();
- for(const s of slots){
-  if(s===except)continue;
-  if(s.current)names.add(s.current.dataset.filename);
-  if(s.next)names.add(s.next.dataset.filename);
- }
- if(except.current)names.add(except.current.dataset.filename);
- return names;
-}
-function choose(except){
- const used=usedNames(except);
- const choices=videoFiles.filter(name=>!used.has(name));
- return choices.length?choices[Math.floor(Math.random()*choices.length)]:null;
-}
-function destroy(video){if(!video)return;video.pause();video.removeAttribute('src');video.load();video.remove();}
-async function change(slot){
- if(!running||slot.busy)return;
- slot.busy=true;
- const token=++slot.token;
- let next=null;
- try{
-  const filename=choose(slot);
-  if(!filename)throw new Error('No unused video available');
-  next=makeVideo(filename);slot.next=next;
-  next.style.zIndex='2';slot.card.appendChild(next);
-  await prepare(next);
-  if(!running||token!==slot.token)return;
-  await next.play();
-  if(!running||token!==slot.token)return;
-  next.classList.add('visible');
-  await delay(FADE_MS+50);
-  if(token!==slot.token)return;
-  const old=slot.current;
-  slot.current=next;slot.next=null;next=null;
-  destroy(old);
- }catch(error){console.warn('Reel video unavailable:',error.message);}
- finally{
-  if(next){if(slot.next===next)slot.next=null;destroy(next);}
-  slot.busy=false;
-  if(running&&token===slot.token)schedule(slot);
- }
-}
-function schedule(slot){
- clearTimeout(slot.timer);
- slot.timer=setTimeout(()=>change(slot),Math.max(1100,BASE_INTERVAL_MS+random(-JITTER_MS,JITTER_MS)));
-}
-function start(){
- if(running)return;
- running=true;
- slots.forEach((slot,index)=>{
-  if(slot.current){slot.current.play().catch(err=>console.warn('Resume failed:',err));schedule(slot);}
-  else slot.timer=setTimeout(()=>change(slot),index*500+random(0,450));
- });
-}
-function stop(){
- if(!running)return;
- running=false;
- slots.forEach(slot=>{
-  clearTimeout(slot.timer);
-  slot.token++;
-  if(slot.current)slot.current.pause();
-  if(slot.next){destroy(slot.next);slot.next=null;}
- });
-}
-const observer=new IntersectionObserver(entries=>{
- if(entries.some(e=>e.isIntersecting)&&!document.hidden)start();else stop();
-},{threshold:0.01});
-observer.observe(windowEl);
-document.addEventListener('visibilitychange',()=>{
- if(document.hidden)stop();else if(windowEl.getBoundingClientRect().bottom>0&&windowEl.getBoundingClientRect().top<innerHeight)start();
-});
-window.addEventListener('pagehide',stop);
 </script>
+
+<main class="page">
+  <div class="title">Commercial Work</div>
+
+  <div class="reel-window" id="reel-window">
+    <div class="reel">
+      <div class="video-card"></div>
+      <div class="video-card"></div>
+      <div class="video-card"></div>
+    </div>
+  </div>
+</main>
+
+<script>
+  const videoFiles = [
+    "A1_Forsvaret3.mp4",
+    "A2_Postnord1.mp4",
+    "A3_Electrolux.mp4",
+    "A5_Postnord5.mp4",
+    "A6_Forsvaret1.mp4",
+    "A7_Estrid.mp4",
+    "A8_Postnord3.mp4",
+    "A9_storytell.mp4",
+    "AB1_forsvaret4.mp4",
+    "AB2_st1.mp4",
+    "AB3_RedCross.mp4",
+    "AB4_Postnord7.mp4",
+    "AB5_Netonnet.mp4",
+    "AB6_Postnord4.mp4",
+    "AB7_CocaCola.mp4",
+    "AB8_Postnord6.mp4",
+    "AB9_Forsvaret2.mp4",
+    "ABC1_Postnord2.mp4"
+  ];
+
+  const cards = [...document.querySelectorAll(".video-card")];
+  const reelWindow = document.getElementById("reel-window");
+
+  const FADE_DURATION = 1000;
+  const MIN_INTERVAL = 2500;
+  const MAX_INTERVAL = 3500;
+  const LOAD_TIMEOUT = 8000;
+
+  const slots = cards.map(card => ({
+    card,
+    current: null,
+    prepared: null,
+    timer: null,
+    generation: 0,
+    busy: false
+  }));
+
+  let running = false;
+
+  function random(min, max) {
+    return min + Math.random() * (max - min);
+  }
+
+  function randomItem(items) {
+    return items[Math.floor(Math.random() * items.length)];
+  }
+
+  function wait(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+  function makeVideo(filename) {
+    const video = document.createElement("video");
+
+    video.src = "videos/" + filename;
+    video.dataset.filename = filename;
+    video.muted = true;
+    video.defaultMuted = true;
+    video.loop = true;
+    video.playsInline = true;
+    video.preload = "auto";
+
+    video.setAttribute("muted", "");
+    video.setAttribute("playsinline", "");
+    video.setAttribute("loop", "");
+
+    return video;
+  }
+
+  function waitFor(video, eventName) {
+    return new Promise((resolve, reject) => {
+      let timeout;
+
+      function cleanup() {
+        clearTimeout(timeout);
+        video.removeEventListener(eventName, success);
+        video.removeEventListener("error", failure);
+      }
+
+      function success() {
+        cleanup();
+        resolve();
+      }
+
+      function failure() {
+        cleanup();
+        reject(new Error("Could not load " + video.src));
+      }
+
+      video.addEventListener(eventName, success, { once: true });
+      video.addEventListener("error", failure, { once: true });
+
+      timeout = setTimeout(() => {
+        cleanup();
+        reject(new Error("Video load timeout: " + video.src));
+      }, LOAD_TIMEOUT);
+    });
+  }
+
+  async function prepareVideo(video) {
+    video.load();
+
+    if (video.readyState < 1) {
+      await waitFor(video, "loadedmetadata");
+    }
+
+    const duration = video.duration;
+
+    if (Number.isFinite(duration) && duration > 1) {
+      const start = random(0, Math.max(0, duration - 0.5));
+      const seekPromise = waitFor(video, "seeked");
+      video.currentTime = start;
+      await seekPromise;
+    }
+
+    if (video.readyState < 2) {
+      await waitFor(video, "loadeddata");
+    }
+  }
+
+  function getAvailableFilename(slot) {
+    const used = new Set();
+
+    slots.forEach(other => {
+      if (other.current) {
+        used.add(other.current.dataset.filename);
+      }
+
+      if (other.prepared) {
+        used.add(other.prepared.dataset.filename);
+      }
+    });
+
+    const available = videoFiles.filter(name => !used.has(name));
+
+    return available.length ? randomItem(available) : null;
+  }
+
+  function destroyVideo(video) {
+    if (!video) return;
+
+    video.pause();
+    video.removeAttribute("src");
+    video.load();
+    video.remove();
+  }
+
+  async function prepareNext(slot) {
+    if (!running || slot.prepared) return;
+
+    const filename = getAvailableFilename(slot);
+    if (!filename) return;
+
+    const video = makeVideo(filename);
+    slot.prepared = video;
+    video.style.zIndex = "2";
+    slot.card.appendChild(video);
+
+    try {
+      await prepareVideo(video);
+    } catch (error) {
+      console.warn(error.message);
+
+      if (slot.prepared === video) {
+        slot.prepared = null;
+      }
+
+      destroyVideo(video);
+    }
+  }
+
+  async function changeVideo(slot) {
+    if (!running || slot.busy) return;
+
+    slot.busy = true;
+    const generation = ++slot.generation;
+
+    try {
+      if (!slot.prepared) {
+        await prepareNext(slot);
+      }
+
+      const next = slot.prepared;
+
+      if (!next || !running || generation !== slot.generation) {
+        return;
+      }
+
+      await next.play();
+
+      if (!running || generation !== slot.generation) {
+        return;
+      }
+
+      next.classList.add("visible");
+
+      await wait(FADE_DURATION + 50);
+
+      if (!running || generation !== slot.generation) {
+        return;
+      }
+
+      const previous = slot.current;
+
+      slot.current = next;
+      slot.prepared = null;
+
+      destroyVideo(previous);
+
+    } catch (error) {
+      console.warn("Playback problem:", error);
+    } finally {
+      slot.busy = false;
+
+      if (running && generation === slot.generation) {
+        scheduleNext(slot);
+        prepareNext(slot);
+      }
+    }
+  }
+
+  function scheduleNext(slot) {
+    clearTimeout(slot.timer);
+
+    slot.timer = setTimeout(() => {
+      changeVideo(slot);
+    }, random(MIN_INTERVAL, MAX_INTERVAL));
+  }
+
+  function start() {
+    if (running) return;
+
+    running = true;
+
+    slots.forEach((slot, index) => {
+      if (slot.current) {
+        slot.current.play().catch(console.warn);
+        scheduleNext(slot);
+        prepareNext(slot);
+      } else {
+        slot.timer = setTimeout(() => {
+          changeVideo(slot);
+        }, index * 450 + random(0, 400));
+      }
+    });
+  }
+
+  function stop() {
+    if (!running) return;
+
+    running = false;
+
+    slots.forEach(slot => {
+      clearTimeout(slot.timer);
+      slot.generation++;
+
+      if (slot.current) {
+        slot.current.pause();
+      }
+
+      if (slot.prepared) {
+        destroyVideo(slot.prepared);
+        slot.prepared = null;
+      }
+    });
+  }
+
+  const observer = new IntersectionObserver(entries => {
+    const visible = entries.some(entry => entry.isIntersecting);
+
+    if (visible && !document.hidden) {
+      start();
+    } else {
+      stop();
+    }
+  }, { threshold: 0.01 });
+
+  observer.observe(reelWindow);
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.hidden) {
+      stop();
+    } else {
+      const rect = reelWindow.getBoundingClientRect();
+
+      if (rect.bottom > 0 && rect.top < innerHeight) {
+        start();
+      }
+    }
+  });
+
+  window.addEventListener("pagehide", stop);
+</script>
+
 </body>
 </html>
