@@ -22,8 +22,17 @@
   --reel-width:1100px;
   --reel-height:160px;
 }
-* { box-sizing:border-box; margin:0; padding:0; }
-html { scroll-behavior:smooth; }
+
+* {
+  box-sizing:border-box;
+  margin:0;
+  padding:0;
+}
+
+html {
+  scroll-behavior:smooth;
+}
+
 body {
   background:var(--dark);
   color:white;
@@ -31,10 +40,18 @@ body {
   font-weight:300;
   overflow-x:hidden;
 }
-a { color:inherit; text-decoration:none; }
-img { display:block; }
+
+a {
+  color:inherit;
+  text-decoration:none;
+}
+
+img {
+  display:block;
+}
 
 /* HEADER */
+
 header {
   position:absolute;
   z-index:100;
@@ -48,6 +65,7 @@ header {
   justify-content:space-between;
   padding:0 5vw;
 }
+
 .logo {
   color:var(--light);
   font-size:.83vw;
@@ -56,16 +74,25 @@ header {
   padding-bottom:.4vw;
   border-bottom:1px solid var(--light);
 }
-nav { display:flex; gap:3.6vw; }
+
+nav {
+  display:flex;
+  gap:3.6vw;
+}
+
 nav a {
   color:var(--light);
   font-size:.57vw;
   letter-spacing:.14em;
   text-transform:uppercase;
 }
-nav a:hover { opacity:.65; }
+
+nav a:hover {
+  opacity:.65;
+}
 
 /* LINKS */
+
 .text-link {
   display:inline-flex;
   align-items:baseline;
@@ -77,30 +104,38 @@ nav a:hover { opacity:.65; }
   line-height:1.5;
   transition:opacity .2s ease;
 }
-.text-link:hover { opacity:.6; }
+
+.text-link:hover {
+  opacity:.6;
+}
+
 .text-link .arrow {
   display:inline-block;
   font-size:1.05em;
   transition:transform .2s ease;
 }
+
 .text-link:hover .arrow {
   transform:translate(3px,-3px);
 }
 
 /* HERO */
+
 .hero {
   position:relative;
   width:100%;
-  height:56vw;
+  height:51vw;
   background:var(--dark);
   overflow:hidden;
 }
+
 .hero::before {
   content:"";
   position:absolute;
   inset:0;
   z-index:0;
   background:url("bilder/background.png") center top / cover no-repeat;
+
   -webkit-mask-image:linear-gradient(
     to bottom,
     black 0%,
@@ -110,6 +145,7 @@ nav a:hover { opacity:.65; }
     rgba(0,0,0,.2) 90%,
     transparent 100%
   );
+
   mask-image:linear-gradient(
     to bottom,
     black 0%,
@@ -120,6 +156,7 @@ nav a:hover { opacity:.65; }
     transparent 100%
   );
 }
+
 .hero-content {
   position:absolute;
   z-index:10;
@@ -127,6 +164,7 @@ nav a:hover { opacity:.65; }
   top:12.5%;
   width:50%;
 }
+
 .eyebrow {
   position:relative;
   margin-bottom:1.3vw;
@@ -137,6 +175,7 @@ nav a:hover { opacity:.65; }
   letter-spacing:.16em;
   text-transform:uppercase;
 }
+
 .eyebrow::before {
   content:"";
   position:absolute;
@@ -146,14 +185,22 @@ nav a:hover { opacity:.65; }
   height:1px;
   background:var(--light);
 }
+
 .hero h1 {
   font-size:7.55vw;
   line-height:.84;
   letter-spacing:-.045em;
   font-weight:500;
 }
-.hero h1 span { display:block; }
-.hero h1 span:last-child { color:var(--light); }
+
+.hero h1 span {
+  display:block;
+}
+
+.hero h1 span:last-child {
+  color:var(--light);
+}
+
 .hero-copy {
   width:29vw;
   margin-top:3.9vw;
@@ -161,6 +208,7 @@ nav a:hover { opacity:.65; }
   font-size:.88vw;
   line-height:1.55;
 }
+
 .cv {
   margin-top:1.6vw;
   font-size:clamp(13px,1.08vw,21px);
@@ -168,6 +216,7 @@ nav a:hover { opacity:.65; }
 }
 
 /* HERO SHAPES */
+
 .hero-circle {
   position:absolute;
   z-index:2;
@@ -178,6 +227,7 @@ nav a:hover { opacity:.65; }
   border-radius:50%;
   background:var(--blue);
 }
+
 .hero-portrait {
   position:absolute;
   z-index:4;
@@ -188,6 +238,7 @@ nav a:hover { opacity:.65; }
   object-fit:cover;
   filter:grayscale(100%);
 }
+
 .hero-blue {
   position:absolute;
   z-index:5;
@@ -197,6 +248,7 @@ nav a:hover { opacity:.65; }
   height:7.81vw;
   background:var(--blue);
 }
+
 .hero-yellow {
   position:absolute;
   z-index:6;
@@ -208,6 +260,7 @@ nav a:hover { opacity:.65; }
 }
 
 /* SHARED CHAPTER LABELS */
+
 .about-line,
 .work-line,
 .background-line,
@@ -218,6 +271,7 @@ nav a:hover { opacity:.65; }
   height:1px;
   background:var(--light);
 }
+
 .about-label,
 .work-label,
 .background-label,
@@ -229,6 +283,7 @@ nav a:hover { opacity:.65; }
   letter-spacing:.14em;
   text-transform:uppercase;
 }
+
 .about-number,
 .work-number,
 .background-number,
@@ -244,38 +299,63 @@ nav a:hover { opacity:.65; }
 }
 
 /* ABOUT */
+
 .about {
   position:absolute;
   z-index:20;
   left:0;
   bottom:0;
   width:100%;
-  height:25vw;
+  height:21vw;
   background:transparent;
 }
-.about-line { top:2.5vw; }
-.about-label { top:3.7vw; }
-.about-number { top:8vw; }
+
+.about-line {
+  top:1vw;
+}
+
+.about-label {
+  top:2.2vw;
+}
+
+.about-number {
+  top:8vw;
+}
+
 .about-copy {
   position:absolute;
   left:var(--content-left);
-  top:6vw;
+  top:4.5vw;
   width:var(--content-width);
   font-size:.83vw;
   line-height:1.55;
 }
-.about-copy p+p { margin-top:1.15vw; }
+
+.about-copy p+p {
+  margin-top:1.15vw;
+}
 
 /* SELECTED WORK */
+
 .work {
   position:relative;
   width:100%;
   padding:5vw 0 0;
   background:var(--dark);
 }
-.work-line { top:0; }
-.work-label { top:1.2vw; }
-.work-number { top:8vw; }
+
+.work-line {
+  top:0;
+}
+
+.work-label {
+  top:1.2vw;
+}
+
+.work-number {
+  top:8vw;
+}
+
 .work-grid {
   position:relative;
   width:var(--content-width);
@@ -285,6 +365,7 @@ nav a:hover { opacity:.65; }
 }
 
 /* PROJECT CARDS */
+
 .card {
   position:relative;
   display:grid;
@@ -296,10 +377,23 @@ nav a:hover { opacity:.65; }
   box-shadow:inset 0 0 16px rgba(225,225,225,.055);
   overflow:hidden;
 }
-.card.academic { background:rgba(67,96,133,.72); }
-.card.published { background:rgba(93,110,119,.72); }
-.card.film { background:rgba(117,105,69,.72); }
-.card.commercial { background:rgba(145,116,52,.72); }
+
+.card.academic {
+  background:rgba(67,96,133,.72);
+}
+
+.card.published {
+  background:rgba(93,110,119,.72);
+}
+
+.card.film {
+  background:rgba(117,105,69,.72);
+}
+
+.card.commercial {
+  background:rgba(145,116,52,.72);
+}
+
 .card-number {
   grid-column:1;
   grid-row:1;
@@ -308,6 +402,7 @@ nav a:hover { opacity:.65; }
   letter-spacing:.1em;
   text-transform:uppercase;
 }
+
 .card h3 {
   grid-column:1;
   grid-row:2;
@@ -318,6 +413,7 @@ nav a:hover { opacity:.65; }
   line-height:1.08;
   letter-spacing:-.05em;
 }
+
 .card-content {
   grid-column:2;
   grid-row:1 / span 2;
@@ -326,12 +422,17 @@ nav a:hover { opacity:.65; }
   align-items:flex-start;
   gap:1.25vw;
 }
+
 .card-content p {
   color:rgba(255,255,255,.9);
   font-size:clamp(11px,.84vw,17px);
   line-height:1.45;
 }
-.card-content p+p { margin-top:.25vw; }
+
+.card-content p+p {
+  margin-top:.25vw;
+}
+
 .card-links {
   display:flex;
   flex-direction:column;
@@ -340,13 +441,16 @@ nav a:hover { opacity:.65; }
 }
 
 /* VIDEO CARDS */
+
 .card.with-video {
   grid-template-rows:auto 1fr auto;
   padding-bottom:2vw;
 }
+
 .card.with-video .card-content {
   grid-row:1 / span 2;
 }
+
 .video-strip {
   position:relative;
   grid-column:1 / -1;
@@ -358,6 +462,7 @@ nav a:hover { opacity:.65; }
   overflow:hidden;
   background:transparent;
 }
+
 .video-strip iframe {
   position:absolute;
   inset:0;
@@ -370,6 +475,7 @@ nav a:hover { opacity:.65; }
 }
 
 /* BACKGROUND + CONTACT */
+
 .lower {
   position:relative;
   width:100%;
@@ -378,7 +484,8 @@ nav a:hover { opacity:.65; }
   background:var(--dark);
 }
 
-/* Shared background image */
+/* SHARED BACKGROUND IMAGE */
+
 .lower-image {
   position:absolute;
   z-index:0;
@@ -387,6 +494,7 @@ nav a:hover { opacity:.65; }
   background-repeat:no-repeat;
   background-size:cover;
   background-position:center bottom;
+
   -webkit-mask-image:linear-gradient(
     to bottom,
     transparent 0%,
@@ -399,6 +507,7 @@ nav a:hover { opacity:.65; }
     black 78%,
     black 100%
   );
+
   mask-image:linear-gradient(
     to bottom,
     transparent 0%,
@@ -411,19 +520,31 @@ nav a:hover { opacity:.65; }
     black 78%,
     black 100%
   );
+
   pointer-events:none;
 }
 
 /* BACKGROUND CONTENT */
+
 .background-content {
   position:relative;
   z-index:5;
   width:100%;
   padding:5vw 0 1.95vw;
 }
-.background-line { top:0; }
-.background-label { top:1.2vw; }
-.background-number { top:8vw; }
+
+.background-line {
+  top:0;
+}
+
+.background-label {
+  top:1.2vw;
+}
+
+.background-number {
+  top:8vw;
+}
+
 .background-copy {
   position:relative;
   left:var(--content-left);
@@ -432,9 +553,13 @@ nav a:hover { opacity:.65; }
   font-size:.83vw;
   line-height:1.55;
 }
-.background-copy p+p { margin-top:1.15vw; }
 
-/* CONTACT — NEW LAYOUT */
+.background-copy p+p {
+  margin-top:1.15vw;
+}
+
+/* CONTACT */
+
 .contact {
   position:relative;
   z-index:10;
@@ -444,14 +569,17 @@ nav a:hover { opacity:.65; }
   overflow:hidden;
   background:transparent;
 }
-.contact-line { top:2.5vw; }
-.contact-label { top:3.55vw; }
-.contact-number { top:8vw; }
 
-/* Remove previous decorative circles */
-.contact-circle,
-.contact-circle-inner {
-  display:none;
+.contact-line {
+  top:2.5vw;
+}
+
+.contact-label {
+  top:3.55vw;
+}
+
+.contact-number {
+  top:8vw;
 }
 
 .contact-heading {
@@ -460,6 +588,7 @@ nav a:hover { opacity:.65; }
   left:23.4%;
   top:10vw;
 }
+
 .contact-heading h2 {
   color:var(--light);
   font-size:5.9vw;
@@ -468,25 +597,30 @@ nav a:hover { opacity:.65; }
   letter-spacing:-.06em;
 }
 
-/* Overlapping yellow squares */
+/* TWO OVERLAPPING YELLOW SQUARES */
+
 .contact-yellow {
   position:absolute;
   z-index:6;
   left:41%;
-  top:14.4vw;
+  top:15.2vw;
   width:2.65vw;
-  height:4.9vw;
-  background:rgba(244,175,33,.9);
+  height:2.65vw;
+  background:#F4AF21;
 }
+
 .contact-yellow::after {
   content:"";
   position:absolute;
-  left:-1.05vw;
-  bottom:0;
+  left:-1.3vw;
+  top:1.3vw;
   width:2.65vw;
-  height:2.5vw;
+  height:2.65vw;
   background:rgba(244,175,33,.8);
 }
+
+/* CONTACT DETAILS */
+
 .contact-details {
   position:absolute;
   z-index:8;
@@ -499,6 +633,7 @@ nav a:hover { opacity:.65; }
   gap:.8vw;
   text-align:center;
 }
+
 .email,
 .phone {
   color:var(--light);
@@ -507,20 +642,25 @@ nav a:hover { opacity:.65; }
   line-height:1.5;
   white-space:nowrap;
 }
+
+/* CLOSER LINK SPACING */
+
 .contact-socials {
   display:flex;
   align-items:center;
-  justify-content:space-between;
-  width:75%;
-  gap:2vw;
+  justify-content:center;
+  width:100%;
+  gap:5vw;
   margin-top:.2vw;
 }
+
 .contact-socials .text-link {
   font-size:1.05vw;
   font-weight:300;
 }
 
 /* FOOTER */
+
 footer {
   position:relative;
   z-index:30;
@@ -536,7 +676,10 @@ footer {
 }
 
 @media(min-width:1920px) {
-  .hero,.work,.lower,footer {
+  .hero,
+  .work,
+  .lower,
+  footer {
     max-width:1920px;
     margin-left:auto;
     margin-right:auto;
@@ -544,6 +687,7 @@ footer {
 }
 
 /* MOBILE */
+
 @media(max-width:760px) {
   :root {
     --content-width:calc(100% - 50px);
@@ -553,15 +697,31 @@ footer {
     --reel-height:160px;
   }
 
-  header { height:70px;padding:0 22px; }
-  .logo { font-size:9px; }
-  nav { gap:14px; }
-  nav a { font-size:8px; }
+  header {
+    height:70px;
+    padding:0 22px;
+  }
 
-  .hero { height:760px; }
+  .logo {
+    font-size:9px;
+  }
+
+  nav {
+    gap:14px;
+  }
+
+  nav a {
+    font-size:8px;
+  }
+
+  .hero {
+    height:760px;
+  }
+
   .hero::before {
     background-size:auto 1050px;
     background-position:center -110px;
+
     -webkit-mask-image:linear-gradient(
       to bottom,
       black 0px,
@@ -570,6 +730,7 @@ footer {
       rgba(0,0,0,.45) 640px,
       transparent 760px
     );
+
     mask-image:linear-gradient(
       to bottom,
       black 0px,
@@ -579,24 +740,38 @@ footer {
       transparent 760px
     );
   }
+
   .hero-content {
     left:25px;
     top:135px;
     width:calc(100% - 50px);
   }
-  .eyebrow { padding-left:55px;font-size:9px; }
-  .eyebrow::before { width:42px; }
+
+  .eyebrow {
+    padding-left:55px;
+    font-size:9px;
+  }
+
+  .eyebrow::before {
+    width:42px;
+  }
+
   .hero h1 {
     margin-top:25px;
     font-size:76px;
     line-height:.82;
   }
+
   .hero-copy {
     width:78%;
     margin-top:40px;
     font-size:13px;
   }
-  .cv { margin-top:20px;font-size:16px; }
+
+  .cv {
+    margin-top:20px;
+    font-size:16px;
+  }
 
   .hero-circle {
     left:45%;
@@ -604,18 +779,21 @@ footer {
     width:500px;
     height:500px;
   }
+
   .hero-portrait {
     left:55%;
     top:495px;
     width:245px;
     height:245px;
   }
+
   .hero-blue {
     left:48%;
     top:450px;
     width:50px;
     height:100px;
   }
+
   .hero-yellow {
     left:74%;
     top:650px;
@@ -623,23 +801,31 @@ footer {
     height:100px;
   }
 
-  .about { height:310px; }
+  /* ABOUT MOBILE */
+
+  .about {
+    height:310px;
+  }
+
   .about-line {
     left:25px;
     top:10px;
     width:calc(100% - 50px);
   }
+
   .about-label {
     left:25px;
     top:25px;
     font-size:10px;
   }
+
   .about-number,
   .work-number,
   .background-number,
   .contact-number {
     display:none;
   }
+
   .about-copy {
     left:25px;
     top:65px;
@@ -647,19 +833,29 @@ footer {
     font-size:12px;
     line-height:1.45;
   }
-  .about-copy p+p { margin-top:12px; }
 
-  .work { padding:90px 25px 0; }
+  .about-copy p+p {
+    margin-top:12px;
+  }
+
+  /* WORK MOBILE */
+
+  .work {
+    padding:90px 25px 0;
+  }
+
   .work-line {
     left:25px;
     top:0;
     width:calc(100% - 50px);
   }
+
   .work-label {
     left:25px;
     top:15px;
     font-size:10px;
   }
+
   .work-grid {
     width:100%;
     margin-left:0;
@@ -672,19 +868,37 @@ footer {
     min-height:0;
     padding:28px 24px 30px;
   }
-  .card-number { font-size:10px; }
+
+  .card-number {
+    font-size:10px;
+  }
+
   .card h3 {
     align-self:flex-start;
     font-size:25px;
   }
-  .card-content { gap:16px; }
+
+  .card-content {
+    gap:16px;
+  }
+
   .card-content p {
     font-size:12px;
     line-height:1.5;
   }
-  .card-links { gap:8px; }
-  .text-link { font-size:13px; }
-  .card.with-video { padding-bottom:20px; }
+
+  .card-links {
+    gap:8px;
+  }
+
+  .text-link {
+    font-size:13px;
+  }
+
+  .card.with-video {
+    padding-bottom:20px;
+  }
+
   .video-strip {
     flex:none;
     width:100%;
@@ -692,6 +906,7 @@ footer {
     height:160px;
     margin:0 auto;
   }
+
   .video-strip iframe {
     inset:0;
     width:100%;
@@ -699,10 +914,16 @@ footer {
     transform:none;
   }
 
-  .lower { margin-top:50px; }
+  /* BACKGROUND MOBILE */
+
+  .lower {
+    margin-top:50px;
+  }
+
   .lower-image {
     background-size:cover;
     background-position:center bottom;
+
     -webkit-mask-image:linear-gradient(
       to bottom,
       transparent 0%,
@@ -712,6 +933,7 @@ footer {
       black 75%,
       black 100%
     );
+
     mask-image:linear-gradient(
       to bottom,
       transparent 0%,
@@ -722,72 +944,99 @@ footer {
       black 100%
     );
   }
-  .background-content { padding:65px 0 50px; }
+
+  .background-content {
+    padding:65px 0 50px;
+  }
+
   .background-line {
     left:25px;
     top:0;
     width:calc(100% - 50px);
   }
+
   .background-label {
     left:25px;
     top:15px;
     font-size:10px;
   }
+
   .background-copy {
     left:25px;
     width:calc(100% - 50px);
     font-size:12px;
     line-height:1.5;
   }
-  .background-copy p+p { margin-top:14px; }
+
+  .background-copy p+p {
+    margin-top:14px;
+  }
+
+  /* CONTACT MOBILE */
 
   .contact {
     height:430px;
     min-height:0;
   }
+
   .contact-line {
     left:25px;
     top:22px;
     width:calc(100% - 50px);
   }
+
   .contact-label {
     left:25px;
     top:38px;
     font-size:10px;
   }
+
   .contact-heading {
     left:25px;
     top:110px;
   }
+
   .contact-heading h2 {
     font-size:clamp(55px,13vw,76px);
   }
+
   .contact-yellow {
     left:205px;
     top:154px;
     width:28px;
-    height:51px;
+    height:28px;
   }
+
   .contact-yellow::after {
-    left:-12px;
+    left:-14px;
+    top:14px;
     width:28px;
-    height:26px;
+    height:28px;
   }
-  .contact-circle,
-  .contact-circle-inner { display:none; }
+
   .contact-details {
     left:25px;
     top:255px;
     width:calc(100% - 50px);
     gap:10px;
   }
-  .email,.phone { font-size:12px; }
+
+  .email,
+  .phone {
+    font-size:12px;
+  }
+
   .contact-socials {
-    width:190px;
-    gap:24px;
+    width:100%;
+    justify-content:center;
+    gap:35px;
     margin-top:12px;
   }
-  .contact-socials .text-link { font-size:13px; }
+
+  .contact-socials .text-link {
+    font-size:13px;
+  }
+
   footer {
     min-height:55px;
     padding:0 25px;
@@ -800,8 +1049,10 @@ footer {
 <body>
 
 <!-- HEADER -->
+
 <header>
   <a href="#" class="logo">MH / PORTFOLIO</a>
+
   <nav>
     <a href="#about">About</a>
     <a href="#work">Work</a>
@@ -810,7 +1061,9 @@ footer {
 </header>
 
 <!-- HERO + ABOUT -->
+
 <section class="hero">
+
   <div class="hero-circle"></div>
   <div class="hero-blue"></div>
 
@@ -823,6 +1076,7 @@ footer {
   <div class="hero-yellow"></div>
 
   <div class="hero-content">
+
     <div class="eyebrow">
       Digital Production · UX/HCI · Technical Systems
     </div>
@@ -845,15 +1099,19 @@ footer {
     >
       CV <span class="arrow">↗</span>
     </a>
+
   </div>
 
   <!-- ABOUT -->
+
   <div class="about" id="about">
+
     <div class="about-line"></div>
     <div class="about-label">About</div>
     <div class="about-number">01 — ABOUT</div>
 
     <div class="about-copy">
+
       <p>
         I'm a civil engineer with a background in film and a growing
         obsession with how people interact with technology.
@@ -873,12 +1131,16 @@ footer {
         and about the difference between how something is supposed to work
         and how it actually works in the real world.
       </p>
+
     </div>
   </div>
+
 </section>
 
 <!-- SELECTED WORK -->
+
 <section class="work" id="work">
+
   <div class="work-line"></div>
   <div class="work-label">Selected Work</div>
   <div class="work-number">02 — SELECTED WORK</div>
@@ -886,11 +1148,15 @@ footer {
   <div class="work-grid">
 
     <!-- ACADEMIC WORKS -->
+
     <article class="card academic">
+
       <span class="card-number">/ ACADEMICS</span>
+
       <h3>Academic Works</h3>
 
       <div class="card-content">
+
         <p>
           My academic projects reflect a curiosity about how people
           perceive, use and respond to technology.
@@ -910,6 +1176,7 @@ footer {
         </p>
 
         <div class="card-links">
+
           <a
             class="text-link"
             href="https://www.diva-portal.org/smash/record.jsf?pid=diva2:1971336"
@@ -929,16 +1196,21 @@ footer {
             BSc thesis: True Colors (2014)
             <span class="arrow">↗</span>
           </a>
+
         </div>
       </div>
     </article>
 
     <!-- PUBLISHED PROJECTS -->
+
     <article class="card published">
+
       <span class="card-number">/ UX · AI</span>
+
       <h3>Published Projects</h3>
 
       <div class="card-content">
+
         <p>
           As part of a research project at KTH, I explored how AI
           could support reading comprehension by providing
@@ -961,6 +1233,7 @@ footer {
         </p>
 
         <div class="card-links">
+
           <a
             class="text-link"
             href="https://link.springer.com/chapter/10.1007/978-3-032-37979-5_18"
@@ -980,12 +1253,15 @@ footer {
             Try the demo
             <span class="arrow">↗</span>
           </a>
+
         </div>
       </div>
     </article>
 
     <!-- FILM & TV WORK -->
+
     <article class="card film with-video">
+
       <span class="card-number">
         / MOVING IMAGE PRODUCTION
       </span>
@@ -993,6 +1269,7 @@ footer {
       <h3>Film &amp; TV Work</h3>
 
       <div class="card-content">
+
         <p>
           I've spent over a decade working behind the scenes
           in film and television, primarily in Video Assist,
@@ -1013,6 +1290,7 @@ footer {
         </p>
 
         <div class="card-links">
+
           <a
             class="text-link"
             href="https://videoassist.se/"
@@ -1032,6 +1310,7 @@ footer {
             IMDb Profile
             <span class="arrow">↗</span>
           </a>
+
         </div>
       </div>
 
@@ -1044,10 +1323,13 @@ footer {
           tabindex="-1"
         ></iframe>
       </div>
+
     </article>
 
     <!-- COMMERCIAL WORK -->
+
     <article class="card commercial with-video">
+
       <span class="card-number">
         / MOVING IMAGE PRODUCTION
       </span>
@@ -1055,6 +1337,7 @@ footer {
       <h3>Commercial Work</h3>
 
       <div class="card-content">
+
         <p>
           Commercial productions are often fast-paced,
           technically demanding and highly collaborative.
@@ -1071,6 +1354,7 @@ footer {
           reliable image workflows while ensuring a smooth
           and professional experience for everyone involved.
         </p>
+
       </div>
 
       <div class="video-strip">
@@ -1082,23 +1366,28 @@ footer {
           tabindex="-1"
         ></iframe>
       </div>
+
     </article>
 
   </div>
 </section>
 
 <!-- BACKGROUND + CONTACT -->
+
 <section class="lower">
 
   <div class="lower-image"></div>
 
   <!-- BACKGROUND -->
+
   <div class="background-content">
+
     <div class="background-line"></div>
     <div class="background-label">Background</div>
     <div class="background-number">03 — BACKGROUND</div>
 
     <div class="background-copy">
+
       <p>
         Working in film and television for over a decade
         has taught me a lot. And surprisingly, not all
@@ -1161,11 +1450,14 @@ footer {
         And those are things I hope to bring with me wherever
         I end up next.
       </p>
+
     </div>
   </div>
 
   <!-- CONTACT -->
+
   <div class="contact" id="contact">
+
     <div class="contact-line"></div>
     <div class="contact-label">Contact</div>
     <div class="contact-number">04 — CONTACT</div>
@@ -1177,6 +1469,7 @@ footer {
     <div class="contact-yellow"></div>
 
     <div class="contact-details">
+
       <a
         class="email"
         href="mailto:malin.hall.eliasson@gmail.com"
@@ -1192,6 +1485,7 @@ footer {
       </a>
 
       <div class="contact-socials">
+
         <a
           class="text-link"
           href="https://www.linkedin.com/in/malin-hall-9a073a339/"
@@ -1209,13 +1503,16 @@ footer {
         >
           CV <span class="arrow">↗</span>
         </a>
+
       </div>
+
     </div>
   </div>
 
 </section>
 
 <!-- FOOTER -->
+
 <footer>
   <span>© 2026 Malin Hall</span>
   <span>MH / PORTFOLIO</span>
